@@ -1,0 +1,11 @@
+jvd_setup.exe
+ffmpeg.exe
+ffplay.exe
+ffprobe.exe
+downloads/
+venv/
+dist/
+build/
+__pycache__/
+temp/
+.env
