@@ -7,6 +7,10 @@ import time
 from bs4 import BeautifulSoup
 from predict import FootballPrediction
 import os
+import pandas as pd
+import ast  # To evaluate the string representation of the dictionary
+import re
+
 
 def initialize_browser():
     # Initialize the webdriver (Make sure you have the appropriate webdriver installed)
@@ -68,7 +72,6 @@ def select_option(driver, option_text):
     # Find the button to open the dropdown
     # dropdown_button = driver.find_element(By.CLASS_NAME, 'sc-eeDRCY.eGpxD')
     dropdown_button = driver.find_elements(By.CSS_SELECTOR, '.sc-eeDRCY.eGpxD')[2]
-
 
     # Click the button to open the dropdown
     dropdown_button.click()
@@ -150,9 +153,9 @@ def extract_football_data_old(driver):
 def get_tag(class_name):
     if str(class_name) == "sc-gFqAkR dclrdQ" or str(class_name) == "sc-gFqAkR gVQqGu":
         return "Home/Away"
-    elif "diXcnv currentScore" in str(class_name) :
+    elif "diXcnv currentScore" in str(class_name):
         return "HomeScore"
-    elif "brUINp currentScore" in str(class_name) :
+    elif "brUINp currentScore" in str(class_name):
         return "AwayScore"
     elif str(class_name) == "sc-gFqAkR eUqojZ":
         return "League"
@@ -161,10 +164,10 @@ def get_tag(class_name):
 
 
 def extract_football_data(driver, team):
-
     parent_container = driver.find_element(By.CSS_SELECTOR, ".sc-fqkvVR.fZdvTU")
     elements = parent_container.find_elements(By.CSS_SELECTOR, "bdi")
-    score_box = parent_container.find_elements(By.CSS_SELECTOR, "div.sc-fqkvVR.sc-dcJsrY.cMBRgs.fVCdFl.sc-e8bb5194-2.dpyLLS.score-box")
+    score_box = parent_container.find_elements(By.CSS_SELECTOR,
+                                               "div.sc-fqkvVR.sc-dcJsrY.cMBRgs.fVCdFl.sc-e8bb5194-2.dpyLLS.score-box")
     wdls = parent_container.find_elements(By.CSS_SELECTOR, "div.sc-gFqAkR.iPZpuQ")
 
     # score by both teams
@@ -173,10 +176,9 @@ def extract_football_data(driver, team):
         boxScores.append(box.find_elements(By.CSS_SELECTOR, 'span')[0].text)
 
     # wind draw loss list
-    wdl_list =[]
+    wdl_list = []
     for w in wdls:
         wdl_list.append(w.text)
-
 
     sub_dict = {}
     # Extract and print the text and class name of each element
@@ -189,7 +191,7 @@ def extract_football_data(driver, team):
     data_awayscore = None
 
     x = 0
-    y=0
+    y = 0
 
     all_team_data = []
 
@@ -250,7 +252,6 @@ def extract_football_data(driver, team):
 
 
 def get_all_team(driver):
-
     parent_container = driver.find_elements(By.CSS_SELECTOR, ".sc-fqkvVR.sc-dcJsrY.ijyhVl.fFmCDf.sc-4430bda6-0.dMmcA-D")
 
     teamList = []
@@ -258,12 +259,10 @@ def get_all_team(driver):
         team_name = players.text.split("\n")[1]
         teamList.append(team_name)
 
-
     return teamList
 
 
 def get_team_list_for(team_member):
-
     # Example usage:
     url = "https://www.sofascore.com/"
     text_to_search = team_member
@@ -295,7 +294,7 @@ def get_team_list_for(team_member):
 
     teamList = get_all_team(driver)
 
-    return  driver, teamList
+    return driver, teamList
 
 
 # =============================================================================
@@ -311,68 +310,70 @@ def get_data_for_prediction(home):
 
     for index, team in enumerate(team_list):
         # 3. Search for text
-        print(f"\r[{index + 1}/{len(team_list)}] Extracting Data for {team}", end="")
-        search_text(driver, team)
-        time.sleep(1)
+        while True:
+            try:
+                print(f"\r[{index + 1}/{len(team_list)}] Extracting Data for {team}", end="")
+                search_text(driver, team)
+                time.sleep(1)
 
-        # 4. load the first url
-        # print(f"getting page url for {team}")
-        href = get_first_href(driver)
+                # 4. load the first url
+                # print(f"getting page url for {team}")
+                href = get_first_href(driver)
 
-        # print(f"loading page for {team}...")
-        driver.get(href)
-        time.sleep(1)
+                # print(f"loading page for {team}...")
+                driver.get(href)
+                time.sleep(1)
 
-        time.sleep(3)
-        # print("Extracting Football data:")
-        game_data = extract_football_data(driver, team)
-        # print(game_data)
-        all_data.extend(game_data)
+                time.sleep(3)
+                # print("Extracting Football data:")
+                game_data = extract_football_data(driver, team)
+                # print(game_data)
+                all_data.extend(game_data)
+                print(f'\t |\t saving data for {team}...')
+                # print(game_data)
+                # print('--------------------------------------')
 
-    print("Saving extracted data to file...")
+                save_to_excel(game_data)
+                # if ans is True:
+                #     print("Saved successfully")
+                #     break
+                # else:
+                #     print("Not saved! Data exists")
+                #     break
+                # time.sleep(1)
+                break
+            except:
+                print(f"Failed to get {team}! Retrying...")
+                time.sleep(2)
+                pass
 
-    existingData = load_data(use_string=True)
-    if len(str(existingData)) < 10:
-        with open('datafile.txt', 'w') as f:
-            f.write(str(all_data))
-    else:
-        # data = eval(existingData)
-        # print(all_data)
-        # print(type(all_data))
-        # print(type(all_data[0]))
-        # print('----------------------')
-        # print(type(existingData))
-        # print(type(existingData[0]))
-        existingData.extend(all_data)
-
-        # all_data.extend(existingData)
-        with open('datafile.txt', 'w', encoding='utf-8') as f:
-            f.write(str(existingData))
+    # print("Saving extracted data to file...")
+    #
+    # existingData = load_data(use_string=True)
+    # if len(str(existingData)) < 10:
+    #     with open('datafile.txt', 'w') as f:
+    #         f.write(str(all_data))
+    # else:
+    #     existingData.extend(all_data)
+    #
+    #     # all_data.extend(existingData)
+    #     with open('datafile.txt', 'w', encoding='utf-8') as f:
+    #         f.write(str(existingData))
 
 
-def load_data(use_string = False):
-    if os.path.exists("datafile.txt") is False:
-        with open('datafile.txt', 'w') as ff:
-            ff.write("")
-        return None
+def retrieve_from_excel(filename='datafile.xlsx'):
+    try:
+        # Load data from the Excel file
+        df = pd.read_excel(filename)
+    except FileNotFoundError:
+        # If the file doesn't exist, return an empty list
+        return []
 
-    with open('datafile.txt', 'r') as f:
-        data = f.read()
+    # Convert DataFrame to a list of dictionaries
+    data_list = df.to_dict(orient='records')
 
-    if len(data) > 10:
-        print(type(data))
-        data = eval(data)
+    return data_list
 
-        newdata =[]
-        for d in data:
-            if use_string is False:
-                newdata.append((eval(d)))
-            else:
-                newdata.append(d)
-
-        return newdata
-    else:
-        return None
 
 def reconfirm_team_name(team_name, data):
     actual_team_name = None
@@ -402,7 +403,6 @@ def reconfirm_team_name(team_name, data):
 
 
 def is_data_valid_for(home, away, data):
-
     h = reconfirm_team_name(home, data)
     a = reconfirm_team_name(away, data)
     print(f"h: {h} --  a: {a}")
@@ -413,27 +413,162 @@ def is_data_valid_for(home, away, data):
     return True
 
 
+def save_to_excel1(data_list, file_path='datafile.xlsx'):
+    try:
+        # Try loading existing file or create a new one
+        df = pd.read_excel(file_path)
+    except FileNotFoundError:
+        # Create a new DataFrame if the file doesn't exist
+        df = pd.DataFrame()
+
+        # Convert string representation of dictionaries to dictionaries
+    data_list = [ast.literal_eval(data) for data in data_list]
+
+    # Convert the list of dictionaries to a DataFrame
+    new_data = pd.DataFrame(data_list)
+
+    # Concatenate the existing DataFrame and the new data
+    df = pd.concat([df, new_data], ignore_index=True)
+
+    # Save DataFrame to Excel file
+    df.to_excel(file_path, index=False)
+
+
+def save_to_excel(data_list, file_path='datafile.xlsx'):
+    try:
+        # Try loading existing file
+        df = pd.read_excel(file_path)
+
+        # Convert string representation of dictionaries to dictionaries
+        data_list = [ast.literal_eval(data) for data in data_list]
+
+        # Convert the list of dictionaries to a DataFrame
+        new_data = pd.DataFrame(data_list)
+
+        # Check if the data to be saved already exists in the DataFrame
+        if not new_data.equals(df[new_data.columns]):
+            # Concatenate the existing DataFrame and the new data
+            df = pd.concat([df, new_data], ignore_index=True)
+
+            # Save DataFrame to Excel file
+            df.to_excel(file_path, index=False)
+            return True
+        else:
+            print("Data already exists. Skipping saving.")
+            return False
+
+    except FileNotFoundError:
+        # Create a new DataFrame if the file doesn't exist
+        df = pd.DataFrame(data_list)
+
+        # Save DataFrame to Excel file
+        df.to_excel(file_path, index=False)
+
+
+def retrieve_data(file_path='datafile.xlsx'):
+    # try:
+    #     # Try loading existing file
+    #     df = pd.read_excel(file_path)
+    #     return df.to_dict('records')
+    # except FileNotFoundError:
+    #     # Return an empty list if the file doesn't exist
+    #     return []
+
+    try:
+        # Try loading existing file
+        df = pd.read_excel(file_path)
+
+        # Convert 'home_score' and 'away_score' columns to integers
+        df['home_score'] = pd.to_numeric(df['home_score'], errors='coerce').astype('Int64')
+        df['away_score'] = pd.to_numeric(df['away_score'], errors='coerce').astype('Int64')
+
+        # Exclude rows with blank, NaN, "N/A", or "?" values in 'home_score' and 'away_score'
+        df = df.dropna(subset=['home_score', 'away_score'])
+        df = df[~df['home_score'].isin(['', 'N/A', '?'])]
+        df = df[~df['away_score'].isin(['', 'N/A', '?'])]
+
+        # Return the filtered DataFrame as a list of dictionaries
+        return df.to_dict('records')
+
+    except FileNotFoundError:
+        # Return an empty list if the file doesn't exist
+        return []
+
+
+def check_team_existence1(team_name, file_path='datafile.xlsx'):
+    try:
+        # Try loading existing file
+        df = pd.read_excel(file_path)
+        team_count = df['team'].eq(team_name).sum()
+        return team_count > 0, team_count
+    except FileNotFoundError:
+        # Return False and 0 if the file doesn't exist
+        return False, 0
+
+def check_team_existence2(team_name, file_path='datafile.xlsx'):
+    try:
+        # Try loading existing file
+        df = pd.read_excel(file_path)
+
+        # Preprocess team names: remove special characters and convert to lowercase
+        team_name = re.sub(r'[^a-zA-Z0-9]', '', team_name.lower())
+
+        # Preprocess existing team names in the DataFrame
+        df['team'] = df['team'].apply(lambda x: re.sub(r'[^a-zA-Z0-9]', '', str(x).lower()))
+
+        # Check if the preprocessed team name exists in the DataFrame
+        team_count = df['team'].eq(team_name).sum()
+
+        return team_count > 0, team_count
+
+    except FileNotFoundError:
+        # Return False and 0 if the file doesn't exist
+        return False, 0
+
+def check_team_existence(team_name, file_path='datafile.xlsx'):
+    try:
+        # Try loading existing file
+        df = pd.read_excel(file_path)
+
+        # Preprocess team names: remove special characters and convert to lowercase
+        team_name = re.sub(r'[^a-zA-Z0-9]', '', team_name.lower())
+
+        # Preprocess existing team names in the DataFrame
+        df['team'] = df['team'].apply(lambda x: re.sub(r'[^a-zA-Z0-9]', '', str(x).lower()))
+
+        # Check if the preprocessed team name or its partial match exists in the DataFrame
+        team_count = df['team'].apply(lambda x: team_name in x).sum()
+
+        return team_count > 0, team_count
+
+    except FileNotFoundError:
+        # Return False and 0 if the file doesn't exist
+        return False, 0
+
 
 def predict(home, away):
     print("PREDICTING...")
-    newdata = load_data()
+    home = str(home).title()
+    away = str(away).title()
 
-    # check if data exist at all
-    if newdata is None:
-        print("No data on file, getting data online...")
-        get_data_for_prediction(home)
-        newdata = load_data()
+    h, ch = check_team_existence(home)  # h-home, ch-count home
+    a, ca = check_team_existence(away)  # a-away, ca-count away
+    print(f"home: {home}::{h}")
+    print(f"away: {away}::{a}")
 
-    # check if data is avaiale for the current team
-    valid =  is_data_valid_for(home, away, newdata)
+    time.sleep(1)
 
-    if valid:
-        print(f"Data is valid for {home} and {away}")
+    if bool(h) is False or bool(a) is False:
+        print(f"No data for teams! Getting data online")
+        if bool(h) is False:
+            get_data_for_prediction(home)
+        else:
+            get_data_for_prediction(away)
     else:
-        print(f"Data is not valid for {home} and {away}. Getting new data...")
-        get_data_for_prediction(home)
-        newdata = load_data()
+        print('Everythin is alright!')
 
+    newdata = retrieve_data()
+    # print(newdata)
 
     predict_engine = FootballPrediction()
     home = reconfirm_team_name(home, newdata)
@@ -447,8 +582,11 @@ def predict(home, away):
 # ------------
 
 
-home = 'Liverpool'
-away = 'Man City'
+home = 'Peterborough United Reserve'
+away = 'Crewe Alexandra'
+
+
+
 predict(home, away)
 
 # # Don't forget to close the browser when you are done
