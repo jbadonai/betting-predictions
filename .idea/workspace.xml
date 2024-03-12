@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/sceneEngine.py" line="791" mnemonic="2" />
-    <bookmark url="file://$PROJECT_DIR$/sceneEngine.py" line="867" mnemonic="9" />
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="334" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="692" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="672" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7ecc080-d00c-46fb-bc4b-2e7547988e5e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/datafile.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafile.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/datafile.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sofascore.py" beforeDir="false" afterPath="$PROJECT_DIR$/sofascore.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,8 +67,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sofascore.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="447" column="71" lean-forward="true" selection-start-line="447" selection-start-column="71" selection-end-line="447" selection-end-column="71" />
+            <state relative-caret-position="809">
+              <caret line="411" column="65" lean-forward="true" selection-start-line="411" selection-start-column="65" selection-end-line="411" selection-end-column="65" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
                 <element signature="e#318#431#0" />
@@ -81,16 +78,21 @@
                 <element signature="e#1733#3073#0" />
                 <element signature="e#3119#4842#0" />
                 <element signature="e#4873#5242#0" />
-                <element signature="e#5288#8048#0" />
+                <element signature="e#10335#10374#0" />
                 <element signature="e#7965#8242#0" />
                 <element signature="e#8401#9237#0" />
+                <element signature="e#10750#10767#0" />
                 <element signature="e#10348#10391#0" />
                 <element signature="e#11486#11860#0" />
+                <element signature="e#12590#12979#0" />
                 <element signature="e#11239#11392#0" />
+                <element signature="e#13355#14004#0" />
+                <element signature="e#12920#13871#0" />
                 <element signature="e#12902#13954#0" />
                 <element signature="e#12902#12908#0" />
                 <element signature="e#13847#14128#0" />
                 <element signature="e#15416#16074#0" />
+                <element signature="e#16159#16856#0" />
               </folding>
             </state>
           </provider>
@@ -100,7 +102,7 @@
         <entry file="file://$PROJECT_DIR$/predict.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-170">
-              <caret line="22" column="42" lean-forward="true" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+              <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
               <folding>
                 <element signature="e#30698#30747#0" />
                 <element signature="e#1536#1582#0" />
@@ -120,8 +122,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>range</find>
-      <find>adjuste</find>
       <find>get_stat</find>
       <find>getting</find>
       <find>error in extract_data</find>
@@ -150,6 +150,8 @@
       <find>input element ready</find>
       <find>extracting da</find>
       <find>aston</find>
+      <find>.append</find>
+      <find>get_data_for_prediction</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -337,13 +339,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15659778" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37122557" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.38188276" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -440,7 +443,7 @@
     <entry file="file://$PROJECT_DIR$/predict.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-170">
-          <caret line="22" column="42" lean-forward="true" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
           <folding>
             <element signature="e#30698#30747#0" />
             <element signature="e#1536#1582#0" />
@@ -450,8 +453,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sofascore.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="447" column="71" lean-forward="true" selection-start-line="447" selection-start-column="71" selection-end-line="447" selection-end-column="71" />
+        <state relative-caret-position="809">
+          <caret line="411" column="65" lean-forward="true" selection-start-line="411" selection-start-column="65" selection-end-line="411" selection-end-column="65" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
             <element signature="e#318#431#0" />
@@ -461,16 +464,21 @@
             <element signature="e#1733#3073#0" />
             <element signature="e#3119#4842#0" />
             <element signature="e#4873#5242#0" />
-            <element signature="e#5288#8048#0" />
+            <element signature="e#10335#10374#0" />
             <element signature="e#7965#8242#0" />
             <element signature="e#8401#9237#0" />
+            <element signature="e#10750#10767#0" />
             <element signature="e#10348#10391#0" />
             <element signature="e#11486#11860#0" />
+            <element signature="e#12590#12979#0" />
             <element signature="e#11239#11392#0" />
+            <element signature="e#13355#14004#0" />
+            <element signature="e#12920#13871#0" />
             <element signature="e#12902#13954#0" />
             <element signature="e#12902#12908#0" />
             <element signature="e#13847#14128#0" />
             <element signature="e#15416#16074#0" />
+            <element signature="e#16159#16856#0" />
           </folding>
         </state>
       </provider>

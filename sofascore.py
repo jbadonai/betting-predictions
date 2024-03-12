@@ -10,6 +10,7 @@ import os
 import pandas as pd
 import ast  # To evaluate the string representation of the dictionary
 import re
+from difflib import SequenceMatcher
 
 
 def initialize_browser():
@@ -194,6 +195,7 @@ def extract_football_data(driver, team):
     y = 0
 
     all_team_data = []
+    re_structure = False
 
     for element in elements:
         text_content = element.text
@@ -245,10 +247,82 @@ def extract_football_data(driver, team):
                     else:
                         sub_dict['home_score'] = "N/A"
                         sub_dict['away_score'] = "N/A"
-                    # print(f">> {sub_dict}")
-                    all_team_data.append(str(sub_dict))
 
-    return all_team_data
+                    # check if team name is the same as either home or away. to ensure consistency in the name
+                    if sub_dict['team'] == sub_dict['home'] or sub_dict['team'] == sub_dict['away']:
+                        all_team_data.append(str(sub_dict))
+                        pass
+                    else:
+                        # if team name is not the same as the home or away team check:
+                        # 1. if both name are not empty
+                        if sub_dict['home'] == "" and sub_dict['away'] == "":
+                            # if both happen to be empty the data is wrong. skip it and continue
+                            continue
+
+                        # 2. if any of the name is not empty and fix if empty
+                        # tryi and see if home or away team name is missing, then fix
+                        if sub_dict['home'] == "":
+                            sub_dict['home'] = sub_dict['team']
+                            all_team_data.append(str(sub_dict))
+                            print(f"[DOCTOR] Gap in home Filled")
+                            continue
+                        elif sub_dict['away'] == "":
+                            sub_dict['away'] = sub_dict['team']
+                            all_team_data.append(str(sub_dict))
+                            print(f"[DOCTOR] Gap in Away Filled")
+                            continue
+
+
+                        # 3. if none of them is empty there there is conflict in the names
+                        # a. first detect which name is common to all and that will be the team name
+                        # b. change the team name to this
+                        # these can only be done if we have all the data. but in this loop only one data is available
+                        # so we will do this step outside this loop when all data has been obained
+                        # but we need to set a trigger to do this check using restructure
+
+                        re_structure = True
+                        all_team_data.append(str(sub_dict))
+
+    if re_structure is True:
+        # print(f"RESTRUCTURING..............")
+        # print(all_team_data)
+        # print('----------------------------------------------------------------------------------------------')
+        new_all_team_data = []
+        # restructure: sychronize team name properly with home / away before returning data.
+        # get and use the first 3 element to do comparism and correction
+        actual_team = None
+
+        first = eval(all_team_data[0])
+        second = eval(all_team_data[1])
+        third = eval(all_team_data[2])
+
+        if second['home'] == third['home']:
+            actual_team = second['home']
+        elif second['home'] == third['away']:
+            actual_team = second['home']
+        elif second['away'] == third['home']:
+            actual_team = second['away']
+        elif second['away'] == third['away']:
+            actual_team = second['away']
+
+        # now loop through all the list to effect the actual team name
+        if actual_team is not None:
+            for team in all_team_data:
+                new_team = eval(team)
+                new_team['team'] = actual_team
+                new_all_team_data.append(str(new_team))
+
+            print('[DOCTOR] Data Fixed! There is consistency in the name now')
+            return new_all_team_data
+            pass
+        else:
+            print("This one mad ooooooooooo. How can it still happen! we'll stick to normal")
+            return all_team_data
+        pass
+
+    else:
+        return all_team_data
+
 
 
 def get_all_team(driver):
@@ -300,13 +374,17 @@ def get_team_list_for(team_member):
 # =============================================================================
 
 
-def get_data_for_prediction(home):
+def get_data_for_prediction(home, no_team = False):
     all_data = []
+    team_list = []
     # set one of the team name in a league required to get the league and all teams in the league
     league_member = home
-    driver, team_list = get_team_list_for(league_member)
-
-    team_list.append(league_member)
+    driver, team_list_temp = get_team_list_for(league_member)
+    if no_team is False:
+        team_list.extend(team_list_temp)
+        team_list.append(league_member)
+    else:
+        team_list.append(league_member)
 
     for index, team in enumerate(team_list):
         # 3. Search for text
@@ -330,10 +408,11 @@ def get_data_for_prediction(home):
                 # print(game_data)
                 all_data.extend(game_data)
                 print(f'\t |\t saving data for {team}...')
-                # print(game_data)
+                # print(" | ", eval(game_data[0])['team'], " | ")
                 # print('--------------------------------------')
 
                 save_to_excel(game_data)
+                return eval(game_data[0])['team']
                 # if ans is True:
                 #     print("Saved successfully")
                 #     break
@@ -341,8 +420,9 @@ def get_data_for_prediction(home):
                 #     print("Not saved! Data exists")
                 #     break
                 # time.sleep(1)
-                break
-            except:
+                # break
+            except Exception as e:
+                print(e)
                 print(f"Failed to get {team}! Retrying...")
                 time.sleep(2)
                 pass
@@ -375,7 +455,7 @@ def retrieve_from_excel(filename='datafile.xlsx'):
     return data_list
 
 
-def reconfirm_team_name(team_name, data):
+def reconfirm_team_name1(team_name, data):
     actual_team_name = None
 
     testlist = str(team_name).strip().split(" ")
@@ -402,6 +482,33 @@ def reconfirm_team_name(team_name, data):
     return actual_team_name
 
 
+def reconfirm_team_name2(team_name, data):
+    print(data)
+
+
+    for team_details in data:
+        homeTeam = ""
+        awayTeam = ""
+
+        noMatch = 0
+
+        team = team_details['team']
+        home = team_details['home']
+        away = team_details['away']
+
+        if team == home or team == away:
+            continue
+        else:
+            print(team, "<>", home, "<>", away)
+            noMatch += 1
+
+
+    print(f"Total No match: {noMatch}")
+    input('wait')
+
+    pass
+
+
 def is_data_valid_for(home, away, data):
     h = reconfirm_team_name(home, data)
     a = reconfirm_team_name(away, data)
@@ -413,7 +520,7 @@ def is_data_valid_for(home, away, data):
     return True
 
 
-def save_to_excel1(data_list, file_path='datafile.xlsx'):
+def save_to_excel(data_list, file_path='datafile.xlsx'):
     try:
         # Try loading existing file or create a new one
         df = pd.read_excel(file_path)
@@ -434,7 +541,7 @@ def save_to_excel1(data_list, file_path='datafile.xlsx'):
     df.to_excel(file_path, index=False)
 
 
-def save_to_excel(data_list, file_path='datafile.xlsx'):
+def save_to_excel1(data_list, file_path='datafile.xlsx'):
     try:
         # Try loading existing file
         df = pd.read_excel(file_path)
@@ -495,7 +602,7 @@ def retrieve_data(file_path='datafile.xlsx'):
         return []
 
 
-def check_team_existence1(team_name, file_path='datafile.xlsx'):
+def check_team_existence(team_name, file_path='datafile.xlsx'):
     try:
         # Try loading existing file
         df = pd.read_excel(file_path)
@@ -504,6 +611,7 @@ def check_team_existence1(team_name, file_path='datafile.xlsx'):
     except FileNotFoundError:
         # Return False and 0 if the file doesn't exist
         return False, 0
+
 
 def check_team_existence2(team_name, file_path='datafile.xlsx'):
     try:
@@ -525,7 +633,8 @@ def check_team_existence2(team_name, file_path='datafile.xlsx'):
         # Return False and 0 if the file doesn't exist
         return False, 0
 
-def check_team_existence(team_name, file_path='datafile.xlsx'):
+
+def check_team_existence3(team_name, file_path='datafile.xlsx'):
     try:
         # Try loading existing file
         df = pd.read_excel(file_path)
@@ -548,8 +657,8 @@ def check_team_existence(team_name, file_path='datafile.xlsx'):
 
 def predict(home, away):
     print("PREDICTING...")
-    home = str(home).title()
-    away = str(away).title()
+    # home = str(home).title()
+    # away = str(away).title()
 
     h, ch = check_team_existence(home)  # h-home, ch-count home
     a, ca = check_team_existence(away)  # a-away, ca-count away
@@ -558,37 +667,37 @@ def predict(home, away):
 
     time.sleep(1)
 
-    if bool(h) is False or bool(a) is False:
-        print(f"No data for teams! Getting data online")
-        if bool(h) is False:
-            get_data_for_prediction(home)
-        else:
-            get_data_for_prediction(away)
-    else:
-        print('Everythin is alright!')
+    # if bool(h) is False or bool(a) is False:
+    #     print(f"No data for teams! Getting data online")
+    #     if bool(h) is False:
+    #         get_data_for_prediction(home, True)
+    #     else:
+    #         get_data_for_prediction(away, True)
+    new_home = home
+    new_away = away
+
+    if bool(h) is False:
+        new_home = get_data_for_prediction(home, True)
+
+    if bool(a) is False:
+        new_away = get_data_for_prediction(away, True)
+
+    # print(f"{home} ==> {new_home}")
+    # print(f"{away} ==> {new_away}")
 
     newdata = retrieve_data()
-    # print(newdata)
-
     predict_engine = FootballPrediction()
-    home = reconfirm_team_name(home, newdata)
-    away = reconfirm_team_name(away, newdata)
 
-    prediction = predict_engine.analyze_matches(newdata, home, away)
+    # prediction = predict_engine.analyze_matches(newdata, home, away)
+    prediction = predict_engine.analyze_matches(newdata, new_home, new_away)
     print(prediction)
 
 
 # USAGE
 # ------------
-
-
-home = 'Peterborough United Reserve'
-away = 'Crewe Alexandra'
-
+home = 'AA Portuguesa RJ'
+away = "Cuiaba Esporte Clube MT"
 
 
 predict(home, away)
 
-# # Don't forget to close the browser when you are done
-# # # driver.quit()
-# # input('wait')
