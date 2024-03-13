@@ -662,8 +662,8 @@ def predict(home, away):
 
     h, ch = check_team_existence(home)  # h-home, ch-count home
     a, ca = check_team_existence(away)  # a-away, ca-count away
-    print(f"home: {home}::{h}")
-    print(f"away: {away}::{a}")
+    # print(f"home: {home}::{h}")
+    # print(f"away: {away}::{a}")
 
     time.sleep(1)
 
@@ -689,14 +689,93 @@ def predict(home, away):
     predict_engine = FootballPrediction()
 
     # prediction = predict_engine.analyze_matches(newdata, home, away)
-    prediction = predict_engine.analyze_matches(newdata, new_home, new_away)
-    print(prediction)
+    # prediction = predict_engine.analyze_matches(newdata, new_home, new_away)
+    # print(prediction)
+    time.sleep(1)
+
+    a = predict_engine.analyze_matches(newdata, new_home, new_away)
+    b = predict_engine.analyze_by_average_goal_scored(newdata, new_home, new_away)
+    c = predict_engine.analyze_by_poisson_analysis(newdata, new_home, new_away)
+
+    all = a + b + c
+    h_count = all.count("Home")
+    a_count = all.count("Away")
+    d_count = all.count("Draw")
+
+    print(a)
+    print(b)
+    print(c)
+    print()
+    print(f"H:A:D: {h_count}:{a_count}:{d_count}")
 
 
 # USAGE
 # ------------
-home = 'AA Portuguesa RJ'
-away = "Cuiaba Esporte Clube MT"
+home = 'Borussia D'
+away = "PSV Eindhoven"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+home = 'Hachinohe'
+away = "Zweigen Kanazawa"
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+home = 'Vila Nova'
+away = "Rio Branco"
+home = 'Ipatinga MG'
+away = "Democrata (GV)"
+home = 'Portuguesa-RJ'
+away = "Cuiabá"
+home = 'Atlético-CE'
+away = "Horizonte"
+home = 'Arsenal'
+away = "Porto"
+'''
 
 
 predict(home, away)
