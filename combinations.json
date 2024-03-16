@@ -1,0 +1,14 @@
+{
+  "('strong home', 'weak home', 'weak away')": "Home/Away",
+  "('strong away', 'weak home', 'weak away')": "Home/Away",
+  "('strong home', 'strong home', 'weak away')": "Home/Away",
+  "('weak away', 'strong home', 'weak away')": "Home/Away",
+  "('weak away', 'weak away', 'strong away')": "Home/Away",
+  "('strong home', 'strong away', 'weak home')": "Draw",
+  "('weak away', 'strong away', 'weak home')": "Draw",
+  "('weak away', 'strong home', 'strong home')": "Home/Away",
+  "('weak home', 'strong home', 'weak home')": "Home/Away",
+  "('strong home', 'strong away', 'weak away')": "Draw/Away",
+  "('strong home', 'weak home', 'weak home')": "Home/Draw",
+  "('weak home', 'strong away', 'strong away')": "Home/Away"
+}

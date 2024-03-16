@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="692" mnemonic="1" />
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="672" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="694" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="419" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="746" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7ecc080-d00c-46fb-bc4b-2e7547988e5e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pattern.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafile.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/datafile.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/datafile.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/predict.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafile1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafile2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafile3.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/sofascore.py" beforeDir="false" afterPath="$PROJECT_DIR$/sofascore.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,61 +24,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gamePrediction.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="39" column="20" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#213#0" expanded="true" />
-                <element signature="e#1108#1460#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sceneEngine.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1738">
-              <caret line="303" column="40" selection-start-line="303" selection-start-column="40" selection-end-line="303" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SceneEngeineController.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4200">
-              <caret line="213" column="35" selection-start-line="213" selection-start-column="35" selection-end-line="213" selection-end-column="35" />
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sofascore.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="716" lean-forward="true" selection-start-line="716" selection-end-line="716" />
+            <state relative-caret-position="126">
+              <caret line="749" column="30" lean-forward="true" selection-start-line="749" selection-start-column="30" selection-end-line="749" selection-end-column="30" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
                 <element signature="e#318#431#0" />
-                <element signature="e#464#509#0" />
                 <element signature="e#556#1195#0" />
                 <element signature="e#1230#1686#0" />
                 <element signature="e#1733#3073#0" />
@@ -80,7 +39,6 @@
                 <element signature="e#4873#5242#0" />
                 <element signature="e#10335#10374#0" />
                 <element signature="e#7965#8242#0" />
-                <element signature="e#8401#9237#0" />
                 <element signature="e#10750#10767#0" />
                 <element signature="e#10348#10391#0" />
                 <element signature="e#11486#11860#0" />
@@ -93,8 +51,22 @@
                 <element signature="e#13847#14128#0" />
                 <element signature="e#15416#16074#0" />
                 <element signature="e#16159#16856#0" />
+                <element signature="e#22093#22135#0" />
+                <element signature="e#23481#23966#0" />
+                <element signature="e#23560#23577#0" />
+                <element signature="e#24659#24666#0" />
+                <element signature="e#25182#25279#0" />
                 <element signature="e#23222#23424#1" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pattern.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -126,9 +98,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getting</find>
-      <find>error in extract_data</find>
-      <find>set_display</find>
       <find>starting</find>
       <find>data received</find>
       <find>print</find>
@@ -156,6 +125,9 @@
       <find>.append</find>
       <find>get_data_for_prediction</find>
       <find>porto</find>
+      <find>extracting data</find>
+      <find>river.get(</find>
+      <find>loading page for</find>
     </findStrings>
     <replaceStrings>
       <replace>away</replace>
@@ -173,6 +145,8 @@
         <option value="$PROJECT_DIR$/sceneEngine.py" />
         <option value="$PROJECT_DIR$/SceneEngeineController.py" />
         <option value="$PROJECT_DIR$/predict.py" />
+        <option value="$PROJECT_DIR$/combinations.json" />
+        <option value="$PROJECT_DIR$/pattern.py" />
         <option value="$PROJECT_DIR$/sofascore.py" />
       </list>
     </option>
@@ -346,13 +320,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15659778" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2400636" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5044405" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3374778" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -460,14 +435,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/combinations.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pattern.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/result.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="50" lean-forward="true" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sofascore.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="716" lean-forward="true" selection-start-line="716" selection-end-line="716" />
+        <state relative-caret-position="126">
+          <caret line="749" column="30" lean-forward="true" selection-start-line="749" selection-start-column="30" selection-end-line="749" selection-end-column="30" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
             <element signature="e#318#431#0" />
-            <element signature="e#464#509#0" />
             <element signature="e#556#1195#0" />
             <element signature="e#1230#1686#0" />
             <element signature="e#1733#3073#0" />
@@ -475,7 +470,6 @@
             <element signature="e#4873#5242#0" />
             <element signature="e#10335#10374#0" />
             <element signature="e#7965#8242#0" />
-            <element signature="e#8401#9237#0" />
             <element signature="e#10750#10767#0" />
             <element signature="e#10348#10391#0" />
             <element signature="e#11486#11860#0" />
@@ -488,6 +482,11 @@
             <element signature="e#13847#14128#0" />
             <element signature="e#15416#16074#0" />
             <element signature="e#16159#16856#0" />
+            <element signature="e#22093#22135#0" />
+            <element signature="e#23481#23966#0" />
+            <element signature="e#23560#23577#0" />
+            <element signature="e#24659#24666#0" />
+            <element signature="e#25182#25279#0" />
             <element signature="e#23222#23424#1" />
           </folding>
         </state>

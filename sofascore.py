@@ -11,6 +11,8 @@ import pandas as pd
 import ast  # To evaluate the string representation of the dictionary
 import re
 from difflib import SequenceMatcher
+from selenium.common.exceptions import TimeoutException
+from pattern import CombinationAnalyzer
 
 
 def initialize_browser():
@@ -20,7 +22,16 @@ def initialize_browser():
 
 def load_url(driver, url):
     # Navigate to the webpage
-    driver.get(url)
+    # driver.get(url)
+    driver.set_page_load_timeout(30)
+
+    try:
+        # Attempt to navigate to the URL within the specified timeout period
+        driver.get(url)
+    except TimeoutException:
+        # Handle the timeout exception here (e.g., print an error message)
+        print("Page load timed out")
+        pass
 
 
 def search_text(driver, text_to_search):
@@ -359,7 +370,15 @@ def get_team_list_for(team_member):
     href = get_first_href(driver)
 
     print(f"loading page for {text_to_search}...")
-    driver.get(href)
+    while True:
+        try:
+            # driver.get(href)
+            load_url(driver, href)
+            break
+        except:
+            print("Error loading page! Retrying...")
+            driver.refresh()
+            time.sleep(2)
     time.sleep(1)
 
     # 5. select a display option
@@ -391,16 +410,19 @@ def get_data_for_prediction(home, no_team = False):
         while True:
             try:
                 print(f"\r[{index + 1}/{len(team_list)}] Extracting Data for {team}", end="")
-                search_text(driver, team)
-                time.sleep(1)
+                # ---------> REMOVED FOR TESTING PURPOSE TO AVOID DUPLICATE LOADING <---------------
+                # search_text(driver, team)
+                # time.sleep(1)
 
                 # 4. load the first url
                 # print(f"getting page url for {team}")
-                href = get_first_href(driver)
+
+                # href = get_first_href(driver)
 
                 # print(f"loading page for {team}...")
-                driver.get(href)
-                time.sleep(1)
+                # driver.get(href)
+                # time.sleep(1)
+                # <----------------- UP TO HERE ---------------------------------------->
 
                 time.sleep(3)
                 # print("Extracting Football data:")
@@ -702,66 +724,109 @@ def predict(home, away):
     a_count = all.count("Away")
     d_count = all.count("Draw")
 
-    print(a)
-    print(b)
-    print(c)
+    def evaluate(text):
+        ans = None
+        awaycount = str(text).count("Away")
+        homecount = str(text).count("Home")
+        drawcount = str(text).count("Draw")
+
+        if awaycount == 2:
+            return "Strong Away"
+        elif homecount == 2:
+            return  "Strong Home"
+        elif homecount == 1 and drawcount == 1:
+            return  "Weak Home"
+        elif awaycount == 1 and drawcount == 1:
+            return  "Weak Away"
+        elif drawcount == 2:
+            return "Strong Draw"
+
+
+
+    analyzer = CombinationAnalyzer()
+    suggestion = analyzer.analyze(evaluate(a), evaluate(b), evaluate(c))
+
+    print(a, "-", evaluate(a))
+    print(b, "-", evaluate(b))
+    print(c, "-", evaluate(c))
     print()
     print(f"H:A:D: {h_count}:{a_count}:{d_count}")
+    print(f"PLAY: {suggestion}")
+
+    result = f"""
+{a} - {evaluate(a)}
+{b} - {evaluate(b)}
+{c} - {evaluate(c)}
+H:A:D: {h_count}:{a_count}:{d_count}
+
+PLAY: {suggestion}
+===========================================================================================================
+===========================================================================================================
+    """
+
+    with open("result.txt", 'a', encoding='utf-8') as f:
+        f.write(result)
 
 
-# USAGE
-# ------------
-home = 'Borussia D'
-away = "PSV Eindhoven"
+action = input("[A] Add pattern | [P] Predict")
 
+if action.lower() == 'p' or action == '':
 
+    raw = '''FHokkaido Consadole Sapporo
+    Machida Zelvia
+     
+    Vissel Kobe
+    Sanfrecce Hiroshima
+    
+    Gamba Osaka
+    Jubilo Iwata
+    
+    Kashiwa Reysol
+    Nagoya Grampus
+    
+    Sagan Tosu
+    Cerezo Osaka
+    
+    Tokyo Verdy
+    Niigata Albirex
+    '''
 
+    teamList = []
+    rawsplit = raw.split("\n\n")
+    # print(rawsplit)
+    for split in rawsplit:
+        h = split.split("\n")[0]
+        a = split.split("\n")[1]
+        value = (h, a)
+        teamList.append(value)
 
+    for team in teamList:
+        home = team[0]
+        away = team[1]
+        predict(home, away)
+        print("------>>>>>>> NEXT")
+        print()
+        time.sleep(2)
 
+    print("DONE!DONE!DONE!DONE!")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''
-home = 'Hachinohe'
-away = "Zweigen Kanazawa"
-'''
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+else:
+    analyzer = CombinationAnalyzer()
+    error = False
+    while True:
+        if error is False:
+            os.system('cls')
+        combinations = input("Add combinations [a,b,c,result]: ")
+        if combinations == "":
+            break
+        else:
+            if combinations.count(",") != 3:
+                print("Wrong Expected Input! Try again")
+                error= True
+            else:
+                a, b, c, result = combinations.split(",")
+                analyzer.add_combination(a, b, c, result)
+                error = False
 
 
 '''
@@ -778,5 +843,5 @@ away = "Porto"
 '''
 
 
-predict(home, away)
+
 
