@@ -14,6 +14,7 @@ from difflib import SequenceMatcher
 from selenium.common.exceptions import TimeoutException
 from pattern import CombinationAnalyzer
 
+timeout = 15
 
 def initialize_browser():
     # Initialize the webdriver (Make sure you have the appropriate webdriver installed)
@@ -21,17 +22,26 @@ def initialize_browser():
 
 
 def load_url(driver, url):
+    global timeout
     # Navigate to the webpage
     # driver.get(url)
-    driver.set_page_load_timeout(30)
+    driver.set_page_load_timeout(timeout)
 
     try:
         # Attempt to navigate to the URL within the specified timeout period
         driver.get(url)
+        return  True
     except TimeoutException:
         # Handle the timeout exception here (e.g., print an error message)
         print("Page load timed out")
+        return True
         pass
+    except Exception as e:
+        print(f"Error! Retrying[timeout ={timeout}] [url: {url}]...")
+        timeout += 5
+        return FileNotFoundError
+        # time.sleep(5)
+        # load_url(driver, url)
 
 
 def search_text(driver, text_to_search):
@@ -358,7 +368,14 @@ def get_team_list_for(team_member):
 
     # 2. Load the URL
     print("loading url...")
-    load_url(driver, url)
+    while True:
+        ans = load_url(driver, url)
+        if ans is True:
+            break
+        else:
+            time.sleep(2)
+
+
 
     # 3. Search for text
     print(f"Searching for {text_to_search}")
@@ -758,6 +775,7 @@ def predict(home, away):
 {b} - {evaluate(b)}
 {c} - {evaluate(c)}
 H:A:D: {h_count}:{a_count}:{d_count}
+{evaluate(a)},{evaluate(b)},{evaluate(c)}
 
 PLAY: {suggestion}
 ===========================================================================================================
@@ -768,28 +786,22 @@ PLAY: {suggestion}
         f.write(result)
 
 
-action = input("[A] Add pattern | [P] Predict")
+action = input("[A] Add pattern | [P] Predict: ")
 
 if action.lower() == 'p' or action == '':
 
-    raw = '''FHokkaido Consadole Sapporo
-    Machida Zelvia
-     
-    Vissel Kobe
-    Sanfrecce Hiroshima
-    
-    Gamba Osaka
-    Jubilo Iwata
-    
-    Kashiwa Reysol
-    Nagoya Grampus
-    
-    Sagan Tosu
-    Cerezo Osaka
-    
-    Tokyo Verdy
-    Niigata Albirex
-    '''
+    raw = '''Melbourne Knights
+Hume City
+
+St Albans Saints
+Manningham United Blues
+
+Green Gully Cavaliers
+Dandenong Thunder
+
+Oakleigh Cannons
+South Melbourne FC
+        '''
 
     teamList = []
     rawsplit = raw.split("\n\n")
@@ -829,18 +841,6 @@ else:
                 error = False
 
 
-'''
-home = 'Vila Nova'
-away = "Rio Branco"
-home = 'Ipatinga MG'
-away = "Democrata (GV)"
-home = 'Portuguesa-RJ'
-away = "Cuiabá"
-home = 'Atlético-CE'
-away = "Horizonte"
-home = 'Arsenal'
-away = "Porto"
-'''
 
 
 

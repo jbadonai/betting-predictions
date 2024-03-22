@@ -8,7 +8,19 @@
   "('weak away', 'strong away', 'weak home')": "Draw",
   "('weak away', 'strong home', 'strong home')": "Home/Away",
   "('weak home', 'strong home', 'weak home')": "Home/Away",
-  "('strong home', 'strong away', 'weak away')": "Draw/Away",
+  "('strong home', 'strong away', 'weak away')": "Home/Away",
   "('strong home', 'weak home', 'weak home')": "Home/Draw",
-  "('weak home', 'strong away', 'strong away')": "Home/Away"
+  "('weak home', 'strong away', 'strong away')": "Home/Away",
+  "('strong home', 'strong home', 'strong draw')": "Home/Draw [Home/Away if odds favours Away]",
+  "('strong home', 'strong away', 'strong draw')": "(Home-Away)/Draw - use odd to pick home or away",
+  "('strong away', 'strong home', 'strong home')": "Home/Away",
+  "('strong away', 'strong away', 'strong home')": "Away/Draw",
+  "('strong away', 'strong away', 'weak away')": "Away/Draw",
+  "('strong draw', 'strong home', 'strong home')": "Home/Draw",
+  "('strong draw', 'strong home', 'strong away')": "Home/Away",
+  "('strong draw', 'strong home', 'weak home')": "Home/Draw",
+  "('strong draw', 'strong away', 'weak home')": "Draw/Away",
+  "('weak away', 'weak home', 'strong away')": "Home/Away",
+  "('weak away', 'weak home', 'strong draw')": "Home/Draw or  [Away/Draw] if odds favours Away",
+  "('weak home', 'strong home', 'strong home')": "Home/Draw"
 }

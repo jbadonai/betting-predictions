@@ -1,41 +1,41 @@
 
-Sapporo 0.0 : 0.0 Machida Z |  [Draw] -  [Draw] - Strong Draw
-Sapporo  2.0 :  2.2 Machida Z |  [Away] -  [Draw] - Weak Away
-Sapporo 1.3 : 1.5 Machida Z |  [Away] -  [Draw] - Weak Away
-H:A:D: 0:2:4
-draw or away
+JS Saoura 0.7 : 0.5 MC Alger |  [Home] -  [Draw] - Weak Home
+JS Saoura  2.0 :  1.2 MC Alger |  [Home] -  [Home] - Strong Home
+JS Saoura 1.7 : 0.7 MC Alger |  [Home] -  [Home] - Strong Home
+H:A:D: 5:0:1
+Weak Home,Strong Home,Strong Home
+
+PLAY: Unknown
 ===========================================================================================================
 ===========================================================================================================
     
-Gamba Osaka 0.7 : 0.8 Jubilo Iwata |  [Away] -  [Draw] - Weak Away
-Gamba Osaka  0.7 :  2.7 Jubilo Iwata |  [Away] -  [Away] - Strong Away
-Gamba Osaka 0.9 : 1.7 Jubilo Iwata |  [Away] -  [Away] - Strong Away
-H:A:D: 0:5:1
-home or away
+NC Magra U21 0.0 : 0.0 Constantine U21 |  [Draw] -  [Draw] - Strong Draw
+NC Magra U21  1.0 :  0.1 Constantine U21 |  [Home] -  [Home] - Strong Home
+NC Magra U21 0.9 : 0.5 Constantine U21 |  [Home] -  [Draw] - Weak Home
+H:A:D: 3:0:3
+Strong Draw,Strong Home,Weak Home
+
+PLAY: Unknown
 ===========================================================================================================
 ===========================================================================================================
     
-Kashiwa 0.0 : 0.7 Nagoya |  [Away] -  [Away] - Strong Away
-Kashiwa  1.3 :  1.0 Nagoya |  [Home] -  [Draw] - Weak Home
-Kashiwa 1.1 : 1.2 Nagoya |  [Away] -  [Draw] - Weak Away
+US Khenchela U21 0.8 : 0.4 MC Oran U21 |  [Home] -  [Home] - Strong Home
+US Khenchela U21  0.8 :  2.4 MC Oran U21 |  [Away] -  [Away] - Strong Away
+US Khenchela U21 0.7 : 1.4 MC Oran U21 |  [Away] -  [Draw] - Weak Away
+H:A:D: 2:3:1
+Strong Home,Strong Away,Weak Away
+
+PLAY: Draw/Away
+===========================================================================================================
+===========================================================================================================
+    
+US Oued Souf U21 0.7 : 0.8 MC EL Bayadh U21 |  [Away] -  [Draw] - Weak Away
+US Oued Souf U21  1.2 :  0.8 MC EL Bayadh U21 |  [Home] -  [Draw] - Weak Home
+US Oued Souf U21 0.4 : 1.1 MC EL Bayadh U21 |  [Away] -  [Away] - Strong Away
 H:A:D: 1:3:2
-home or away
-===========================================================================================================
-===========================================================================================================
-    
-S. Tosu 2.7 : 0.5 Cerezo Osaka |  [Home] -  [Home] - Strong Home
-S. Tosu  1.3 :  0.8 Cerezo Osaka |  [Home] -  [Draw] - Weak Home
-S. Tosu 1.2 : 0.9 Cerezo Osaka |  [Home] -  [Draw] - Weak Home
-H:A:D: 4:0:2
-home or draw
-===========================================================================================================
-===========================================================================================================
-    
-Tokyo Verdy 0.7 : 1.1 Albirex Niigata |  [Away] -  [Draw] - Weak Away
-Tokyo Verdy  1.2 :  1.8 Albirex Niigata |  [Away] -  [Away] - Strong Away
-Tokyo Verdy 1.1 : 2.0 Albirex Niigata |  [Away] -  [Away] - Strong Away
-H:A:D: 0:5:1
-home or away
+Weak Away,Weak Home,Strong Away
+
+PLAY: Unknown
 ===========================================================================================================
 ===========================================================================================================
     
