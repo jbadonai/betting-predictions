@@ -12,25 +12,37 @@ import ast  # To evaluate the string representation of the dictionary
 import re
 from difflib import SequenceMatcher
 from selenium.common.exceptions import TimeoutException
-from pattern import CombinationAnalyzer
 
-timeout = 15
+
+from pattern import CombinationAnalyzer
+from data_extractor import PreviousRecordExtractor
+
+# timeout = 15
+teamData = 'teamList.txt'
 
 def initialize_browser():
     # Initialize the webdriver (Make sure you have the appropriate webdriver installed)
     return webdriver.Chrome()
 
 
-def load_url(driver, url):
-    global timeout
+def load_url(driver, url, set_timeout=True):
+    # global timeout
     # Navigate to the webpage
     # driver.get(url)
-    driver.set_page_load_timeout(timeout)
+    # if set_timeout is True:
+    #     print(">>> using timeout")
+    #     driver.set_page_load_timeout(timeout)
+    # else:
+    #     print(">>> Not using timeout")
 
     try:
         # Attempt to navigate to the URL within the specified timeout period
         driver.get(url)
-        return  True
+
+        # print("Checking if page loads successfully. Please wait....")
+        # wait_for_element(driver, 'sc-30244387-0.hiFyBG')
+
+        return True
     except TimeoutException:
         # Handle the timeout exception here (e.g., print an error message)
         print("Page load timed out")
@@ -39,7 +51,7 @@ def load_url(driver, url):
     except Exception as e:
         print(f"Error! Retrying[timeout ={timeout}] [url: {url}]...")
         timeout += 5
-        return FileNotFoundError
+        return False
         # time.sleep(5)
         # load_url(driver, url)
 
@@ -51,7 +63,7 @@ def search_text(driver, text_to_search):
         input_element = WebDriverWait(driver, 120).until(
             EC.visibility_of_element_located((By.CLASS_NAME, 'sc-30244387-0.hiFyBG'))
         )
-        # print('input element ready! moving forward')
+        print('input element ready! moving forward')
 
         # Clear any existing text in the input field
         input_element.clear()
@@ -66,21 +78,60 @@ def search_text(driver, text_to_search):
         print(f"Error: {e}")
 
 
-def get_first_href(driver):
-    # # Initialize the webdriver (Make sure you have the appropriate webdriver installed)
-    # driver = webdriver.Chrome()
-    #
-    # # Navigate to the webpage
-    # driver.get(url)
-
+def wait_for_element(driver, element_class, selector = 'class'):
     try:
-        # Locate the first anchor tag with the specified class
-        first_href = driver.find_element(By.CSS_SELECTOR, 'div.sc-fqkvVR a.sc-bbd8cee0-0.jeQTnS').get_attribute('href')
+        if selector == 'class':
+            input_element = WebDriverWait(driver, 5).until(
+                EC.visibility_of_element_located((By.CLASS_NAME, element_class))
+            )
+        if selector == 'css':
+                input_element = WebDriverWait(driver, 30).until(
+                    EC.visibility_of_element_located((By.CSS_SELECTOR, element_class))
+            )
 
-        return first_href
 
     except Exception as e:
-        print(f"Error: {e}")
+        pass
+
+
+def get_first_href(driver):
+    all_search_list_class = 'sc-fqkvVR.sc-fUnMCh.esJGSi.hkwHv.ps ps--active-y'
+    each_team_link_class = 'sc-bbd8cee0-0.jeQTnS'  # has href and other data
+    game_confirmation_class = 'sc-gFqAkR.hzPof'  # under each team lnk class
+
+    try:
+        # wait for all list to be visible
+        # print('waiting for list links to apperar...')
+        wait_for_element(driver, all_search_list_class)
+
+        # print('getting all links in the list')
+        all_links = driver.find_elements(By.CLASS_NAME, each_team_link_class)
+        # print(f"total links obtained: {len(all_links)}")
+        # print('scanning the links...')
+        for link in all_links:
+            game = link.find_element(By.CLASS_NAME, game_confirmation_class).text
+            # print(f"game: {game}")
+
+            if str(game).lower() == 'football':
+                team_url = link.get_attribute('href')
+                print(f"Team URL: {team_url}")
+                print("FOUND!!!!!!")
+                return team_url
+
+    except Exception as e:
+        return None
+        pass
+
+    # try:
+    #     print('WAITING FOR SEARCH LIST...')
+    #     wait_for_element(driver, 'div.sc-fqkvVR', 'css')
+    #
+    #     # Locate the first anchor tag with the specified class
+    #     first_href = driver.find_element(By.CSS_SELECTOR, 'div.sc-fqkvVR a.sc-bbd8cee0-0.jeQTnS').get_attribute('href')
+    #
+    #     return first_href
+    # except Exception as e:
+    #     print(f"Error: {e}")
 
 
 def select_option(driver, option_text):
@@ -186,6 +237,49 @@ def get_tag(class_name):
 
 
 def extract_football_data(driver, team):
+    gameData = []
+    data_table_class = "div.sc-fqkvVR.fZdvTU div.sc-fqkvVR.iGqHmj a.sc-631ef08b-0"
+    # data_table_class = "div.sc-fqkvVR.fZdvTU div.sc-fqkvVR.buMHXe"
+    ha_class = "sc-gFqAkR"
+
+    table = driver.find_elements(By.CSS_SELECTOR, data_table_class)
+    singleGameData = {}
+    for table_data in table:
+        try:
+            ha = table_data.find_elements(By.CLASS_NAME, ha_class)
+
+            # for index, h in enumerate(ha):
+            #     print(f"{index} <> {h.text}")
+            #
+            # input('waiting..................')
+
+            home = ha[4].text
+            away = ha[5].text
+            home_score = ha[6].text
+            away_score = ha[8].text
+            wld = ha[10].text
+
+            singleGameData['league'] = "my league"
+            singleGameData['team'] = team
+            singleGameData['home'] = home
+            singleGameData['away'] = away
+            singleGameData['home_score'] = home_score
+            singleGameData['away_score'] = away_score
+            singleGameData['status'] = wld
+
+            gameData.append(str(singleGameData))
+
+            # print(f"[{len(ha)}]home: {home}, away: {away}, home score: {home_score}, away score: {away_score}, wLD: {wld}")
+        except Exception as e:
+            print(f"error:-----------")
+            continue
+
+
+    return gameData
+    pass
+
+
+def extract_football_data_old(driver, team):
     parent_container = driver.find_element(By.CSS_SELECTOR, ".sc-fqkvVR.fZdvTU")
     elements = parent_container.find_elements(By.CSS_SELECTOR, "bdi")
     score_box = parent_container.find_elements(By.CSS_SELECTOR,
@@ -358,15 +452,21 @@ def get_all_team(driver):
 
 
 def get_team_list_for(team_member):
-    # Example usage:
+    # GOTO URL
+    # -----------------------------------------------------------------------------
     url = "https://www.sofascore.com/"
+
+    # INSTANTIATE TEXT TO SEARCH
+    # -----------------------------------------------------------------------------
     text_to_search = team_member
 
-    # 1. Initialize the browser
+    # 1. INITIALIZEING BROWSER
+    # -----------------------------------------------------------------------------
     print("initializing driver...")
     driver = initialize_browser()
 
-    # 2. Load the URL
+    # 2. LOADING URL
+    # -----------------------------------------------------------------------------
     print("loading url...")
     while True:
         ans = load_url(driver, url)
@@ -375,22 +475,89 @@ def get_team_list_for(team_member):
         else:
             time.sleep(2)
 
-
-
-    # 3. Search for text
+    # 3. SEARCH FOR THE TEAM (which updates the driver with the list of searched results
+    # -----------------------------------------------------------------------------
     print(f"Searching for {text_to_search}")
     search_text(driver, text_to_search)
-    time.sleep(1)
+    time.sleep(5)
 
-    # 4. load the first url
+    # 4. GET TEAM URL: SCAN THE SEARCH LIST FOR RIGHT TEAM URL
+    # -----------------------------------------------------------------------------
     print(f"getting page url for {text_to_search}")
     href = get_first_href(driver)
 
+    if href is not None:
+        # 5. LOAD THE UNIQUE TEAM PAGE IN OTHER TO EXTRACT THEIR DATA
+        # -----------------------------------------------------------------------------
+        print(f"loading page for {text_to_search}...")
+        while True:
+            try:
+                # driver.get(href)
+                print(1)
+                load_url(driver, href)
+                print(2)
+
+                wait_for_element(driver, "div.sc-fqkvVR.fZdvTU", "css")
+                print(3)
+                break
+            except:
+                print("Error loading page! Retrying...")
+                driver.refresh()
+                time.sleep(2)
+        time.sleep(1)
+
+        # 6. EXTRACT DATA FROM THE URL
+        # -----------------------------------------------------------------------------
+        teamList = get_all_team(driver)
+
+        return driver, teamList
+    else:
+        get_team_list_for(team_member)
+
+
+def load_team_page(team_name):
+    # GOTO URL
+    # -----------------------------------------------------------------------------
+    url = "https://www.sofascore.com/"
+
+    # INSTANTIATE TEXT TO SEARCH
+    # -----------------------------------------------------------------------------
+    text_to_search = team_name
+
+    # 1. INITIALIZEING BROWSER
+    # -----------------------------------------------------------------------------
+    print("initializing driver...")
+    driver = initialize_browser()
+
+    # 2. LOADING URL
+    # -----------------------------------------------------------------------------
+    print("loading url...")
+    while True:
+        ans = load_url(driver, url)
+        if ans is True:
+            break
+        else:
+            time.sleep(2)
+
+    # 3. SEARCH FOR THE TEAM (which updates the driver with the list of searched results
+    # -----------------------------------------------------------------------------
+    time.sleep(5)
+    print(f"Searching for {text_to_search}")
+    search_text(driver, text_to_search)
+    time.sleep(5)
+
+    # 4. GET TEAM URL: SCAN THE SEARCH LIST FOR RIGHT TEAM URL
+    # -----------------------------------------------------------------------------
+    print(f"getting page url for {text_to_search}")
+    href = get_first_href(driver)
+
+    # 5. LOAD THE UNIQUE TEAM PAGE IN OTHER TO EXTRACT THEIR DATA
+    # -----------------------------------------------------------------------------
     print(f"loading page for {text_to_search}...")
     while True:
         try:
             # driver.get(href)
-            load_url(driver, href)
+            load_url(driver, href, False)
             break
         except:
             print("Error loading page! Retrying...")
@@ -398,86 +565,109 @@ def get_team_list_for(team_member):
             time.sleep(2)
     time.sleep(1)
 
-    # 5. select a display option
-    # print("selecting option...")
-    # select_option(driver, "full")
-
-    teamList = get_all_team(driver)
-
-    return driver, teamList
+    return driver
 
 
 # =============================================================================
-
-
-def get_data_for_prediction(home, no_team = False):
+def get_data_for_prediction_old(team_name, no_team = False):
     all_data = []
     team_list = []
+
     # set one of the team name in a league required to get the league and all teams in the league
-    league_member = home
-    driver, team_list_temp = get_team_list_for(league_member)
-    if no_team is False:
-        team_list.extend(team_list_temp)
-        team_list.append(league_member)
-    else:
-        team_list.append(league_member)
+    # league_member = home
 
-    for index, team in enumerate(team_list):
-        # 3. Search for text
-        while True:
-            try:
-                print(f"\r[{index + 1}/{len(team_list)}] Extracting Data for {team}", end="")
-                # ---------> REMOVED FOR TESTING PURPOSE TO AVOID DUPLICATE LOADING <---------------
-                # search_text(driver, team)
-                # time.sleep(1)
+    # driver, team_list_temp = get_team_list_for(league_member)
+    # LOAD PAGE FOR THE TEAM  IN READINES FOR DATA EXTRACTION
+    driver = load_team_page(team_name)
 
-                # 4. load the first url
-                # print(f"getting page url for {team}")
+    while True:
+        try:
+            # TRYING TO EXTRACT GAME DATA
+            print(f"\r Extracting Data for {team_name}", end="")
+            game_data = extract_football_data(driver, team_name)
 
-                # href = get_first_href(driver)
+            all_data.extend(game_data)
+            print(f'\t |\t saving data for {team_name}...')
 
-                # print(f"loading page for {team}...")
-                # driver.get(href)
-                # time.sleep(1)
-                # <----------------- UP TO HERE ---------------------------------------->
+            save_to_excel(game_data)
+            return eval(game_data[0])['team']
 
-                time.sleep(3)
-                # print("Extracting Football data:")
-                game_data = extract_football_data(driver, team)
-                # print(game_data)
-                all_data.extend(game_data)
-                print(f'\t |\t saving data for {team}...')
-                # print(" | ", eval(game_data[0])['team'], " | ")
-                # print('--------------------------------------')
+        except Exception as e:
+            # print(e)
+            print(f"Failed to get {team_name}! Refreshing and Retrying...")
+            driver.refresh()
+            time.sleep(10)
+            pass
 
-                save_to_excel(game_data)
-                return eval(game_data[0])['team']
-                # if ans is True:
-                #     print("Saved successfully")
-                #     break
-                # else:
-                #     print("Not saved! Data exists")
-                #     break
-                # time.sleep(1)
-                # break
-            except Exception as e:
-                print(e)
-                print(f"Failed to get {team}! Retrying...")
-                time.sleep(2)
-                pass
-
-    # print("Saving extracted data to file...")
     #
-    # existingData = load_data(use_string=True)
-    # if len(str(existingData)) < 10:
-    #     with open('datafile.txt', 'w') as f:
-    #         f.write(str(all_data))
+    # if no_team is False:
+    #     team_list.extend(team_list_temp)
+    #     team_list.append(league_member)
     # else:
-    #     existingData.extend(all_data)
+    #     team_list.append(league_member)
+
+
+
+    # for index, team in enumerate(team_list):
+    #     # 3. Search for text
+    #     while True:
+    #         try:
+    #             print(f"\r[{index + 1}/{len(team_list)}] Extracting Data for {team}", end="")
+    #             # time.sleep(3)
+    #             # print("Extracting Football data:")
+    #             game_data = extract_football_data(driver, team)
+    #             # print(game_data)
+    #             all_data.extend(game_data)
+    #             print(f'\t |\t saving data for {team}...')
+    #             # print(" | ", eval(game_data[0])['team'], " | ")
+    #             # print('--------------------------------------')
     #
-    #     # all_data.extend(existingData)
-    #     with open('datafile.txt', 'w', encoding='utf-8') as f:
-    #         f.write(str(existingData))
+    #             save_to_excel(game_data)
+    #             return eval(game_data[0])['team']
+    #             # if ans is True:
+    #             #     print("Saved successfully")
+    #             #     break
+    #             # else:
+    #             #     print("Not saved! Data exists")
+    #             #     break
+    #             # time.sleep(1)
+    #             # break
+    #         except Exception as e:
+    #             # print(e)
+    #             print(f"Failed to get {team}! Refreshing and Retrying...")
+    #             driver.refresh()
+    #             time.sleep(10)
+    #             pass
+    #
+
+
+def get_data_for_prediction(team_name, no_team = False):
+    all_data = []
+
+    # LOAD PAGE FOR THE TEAM  IN READINES FOR DATA EXTRACTION
+    driver = load_team_page(team_name)
+    time.sleep(2)
+
+    while True:
+        try:
+            # TRYING TO EXTRACT GAME DATA
+            print(f"\r Extracting Data for {team_name}", end="")
+            game_data = extract_football_data(driver, team_name)
+            # print(game_data)
+            # input("::::::::::::::::::::::::::::::::::::::::::::::::::::")
+
+            all_data.extend(game_data)
+            print(f'\t |\t saving data for {team_name}...')
+
+            save_to_excel(game_data)
+            return eval(game_data[0])['team']
+
+        except Exception as e:
+            # print(e)
+            print(f"Failed to get {team_name}! Refreshing and Retrying...")
+            driver.refresh()
+            time.sleep(10)
+            pass
 
 
 def retrieve_from_excel(filename='datafile.xlsx'):
@@ -699,10 +889,10 @@ def predict(home, away):
     # home = str(home).title()
     # away = str(away).title()
 
+    #  CHECKING IF HOME AND AWAY TEAM ALREADY EXIST IN THE EXCEL SSHEET
+    # -----------------------------------------------------------------------------
     h, ch = check_team_existence(home)  # h-home, ch-count home
     a, ca = check_team_existence(away)  # a-away, ca-count away
-    # print(f"home: {home}::{h}")
-    # print(f"away: {away}::{a}")
 
     time.sleep(1)
 
@@ -712,30 +902,68 @@ def predict(home, away):
     #         get_data_for_prediction(home, True)
     #     else:
     #         get_data_for_prediction(away, True)
+    # INITIALIZE NEW HOME AND NEW AWAY WITH THE PASSED IN VALUES
+    # -----------------------------------------------------------------------------
     new_home = home
     new_away = away
 
+    teamsWithMissingData = []
+
+    # IF HOME OR AWAY IS NOT IN THE DATA BASE, EXTRACT THEIR DATA AND SAVE IN DATABASE
+    # -----------------------------------------------------------------------------
     if bool(h) is False:
-        new_home = get_data_for_prediction(home, True)
+        # new_home = get_data_for_prediction(home, True)
+        teamsWithMissingData.append(home)
 
     if bool(a) is False:
-        new_away = get_data_for_prediction(away, True)
+        # new_away = get_data_for_prediction(away, True)
+        teamsWithMissingData.append(away)
+
+    if bool(h) is False or bool(a) is False:
+        dataExtractor = PreviousRecordExtractor()
+        newTeamName = dataExtractor.start_data_extraction(teamsWithMissingData)
+
+        # print(f"NEW TEAM NAME: {newTeamName}")
+        # input("Waiting first..............")
+        if len(newTeamName) == 2:
+            new_home = newTeamName[0]
+            new_away = newTeamName[1]
+        elif len(newTeamName) == 1:
+            if bool(h) is False:
+                new_home = newTeamName[0]
+            elif bool(a) is False:
+                new_away = newTeamName[0]
+
+
+
+
 
     # print(f"{home} ==> {new_home}")
     # print(f"{away} ==> {new_away}")
 
+    # =================================================
+    # PREDICTION ACTUALLY STARTS HERE
+    # =================================================
+
+
+    # LOAD DATA FROM THE DATABASE (I.E THE EXCEL SHEET)
+    # -----------------------------------------------------------------------------
     newdata = retrieve_data()
+
+    # CREATE AN INSTANCE OF THE PREDICTING ENGINE
+    # -----------------------------------------------------------------------------
     predict_engine = FootballPrediction()
 
-    # prediction = predict_engine.analyze_matches(newdata, home, away)
-    # prediction = predict_engine.analyze_matches(newdata, new_home, new_away)
-    # print(prediction)
     time.sleep(1)
 
+    # PASS THE SAME DATA TO 3 DIFFERENT ALGORITHMS FOR ANALYSIS
+    # -----------------------------------------------------------------------------
     a = predict_engine.analyze_matches(newdata, new_home, new_away)
     b = predict_engine.analyze_by_average_goal_scored(newdata, new_home, new_away)
     c = predict_engine.analyze_by_poisson_analysis(newdata, new_home, new_away)
 
+    # EVALUATING THE RESULT FROM THE ALGORITHMS TO MAKE INFORMED DECISION
+    # -----------------------------------------------------------------------------
     all = a + b + c
     h_count = all.count("Home")
     a_count = all.count("Away")
@@ -757,8 +985,6 @@ def predict(home, away):
             return  "Weak Away"
         elif drawcount == 2:
             return "Strong Draw"
-
-
 
     analyzer = CombinationAnalyzer()
     suggestion = analyzer.analyze(evaluate(a), evaluate(b), evaluate(c))
@@ -786,25 +1012,174 @@ PLAY: {suggestion}
         f.write(result)
 
 
+# ==============================================================================================================
+# EXTRACT
+# 000000000000000
+
+def element_exists(driver, selector_name, selector='class'):
+    if selector == 'class':
+        try:
+            input_element = WebDriverWait(driver, 5).until(
+                EC.visibility_of_element_located((By.CLASS_NAME, selector_name))
+            )
+            return True
+        except:
+            return False
+
+
+def extract_team_info(url):
+    # variable declarations
+    no_bet_class = "m-sport-bet-no-data"
+    match_league = "match-league"
+    league_title = "league-title"
+    match_table_class = "m-table.match-table"
+    match_content_row_class = "m-table-row.m-content-row.match-row"
+    game_time_class = "clock-time"
+    home_team_class = "home-team"
+    away_team_class = "away-team"
+    odd_market_class = "m-market.market" # 2 available pick the first one
+    outcome_odds_class = "m-outcome-odds"
+    no_bet = None
+
+    all_leagues_data = []
+
+    '''
+    MATCH LEAGUE (Multiple)
+        - league title
+        - MATCH TABLE
+            - MATCH CONTENT ROW (MULTIPLE)
+                * game time
+                * home team
+                * away team
+                * odd market (2 available pick the first one)
+                    ** outcome odds: ( 3 available first is home, second is draw and third is for away
+    '''
+
+    try:
+        # initialize driver
+        driver = initialize_browser()
+        # load url
+        load_url(driver, url)
+        # check if team data is available on page
+        no_bet = element_exists(driver, no_bet_class)
+        if no_bet is True:
+            raise Exception
+
+        # get list of all leagues available
+        leagues = driver.find_elements(By.CLASS_NAME, match_league)
+        print(f'total leagues: {len(leagues)}')
+
+        if len(leagues) == 0:
+            raise Exception
+
+        # Loop through the leagues
+        # -----------------------------
+        for league in leagues:
+            league_details = {}
+            # GET THE LEAGUE TITLE
+            # ---------------------
+            title = get_league_title(league, league_title)
+            league_details['title'] = clean_text(title).strip()
+
+            # GET MATCH TABLE
+            # -----------------
+            matchTableData = get_match_table(league, match_table_class)
+
+            # GET THE NUMBER OF ROWS IN THE MATCH TABLE
+            #------------------------------------------
+            tableRows = get_table_rows(matchTableData, match_content_row_class)
+
+            # LOOP THROUGH THE ROWS IN THE TABLE TO EXTRACT DATA
+            # ---------------------------------------------------
+            gameDetails =[]
+            for row in tableRows:
+                single_game_detail = {}
+
+                gameTime = row.find_element(By.CLASS_NAME, game_time_class).text
+                single_game_detail['game_time'] = gameTime
+
+                homeTeam = row.find_element(By.CLASS_NAME, home_team_class).text
+                single_game_detail['home_team'] = homeTeam
+
+                awayTeam = row.find_element(By.CLASS_NAME, away_team_class).text
+                single_game_detail['away_team'] = awayTeam
+
+                oddMarkets = row.find_element(By.CLASS_NAME, odd_market_class) # trying to select the first one only
+                outcomeOdds = oddMarkets.find_elements(By.CLASS_NAME, outcome_odds_class)
+
+                homeWinOdd = outcomeOdds[0].text
+                single_game_detail['home_odd'] = homeWinOdd
+
+                drawOdd = outcomeOdds[1].text
+                single_game_detail['draw_odd'] = drawOdd
+
+                awayWinOdd = outcomeOdds[2].text
+                single_game_detail['away_odd'] = awayWinOdd
+
+                gameDetails.append(single_game_detail)
+
+            league_details['data'] = gameDetails
+
+            all_leagues_data.append(league_details)
+
+        return all_leagues_data
+    except Exception as e:
+        if no_bet is True:
+            print("Bet is not available for current period. change the period or try again latter!")
+
+        if len(leagues) == 0:
+            print("No league found")
+        pass
+
+
+def clean_text(text):
+    # Remove non-character elements using regular expression
+    clean = re.sub(r'[^\w\s]', '', text)
+    return clean
+
+
+def get_league_title(driver, class_name):
+    title = driver.find_element(By.CLASS_NAME, class_name)
+    return title.text
+
+
+def get_match_table(driver, class_name):
+    table = driver.find_element(By.CLASS_NAME, class_name)
+    return table
+
+
+def get_table_rows(driver, class_name):
+    rows = driver.find_elements(By.CLASS_NAME, class_name)
+    return rows
+
+
+def reset_file(filename):
+    with open(filename, 'w') as f:
+        f.write("")
+
+
+def write_append_to_file(filename, data):
+    with open(filename, 'a') as f:
+        f.write(data)
+
+
+
+# ==============================================================================================================
+# MAINS
+# ==============================================================================================================
+
 action = input("[A] Add pattern | [P] Predict: ")
 
 if action.lower() == 'p' or action == '':
 
-    raw = '''Melbourne Knights
-Hume City
-
-St Albans Saints
-Manningham United Blues
-
-Green Gully Cavaliers
-Dandenong Thunder
-
-Oakleigh Cannons
-South Melbourne FC
-        '''
+    with open('teamOnlyData.txt', 'r') as f:
+        raw = f.read()
+    #
+    # raw = '''
+    #     '''
 
     teamList = []
-    rawsplit = raw.split("\n\n")
+    rawsplit = raw.strip().split("\n\n")
     # print(rawsplit)
     for split in rawsplit:
         h = split.split("\n")[0]
@@ -822,7 +1197,7 @@ South Melbourne FC
 
     print("DONE!DONE!DONE!DONE!")
 
-else:
+elif action.lower() == 'a':
     analyzer = CombinationAnalyzer()
     error = False
     while True:
@@ -839,6 +1214,66 @@ else:
                 a, b, c, result = combinations.split(",")
                 analyzer.add_combination(a, b, c, result)
                 error = False
+
+elif action.lower() == 'e':
+    # Extract data from sporty
+    reset_file(teamData)
+    reset_file("oddOnlyData.txt")
+    reset_file("teamOnlyData.txt")
+
+    period = 3
+    ans = input("Period? default=3: ")
+    if ans != "":
+        period = int(ans)
+
+    url = f"https://www.sportybet.com/ng/sport/football?time={period}"
+
+    leagueInfo = extract_team_info(url)
+
+    for league in leagueInfo:
+        # print(f"League: {league['title']}")
+        # print(f"Data: {league['data']}")
+        # print("=============================================================")
+        # print()
+        result = f"League: {league['title']}"
+        odd_only = ""
+        team_only= ""
+
+        for data_item in  league['data']:
+            # excluding simulated reality games
+            if data_item['home_team'].lower().__contains__('srl'):
+                continue
+
+            result2 = f"""{data_item['game_time']}
+{data_item['home_team']}
+{data_item['away_team']}
+{data_item['home_odd']}
+{data_item['away_odd']}
+"""
+            result_odd = f"""{data_item['home_odd']}
+{data_item['away_odd']}
+
+"""
+
+            result_team = f"""{data_item['home_team']}
+{data_item['away_team']}
+
+"""
+
+            result += f"\n{result2}"
+            odd_only += f"{result_odd}"
+            team_only += f"{result_team}"
+
+        result += f"\n***************************************************************************\n"
+
+
+        print(result)
+        write_append_to_file(teamData, result)
+        write_append_to_file("oddOnlyData.txt", odd_only)
+        write_append_to_file("teamOnlyData.txt", team_only)
+
+    # input('waiting...')
+    print("Done! Done! Ok!")
 
 
 

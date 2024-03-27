@@ -17,6 +17,7 @@ class CombinationAnalyzer:
         self.load_combinations()
 
         key = (str(a).lower().strip(), str(b).lower().strip(), str(c).lower().strip())
+        print(f"key to get: {key}")
         return self.combinations.get(str(key), "Unknown")
 
     def save_combinations(self):
