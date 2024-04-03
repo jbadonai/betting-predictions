@@ -17,11 +17,11 @@ class PreviousRecordExtractor():
     def __init__(self):
         self.driver = None
         self.url = "https://www.sofascore.com/"
-        self.timeout = 30
         self.search_textbox_class = 'sc-30244387-0.hiFyBG'
         self.data_table_class = "div.sc-fqkvVR.fZdvTU"
         self.dataFile = 'datafile.xlsx'
         self.new_team_name = []
+        self.timeout = 15
 
         self.initialize()
 
@@ -34,6 +34,7 @@ class PreviousRecordExtractor():
 
     def load_url(self, url):
         try:
+            self.driver.set_page_load_timeout(self.timeout)
             self.driver.get(url)
             return True
         except TimeoutException:
@@ -97,8 +98,8 @@ class PreviousRecordExtractor():
                 if str(game).lower() == 'football':
                     # extract the href which is requried
                     team_url = link.get_attribute('href')
-                    print(f"Team URL: {team_url}")
-                    print("FOUND!!!!!!")
+                    # print(f"Team URL: {team_url}")
+                    # print("FOUND!!!!!!")
                     return team_url
 
         except Exception as e:
@@ -144,7 +145,7 @@ class PreviousRecordExtractor():
                 gameData.append(str(singleGameData))
 
             except Exception as e:
-                print(f"error:-----------")
+                # print(f"error:-----------")
                 continue
 
         # returned compiled final game data
@@ -197,7 +198,7 @@ class PreviousRecordExtractor():
     def is_element_on_page(self, selector_name, selector='class'):
         if selector == 'class':
             try:
-                input_element = WebDriverWait(self.driver, 5).until(
+                input_element = WebDriverWait(self.driver, 60).until(
                     EC.visibility_of_element_located((By.CLASS_NAME, selector_name))
                 )
                 return True
@@ -213,6 +214,7 @@ class PreviousRecordExtractor():
                 return False
 
     def start_data_extraction(self, team_names: list):
+        failure_count = 0
         try:
             self.new_team_name.clear()
             # 1. LOAD THE MAIN URL
@@ -249,17 +251,22 @@ class PreviousRecordExtractor():
 
                 # b. GET THE HREF: TEAM'S URL
                 # ---------------------------
+                failure_count = 0
                 while True:
                     print("[DEBUG] Getting temas' href ")
                     team_url = self.get_team_href()
                     if team_url is not None:
                         break
                     else:
-                        print("[DEBUG][ERROR] Error Extracting team's url! Retrying...")
+                        failure_count += 1
+                        if failure_count > 1:
+                            raise Exception
+                        print(f"[DEBUG][ERROR][{failure_count}] Error Extracting team's url! Retrying...")
                         time.sleep(2)
 
                 # c. LOAD TEAM URL
                 # --------------------------------
+                failure_count = 0
                 while True:
                     print("[DEBUG]  Loading team url...")
                     ans = self.load_url(team_url)
@@ -280,6 +287,16 @@ class PreviousRecordExtractor():
                 # d. EXTRACT DATA FROM THE PAGE
                 # ------------------------------
                 print(f"Extracting Data...")
+                tester = "sc-gFqAkR"
+
+                while True:
+                    print('Waiting for data to be availalbe...')
+                    ans = self.is_element_on_page(tester)
+                    if ans is True:
+                        break
+
+                    time.sleep(5)
+
                 game_data = self.extract_football_data(team_name)
 
                 # e. SAVE GAME DATA TO EXCEL
@@ -291,6 +308,8 @@ class PreviousRecordExtractor():
             return self.new_team_name
             pass
         except Exception as e:
+            if failure_count > 0:
+                return None
             print(f"An Error occurred in start data extraction: {e}")
 
 

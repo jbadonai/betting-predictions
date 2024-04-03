@@ -1,21 +1,9 @@
 
-Adelaide United FC Reserves 0.0 : 0.0 North Eastern Metrostars SC Reserves |  [Draw] -  [Draw] - Strong Draw
-Adelaide United FC Reserves  1.7 :  0 North Eastern Metrostars SC Reserves |  [Home] -  [Home] - Strong Home
-Adelaide United FC Reserves 2.1 : 1.1 North Eastern Metrostars SC Reserves |  [Home] -  [Home] - Strong Home
-H:A:D: 4:0:2
-Strong Draw,Strong Home,Strong Home
+    Cobresal  0.0:  0.0  Barcelona SC  | Strong Draw,Strong Draw,Weak Home
+    Play (deep check): Away/Draw [H/A: 2.7/2.45] | [0.25] 
+    ML: A (A: 100.0%)
+    PLAY: {'Home/Draw' :  [0.35  - 6.17 ] | 'LO/Draw' : [] | 'Home/Away' : [0.1] } WR: (50%)
 
-PLAY: Home/Draw
-===========================================================================================================
-===========================================================================================================
-    
-Sporting Clube de Goa 0.0 : 0.0 Dempo |  [Draw] -  [Draw] - Strong Draw
-Sporting Clube de Goa  0 :  1.3 Dempo |  [Away] -  [Away] - Strong Away
-Sporting Clube de Goa 1.1 : 1.1 Dempo |  [Draw] -  [Draw] - Strong Draw
-H:A:D: 0:2:4
-Strong Draw,Strong Away,Strong Draw
-
-PLAY: Draw/Away
-===========================================================================================================
-===========================================================================================================
-    
+    ===========================================================================================================
+    ===========================================================================================================
+        

@@ -16,6 +16,7 @@ from selenium.common.exceptions import TimeoutException
 
 from pattern import CombinationAnalyzer
 from data_extractor import PreviousRecordExtractor
+from data_analysis_prediction import *
 
 # timeout = 15
 teamData = 'teamList.txt'
@@ -115,7 +116,7 @@ def get_first_href(driver):
             if str(game).lower() == 'football':
                 team_url = link.get_attribute('href')
                 print(f"Team URL: {team_url}")
-                print("FOUND!!!!!!")
+                # print("FOUND!!!!!!")
                 return team_url
 
     except Exception as e:
@@ -439,7 +440,6 @@ def extract_football_data_old(driver, team):
         return all_team_data
 
 
-
 def get_all_team(driver):
     parent_container = driver.find_elements(By.CSS_SELECTOR, ".sc-fqkvVR.sc-dcJsrY.ijyhVl.fFmCDf.sc-4430bda6-0.dMmcA-D")
 
@@ -598,48 +598,6 @@ def get_data_for_prediction_old(team_name, no_team = False):
             driver.refresh()
             time.sleep(10)
             pass
-
-    #
-    # if no_team is False:
-    #     team_list.extend(team_list_temp)
-    #     team_list.append(league_member)
-    # else:
-    #     team_list.append(league_member)
-
-
-
-    # for index, team in enumerate(team_list):
-    #     # 3. Search for text
-    #     while True:
-    #         try:
-    #             print(f"\r[{index + 1}/{len(team_list)}] Extracting Data for {team}", end="")
-    #             # time.sleep(3)
-    #             # print("Extracting Football data:")
-    #             game_data = extract_football_data(driver, team)
-    #             # print(game_data)
-    #             all_data.extend(game_data)
-    #             print(f'\t |\t saving data for {team}...')
-    #             # print(" | ", eval(game_data[0])['team'], " | ")
-    #             # print('--------------------------------------')
-    #
-    #             save_to_excel(game_data)
-    #             return eval(game_data[0])['team']
-    #             # if ans is True:
-    #             #     print("Saved successfully")
-    #             #     break
-    #             # else:
-    #             #     print("Not saved! Data exists")
-    #             #     break
-    #             # time.sleep(1)
-    #             # break
-    #         except Exception as e:
-    #             # print(e)
-    #             print(f"Failed to get {team}! Refreshing and Retrying...")
-    #             driver.refresh()
-    #             time.sleep(10)
-    #             pass
-    #
-
 
 def get_data_for_prediction(team_name, no_team = False):
     all_data = []
@@ -923,6 +881,9 @@ def predict(home, away):
         dataExtractor = PreviousRecordExtractor()
         newTeamName = dataExtractor.start_data_extraction(teamsWithMissingData)
 
+        if newTeamName is None:
+            return None
+
         # print(f"NEW TEAM NAME: {newTeamName}")
         # input("Waiting first..............")
         if len(newTeamName) == 2:
@@ -989,27 +950,217 @@ def predict(home, away):
     analyzer = CombinationAnalyzer()
     suggestion = analyzer.analyze(evaluate(a), evaluate(b), evaluate(c))
 
-    print(a, "-", evaluate(a))
-    print(b, "-", evaluate(b))
-    print(c, "-", evaluate(c))
-    print()
-    print(f"H:A:D: {h_count}:{a_count}:{d_count}")
-    print(f"PLAY: {suggestion}")
+    # print(a, "-", evaluate(a))
+    # print(b, "-", evaluate(b))
+    # print(c, "-", evaluate(c))
+    # print()
+    # print(f"H:A:D: {h_count}:{a_count}:{d_count}")
+    # print(f"PLAY: {suggestion}")
+
+    # {a} - {evaluate(a)}
+    # {b} - {evaluate(b)}
+    # {c} - {evaluate(c)}
+
+    odds = get_home_away_odds(home, away)
+
+    deepCheck = deep_check(odds, suggestion)
+
+
+    ml ={}
+
+    def check_evaluation(test, all_evaluation):
+        if str(all_evaluation).strip().lower().__contains__(str(test).lower().strip()):
+            return 1
+        else:
+            return 0
+
+    def save_ml_to_excel(data, filename='ml.xlsx'):
+        # Check if file exists
+        file_exists = os.path.isfile(filename)
+
+        # Create DataFrame from data
+        df = pd.DataFrame([data])
+
+        # Add 'status' column with default value 'pending'
+        df['status'] = 'pending'
+
+        # Reorder columns to ensure 'status' is the last column
+        column_order = list(df.columns)
+        column_order.remove('status')
+        column_order.append('status')
+        df = df[column_order]
+
+        # Check if file exists and has data
+        if file_exists:
+            existing_data = pd.read_excel(filename)
+            if not existing_data.empty:
+                df = pd.concat([existing_data, df], ignore_index=True)
+
+        # Save DataFrame to Excel
+        df.to_excel(filename, index=False)
+
+    def save_ml_to_excel_not_working(data, filename='ml.xlsx'):
+        # Check if file exists
+        file_exists = os.path.isfile(filename)
+
+        # Create DataFrame from data
+        df = pd.DataFrame([data])
+
+        # Add 'status' column with default value 'pending'
+        df['status'] = 'pending'
+
+        # Reorder columns to ensure 'status' is the last column
+        column_order = list(df.columns)
+        column_order.remove('status')
+        column_order.append('status')
+        df = df[column_order]
+
+        # Check if file exists and has data
+        if file_exists:
+            existing_data = pd.read_excel(filename)
+            if not existing_data.empty:
+                # Check if any row in the new data already exists in the Excel file
+                existing_data_no_status = existing_data.drop(columns=['status'])
+                df_no_status = df.drop(columns=['status'])
+                if (existing_data_no_status.values == df_no_status.values).any():
+                    print("Data already exists in the Excel file. Skipping...")
+                    return
+                else:
+                    with pd.ExcelWriter(filename, mode='a', if_sheet_exists='replace') as writer:
+                        df.to_excel(writer, index=False, header=False)
+            else:
+                df.to_excel(filename, index=False)
+        else:
+            df.to_excel(filename, index=False)
+
+    allEvaluation = f"{evaluate(a)},{evaluate(b)},{evaluate(c)}"
+
+    ml['home'] = home
+    ml['away'] = away
+    ml['home_odd'] = round(float(odds[0]), 2)
+    ml['away_odd'] = round(float(odds[1]), 2)
+    ml['odd_difference'] = abs(ml['home_odd'] - ml['away_odd'])
+    ml['strong_home'] = check_evaluation('strong home', allEvaluation)
+    ml['strong_away'] = check_evaluation('strong away', allEvaluation)
+    ml['strong_draw'] = check_evaluation('strong draw', allEvaluation)
+    ml['weak_home'] = check_evaluation('weak home', allEvaluation)
+    ml['weak_away'] = check_evaluation('weak away', allEvaluation)
+
+    # predict using machine learning based on supplied data ml
+    mlData = ml.copy()
+    mlData.pop('home')
+    mlData.pop('away')
+    # print(f"ML: {ml}")
+    # print(f"ML Data: {mlData}")
+    # input(":::::::::::::::::")
+    mlPrediction = ml_prediction(mlData)
 
     result = f"""
-{a} - {evaluate(a)}
-{b} - {evaluate(b)}
-{c} - {evaluate(c)}
-H:A:D: {h_count}:{a_count}:{d_count}
-{evaluate(a)},{evaluate(b)},{evaluate(c)}
+    {a.split("|")[0].split(":")[0].strip()}: {a.split("|")[0].split(":")[1]} | {evaluate(a)},{evaluate(b)},{evaluate(c)}
+    Play (deep check): {deepCheck}
+    ML: {mlPrediction}
+    PLAY: {suggestion}
 
-PLAY: {suggestion}
-===========================================================================================================
-===========================================================================================================
-    """
+    ===========================================================================================================
+    ===========================================================================================================
+        """
+
+
+    save_ml_to_excel(ml)
 
     with open("result.txt", 'a', encoding='utf-8') as f:
         f.write(result)
+
+def ml_prediction(data):
+    try:
+        predictionData = []
+
+        logisticRegression = LogisticRegressionModel()
+        decisionTree = DecisionTreeModel()
+        randomForest = RandomForestModel()
+        svm = SVMModel()
+        naiveBayes = NaiveBayesModel()
+
+        # logistic regression
+        logisticRegression.train_model('ml.xlsx')
+        predictions = logisticRegression.predict(data)
+        predictionData.append(predictions)
+
+
+        # decision tree
+        print('checking decision tree...')
+        decisionTree.train_model('ml.xlsx')
+        predictions = decisionTree.predict(data)
+        predictionData.append(predictions)
+
+         # random forest
+        print('checking random forest...')
+        randomForest.train_model('ml.xlsx')
+        predictions = randomForest.predict(data)
+        predictionData.append(predictions,)
+
+         # SVM
+        print('checking SVM')
+        svm.train_model('ml.xlsx')
+        predictions = svm.predict(data)
+        predictionData.append(predictions)
+
+         # Naive bayes
+        print('Checking Naive bayes...')
+        naiveBayes.train_model('ml.xlsx')
+        predictions = naiveBayes.predict(data)
+        predictionData.append(predictions)
+
+
+        print(f"PREDICTIONS IN ML_PREDICTION: {predictionData}")
+
+        def calculate_outcome(lst):
+            h_count = lst.count('H')
+            a_count = lst.count('A')
+            d_count = lst.count('D')
+            total_count = len(lst)
+
+            h_percentage = (h_count / total_count) * 100
+            a_percentage = (a_count / total_count) * 100
+            d_percentage = (d_count / total_count) * 100
+
+            max_count = max(h_count, a_count, d_count)
+            percentages = {'H': h_percentage, 'A': a_percentage, 'D': d_percentage}
+            non_zero_percentages = {key: value for key, value in percentages.items() if value != 0}
+
+            # if h_count == a_count == d_count:
+            #     return 'Stalemate', 33.33, {'H': h_percentage, 'A': a_percentage, 'D': d_percentage}
+            #
+            # elif h_count == max_count:
+            #     if a_count == max_count:
+            #         if d_count == max_count:
+            #             return 'H/A/D', h_percentage, percentages
+            #         else:
+            #             return 'H/A', h_percentage, percentages
+            #     elif d_count == max_count:
+            #         return 'H/D', h_percentage, percentages
+            #     else:
+            #         return 'H', h_percentage, percentages
+            #
+            # elif a_count == max_count:
+            #     if d_count == max_count:
+            #         return 'A/D', a_percentage, percentages
+            #     else:
+            #         return 'A', a_percentage, percentages
+            #
+            # elif d_count == max_count:
+            #     return 'D', d_percentage, percentages
+
+            result = '/'.join(non_zero_percentages.keys())
+            percentages_str = '/'.join([f"{key}: {value}%" for key, value in non_zero_percentages.items()])
+            return f"{result} ({percentages_str})"
+
+        outcome = calculate_outcome(predictionData)
+        return outcome
+
+
+    except Exception as e:
+        print(f"[ERROR][ml_prediction] {e}")
 
 
 # ==============================================================================================================
@@ -1074,7 +1225,7 @@ def extract_team_info(url):
 
         # Loop through the leagues
         # -----------------------------
-        for league in leagues:
+        for index, league in enumerate(leagues):
             league_details = {}
             # GET THE LEAGUE TITLE
             # ---------------------
@@ -1091,37 +1242,44 @@ def extract_team_info(url):
 
             # LOOP THROUGH THE ROWS IN THE TABLE TO EXTRACT DATA
             # ---------------------------------------------------
+            # print(f"{index}/{len(leagues)} looping through roes to get data for {title}")
             gameDetails =[]
             for row in tableRows:
-                single_game_detail = {}
+                try:
+                    single_game_detail = {}
 
-                gameTime = row.find_element(By.CLASS_NAME, game_time_class).text
-                single_game_detail['game_time'] = gameTime
+                    gameTime = row.find_element(By.CLASS_NAME, game_time_class).text
+                    single_game_detail['game_time'] = gameTime
 
-                homeTeam = row.find_element(By.CLASS_NAME, home_team_class).text
-                single_game_detail['home_team'] = homeTeam
+                    homeTeam = row.find_element(By.CLASS_NAME, home_team_class).text
+                    single_game_detail['home_team'] = homeTeam
 
-                awayTeam = row.find_element(By.CLASS_NAME, away_team_class).text
-                single_game_detail['away_team'] = awayTeam
+                    awayTeam = row.find_element(By.CLASS_NAME, away_team_class).text
+                    single_game_detail['away_team'] = awayTeam
 
-                oddMarkets = row.find_element(By.CLASS_NAME, odd_market_class) # trying to select the first one only
-                outcomeOdds = oddMarkets.find_elements(By.CLASS_NAME, outcome_odds_class)
+                    oddMarkets = row.find_element(By.CLASS_NAME, odd_market_class) # trying to select the first one only
+                    outcomeOdds = oddMarkets.find_elements(By.CLASS_NAME, outcome_odds_class)
 
-                homeWinOdd = outcomeOdds[0].text
-                single_game_detail['home_odd'] = homeWinOdd
+                    homeWinOdd = outcomeOdds[0].text
+                    single_game_detail['home_odd'] = homeWinOdd
 
-                drawOdd = outcomeOdds[1].text
-                single_game_detail['draw_odd'] = drawOdd
+                    drawOdd = outcomeOdds[1].text
+                    single_game_detail['draw_odd'] = drawOdd
 
-                awayWinOdd = outcomeOdds[2].text
-                single_game_detail['away_odd'] = awayWinOdd
+                    awayWinOdd = outcomeOdds[2].text
+                    single_game_detail['away_odd'] = awayWinOdd
 
-                gameDetails.append(single_game_detail)
+                    gameDetails.append(single_game_detail)
+                except Exception as e:
+                    print(f"Error in row loop: {e}")
+                    continue
 
             league_details['data'] = gameDetails
 
             all_leagues_data.append(league_details)
+            # print(f"{index}/{len(leagues)} >. data added for {title}")
 
+        # print(f"total all league data = {len(all_leagues_data)}")
         return all_leagues_data
     except Exception as e:
         if no_bet is True:
@@ -1162,6 +1320,120 @@ def write_append_to_file(filename, data):
     with open(filename, 'a') as f:
         f.write(data)
 
+def get_all_odds_data():
+    oddData = []
+    with open('teamOnlyData.txt', 'r') as f:
+        data = f.read()
+
+    with open('oddOnlyData.txt', 'r') as f:
+        data2 = f.read()
+
+    dataList = data.split("\n\n")
+    dataList2 = data2.split("\n\n")
+
+    for index, d in enumerate(dataList):
+        nd = d.split("\n")
+        nd2 = dataList2[index].split("\n")
+
+        result = f"{' | '.join(nd)} | {' | '.join(nd2)}"
+        oddData.append(result)
+
+    return oddData
+
+def get_home_away_odds(home, away):
+    '''
+
+    :param home:
+    :param away:
+    :return: homeOdd, AwayOdd, LoweestOdd
+    '''
+
+    allOdds = get_all_odds_data()
+    final_home_odd = None
+    final_away_odd = None
+    lowest = None
+
+    for odd in allOdds:
+        try:
+
+            test_home = odd.split("|")[0].strip()
+            test_away = odd.split("|")[1].strip()
+            home_odd = odd.split("|")[2].strip()
+            away_odd = odd.split("|")[3].strip()
+
+            # print(f">> checking {home} VS {test_home}")
+
+            if test_home.lower().strip() == str(home).lower().strip():
+                # print("\t Found!!!!!!!!!!")
+                final_home_odd = home_odd
+                final_away_odd = away_odd
+
+                if float(final_home_odd) < float(final_away_odd):
+                    lowest = "Home"
+                else:
+                    lowest = "Away"
+
+                return final_home_odd, final_away_odd, lowest
+        except:
+            continue
+
+def deep_check(odd_info, suggestion):
+    homeOdd = round(float(odd_info[0]),2)
+    awayOdd = round(float(odd_info[1]), 2)
+
+    oddDiff = round(abs(homeOdd - awayOdd), 2)
+    lowestOdd = odd_info[2]
+
+    # {'Home/Draw' : [1.43 -  5.5] |'LO/Draw':  [0.5 - 0.65] |'Home/Away':  [0.1 -0.25]} WR: (67%)
+    # print(f"SUGGESTION HERE: {suggestion}")
+    mainData, wr = suggestion.split('WR:')
+
+    # print(f"maindata b4: {mainData} --- {type(mainData)}")
+
+    mainData = eval(str(mainData).replace("|", ",").replace("-", ","))
+
+    # print(f"maindata after: {mainData} - {type(mainData)}")
+
+    finalPlay = None
+
+    # print(f"Deep check Begins............................>>>>>>>>")
+    # print()
+
+    for data in mainData:
+        tempPlay = data
+
+        option = eval(str(mainData[tempPlay]))
+        if len(option) == 0:
+            finalPlay = tempPlay
+            # print(1)
+            continue
+        elif len(option) == 1:
+            if oddDiff == round(float(option[0]), 2):
+                finalPlay = tempPlay
+                # print(2)
+                continue
+        elif len(option) == 2:
+            lowerBand = round(float(option[0]), 2)
+            upperBand = round(float(option[1]), 2)
+
+            if lowerBand <= oddDiff <= upperBand:
+                # print(f"Exact range found! ")
+                finalPlay = tempPlay
+                # print(3)
+                break
+
+    if "LO" in str(finalPlay):
+        print(f"Lowest odd found................................")
+        finalPlay = str(finalPlay).replace("LO", lowestOdd)
+        finalPlay =f"{finalPlay} [H/A: {homeOdd}/{awayOdd}]"
+
+    if finalPlay == f"{lowestOdd}/Draw":
+        return f"[SWAPPED] Home/Away | [{oddDiff}]"
+    else:
+        return f"{finalPlay} | [{oddDiff}] "
+
+    pass
+
 
 
 # ==============================================================================================================
@@ -1174,16 +1446,17 @@ if action.lower() == 'p' or action == '':
 
     with open('teamOnlyData.txt', 'r') as f:
         raw = f.read()
-    #
-    # raw = '''
-    #     '''
 
     teamList = []
     rawsplit = raw.strip().split("\n\n")
     # print(rawsplit)
     for split in rawsplit:
-        h = split.split("\n")[0]
-        a = split.split("\n")[1]
+        h = split.split("|")[0]
+        a = split.split("|")[1]
+        #  h = split.split("\n")[0]
+        # a = split.split("\n")[1]
+        #
+
         value = (h, a)
         teamList.append(value)
 
@@ -1200,10 +1473,77 @@ if action.lower() == 'p' or action == '':
 elif action.lower() == 'a':
     analyzer = CombinationAnalyzer()
     error = False
-    while True:
+
+    compbinedData = """Strong Home,Strong Home,Strong Home,{'Home/Draw' : [0.45]} WR: (0%)
+Strong Home,Strong Home,Strong Away,{'Home/Draw' : [1.42] } WR: (0%)
+Strong Home,Strong Home,Strong Draw,{'Home/Draw' : ['LO'] | 'Home/Away': ['LO']} WR: (0%)
+Strong Home,Strong Home,Weak Away,{'Home/Away': []} WR: (0%)
+Strong Home,Strong Home,Weak Home,{'Home/Away' :  [2.54 - 4.67]} WR: (0%)
+Strong Home,Strong Away,Strong Draw,{'Draw/Away' : [] | 'Home/Draw': [] }  WR: (0%)
+Strong Home,Strong Away,Weak Away,{'Home/Away': []} WR: (0%)
+Strong Home,Strong Away,Weak Home,{'Draw' : []} WR: (0%)
+Strong Home,Weak Away,Strong Away,{'Home/Away' : []} WR: (0%)
+Strong Home,Weak Home,Weak Away,{'Home/Away': [] | {'LO/Draw':  [0.9] } WR: (0%)
+Strong Home,Weak Home,Weak Home,{'Home/Draw' : [] } WR: (0%)
+Strong Away,Strong Home,Strong Home,{'Home/Away' : []} WR: (0%)
+Strong Away,Strong Home,Strong Away,{'Home/Away' : []} WR: (0%)
+Strong Away,Strong Away,Strong Home,{'Away/Draw' : [] } WR: (0%)
+Strong Away,Strong Away,Strong Away,{'Home/Away' : [2.46]} WR: (0%)
+Strong Away,Strong Away,Weak Away,{'Away/Draw' : [] | 'Home/Away':  [1.5 - 2.1]} WR: (0%)
+Strong Away,Strong Draw,Strong Home,{'LO/Draw'  : [1.28] } WR: (0%)
+Strong Away,Strong Draw,Strong Away,{'Draw/Away' : [] | 'LO/Draw' :  [4.8]} WR: (0%)
+Strong Away,Strong Draw,Weak Away,{'Away/Draw' : []} WR: (0%)
+Strong Away,Weak Away,Strong Away,{'Home/Away' :  [ 4.67]} WR: (0%)
+Strong Away,Weak Away,Weak Away,{'Home/Away' : [0.7]} WR: (0%)
+Strong Away,Weak Home,Strong Home,{'Home/Away' : []} WR: (0%)
+Strong Away,Weak Home,Strong Away,{'Home/Away'  :  [0.9]} WR: (0%)
+Strong Away,Weak Home,Weak Away,{'Home/Away' : [] | 'Away/Draw':  [ 0.5]} WR: (0%)
+Strong Draw,Strong Home,Strong Home,{'Home/Draw' : [2.43 - 5.26] | 'LO/Draw' : [] | 'Home/Away' :  [0.25]} WR: (0%)
+Strong Draw,Strong Home,Strong Away,{'Home/Away'  :  [2.89 - 4.39]  | 'LO/Draw' : [ 0.05 - 1.55]} WR: (100%)
+Strong Draw,Strong Home,Strong Draw,{'Home/Draw'  : [1.5 - 3.2] | 'Home/Away' :  [0.15]} WR: (0%)
+Strong Draw,Strong Home,Weak Away,{'Home/Draw' :  [1.1 - 1.87]} WR: (0%)
+Strong Draw,Strong Home,Weak Home,{'Home/Draw' : [3.86] | 'Away/Draw' : [5.51] | 'Home/Away' : [0.3 - 1.3]} WR: (100%)
+Strong Draw,Strong Away,Strong Home,{'Home/Away' : [1 - 6.3] | 'LO/Draw' :  [0.2]} WR: (0%)
+Strong Draw,Strong Away,Strong Away,{'Draw/Away' : [] | 'Home/Away':  [6.6 - 9.26] } WR: (0%)
+Strong Draw,Strong Away,Strong Draw,{'Draw/Away'  : [2.1 - 2.8]} WR: (0%)
+Strong Draw,Strong Away,Weak Away,{'Draw/Away' :   [0.15 - 2.15]  |  'Home/Away' :  [4.17]} WR: (100%)
+Strong Draw,Strong Away,Weak Home,{'Draw/Away'  :  [1 - 2.21] | 'Home/Away' :  [2.89]} WR: (0%)
+Strong Draw,Strong Draw,Strong Home,{'Home/Draw' : [1.43 -  5.5] |'LO/Draw':  [0.5 - 0.65] |'Home/Away':  [0.1 -0.25]} WR: (67%)
+Strong Draw,Strong Draw,Strong Away,{'Draw/Away' : [0.55 - 0.9] | 'LO/Draw':  [0.95 - 15.9 ] | 'Home/Away' : [0.35]} WR: (100%)
+Strong Draw,Strong Draw,Strong Draw,{'Home/Draw' :  [ 0.9 - 5.45]} WR: (0%)
+Strong Draw,Strong Draw,Weak Away,{'Draw/Away' : [0.15 - 1.51] | 'LO/Draw' : [] | 'Home/Away':   [2.16 -  4.7]} WR: (75%)
+Strong Draw,Strong Draw,Weak Home,{'Home/Draw' :  [0.35  - 6.17 ] | 'LO/Draw' : [] | 'Home/Away' : [0.1] } WR: (50%)
+Strong Draw,Weak Away,Strong Home,{'Home/Draw' :  [0.45]} WR: (0%)
+Strong Draw,Weak Away,Strong Draw,{' Away/Draw' : [0.85]} WR: (0%)
+Strong Draw,Weak Away,Weak Away,{'Draw/Away' : [5.1]} WR: (0%)
+Strong Draw,Weak Away,Weak Home,{'Home/Draw' : [4.94]} WR: (0%)
+Strong Draw,Weak Home,Weak Away,{'Home/Draw' : [0.4]} WR: (0%)
+Weak Away,Strong Home,Strong Home,{'Home/Away' : []} WR: (0%)
+Weak Away,Strong Home,Weak Away,{'Home/Away' : []} WR: (0%)
+Weak Away,Strong Away,Strong Away,{'Home/Away' : []} WR: (0%)
+Weak Away,Strong Away,Weak Home,{'Draw' : []} WR: (0%)
+Weak Away,Weak Away,Strong Away,{'Home/Away' : []} WR: (0%)
+Weak Away,Weak Home,Strong Away,{'Home/Away' : [] } WR: (0%)
+Weak Away,Weak Home,Strong Draw,{'Home/Draw' : []  | 'Away/Draw' : ['away LO odd']} WR: (0%)
+Weak Home,Strong Home,Strong Home,{'Home/Draw' : []} WR: (0%)
+Weak Home,Strong Home,Weak Home,{'Home/Away' : [] | 'Home/Draw' :  [0.6 - 1.4] } WR: (0%)
+Weak Home,Strong Away,Strong Away,{'Home/Away' : [] } WR: (0%)
+Weak Home,Strong Away,Strong Draw,{'Home/Away' : [0.9]} WR: (0%)
+Weak Home,Strong Away,Weak Away,{'Home/Away' : []} WR: (0%)
+Weak Home,Strong Draw,Strong Away,{'Draw/Away' : [] | 'Home/Away' : ['LO for Home']} WR: (0%)
+Weak Home,Weak Away,Weak Home,{'Home/Away' : []} WR: (0%)
+Weak Home,Weak Home,Strong Draw,{'Home/Draw' : [] } WR: (0%)
+    """
+    combinedDataList = compbinedData.split("\n")
+
+
+    # while True:
+    for data in combinedDataList:
+        time.sleep(0.2)
         if error is False:
             os.system('cls')
-        combinations = input("Add combinations [a,b,c,result]: ")
+        # combinations = input("Add combinations [a,b,c,result]: ")
+        combinations = data
         if combinations == "":
             break
         else:
@@ -1214,6 +1554,9 @@ elif action.lower() == 'a':
                 a, b, c, result = combinations.split(",")
                 analyzer.add_combination(a, b, c, result)
                 error = False
+
+        print(f"Done for {data}")
+    # input("Wait here...................")
 
 elif action.lower() == 'e':
     # Extract data from sporty
@@ -1250,13 +1593,11 @@ elif action.lower() == 'e':
 {data_item['home_odd']}
 {data_item['away_odd']}
 """
-            result_odd = f"""{data_item['home_odd']}
-{data_item['away_odd']}
+            result_odd = f"""{data_item['home_odd']} | {data_item['away_odd']}
 
 """
 
-            result_team = f"""{data_item['home_team']}
-{data_item['away_team']}
+            result_team = f"""{data_item['home_team']} | {data_item['away_team']}
 
 """
 
