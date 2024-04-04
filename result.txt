@@ -1,9 +1,13 @@
 
-    Cobresal  0.0:  0.0  Barcelona SC  | Strong Draw,Strong Draw,Weak Home
-    Play (deep check): Away/Draw [H/A: 2.7/2.45] | [0.25] 
-    ML: A (A: 100.0%)
-    PLAY: {'Home/Draw' :  [0.35  - 6.17 ] | 'LO/Draw' : [] | 'Home/Away' : [0.1] } WR: (50%)
+    Olancho FC  0.0:  0.0  CD Victoria La Ceiba  | Strong Draw,Strong Draw,Weak Away
+    DEEP CHECK: Home/Away | [3.78] 
+    ML: H (H: 100.0%)
+    ===========================================================================================================
 
+        
+    CD Zacapa Tellioz  0.0:  0.0  Comunicaciones FC Guatemala City  | Strong Draw,Strong Draw,Strong Home
+    DEEP CHECK: Home/Draw | [1.65] 
+    ML: A/D (A: 80.0%/D: 20.0%)
     ===========================================================================================================
-    ===========================================================================================================
+
         

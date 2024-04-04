@@ -884,7 +884,7 @@ def predict(home, away):
         if newTeamName is None:
             return None
 
-        # print(f"NEW TEAM NAME: {newTeamName}")
+        print(f"NEW TEAM NAME: {newTeamName}")
         # input("Waiting first..............")
         if len(newTeamName) == 2:
             new_home = newTeamName[0]
@@ -964,7 +964,6 @@ def predict(home, away):
     odds = get_home_away_odds(home, away)
 
     deepCheck = deep_check(odds, suggestion)
-
 
     ml ={}
 
@@ -1054,17 +1053,16 @@ def predict(home, away):
     # print(f"ML Data: {mlData}")
     # input(":::::::::::::::::")
     mlPrediction = ml_prediction(mlData)
+    print("ml done!")
 
     result = f"""
     {a.split("|")[0].split(":")[0].strip()}: {a.split("|")[0].split(":")[1]} | {evaluate(a)},{evaluate(b)},{evaluate(c)}
-    Play (deep check): {deepCheck}
+    DEEP CHECK: {deepCheck}
     ML: {mlPrediction}
-    PLAY: {suggestion}
+    ===========================================================================================================
 
-    ===========================================================================================================
-    ===========================================================================================================
         """
-
+    # PLAY: {suggestion}
 
     save_ml_to_excel(ml)
 
@@ -1082,6 +1080,7 @@ def ml_prediction(data):
         naiveBayes = NaiveBayesModel()
 
         # logistic regression
+        print('checking logistic regression...')
         logisticRegression.train_model('ml.xlsx')
         predictions = logisticRegression.predict(data)
         predictionData.append(predictions)

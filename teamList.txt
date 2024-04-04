@@ -1,50 +1,16 @@
-League: International Clubs Copa Libertadores
-23:00  
-Cobresal
-Barcelona SC
-2.70
-2.45
-
-23:00  
-Millonarios FC
-CR Flamengo RJ
-
-
+League: Honduras Liga Nacional Clausura
+22:00  
+Olancho FC
+CD Victoria La Ceiba
+1.62
+5.40
 
 ***************************************************************************
-League: International Clubs Copa Sudamericana
-23:00  
-CA Belgrano
-SC Internacional RS
-3.60
+League: Guatemala Liga Nacional Clausura
+22:00  
+CD Zacapa Tellioz
+Comunicaciones FC Guatemala City
+3.75
 2.10
-
-23:00  
-Nacional Asuncion
-Argentinos Juniors
-
-
-
-***************************************************************************
-League: USA MLS Next Pro
-23:00  
-Orlando City B
-Inter Miami CF II
-1.55
-4.60
-
-***************************************************************************
-League: Brazil Maranhense
-23:00  
-Maranhao AC MA
-Moto Clube MA
-1.94
-3.50
-
-23:00  
-Sampaio Correa FC MA
-SD Imperatriz MA
-1.68
-4.50
 
 ***************************************************************************

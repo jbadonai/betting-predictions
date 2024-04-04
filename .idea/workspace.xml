@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="605" mnemonic="2" />
     <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="612" mnemonic="3" />
     <bookmark url="file://$PROJECT_DIR$/data_extractor.py" line="112" mnemonic="9" />
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="1044" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="1054" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="1082" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7ecc080-d00c-46fb-bc4b-2e7547988e5e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/data_analysis_prediction.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combinations.json" beforeDir="false" afterPath="$PROJECT_DIR$/combinations.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_extractor.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_extractor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/ml.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/datafile.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/datafile.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decision_tree_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/decision_tree_model.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logistic_regression_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/logistic_regression_model.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/ml.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/naive_bayes_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/naive_bayes_model.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oddOnlyData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/oddOnlyData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/random_forest_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/random_forest_model.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sofascore.py" beforeDir="false" afterPath="$PROJECT_DIR$/sofascore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/svm_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/svm_model.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teamList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/teamList.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teamOnlyData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/teamOnlyData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,50 +33,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sofascore.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="1033" column="46" lean-forward="true" selection-start-line="1033" selection-start-column="46" selection-end-line="1033" selection-end-column="46" />
+            <state relative-caret-position="136">
+              <caret line="1083" column="34" selection-start-line="1083" selection-start-column="34" selection-end-line="1083" selection-end-column="34" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
-                <element signature="e#759#1380#0" />
-                <element signature="e#1428#2071#0" />
-                <element signature="e#2750#3535#0" />
-                <element signature="e#2981#2987#0" />
-                <element signature="e#2609#3948#0" />
-                <element signature="e#3994#5717#0" />
-                <element signature="e#5749#6116#0" />
-                <element signature="e#7792#8535#0" />
-                <element signature="e#8140#14486#0" />
-                <element signature="e#12544#12820#0" />
-                <element signature="e#16006#18196#0" />
-                <element signature="e#16768#18491#0" />
-                <element signature="e#16662#16967#0" />
-                <element signature="e#17017#17543#0" />
-                <element signature="e#17593#18030#0" />
-                <element signature="e#18078#18255#0" />
-                <element signature="e#18319#18953#0" />
-                <element signature="e#19018#20018#0" />
-                <element signature="e#25348#26400#0" />
-                <element signature="e#20071#20077#0" />
-                <element signature="e#21547#22205#0" />
-                <element signature="e#22277#22974#0" />
-                <element signature="e#23980#24022#0" />
-                <element signature="e#23768#23801#0" />
-                <element signature="e#24488#24976#0" />
-                <element signature="e#33431#34186#0" />
-                <element signature="e#34094#35434#0" />
-                <element signature="e#26740#26909#0" />
-                <element signature="e#27034#28815#0" />
-                <element signature="e#27234#27245#1" />
-                <element signature="e#36056#36170#0" />
-                <element signature="e#36219#36295#0" />
-                <element signature="e#36343#36414#0" />
-                <element signature="e#36461#36531#0" />
-                <element signature="e#36663#36715#0" />
-                <element signature="e#38302#38753#0" />
-                <element signature="e#38846#39688#0" />
-                <element signature="e#39090#43509#0" />
-                <element signature="e#38709#38720#0" />
-                <element signature="e#43543#45156#0" />
+                <element signature="e#31666#32154#0" />
+                <element signature="e#32706#32841#0" />
+                <element signature="e#32903#33658#0" />
+                <element signature="e#33732#35072#0" />
               </folding>
             </state>
           </provider>
@@ -92,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_extractor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="148" column="24" lean-forward="true" selection-start-line="148" selection-start-column="24" selection-end-line="148" selection-end-column="24" />
+            <state relative-caret-position="121">
+              <caret line="215" column="29" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="29" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
                 <element signature="e#5741#6457#0" />
@@ -106,8 +72,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_analysis_prediction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="191" column="37" selection-start-line="191" selection-start-column="37" selection-end-line="191" selection-end-column="37" />
+            <state relative-caret-position="-74">
+              <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
                 <element signature="e#213#1519#0" />
@@ -142,10 +108,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>element</find>
-      <find>get_team_list_for</find>
-      <find>load_team_page</find>
-      <find>get_data_for_prediction</find>
       <find>waiting fir</find>
       <find>Strong Draw,Strong Home,Strong Away</find>
       <find>error extracting team</find>
@@ -166,12 +128,16 @@
       <find>['w', 'd']</find>
       <find>ML:</find>
       <find>stalem</find>
-      <find>['h', 'd', 'a']</find>
       <find>'W'</find>
       <find>ml</find>
       <find>ml</find>
-      <find>key to get</find>
       <find>error:</find>
+      <find>['h', 'd', 'a']</find>
+      <find>play:</find>
+      <find>checking</find>
+      <find>key to get</find>
+      <find>Saving Data</find>
+      <find>start_data_extraction</find>
     </findStrings>
     <replaceStrings>
       <replace>away</replace>
@@ -197,8 +163,8 @@
         <option value="$PROJECT_DIR$/combinations.json" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/data_analysis_prediction.py" />
-        <option value="$PROJECT_DIR$/sofascore.py" />
         <option value="$PROJECT_DIR$/data_extractor.py" />
+        <option value="$PROJECT_DIR$/sofascore.py" />
         <option value="$PROJECT_DIR$/result.txt" />
       </list>
     </option>
@@ -372,13 +338,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18973215" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3617021" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.39934534" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -397,7 +364,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/sofascore.py</url>
-          <line>1444</line>
+          <line>1443</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
@@ -504,6 +471,12 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/oddOnlyData.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teamOnlyData.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -511,16 +484,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/oddOnlyData.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/teamOnlyData.txt">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/sofascore.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="1083" column="34" selection-start-line="1083" selection-start-column="34" selection-end-line="1083" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+            <element signature="e#31666#32154#0" />
+            <element signature="e#32706#32841#0" />
+            <element signature="e#32903#33658#0" />
+            <element signature="e#33732#35072#0" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data_analysis_prediction.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="191" column="37" selection-start-line="191" selection-start-column="37" selection-end-line="191" selection-end-column="37" />
+        <state relative-caret-position="-74">
+          <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
             <element signature="e#213#1519#0" />
@@ -528,60 +509,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sofascore.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="1033" column="46" lean-forward="true" selection-start-line="1033" selection-start-column="46" selection-end-line="1033" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-            <element signature="e#759#1380#0" />
-            <element signature="e#1428#2071#0" />
-            <element signature="e#2750#3535#0" />
-            <element signature="e#2981#2987#0" />
-            <element signature="e#2609#3948#0" />
-            <element signature="e#3994#5717#0" />
-            <element signature="e#5749#6116#0" />
-            <element signature="e#7792#8535#0" />
-            <element signature="e#8140#14486#0" />
-            <element signature="e#12544#12820#0" />
-            <element signature="e#16006#18196#0" />
-            <element signature="e#16768#18491#0" />
-            <element signature="e#16662#16967#0" />
-            <element signature="e#17017#17543#0" />
-            <element signature="e#17593#18030#0" />
-            <element signature="e#18078#18255#0" />
-            <element signature="e#18319#18953#0" />
-            <element signature="e#19018#20018#0" />
-            <element signature="e#25348#26400#0" />
-            <element signature="e#20071#20077#0" />
-            <element signature="e#21547#22205#0" />
-            <element signature="e#22277#22974#0" />
-            <element signature="e#23980#24022#0" />
-            <element signature="e#23768#23801#0" />
-            <element signature="e#24488#24976#0" />
-            <element signature="e#33431#34186#0" />
-            <element signature="e#34094#35434#0" />
-            <element signature="e#26740#26909#0" />
-            <element signature="e#27034#28815#0" />
-            <element signature="e#27234#27245#1" />
-            <element signature="e#36056#36170#0" />
-            <element signature="e#36219#36295#0" />
-            <element signature="e#36343#36414#0" />
-            <element signature="e#36461#36531#0" />
-            <element signature="e#36663#36715#0" />
-            <element signature="e#38302#38753#0" />
-            <element signature="e#38846#39688#0" />
-            <element signature="e#39090#43509#0" />
-            <element signature="e#38709#38720#0" />
-            <element signature="e#43543#45156#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data_extractor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="148" column="24" lean-forward="true" selection-start-line="148" selection-start-column="24" selection-end-line="148" selection-end-column="24" />
+        <state relative-caret-position="121">
+          <caret line="215" column="29" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="29" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
             <element signature="e#5741#6457#0" />
