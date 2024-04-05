@@ -1438,8 +1438,8 @@ def deep_check(odd_info, suggestion):
 # ==============================================================================================================
 # MAINS
 # ==============================================================================================================
-
-action = input("[A] Add pattern | [P] Predict: ")
+command = "Enter [A]/[P]/[E] for Add Pattern/Predict/Extract: "
+action = input(command)
 
 if action.lower() == 'p' or action == '':
 

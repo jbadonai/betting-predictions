@@ -18,7 +18,9 @@ class PreviousRecordExtractor():
         self.driver = None
         self.url = "https://www.sofascore.com/"
         self.search_textbox_class = 'sc-30244387-0.hiFyBG'
-        self.data_table_class = "div.sc-fqkvVR.fZdvTU"
+        # self.data_table_class = "div.sc-fqkvVR.fZdvTU"
+        self.data_table_class = "div.js-list-cell-target"
+        self.data_table_class_list = ["div.sc-fqkvVR.fZdvTU", "div.js-list-cell-target" ]
         self.dataFile = 'datafile.xlsx'
         self.new_team_name = []
         self.timeout = 15
@@ -80,7 +82,8 @@ class PreviousRecordExtractor():
     def get_team_href(self):
         all_search_list_class = 'sc-fqkvVR.sc-fUnMCh.esJGSi.hkwHv.ps ps--active-y'
         each_team_link_class = 'sc-bbd8cee0-0.jeQTnS'  # has href and other data
-        game_confirmation_class = 'sc-gFqAkR.hzPof'  # under each team lnk class
+        # game_confirmation_class = 'sc-gFqAkR.hzPof'  # under each team lnk class
+        game_confirmation_class = 'Text.eJlzjH'  # under each team lnk class
 
         try:
             # wait for all list to be visible
@@ -106,24 +109,63 @@ class PreviousRecordExtractor():
             print(f"[DEBUG][ERROR] An error occurred in get team href function: {e}")
             return None
 
+    def find_suitable_class_name(self, class_name_list: list, byClassName=True):
+        for className in class_name_list:
+            if byClassName is True:
+                ans = self.is_element_on_page(className)
+            else:
+                ans = self.is_element_on_page(className, 'css')
+
+            if ans is True:
+                return className
+
+        return None
+
     def extract_football_data(self, team):
         gameData = []   # stores final game data
 
         # declare classes required for extraction
-        data_table_class = "div.sc-fqkvVR.fZdvTU div.sc-fqkvVR.iGqHmj a.sc-631ef08b-0"
-        # data_table_class = "div.sc-fqkvVR.fZdvTU div.sc-fqkvVR.buMHXe"
-        ha_class = "sc-gFqAkR"
+        data_table_class = "div.js-list-cell-target"    # represent a block of row of data in a table.
+        # data_table_class = "div.sc-fqkvVR.fZdvTU div.sc-fqkvVR.iGqHmj a.sc-631ef08b-0"
+        data_table_class_list = ["div.js-list-cell-target", "div.sc-fqkvVR.fZdvTU div.sc-fqkvVR.iGqHmj a.sc-631ef08b-0"]
+
+        # ha_class = "sc-gFqAkR"
+        ha_class = "Text"
+        ha_class_list = ["sc-gFqAkR", "Text"]
+
+        print(f"finding suitable class name for DATA TABLE CLASS...")
+        suitable_data_table_class = self.find_suitable_class_name(data_table_class_list, False)     # using CSS
+        if suitable_data_table_class is None:
+            print(f"[ERROR!] NO SUITABLE CLASS NAME FOUND FOR [DATA TABLE CLASS] - REPRESENTING EACH ROW IN THE TABLE\n"
+                  f"UPDATE THE DATA_TABLE_CLASS_LIST WITH NEW CLASS NAME")
+            raise Exception
+        else:
+            print(f"suitable data class name found @ {suitable_data_table_class}")
 
         # get the whole table containing all the data
-        table = self.driver.find_elements(By.CSS_SELECTOR, data_table_class)
+        # table = self.driver.find_elements(By.CSS_SELECTOR, data_table_class)
+        table = self.driver.find_elements(By.CSS_SELECTOR, suitable_data_table_class)
+        # print(f"Total data in table : {len(table)}")
+        # input("wait 1...........")
 
         singleGameData = {}     # stores a single row of data in the table
+
+        print(f"Finding suitable class name for 'ha': .....")
+        suitable_ha_class = self.find_suitable_class_name(ha_class_list)
+        if suitable_ha_class is None:
+            print(f"[ERROR!] NO SUITABLE CLASS NAME FOUND FOR  HA [actual data] - REPRESENTING EACH TO BE EXTRACTED\n"
+                  f"UPDATE THE 'HA_CLASS WITH NEW CLASS NAME")
+            raise Exception
+        else:
+            print(f"suitable HA CLASS found @ {suitable_data_table_class}")
 
         # loop through all the rows in the table to extract each data in the row
         for table_data in table:
             try:
                 # get all data holder in each rows
-                ha = table_data.find_elements(By.CLASS_NAME, ha_class)
+                # ha = table_data.find_elements(By.CLASS_NAME, ha_class)
+                ha = table_data.find_elements(By.CLASS_NAME, suitable_ha_class)
+                # print(f"HA:::: {ha}")
 
                 # extract the required data from the holder
                 home = ha[4].text
@@ -198,7 +240,7 @@ class PreviousRecordExtractor():
     def is_element_on_page(self, selector_name, selector='class'):
         if selector == 'class':
             try:
-                input_element = WebDriverWait(self.driver, 60).until(
+                input_element = WebDriverWait(self.driver, 2).until(
                     EC.visibility_of_element_located((By.CLASS_NAME, selector_name))
                 )
                 return True
@@ -206,7 +248,7 @@ class PreviousRecordExtractor():
                 return False
         elif selector == 'css':
             try:
-                input_element = WebDriverWait(self.driver, 5).until(
+                input_element = WebDriverWait(self.driver, 2).until(
                     EC.visibility_of_element_located((By.CSS_SELECTOR, selector_name))
                 )
                 return True
@@ -273,8 +315,18 @@ class PreviousRecordExtractor():
                     # check for positive response from load url function
                     if ans is True:
                         # check if page is properly loaded by checking if search box is on page
-                        on_page = self.is_element_on_page(self.data_table_class, 'css')
-                        if on_page is True:
+                        # on_page = self.is_element_on_page(self.data_table_class, 'css')
+                        found = False
+                        for data in self.data_table_class_list:
+                            on_page = self.is_element_on_page(data, 'css')
+                            if on_page is True:
+                                print(f"data table found using class: {data}")
+                                found = True
+                                break
+                            print(f"data table not found in: {data}! Trying next one........")
+                            time.sleep(1)
+
+                        if found is True:
                             break
                         else:
                             print(f"[DEBUG][ERROR] Team url Page [{team_url}] not properly loaded! DATA TABLE NOT FOUND ON PAGE! Refreshing to retry....")
@@ -288,16 +340,26 @@ class PreviousRecordExtractor():
                 # ------------------------------
                 print(f"Extracting Data...")
                 tester = "sc-gFqAkR"
+                # tester = "div.Text"
+                testerList = ["sc-gFqAkR", "Text"]
 
+                trial = 0
                 while True:
                     print('Waiting for data to be availalbe...')
-                    ans = self.is_element_on_page(tester)
+                    # ans = self.is_element_on_page(tester)
+                    ans = self.is_element_on_page(testerList[trial])
                     if ans is True:
+                        print(f"Passed @ {trial}")
                         break
 
-                    time.sleep(5)
+                    time.sleep(2)
+                    trial += 1
+                    if trial == len(testerList):
+                        trial = 0
 
                 game_data = self.extract_football_data(team_name)
+                # print(f"Game data:: {game_data}")
+                # input("::::")
 
                 # e. SAVE GAME DATA TO EXCEL
                 print("Saving Data")

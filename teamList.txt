@@ -1,16 +1,114 @@
-League: Honduras Liga Nacional Clausura
-22:00  
-Olancho FC
-CD Victoria La Ceiba
-1.62
-5.40
+League: Australia ALeague
+09:45  
+Western Sydney Wanderers
+Brisbane Roar FC
+2.20
+2.85
 
 ***************************************************************************
-League: Guatemala Liga Nacional Clausura
-22:00  
-CD Zacapa Tellioz
-Comunicaciones FC Guatemala City
-3.75
-2.10
+League: China Chinese Super League
+08:30  
+Changchun Yatai
+Shanghai Shenhua
+7.57
+1.48
+
+***************************************************************************
+League: Australia Victoria NPL
+09:30  
+Heidelberg United FC
+St Albans Saints
+1.31
+7.60
+
+09:30  
+Oakleigh Cannons
+Port Melbourne Sharks
+1.39
+6.10
+
+09:45  
+Dandenong City SC
+Green Gully Cavaliers
+2.25
+2.65
+
+***************************************************************************
+League: Australia Capital NPL 1
+09:30  
+Monaro Panthers FC
+Canberra Olympic
+2.05
+3.00
+
+***************************************************************************
+League: Simulated Reality League Serie A SRL
+***************************************************************************
+League: Russia Youth League
+09:00  
+Strogino Moscow
+FC Baltika Kaliningrad
+1.62
+3.90
+
+***************************************************************************
+League: Republic of Korea K3 League
+07:00  
+Daejeon Korail FC
+Gimhae FC
+3.10
+2.25
+
+***************************************************************************
+League: China China League 1
+08:00  
+Yanbian Longding
+Chongqing Tonglianglong FC
+2.45
+2.80
+
+08:30  
+Foshan Nanshi FC
+Dalian Young Boy FC
+7.70
+1.43
+
+08:30  
+Jiangxi Beidamen
+Yunnan Yukun
+10.50
+1.26
+
+***************************************************************************
+League: Vietnam VLeague 2
+09:00  
+Phu Tho FC
+Phu Dong FC
+3.50
+1.98
+
+***************************************************************************
+League: New Zealand National League
+07:00  
+Birkenhead United AFC
+Auckland United FC
+2.55
+2.20
+
+***************************************************************************
+League: Australia South Australia NPL Women
+08:45  
+Salisbury Inter
+Adelaide City
+2.55
+2.30
+
+***************************************************************************
+League: Australia Victoria NPL Women
+09:30  
+Box Hill United
+Alamein FC
+2.35
+2.50
 
 ***************************************************************************

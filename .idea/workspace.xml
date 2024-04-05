@@ -2,13 +2,15 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="612" mnemonic="3" />
-    <bookmark url="file://$PROJECT_DIR$/data_extractor.py" line="112" mnemonic="9" />
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="1054" mnemonic="1" />
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="1082" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/data_extractor.py" line="320" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/data_extractor.py" line="359" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/data_extractor.py" line="133" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7ecc080-d00c-46fb-bc4b-2e7547988e5e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/backup/ml.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bak/datafile.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/bak/datafile.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_extractor.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_extractor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datafile.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/datafile.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/decision_tree_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/decision_tree_model.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logistic_regression_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/logistic_regression_model.pkl" afterDir="false" />
@@ -33,14 +35,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sofascore.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="1083" column="34" selection-start-line="1083" selection-start-column="34" selection-end-line="1083" selection-end-column="34" />
+            <state relative-caret-position="353">
+              <caret line="1453" selection-start-line="1453" selection-end-line="1453" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
-                <element signature="e#31666#32154#0" />
-                <element signature="e#32706#32841#0" />
-                <element signature="e#32903#33658#0" />
-                <element signature="e#33732#35072#0" />
               </folding>
             </state>
           </provider>
@@ -49,21 +47,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
+            <state relative-caret-position="483">
               <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data_extractor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="215" column="29" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="29" />
+            <state relative-caret-position="-4">
+              <caret line="354" column="32" selection-start-line="354" selection-start-column="32" selection-end-line="354" selection-end-column="32" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
-                <element signature="e#5741#6457#0" />
-                <element signature="e#6498#7400#0" />
               </folding>
             </state>
           </provider>
@@ -72,17 +68,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_analysis_prediction.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-74">
+            <state relative-caret-position="1239">
               <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
-                <element signature="e#213#1519#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/result.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -108,14 +103,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>waiting fir</find>
-      <find>Strong Draw,Strong Home,Strong Away</find>
-      <find>error extracting team</find>
-      <find>timeout</find>
-      <find>'Strong Draw', 'Strong Draw', 'Weak Home</find>
-      <find>total leagues</find>
-      <find>h:a</find>
-      <find>file_path</find>
       <find>found!!</find>
       <find>found!</find>
       <find>deep check</find>
@@ -135,9 +122,17 @@
       <find>['h', 'd', 'a']</find>
       <find>play:</find>
       <find>checking</find>
-      <find>key to get</find>
-      <find>Saving Data</find>
       <find>start_data_extraction</find>
+      <find>Waiting for data to be availalbe...</find>
+      <find>add parter</find>
+      <find>DATA TABLE NOT FOUND ON PAGE!</find>
+      <find>data_table_class</find>
+      <find>sc-gFqAkR</find>
+      <find>game data:</find>
+      <find>key to get</find>
+      <find>waiting for data</find>
+      <find>waiting for dat</find>
+      <find>Saving Data</find>
     </findStrings>
     <replaceStrings>
       <replace>away</replace>
@@ -163,8 +158,8 @@
         <option value="$PROJECT_DIR$/combinations.json" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/data_analysis_prediction.py" />
-        <option value="$PROJECT_DIR$/data_extractor.py" />
         <option value="$PROJECT_DIR$/sofascore.py" />
+        <option value="$PROJECT_DIR$/data_extractor.py" />
         <option value="$PROJECT_DIR$/result.txt" />
       </list>
     </option>
@@ -338,14 +333,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18973215" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26860118" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.39934534" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3715221" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -358,17 +352,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sofascore.py</url>
-          <line>1443</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/tennisLive.py">
@@ -471,58 +454,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/oddOnlyData.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/teamOnlyData.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
+        <state relative-caret-position="483">
           <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sofascore.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="1083" column="34" selection-start-line="1083" selection-start-column="34" selection-end-line="1083" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-            <element signature="e#31666#32154#0" />
-            <element signature="e#32706#32841#0" />
-            <element signature="e#32903#33658#0" />
-            <element signature="e#33732#35072#0" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data_analysis_prediction.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-74">
+        <state relative-caret-position="1239">
           <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#213#1519#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teamOnlyData.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oddOnlyData.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/result.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sofascore.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="1453" selection-start-line="1453" selection-end-line="1453" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data_extractor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="215" column="29" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="29" />
+        <state relative-caret-position="-4">
+          <caret line="354" column="32" selection-start-line="354" selection-start-column="32" selection-end-line="354" selection-end-column="32" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
-            <element signature="e#5741#6457#0" />
-            <element signature="e#6498#7400#0" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/result.txt">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

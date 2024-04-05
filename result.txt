@@ -1,13 +1,19 @@
 
-    Olancho FC  0.0:  0.0  CD Victoria La Ceiba  | Strong Draw,Strong Draw,Weak Away
-    DEEP CHECK: Home/Away | [3.78] 
-    ML: H (H: 100.0%)
+    Western Sydney Wanderers  0.0:  0.0  Brisbane Roar FC  | Strong Draw,Strong Draw,Strong Home
+    DEEP CHECK: Home/Draw [H/A: 2.2/2.85] | [0.65] 
+    ML: H/D (H: 80.0%/D: 20.0%)
     ===========================================================================================================
 
         
-    CD Zacapa Tellioz  0.0:  0.0  Comunicaciones FC Guatemala City  | Strong Draw,Strong Draw,Strong Home
-    DEEP CHECK: Home/Draw | [1.65] 
-    ML: A/D (A: 80.0%/D: 20.0%)
+    Changchun Yatai  0.0:  0.0  Shanghai Shenhua  | Strong Draw,Strong Draw,Weak Home
+    DEEP CHECK: Home/Draw | [6.09] 
+    ML: A (A: 100.0%)
+    ===========================================================================================================
+
+        
+    Heidelberg United FC  0.0:  0.0  St Albans Saints  | Strong Draw,Strong Draw,Weak Away
+    DEEP CHECK: Home/Draw [H/A: 1.31/7.6] | [6.29] 
+    ML: H/D (H: 80.0%/D: 20.0%)
     ===========================================================================================================
 
         
