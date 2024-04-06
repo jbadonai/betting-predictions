@@ -76,9 +76,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/result.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="144" column="8" lean-forward="true" selection-end-line="144" selection-end-column="8" />
-            </state>
+            <state relative-caret-position="-901" />
           </provider>
         </entry>
       </file>
@@ -164,7 +162,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
     <option name="width" value="1944" />
@@ -332,8 +330,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26860118" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -500,9 +497,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/result.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="144" column="8" lean-forward="true" selection-end-line="144" selection-end-column="8" />
-        </state>
+        <state relative-caret-position="-901" />
       </provider>
     </entry>
   </component>
