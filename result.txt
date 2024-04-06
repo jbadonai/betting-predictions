@@ -1,85 +1,37 @@
 
-    Western Sydney Wanderers  0.0:  0.0  Brisbane Roar FC  | Strong Draw,Strong Draw,Strong Home
-    DEEP CHECK: Home/Draw [H/A: 2.2/2.85] | [0.65] 
-    ML: H/D (H: 80.0%/D: 20.0%)
-    ===========================================================================================================
-
-        
-    Changchun Yatai  0.0:  0.0  Shanghai Shenhua  | Strong Draw,Strong Draw,Weak Home
-    DEEP CHECK: Home/Draw | [6.09] 
-    ML: A (A: 100.0%)
-    ===========================================================================================================
-
-        
-    Heidelberg United FC  0.0:  0.0  St Albans Saints  | Strong Draw,Strong Draw,Weak Away
-    DEEP CHECK: Home/Draw [H/A: 1.31/7.6] | [6.29] 
-    ML: H/D (H: 80.0%/D: 20.0%)
-    ===========================================================================================================
-
-        
-    Oakleigh Cannons  0.0:  0.0  Port Melbourne Sharks  | Strong Draw,Strong Draw,Weak Away
-    DEEP CHECK: Home/Draw [H/A: 1.39/6.1] | [4.71] 
-    ML: H/D (H: 80.0%/D: 20.0%)
-    ===========================================================================================================
-
-        
-    Dandenong City SC  0.0:  0.0  Green Gully Cavaliers  | Strong Draw,Strong Draw,Strong Home
-    DEEP CHECK: None | [0.4] 
-    ML: H/D (H: 80.0%/D: 20.0%)
-    ===========================================================================================================
-
-        
-    Monaro Panthers FC  0.0:  0.0  Canberra Olympic  | Strong Draw,Strong Draw,Weak Home
-    DEEP CHECK: [SWAPPED] Home/Away | [0.95]
-    ML: D (D: 100.0%)
-    ===========================================================================================================
-
-        
-    Strogino Moscow  0.0:  0.0  FC Baltika Kaliningrad  | Strong Draw,Strong Draw,Strong Home
-    DEEP CHECK: [SWAPPED] Home/Away | [2.28]
+    Roma  0.0:  0.0  Lazio  | Strong Draw,Strong Draw,Strong Draw
+    DEEP CHECK: [SWAPPED] Home/Away | [1.65]
     ML: H (H: 100.0%)
     ===========================================================================================================
 
         
-    Daejeon Korail FC  0.0:  0.0  Gimhae FC  | Strong Draw,Strong Draw,Strong Away
-    DEEP CHECK: Draw/Away | [0.85] 
-    ML: A/D (A: 40.0%/D: 60.0%)
+    Atletico Petroleos de Luanda  0.0:  0.0  TP Mazembe  | Strong Draw,Strong Draw,Strong Home
+    DEEP CHECK: [SWAPPED] Home/Away | [2.25]
+    ML: H (H: 100.0%)
     ===========================================================================================================
 
         
-    Yanbian Longding  0.0:  0.0  Chongqing Tonglianglong FC  | Strong Draw,Strong Draw,Weak Home
-    DEEP CHECK: [SWAPPED] Home/Away | [0.35]
-    ML: A/D (A: 20.0%/D: 80.0%)
+    Mjallby AIF  0.0:  0.0  IFK Norrkoping FK  | Strong Draw,Strong Draw,Weak Away
+    DEEP CHECK: Draw/Away | [1.13] 
+    ML: H (H: 100.0%)
     ===========================================================================================================
 
         
-    Foshan Nanshi FC  0.0:  0.0  Dalian Young Boy FC  | Strong Draw,Strong Draw,Strong Away
-    DEEP CHECK: Away/Draw [H/A: 7.7/1.43] | [6.27] 
+    Bodoe/Glimt  0.0:  0.0  Viking FK  | Strong Draw,Strong Draw,Strong Home
+    DEEP CHECK: [SWAPPED] Home/Away | [5.09]
+    ML: H/D (H: 60.0%/D: 40.0%)
+    ===========================================================================================================
+
+        
+    FC Winterthur  0.0:  0.0  FC Lugano  | Strong Draw,Strong Draw,Weak Away
+    DEEP CHECK: Draw/Away | [0.75] 
     ML: A (A: 100.0%)
     ===========================================================================================================
 
         
-    Jiangxi Beidamen  0.0:  0.0  Yunnan Yukun  | Strong Draw,Strong Draw,Weak Away
-    DEEP CHECK: Away/Draw [H/A: 10.5/1.26] | [9.24] 
-    ML: A (A: 100.0%)
-    ===========================================================================================================
-
-        
-    Phu Tho FC  0.0:  0.0  Phu Dong FC  | Strong Draw,Strong Draw,Strong Home
-    DEEP CHECK: Home/Draw | [1.52] 
-    ML: H/A/D (H: 20.0%/A: 20.0%/D: 60.0%)
-    ===========================================================================================================
-
-        
-    Salisbury Inter  0.0:  0.0  Adelaide City  | Strong Draw,Strong Draw,Strong Home
-    DEEP CHECK: Home/Away | [0.25] 
-    ML: A/D (A: 40.0%/D: 60.0%)
-    ===========================================================================================================
-
-        
-    Box Hill United  0.0:  0.0  Alamein FC  | Strong Draw,Strong Draw,Strong Away
-    DEEP CHECK: None | [0.15] 
-    ML: H/D (H: 20.0%/D: 80.0%)
+    FC Rouen  0.0:  0.0  LB Chateauroux  | Strong Draw,Strong Draw,Weak Away
+    DEEP CHECK: Draw/Away | [1.05] 
+    ML: H/D (H: 80.0%/D: 20.0%)
     ===========================================================================================================
 
         
