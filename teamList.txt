@@ -1,404 +1,252 @@
 League: Italy Serie A
-17:00  
-Roma
-Lazio
-2.20
-3.85
+19:45  
+Empoli
+FC Torino
+3.67
+2.28
 
 ***************************************************************************
-League: International Clubs CAF Champions League
-17:00  
-Atletico Petroleos de Luanda
-TP Mazembe
-2.05
-4.30
+League: France Ligue 1
+20:00  
+PSG
+Clermont Foot 63
+1.21
+15.22
 
 ***************************************************************************
-League: Sweden Allsvenskan
-16:30  
-Mjallby AIF
-IFK Norrkoping FK
-2.20
-3.33
+League: Netherlands Eredivisie
+20:00  
+FC Twente Enschede
+Fortuna Sittard
+1.45
+6.80
 
 ***************************************************************************
-League: Norway Eliteserien
-17:00  
-Bodoe/Glimt
-Viking FK
-1.41
-6.50
+League: Germany 2 Bundesliga
+19:30  
+Karlsruher SC
+FC St. Pauli
+2.85
+2.45
+
+***************************************************************************
+League: Venezuela Primera Division
+20:00  
+Estudiantes de Merida
+Zamora FC
+2.45
+2.65
+
+***************************************************************************
+League: Belgium Pro League
+19:45  
+Royal Antwerp FC
+KRC Genk
+2.30
+3.00
 
 ***************************************************************************
 League: Switzerland Super League
-17:00  
-FC Winterthur
-FC Lugano
-3.00
-2.25
-
-17:00  
-Stade Lausanne Ouchy
-Basel
-3.60
-1.96
+19:30  
+Servette Geneva
+FC Zurich
+1.91
+3.90
 
 ***************************************************************************
-League: France National
-17:00  
-FC Rouen
-LB Chateauroux
-2.25
-3.30
+League: Argentina Torneo Federal A
+20:00  
+CA Ferro Carril Oeste General Pico
+CS Estudiantes San Luis
+1.99
+3.80
 
-***************************************************************************
-League: Chile Primera Division
-16:30  
-Deportes Copiapo
-Deportes Iquique
-2.95
-2.25
-
-***************************************************************************
-League: Switzerland Challenge League
-17:00  
-FC Aarau
-FC Schaffhausen
-2.20
-2.95
-
-17:00  
-FC Thun
-Neuchatel Xamax
-1.90
-3.70
-
-17:00  
-FC Wil 1900
-AC Bellinzona
-1.79
-4.25
-
-***************************************************************************
-League: France National 2
-17:00  
-Andrezieux-Boutheon FC
-EFC Frejus Saint-Raphael
-2.10
-3.70
-
-17:00  
-Cannes
-RC Grasse
-1.77
-4.50
-
-17:00  
-FCSR Haguenau
-Football Bourg-En-Bresse Peronnas 01
-3.00
-2.20
-
-17:00  
-SO Romorantin
-Les Herbiers
-3.00
-2.20
-
-17:00  
-US Saint-Malo
-FCM Aubervilliers
-1.85
-4.00
-
-***************************************************************************
-League: Netherlands Tweede Divisie
-17:00  
-De Treffers Groesbeek
-ACV Assen
-1.52
-4.90
-
-***************************************************************************
-League: Chile Primera B
-16:30  
-Deportes La Serena
-Universidad de Concepcion
-2.00
-3.50
-
-***************************************************************************
-League: Uruguay Primera Division
-16:30  
-Racing Club Montevideo
-Miramar Misiones
-1.92
+20:00  
+CA Juventud Unida Universitario San Luis
+Deportivo Camioneros
+2.05
 3.80
 
 ***************************************************************************
-League: Spain Segunda Federacion
-17:00  
-CF La Nucia
-UD Alzira
-3.00
+League: Switzerland Challenge League
+19:15  
+FC Sion
+FC Vaduz
+1.44
+6.10
+
+***************************************************************************
+League: Saudi Arabia Saudi Pro League
+20:00  
+AL Ettifaq FC
+AL Riyadh
+1.37
+8.00
+
+20:00  
+AL Tai
+AL Shabab FC (KSA)
+4.20
+1.76
+
+***************************************************************************
+League: Argentina Primera B
+19:30  
+Club Atletico Los Andes
+CSD Flandria
+2.35
+3.25
+
+19:30  
+Deportivo Merlo
+CD UAI Urquiza
+1.86
+4.60
+
+19:30  
+Excursionistas
+Club Atletico Acassuso
 2.10
-
-17:00  
-Real Sociedad C
-CD Brea
-1.85
 3.90
 
-17:00  
-San Sebastian Reyes
-CF Villanovense
-1.41
-6.20
+***************************************************************************
+League: England Amateur National League South
+19:30  
+Truro City
+Aveley FC
+5.70
+1.52
 
 ***************************************************************************
-League: Serbia Superliga
-17:00  
-FK Zeleznicar Pancevo
-FK Vojvodina Novi Sad
-3.25
+League: Argentina Primera Nacional
+19:30  
+CA Defensores Unidos
+CA Brown de Adrogue
 2.05
-
-***************************************************************************
-League: Czech Republic 1 Liga
-17:00  
-Slavia Prague
-Bohemians Prague 1905
-1.20
-13.00
-
-***************************************************************************
-League: Poland Ekstraklasa
-16:30  
-Ruch Chorzow
-Puszcza Niepolomice
-1.87
-4.00
-
-***************************************************************************
-League: Spain Primera Federacion
-17:00  
-RC Celta de Vigo B
-CA Osasuna B
-1.62
-4.50
-
-***************************************************************************
-League: Slovakia Superliga
-17:00  
-FK Kosice
-MFk Dukla Banska Bystrica
-3.10
-2.15
-
-17:00  
-MFK Skalica
-FC Vion Zlate Moravce - Vrable
-1.85
 3.90
 
-17:00  
-MFK Zemplin Michalovce
-AS Trencin
-3.30
-2.15
+19:30  
+San Telmo
+CA Chaco For Ever
+1.92
+4.25
 
 ***************************************************************************
-League: Finland Veikkausliiga
-17:00  
-Kuopion Palloseura
-HJK Helsinki
-3.33
-2.20
+League: Argentina Primera C
+19:30  
+CA Claypole
+Deportivo Paraguayo
+1.83
+4.25
 
-***************************************************************************
-League: Georgia Erovnuli Liga
-17:00  
-FC Kolkheti-1913 Poti
-FC Saburtalo Tbilisi
-3.25
-2.05
+19:30  
+CA Lugano
+Yupanqui
+2.95
+2.50
 
-***************************************************************************
-League: Czech Republic FNL
-17:00  
-FC Zbrojovka Brno
-1.SK Prostejov
-1.45
-6.00
-
-***************************************************************************
-League: Poland I Liga
-16:30  
-GKS Tychy
-Wisla Plock
+19:30  
+CA Victoriano Arenas
+Defensores de Cambaceres
 2.20
 3.20
 
-***************************************************************************
-League: Spain Amateur Tercera Federacion Group 18
-17:00  
-CD AZUQUECA
-CD Villacanas
-1.92
-3.70
-
-***************************************************************************
-League: Spain Amateur Tercera Federacion Group 2
-16:30  
-CD Tuilla
-UD Llanera
-4.80
-1.59
-
-17:00  
-UD Gijon Industrial
-UC Ceares
-6.50
-1.42
-
-***************************************************************************
-League: Spain Amateur Tercera Federacion Group 6
-17:00  
-FC Jove Espanol San Vicente
-CF Villarreal C
-1.30
-8.50
-
-***************************************************************************
-League: Spain Amateur Tercera Federacion Group 8
-16:30  
-Atletico Astorga FC
-Atletico Bembibre
-1.64
-5.00
-
-17:00  
-Palencia CF
-CD Villaralbo
-1.66
-4.90
-
-***************************************************************************
-League: Czech Republic CFL
-17:00  
-FC Slavia Karlovy Vary
-Tj Jiskra Domazlice
-5.60
-1.43
-
-***************************************************************************
-League: Poland II Liga
-17:00  
-Sandecja Nowy Sacz
-Stomil Olsztyn
+19:30  
+Juventud Unida San Miguel
+Justo Jose de Urquiza
+3.00
 2.25
-3.25
 
 ***************************************************************************
 League: Slovenia PrvaLiga
-16:30  
-NK Radomlje
-NK Koper
-2.60
-2.60
+19:15  
+Mura Murska Sobota
+NK Celje
+5.80
+1.51
 
 ***************************************************************************
-League: Georgia Erovnuli Liga 2
-17:00  
-SFC Shturmi
-FC Gareji Sagarejo
-2.90
-2.10
+League: Qatar Stars League
+19:30  
+Al Ahli Doha SC
+AL Markhiya
+1.97
+3.30
+
+19:30  
+Al-Shamal
+Qatar SC
+2.50
+2.55
 
 ***************************************************************************
-League: Estonia Esiliiga B
-17:00  
-Laanemaa JK Haapsalu
-FC Phoenix Johvi
-2.40
-2.25
-
-17:00  
-Parnu Jalgpalliklubi
-Tallinna JK Legion
-5.60
-1.38
-
-***************************************************************************
-League: South Africa Premiership
-16:30  
-Orlando Pirates FC
-Lamontville Golden Arrows
-1.52
-6.20
-
-***************************************************************************
-League: Ethiopia Premier League
-17:00  
-Bahir Dar Kenema FC
-Shashemene Kenema
-1.61
-5.25
-
-***************************************************************************
-League: Germany Amateur Oberliga Niederrhein
-17:00  
-VfB Homberg
-Sportfreunde Hamborn 07
-1.59
-4.70
-
-***************************************************************************
-League: Azerbaijan Premier League
-17:00  
-Qarabag FK
-Sabail FK
+League: Bosnia  Herzegovina Premijer Liga
+19:45  
+FK Sarajevo
+FK Igman Konjic
 1.19
 11.50
 
 ***************************************************************************
-League: Faroe Islands Premier League
-17:00  
-Skala IF
-KI Klaksvik
-11.00
-1.20
+League: Chile Tercera Division
+20:00  
+Deportes Valdivia
+Deportes Union Companias
+2.05
+3.10
 
 ***************************************************************************
-League: Iran Pro League
-16:30  
-Esteghlal
-Mes Rafsanjan FC
-1.61
-6.00
-
-***************************************************************************
-League: Iran Azadegan League
-17:00  
-Mes Shahr-e Babak
-SaiPa FC
-2.60
-2.80
-
-***************************************************************************
-League: France Championnat National U19
-17:00  
-FC Chambly Oise Youth
-Paris Saint-Germain FC
-6.00
-1.46
-
-***************************************************************************
-League: Mexico Liga Premier Serie B
-17:00  
-Canoneros Marina
-Huracanes Izcalli FC
-2.80
+League: Brazil Paulista Serie A2
+19:10  
+AE Velo Clube SP
+CA Juventus SP
 2.30
+3.20
+
+***************************************************************************
+League: Brazil Piauiense
+20:00  
+AA Altos PI
+Parnahyba PI
+2.05
+3.70
+
+***************************************************************************
+League: Brazil Sergipano
+20:00  
+CS Sergipe SE
+Lagarto FC SE
+2.10
+3.33
+
+***************************************************************************
+League: Kuwait Premier League
+19:30  
+Al Shabab Kuwait
+Al Jahra
+2.00
+3.10
+
+19:30  
+Kazma SC
+Khaitan SC
+1.35
+7.30
+
+***************************************************************************
+League: Andorra Primera Divisio
+19:30  
+CE Carroi
+UE Santa Coloma A
+23.00
+1.06
+
+***************************************************************************
+League: Colombia Liga Femenina
+20:00  
+Asociacion Deportivo Pasto
+CA Nacional Sa
+7.50
+1.34
 
 ***************************************************************************

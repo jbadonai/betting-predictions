@@ -1,37 +1,145 @@
 
-    Roma  0.0:  0.0  Lazio  | Strong Draw,Strong Draw,Strong Draw
-    DEEP CHECK: [SWAPPED] Home/Away | [1.65]
-    ML: H (H: 100.0%)
-    ===========================================================================================================
-
-        
-    Atletico Petroleos de Luanda  0.0:  0.0  TP Mazembe  | Strong Draw,Strong Draw,Strong Home
-    DEEP CHECK: [SWAPPED] Home/Away | [2.25]
-    ML: H (H: 100.0%)
-    ===========================================================================================================
-
-        
-    Mjallby AIF  0.0:  0.0  IFK Norrkoping FK  | Strong Draw,Strong Draw,Weak Away
-    DEEP CHECK: Draw/Away | [1.13] 
-    ML: H (H: 100.0%)
-    ===========================================================================================================
-
-        
-    Bodoe/Glimt  0.0:  0.0  Viking FK  | Strong Draw,Strong Draw,Strong Home
-    DEEP CHECK: [SWAPPED] Home/Away | [5.09]
-    ML: H/D (H: 60.0%/D: 40.0%)
-    ===========================================================================================================
-
-        
-    FC Winterthur  0.0:  0.0  FC Lugano  | Strong Draw,Strong Draw,Weak Away
-    DEEP CHECK: Draw/Away | [0.75] 
+    Empoli  0.0:  0.0  FC Torino  | Strong Draw,Strong Draw,Weak Home
+    DEEP CHECK: Home/Draw | [1.39] 
     ML: A (A: 100.0%)
     ===========================================================================================================
 
         
-    FC Rouen  0.0:  0.0  LB Chateauroux  | Strong Draw,Strong Draw,Weak Away
-    DEEP CHECK: Draw/Away | [1.05] 
+    PSG  0.0:  0.0  Clermont Foot 63  | Strong Draw,Strong Draw,Strong Home
+    DEEP CHECK: None | [14.01] 
+    ML: H/D (H: 60.0%/D: 40.0%)
+    ===========================================================================================================
+
+        
+    FC Twente Enschede  0.0:  0.0  Fortuna Sittard  | Strong Draw,Strong Draw,Weak Home
+    DEEP CHECK: [SWAPPED] Home/Away | [5.35]
     ML: H/D (H: 80.0%/D: 20.0%)
+    ===========================================================================================================
+
+        
+    Karlsruher SC  0.0:  0.0  FC St. Pauli  | Strong Draw,Strong Draw,Weak Away
+    DEEP CHECK: Draw/Away | [0.4] 
+    ML: H/A (H: 20.0%/A: 80.0%)
+    ===========================================================================================================
+
+        
+    Estudiantes de Merida  0.0:  0.0  Zamora FC  | Strong Draw,Strong Draw,Weak Home
+    DEEP CHECK: Home/Draw [H/A: 2.45/2.65] | [0.2] 
+    ML: H/A (H: 40.0%/A: 60.0%)
+    ===========================================================================================================
+
+        
+    Royal Antwerp FC  0.0:  0.0  KRC Genk  | Strong Draw,Strong Draw,Weak Home
+    DEEP CHECK: [SWAPPED] Home/Away | [0.7]
+    ML: H/A/D (H: 40.0%/A: 40.0%/D: 20.0%)
+    ===========================================================================================================
+
+        
+    Servette Geneva  0.0:  0.0  FC Zurich  | Strong Draw,Strong Draw,Weak Away
+    DEEP CHECK: Home/Draw [H/A: 1.91/3.9] | [1.99] 
+    ML: H (H: 100.0%)
+    ===========================================================================================================
+
+        
+    CA Juventud Unida Universitario San Luis  0.0:  0.0  Deportivo Camioneros  | Strong Draw,Strong Draw,Strong Away
+    DEEP CHECK: Home/Draw [H/A: 2.05/3.8] | [1.75] 
+    ML: H/D (H: 60.0%/D: 40.0%)
+    ===========================================================================================================
+
+        
+    FC Sion  0.0:  0.0  FC Vaduz  | Strong Draw,Strong Draw,Strong Draw
+    DEEP CHECK: [SWAPPED] Home/Away | [4.66]
+    ML: H (H: 100.0%)
+    ===========================================================================================================
+
+        
+    AL Ettifaq FC  0.0:  0.0  AL Riyadh  | Strong Draw,Strong Draw,Strong Away
+    DEEP CHECK: Home/Draw [H/A: 1.37/8.0] | [6.63] 
+    ML: H (H: 100.0%)
+    ===========================================================================================================
+
+        
+    AL Tai  0.0:  0.0  AL Shabab FC (KSA)  | Strong Draw,Strong Draw,Weak Away
+    DEEP CHECK: Home/Away | [2.44] 
+    ML: A (A: 100.0%)
+    ===========================================================================================================
+
+        
+    Club Atletico Los Andes  0.0:  0.0  CSD Flandria  | Strong Draw,Strong Draw,Weak Away
+    DEEP CHECK: Draw/Away | [0.9] 
+    ML: H/D (H: 80.0%/D: 20.0%)
+    ===========================================================================================================
+
+        
+    Excursionistas  0.0:  0.0  Club Atletico Acassuso  | Strong Draw,Strong Draw,Strong Home
+    DEEP CHECK: [SWAPPED] Home/Away | [1.8]
+    ML: H (H: 100.0%)
+    ===========================================================================================================
+
+        
+    Truro City  0.0:  0.0  Aveley FC  | Strong Draw,Strong Draw,Weak Away
+    DEEP CHECK: Home/Away | [4.18] 
+    ML: A (A: 100.0%)
+    ===========================================================================================================
+
+        
+    CA Defensores Unidos  0.0:  0.0  CA Brown de Adrogue  | Strong Draw,Strong Draw,Strong Away
+    DEEP CHECK: Home/Draw [H/A: 2.05/3.9] | [1.85] 
+    ML: H/D (H: 80.0%/D: 20.0%)
+    ===========================================================================================================
+
+        
+    San Telmo  0.0:  0.0  CA Chaco For Ever  | Strong Draw,Strong Draw,Strong Home
+    DEEP CHECK: [SWAPPED] Home/Away | [2.33]
+    ML: H (H: 100.0%)
+    ===========================================================================================================
+
+        
+    CA Claypole  0.0:  0.0  Deportivo Paraguayo  | Strong Draw,Strong Draw,Strong Away
+    DEEP CHECK: Home/Draw [H/A: 1.83/4.25] | [2.42] 
+    ML: H (H: 100.0%)
+    ===========================================================================================================
+
+        
+    CA Lugano  0.0:  0.0  Yupanqui  | Strong Draw,Strong Draw,Weak Home
+    DEEP CHECK: Home/Draw | [0.45] 
+    ML: A (A: 100.0%)
+    ===========================================================================================================
+
+        
+    Juventud Unida San Miguel  0.0:  0.0  Justo Jose de Urquiza  | Strong Draw,Strong Draw,Weak Home
+    DEEP CHECK: Home/Draw | [0.75] 
+    ML: A/D (A: 80.0%/D: 20.0%)
+    ===========================================================================================================
+
+        
+    Mura Murska Sobota  0.0:  0.0  NK Celje  | Strong Draw,Strong Draw,Strong Home
+    DEEP CHECK: Home/Draw | [4.29] 
+    ML: A/D (A: 80.0%/D: 20.0%)
+    ===========================================================================================================
+
+        
+    Al Ahli Doha SC  0.0:  0.0  AL Markhiya  | Strong Draw,Strong Draw,Weak Home
+    DEEP CHECK: [SWAPPED] Home/Away | [1.33]
+    ML: H/D (H: 80.0%/D: 20.0%)
+    ===========================================================================================================
+
+        
+    Al-Shamal  0.0:  0.0  Qatar SC  | Strong Draw,Strong Draw,Strong Away
+    DEEP CHECK: None | [0.05] 
+    ML: H/A (H: 40.0%/A: 60.0%)
+    ===========================================================================================================
+
+        
+    FK Sarajevo  0.0:  0.0  FK Igman Konjic  | Strong Draw,Strong Draw,Weak Home
+    DEEP CHECK: Home/Draw [H/A: 1.19/11.5] | [10.31] 
+    ML: H (H: 100.0%)
+    ===========================================================================================================
+
+        
+    Deportes Valdivia  0.0:  0.0  Deportes Union Companias  | Strong Draw,Strong Draw,Weak Home
+    DEEP CHECK: [SWAPPED] Home/Away | [1.05]
+    ML: H/D (H: 60.0%/D: 40.0%)
     ===========================================================================================================
 
         
