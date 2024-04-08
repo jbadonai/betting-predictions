@@ -69,14 +69,16 @@ class LogisticRegressionModel:
 
     def train_model(self, data_file):
         try:
-            # print("[] Training model...")
+            print("[DEBUG][LOGISTIC REGRESSION] Training model...")
             df = self.clean_data(data_file)
             X = df.drop(columns=['status'])
             y = df['status']
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
             self.model = LogisticRegression()
             self.model.fit(X_train, y_train)
+            print(f"[DEBUG][LOGISTIC REGRESSION] dumping mode...")
             joblib.dump(self.model, self.model_file)
+            print("[DEBUG][LOGISTIC REGRESSION] Model dumped successfully!")
             # print("[][] Training successful!")
         except Exception as e:
             print(f"[ERROR][LOGISTIC REGRESSION TRAIN MODEL]: {e}")
@@ -107,14 +109,16 @@ class DecisionTreeModel:
         return df
 
     def train_model(self, data_file):
+        print("[DEBUG][DECISION TREE] Training model...")
         df = self.clean_data(data_file)
         X = df.drop(columns=['status'])
         y = df['status']
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
         self.model = DecisionTreeClassifier()
         self.model.fit(X_train, y_train)
+        print("[DEBUG][DECISION TREE] dumping model...")
         joblib.dump(self.model, self.model_file)
-
+        print("[DEBUG][DECISION TREE] model Dumped!")
     def predict(self, data):
         if not self.model:
             self.model = joblib.load(self.model_file)
@@ -137,13 +141,16 @@ class RandomForestModel:
         return df
 
     def train_model(self, data_file):
+        print("[DEBUG][RANDOM FOREST] Training model...")
         df = self.clean_data(data_file)
         X = df.drop(columns=['status'])
         y = df['status']
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
         self.model = RandomForestClassifier()
         self.model.fit(X_train, y_train)
+        print("[DEBUG][RANDOM FOREST] Dumping model...")
         joblib.dump(self.model, self.model_file)
+        print("[DEBUG][RANDOM FOREST] Model Dumped...")
 
     def predict(self, data):
         if not self.model:
@@ -167,13 +174,16 @@ class SVMModel:
         return df
 
     def train_model(self, data_file):
+        print("[DEBUG][SVM MODEL] Training model...")
         df = self.clean_data(data_file)
         X = df.drop(columns=['status'])
         y = df['status']
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
         self.model = SVC()
         self.model.fit(X_train, y_train)
+        print("[DEBUG][SVM MODEL] Dumping Model...")
         joblib.dump(self.model, self.model_file)
+        print("[DEBUG][SVM MODEL] Model Dumped...")
 
     def predict(self, data):
         if not self.model:
@@ -197,13 +207,16 @@ class NaiveBayesModel:
         return df
 
     def train_model(self, data_file):
+        print("[DEBUG][NAIVE BAYES MODEL] Training model...")
         df = self.clean_data(data_file)
         X = df.drop(columns=['status'])
         y = df['status']
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
         self.model = GaussianNB()
         self.model.fit(X_train, y_train)
+        print("[DEBUG][NAIVE BAYES MODEL] Dumping Model...")
         joblib.dump(self.model, self.model_file)
+        print("[DEBUG][NAIVE BAYES MODEL] Model Dumped!")
 
     def predict(self, data):
         if not self.model:

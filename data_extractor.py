@@ -80,19 +80,61 @@ class PreviousRecordExtractor():
             pass
 
     def get_team_href(self):
-        all_search_list_class = 'sc-fqkvVR.sc-fUnMCh.esJGSi.hkwHv.ps ps--active-y'
+        # all_search_list_class = 'sc-fqkvVR.sc-fUnMCh.esJGSi.hkwHv.ps.ps--active-y'
+        all_search_list_class = 'Box.dAFRQr'
         each_team_link_class = 'sc-bbd8cee0-0.jeQTnS'  # has href and other data
         # game_confirmation_class = 'sc-gFqAkR.hzPof'  # under each team lnk class
         game_confirmation_class = 'Text.eJlzjH'  # under each team lnk class
+        team_only_filter_button = "Chip"
+        team_error_class = "Text"
+        errorMessage = None
 
         try:
             # wait for all list to be visible
-            self.wait_for_element(all_search_list_class)
+            print('waiting for search list to be visible')
+            self.wait_for_element(all_search_list_class, 10, 'css')
+            print('done!')
+
+            # find and click on team only filter
+            filterFound = False
+            gameFilterButton = self.driver.find_elements(By.CLASS_NAME, team_only_filter_button)
+            for filter in gameFilterButton:
+                if filter.text == "Team":
+                    filter.click()
+                    print(f"{filter.text} has been clicked!")
+                    filterFound = True
+                    break
+
+            time.sleep(3)
+            if filterFound is False:
+                errorMessage = "Team Filter Not Found"
+                raise Exception
+
+            # after selecting team filter check if there is result:
+            print("Checkin for team error...")
+            errorFound = False
+            teamErrors = self.driver.find_elements(By.CLASS_NAME, team_error_class)
+            print(f"Total team errors to check = {len(teamErrors)}")
+            for index,teamError in enumerate(teamErrors):
+                if teamError.text == "No results found":
+                    errorFound = True
+                    print(f"[{index}]Team not found!")
+                    break
+
+                if index > 10:
+                    print('Break by assumption!')
+                    break
+
+            # input("Testing waiting...........")
+            if errorFound is True:
+                errorMessage = "Team Not Found"
+                raise Exception
 
             # get all the links in the list
             all_links = self.driver.find_elements(By.CLASS_NAME, each_team_link_class)
 
             # scan the links to select link for football only for the team
+            print('Scanning links...')
             for link in all_links:
                 # get the game: football, clrcket...
                 game = link.find_element(By.CLASS_NAME, game_confirmation_class).text
@@ -103,11 +145,11 @@ class PreviousRecordExtractor():
                     team_url = link.get_attribute('href')
                     # print(f"Team URL: {team_url}")
                     # print("FOUND!!!!!!")
-                    return team_url
+                    return team_url, errorMessage
 
         except Exception as e:
             print(f"[DEBUG][ERROR] An error occurred in get team href function: {e}")
-            return None
+            return None, errorMessage
 
     def find_suitable_class_name(self, class_name_list: list, byClassName=True):
         for className in class_name_list:
@@ -133,14 +175,14 @@ class PreviousRecordExtractor():
         ha_class = "Text"
         ha_class_list = ["sc-gFqAkR", "Text"]
 
-        print(f"finding suitable class name for DATA TABLE CLASS...")
+        # print(f"finding suitable class name for DATA TABLE CLASS...")
         suitable_data_table_class = self.find_suitable_class_name(data_table_class_list, False)     # using CSS
         if suitable_data_table_class is None:
-            print(f"[ERROR!] NO SUITABLE CLASS NAME FOUND FOR [DATA TABLE CLASS] - REPRESENTING EACH ROW IN THE TABLE\n"
+            print(f"[DEBUG][ERROR!] NO SUITABLE CLASS NAME FOUND FOR [DATA TABLE CLASS] - REPRESENTING EACH ROW IN THE TABLE\n"
                   f"UPDATE THE DATA_TABLE_CLASS_LIST WITH NEW CLASS NAME")
             raise Exception
         else:
-            print(f"suitable data class name found @ {suitable_data_table_class}")
+            print(f"[DEBUG] suitable data class name found @ {suitable_data_table_class}")
 
         # get the whole table containing all the data
         # table = self.driver.find_elements(By.CSS_SELECTOR, data_table_class)
@@ -150,14 +192,14 @@ class PreviousRecordExtractor():
 
         singleGameData = {}     # stores a single row of data in the table
 
-        print(f"Finding suitable class name for 'ha': .....")
+        print(f"[DEBUG] Finding suitable class name for 'ha': .....")
         suitable_ha_class = self.find_suitable_class_name(ha_class_list)
         if suitable_ha_class is None:
-            print(f"[ERROR!] NO SUITABLE CLASS NAME FOUND FOR  HA [actual data] - REPRESENTING EACH TO BE EXTRACTED\n"
+            print(f"[DEBUG][ERROR!] NO SUITABLE CLASS NAME FOUND FOR  HA [actual data] - REPRESENTING EACH TO BE EXTRACTED\n"
                   f"UPDATE THE 'HA_CLASS WITH NEW CLASS NAME")
             raise Exception
         else:
-            print(f"suitable HA CLASS found @ {suitable_data_table_class}")
+            print(f"[DEBUG] suitable HA CLASS found @ {suitable_data_table_class}")
 
         # loop through all the rows in the table to extract each data in the row
         for table_data in table:
@@ -282,7 +324,7 @@ class PreviousRecordExtractor():
             for team_name in team_names:
                 # a. SEARCH FOR TEAM'S NAME
                 # ---------------------------
-                print(f"[DEBUG] Searchin for team's Name")
+                print(f"[DEBUG] Searching for team's Name: {team_name}")
                 while True:
                     search_result = self.search_team(team_name)
                     if search_result is True:
@@ -296,12 +338,13 @@ class PreviousRecordExtractor():
                 failure_count = 0
                 while True:
                     print("[DEBUG] Getting temas' href ")
-                    team_url = self.get_team_href()
+                    team_url, errorMessage = self.get_team_href()
                     if team_url is not None:
                         break
+
                     else:
                         failure_count += 1
-                        if failure_count > 1:
+                        if failure_count > 1 or errorMessage is not None:
                             raise Exception
                         print(f"[DEBUG][ERROR][{failure_count}] Error Extracting team's url! Retrying...")
                         time.sleep(2)
@@ -320,10 +363,10 @@ class PreviousRecordExtractor():
                         for data in self.data_table_class_list:
                             on_page = self.is_element_on_page(data, 'css')
                             if on_page is True:
-                                print(f"data table found using class: {data}")
+                                print(f"[DEBUG] data table found using class: {data}")
                                 found = True
                                 break
-                            print(f"data table not found in: {data}! Trying next one........")
+                            print(f"[DEBUG] data table not found in: {data}! Trying next one........")
                             time.sleep(1)
 
                         if found is True:
@@ -338,18 +381,18 @@ class PreviousRecordExtractor():
 
                 # d. EXTRACT DATA FROM THE PAGE
                 # ------------------------------
-                print(f"Extracting Data...")
+                print(f"[DEBUG] Extracting Data...")
                 tester = "sc-gFqAkR"
                 # tester = "div.Text"
                 testerList = ["sc-gFqAkR", "Text"]
 
                 trial = 0
                 while True:
-                    print('Waiting for data to be availalbe...')
+                    print('[DEBUG] Waiting for data to be availalbe...')
                     # ans = self.is_element_on_page(tester)
                     ans = self.is_element_on_page(testerList[trial])
                     if ans is True:
-                        print(f"Passed @ {trial}")
+                        print(f"[DEBUG] Passed @ {trial}")
                         break
 
                     time.sleep(2)
@@ -362,7 +405,7 @@ class PreviousRecordExtractor():
                 # input("::::")
 
                 # e. SAVE GAME DATA TO EXCEL
-                print("Saving Data")
+                print("[DEBUG] Saving Data")
                 self.save_to_excel(game_data)
 
                 self.new_team_name.append(eval(game_data[0])['team'] )
@@ -372,7 +415,7 @@ class PreviousRecordExtractor():
         except Exception as e:
             if failure_count > 0:
                 return None
-            print(f"An Error occurred in start data extraction: {e}")
+            print(f"[DEBUG] An Error occurred in start data extraction: {e}")
 
 
 

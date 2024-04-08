@@ -1,134 +1,14 @@
-League: Venezuela Primera Division
-22:45  
-Carabobo FC
-Rayo Zuliano
-1.40
-7.20
-
-***************************************************************************
-League: USA USL League One
-23:00  
-Richmond Kickers
-Cv Fuego FC
-1.99
-3.30
-
-***************************************************************************
-League: Argentina Primera Nacional
-23:00  
-Ferro Carril Oeste
-CA Patronato Parana
-1.68
-5.10
-
-***************************************************************************
-League: Argentina Primera C
-23:00  
-Club Mercedes
-Lujan
-2.65
-2.65
-
-***************************************************************************
-League: Paraguay Division de Honor Apertura
-23:00  
-Sportivo Trinidense
-Cerro Porteno
-4.20
-1.70
-
-***************************************************************************
-League: Bolivia Division Profesional
-23:00  
-FC Universitario de Vinto
-Always Ready
-2.00
-3.40
-
-***************************************************************************
-League: Brazil Campeonato Tocantinense
-22:30  
-Uniao Araguainense TO
-Tocantinopolis EC TO
+League: India MFA Cup
+05:30  
+Saidan Gsa
+Mamit Dfa
+1.30
+8.80
+        
+05:30  
+Vengthar FC
+FC Serchhip Kawnpui
 2.20
 3.00
-
-***************************************************************************
-League: Brazil Paulista Serie A3
-23:00  
-Catanduva FC SP
-Desportivo Brasil SP
-1.83
-4.20
-
-***************************************************************************
-League: Trinidad and Tobago TT Premier League
-23:00  
-La Horquetta Rangers FC
-Defence Force FC
-3.75
-1.73
-
-***************************************************************************
-League: Dominican Republic Liga Mayor
-23:00  
-Club Atletico Pantoja
-Atlántico FC
-1.42
-6.40
-
-23:00  
-Vega Real
-Delfines Del Este
-1.83
-3.90
-
-***************************************************************************
-League: Saint Kitts and Nevis Premier League
-23:00  
-Trafalgar Southstars
-He Garden Hotspurs
-7.00
-1.31
-
-***************************************************************************
-League: Mexico Liga Premier Serie A
-23:00  
-Halcones De Zapopan FC
-CA San Juan de Aragon
-1.88
-3.60
-
-23:00  
-Pioneros de Cancun
-Tampico Madero FC
-5.30
-1.51
-
-23:00  
-Reboceros de La Piedad
-Aguacateros de Periban FC
-2.55
-2.55
-
-***************************************************************************
-League: Mexico Liga Premier Serie B
-23:00  
-Aguacateros CD Uruapan
-Club Deportivo de Futbol Zitacuaro
-1.10
-18.50
-
-23:00  
-Artesanos Metepec FC
-Caja Oblatos Cfd
-1.38
-7.25
-
-23:00  
-Ciervos FC
-CF Petroleros De Poza Rica
-11.50
-1.15
-
+        
 ***************************************************************************
