@@ -1,0 +1,145 @@
+
+Barracas Central  0.0:  0.0  CA San Miguel  | Strong Draw,Strong Draw,Weak Home
+DEEP CHECK: [SWAPPED] Home/Away | [1.55]
+ML: H/D (H: 20.0%/D: 80.0%)
+===========================================================================================================
+
+            
+Atletico Mineiro MG  0.0:  0.0  Club Atletico Rosario Central  | Strong Draw,Strong Draw,Strong Home
+DEEP CHECK: None | [7.27] 
+ML: H (H: 100.0%)
+===========================================================================================================
+
+            
+Cerro Porteno  0.0:  0.0  Alianza Lima  | Strong Draw,Strong Draw,Weak Away
+DEEP CHECK: Home/Away | [3.38] 
+ML: H/A (H: 80.0%/A: 20.0%)
+===========================================================================================================
+
+            
+CSD Independiente del Valle  0.0:  0.0  CA San Lorenzo de Almagro  | Strong Draw,Strong Draw,Weak Away
+DEEP CHECK: Home/Away | [4.64] 
+ML: H (H: 100.0%)
+===========================================================================================================
+
+            
+CD Atletico Huila  0.0:  0.0  Real Cartagena FC  | Strong Draw,Strong Draw,Strong Home
+DEEP CHECK: [SWAPPED] Home/Away | [2.27]
+ML: H/D (H: 40.0%/D: 60.0%)
+===========================================================================================================
+
+            
+Envigado FC  0.0:  0.0  Deportes Quindio  | Strong Draw,Strong Draw,Weak Home
+DEEP CHECK: [SWAPPED] Home/Away | [1.75]
+ML: H/D (H: 60.0%/D: 40.0%)
+===========================================================================================================
+
+            
+Llaneros FC  0.0:  0.0  Jaguares de Cordoba  | Strong Draw,Strong Draw,Strong Home
+DEEP CHECK: Home/Draw [H/A: 2.45/2.95] | [0.5] 
+ML: A/D (A: 60.0%/D: 40.0%)
+===========================================================================================================
+
+            
+Defensa y Justicia  0.0:  0.0  Always Ready  | Strong Draw,Strong Draw,Strong Home
+DEEP CHECK: None | [9.74] 
+ML: H/D (H: 80.0%/D: 20.0%)
+===========================================================================================================
+
+            
+Fortaleza EC CE  0.0:  0.0  CA Nacional Potosi  | Strong Draw,Strong Draw,Weak Home
+DEEP CHECK: Home/Draw [H/A: 1.08/21.0] | [19.92] 
+ML: H (H: 100.0%)
+===========================================================================================================
+
+            
+FC Cincinnati 2  0.0:  0.0  New England Revolution II  | Strong Draw,Strong Draw,Weak Home
+DEEP CHECK: Home/Draw | [0.4] 
+ML: A/D (A: 40.0%/D: 60.0%)
+===========================================================================================================
+
+            
+9 de Octubre FC  0.0:  0.0  Cuniburo FC  | Strong Draw,Strong Draw,Strong Away
+DEEP CHECK: Home/Draw [H/A: 1.9/3.8] | [1.9] 
+ML: H (H: 100.0%)
+===========================================================================================================
+
+            
+Vargas Torres  0.0:  0.0  Gualaceo SC  | Strong Draw,Strong Draw,Strong Away
+DEEP CHECK: None | [0.3] 
+ML: H/A (H: 60.0%/A: 40.0%)
+===========================================================================================================
+
+            
+Diablos Tesistan FC  0.0:  0.0  Racing FC Porto Palmeiras  | Strong Draw,Strong Draw,Weak Home
+DEEP CHECK: Home/Draw | [2.36] 
+ML: A/D (A: 60.0%/D: 40.0%)
+===========================================================================================================
+
+            
+CD Platense Municipal Zacatecoluca  0.0:  0.0  CD FAS Santa Ana  | Strong Draw,Strong Draw,Strong Away
+DEEP CHECK: Draw/Away | [0.8] 
+ML: A/D (A: 40.0%/D: 60.0%)
+===========================================================================================================
+
+            
+Jocoro FC  0.0:  0.0  Alianza FC San Salvador  | Strong Draw,Strong Draw,Weak Home
+DEEP CHECK: Away/Draw [H/A: 10.5/1.29] | [9.21] 
+ML: A (A: 100.0%)
+===========================================================================================================
+
+            
+Vikingur Olafsvik  0.0:  0.0  Keflavik IF  | Strong Draw,Strong Draw,Weak Away
+DEEP CHECK: Home/Away | [4.61] 
+ML: A (A: 100.0%)
+===========================================================================================================
+
+            
+EC Noroeste SP  0.0:  0.0  AE Velo Clube SP  | Strong Draw,Strong Draw,Weak Away
+DEEP CHECK: Draw/Away | [1.35] 
+ML: H (H: 100.0%)
+===========================================================================================================
+
+            
+CD Cortulua  0.0:  0.0  CD Real Santander  | Strong Draw,Strong Draw,Weak Away
+DEEP CHECK: Home/Draw [H/A: 1.39/6.3] | [4.91] 
+ML: H (H: 100.0%)
+===========================================================================================================
+
+            
+CA River Plate (Arg)  0.0:  0.0  Atletico Tucuman Reserve  | Strong Draw,Strong Draw,Weak Away
+DEEP CHECK: Home/Draw [H/A: 1.37/7.4] | [6.03] 
+ML: H/D (H: 80.0%/D: 20.0%)
+===========================================================================================================
+
+            
+Defensor Sporting  0.0:  0.0  River Plate-URU  | Strong Draw,Strong Draw,Weak Home
+DEEP CHECK: Home/Draw [H/A: 2.5/2.75] | [0.25] 
+ML: H/A/D (H: 40.0%/A: 20.0%/D: 40.0%)
+===========================================================================================================
+
+            
+CD Inca  0.0:  0.0  FC Los Laureles  | Strong Draw,Strong Draw,Strong Home
+DEEP CHECK: Home/Draw | [2.78] 
+ML: A/D (A: 80.0%/D: 20.0%)
+===========================================================================================================
+
+            
+CD San Pablo Municipal  0.0:  0.0  CD Racing Junior de Armenia  | Strong Draw,Strong Draw,Weak Home
+DEEP CHECK: Home/Draw | [1.21] 
+ML: H/A/D (H: 20.0%/A: 60.0%/D: 20.0%)
+===========================================================================================================
+
+            
+CD Titan  0.0:  0.0  CD Fuerte Aguilares  | Strong Draw,Strong Draw,Weak Home
+DEEP CHECK: [SWAPPED] Home/Away | [5.45]
+ML: H/D (H: 60.0%/D: 40.0%)
+===========================================================================================================
+
+            
+Csd Vendaval  0.0:  0.0  Tiburones de Sonsonate  | Strong Draw,Strong Draw,Weak Home
+DEEP CHECK: Away/Draw [H/A: 14.0/1.12] | [12.88] 
+ML: A (A: 100.0%)
+===========================================================================================================
+
+            

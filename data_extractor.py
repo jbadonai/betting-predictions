@@ -92,7 +92,7 @@ class PreviousRecordExtractor():
         try:
             # wait for all list to be visible
             print('waiting for search list to be visible')
-            self.wait_for_element(all_search_list_class, 10, 'css')
+            self.wait_for_element(all_search_list_class, 4, 'css')
             print('done!')
 
             # find and click on team only filter
