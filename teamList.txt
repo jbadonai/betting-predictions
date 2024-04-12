@@ -1,198 +1,66 @@
-League: Argentina Copa Argentina
-21:00  
-Barracas Central
-CA San Miguel
-2.05
-3.60
-        
-***************************************************************************
-League: International Clubs Copa Libertadores
-23:00  
-Atletico Mineiro MG
-Club Atletico Rosario Central
-1.43
-8.70
-        
-23:00  
-Cerro Porteno
-Alianza Lima
-1.72
-5.10
-        
-23:00  
-CSD Independiente del Valle
-CA San Lorenzo de Almagro
-1.61
-6.25
-        
-***************************************************************************
-League: Colombia Copa Colombia
-22:00  
-CD Atletico Huila
-Real Cartagena FC
-1.83
-4.10
-        
-22:00  
-Envigado FC
-Deportes Quindio
-2.00
-3.75
-        
-22:00  
-Llaneros FC
-Jaguares de Cordoba
-2.45
+League: Australia ALeague
+08:00  
+Wellington Phoenix FC
+Melbourne Victory
 2.95
+2.30
         
 ***************************************************************************
-League: International Clubs Copa Sudamericana
-23:00  
-Defensa y Justicia
-Always Ready
-1.26
-11.00
-        
-23:00  
-Fortaleza EC CE
-CA Nacional Potosi
-1.08
-21.00
-        
+League: Simulated Reality League LaLiga SRL
 ***************************************************************************
-League: USA MLS Next Pro
-23:00  
-FC Cincinnati 2
-New England Revolution II
-2.65
-2.25
-        
+League: Simulated Reality League Serie A SRL
 ***************************************************************************
-League: Ecuador Serie B
-21:00  
-9 de Octubre FC
-Cuniburo FC
-1.90
-3.80
-        
-21:00  
-Vargas Torres
-Gualaceo SC
-2.45
-2.75
-        
-***************************************************************************
-League: Mexico Copa Conecta
-22:15  
-Diablos Tesistan FC
-Racing FC Porto Palmeiras
-4.00
-1.64
-        
-***************************************************************************
-League: Nicaragua Primera Division
-22:00  
-Indigenas de Matagalpa FC
-Art Municipal Jalapa
-2.85
-2.35
-        
-***************************************************************************
-League: El Salvador Primera Division Clausura
-22:00  
-CD Platense Municipal Zacatecoluca
-CD FAS Santa Ana
-2.95
-2.15
-        
-22:00  
-Santa Tecla FC
-CD Fuerte San Francisco Morazan
-2.75
-2.35
-        
-22:15  
-Jocoro FC
-Alianza FC San Salvador
-10.50
-1.29
-        
-22:30  
-CD Dragon
-Municipal Limeno
-2.25
-2.85
-        
-22:30  
-CD Luis Angel Firpo Usulutan
-Once Deportivo de Ahuachapan
-1.93
-3.50
-        
-***************************************************************************
-League: Iceland Cup
-21:15  
-Vikingur Olafsvik
-Keflavik IF
-6.00
-1.39
-        
-***************************************************************************
-League: Brazil Paulista Serie A2
-22:30  
-EC Noroeste SP
-AE Velo Clube SP
-2.05
-3.40
-        
-***************************************************************************
-League: Colombia Liga Femenina
-21:45  
-CD Cortulua
-CD Real Santander
-1.39
-6.30
-        
-***************************************************************************
-League: Argentina Copa de la Liga Reserves
-23:00  
-CA River Plate (Arg)
-Atletico Tucuman Reserve
-1.37
-7.40
-        
-***************************************************************************
-League: Uruguay Copa Uruguay
-23:00  
-Defensor Sporting
-River Plate-URU
-2.50
-2.75
-        
-***************************************************************************
-League: El Salvador Segunda Division
-22:00  
-CD Inca
-FC Los Laureles
+League: Russia Youth League
+09:00  
+Ural Ekaterinburg
+Chertanovo Moscow
 4.40
-1.62
+1.52
         
-22:00  
-CD San Pablo Municipal
-CD Racing Junior de Armenia
-3.20
-1.99
+***************************************************************************
+League: Simulated Reality League Eredivisie SRL
+***************************************************************************
+League: Simulated Reality League Turkey Super Lig SRL
+***************************************************************************
+League: Israel Liga Alef
+09:00  
+Maccabi Kiryat Ata-Bialik
+Hapoel Kaukab
+1.21
+11.50
         
-22:00  
-CD Titan
-CD Fuerte Aguilares
-1.35
-6.80
+09:45  
+Hapoel Marmorek FC
+Agudat Sport Ashdod FC
+4.00
+1.93
         
-22:00  
-Csd Vendaval
-Tiburones de Sonsonate
-14.00
-1.12
+10:00  
+Hapoel Bikat Hayarden
+Hapoel Herzelia FC
+3.80
+1.97
+        
+***************************************************************************
+League: New Zealand National League
+08:15  
+North Wellington AFC
+Wellington Phoenix FC
+11.00
+1.13
+        
+08:30  
+West Coast Rangers FC
+Auckland City FC
+12.50
+1.09
+        
+***************************************************************************
+League: Greece U19 Super League
+09:30  
+Panserraikos U19
+AEK Athens
+7.25
+1.29
         
 ***************************************************************************

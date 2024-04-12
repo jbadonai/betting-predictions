@@ -11,6 +11,7 @@ from sklearn.metrics import accuracy_score
 import joblib
 
 
+
 class RandomForestModelOld:
     def __init__(self, model_file='random_forest_model.pkl'):
         self.model_file = model_file
@@ -91,8 +92,6 @@ class LogisticRegressionModel:
         X = pd.DataFrame([data])
         y_pred = self.model.predict(X)
         return y_pred[0]
-
-
 
 
 class DecisionTreeModel:
@@ -225,3 +224,70 @@ class NaiveBayesModel:
         y_pred = self.model.predict(X)
         return y_pred[0]
 
+
+class FootballPredictionModel:
+    def __init__(self, file_path):
+        self.data = pd.read_excel(file_path)
+
+    def preprocess_data(self):
+        X = self.data.drop(columns=['home', 'away', 'status', 'home_score', 'away_score'])
+        y_status = self.data['status']
+        y_home_score = self.data['home_score']
+        y_away_score = self.data['away_score']
+        return X, y_status, y_home_score, y_away_score
+
+    def train_and_save_model(self, model_name):
+        X, y_status, y_home_score, y_away_score = self.preprocess_data()
+        if model_name == 'Logistic Regression':
+            status_model = LogisticRegression()
+            home_score_model = LogisticRegression()
+            away_score_model = LogisticRegression()
+        elif model_name == 'Decision Tree':
+            status_model = DecisionTreeClassifier()
+            home_score_model = DecisionTreeClassifier()
+            away_score_model = DecisionTreeClassifier()
+        elif model_name == 'Random Forest':
+            status_model = RandomForestClassifier()
+            home_score_model = RandomForestClassifier()
+            away_score_model = RandomForestClassifier()
+        elif model_name == 'SVM':
+            status_model = SVC()
+            home_score_model = SVC()
+            away_score_model = SVC()
+        elif model_name == 'Naive Bayes':
+            status_model = GaussianNB()
+            home_score_model = GaussianNB()
+            away_score_model = GaussianNB()
+        else:
+            raise ValueError("Invalid model name")
+
+        # Train the models
+        status_model.fit(X, y_status)
+        joblib.dump(status_model, f'{model_name}_status_model.joblib')
+
+        home_score_model.fit(X, y_home_score)
+        joblib.dump(home_score_model, f'{model_name}_home_score_model.joblib')
+
+        away_score_model.fit(X, y_away_score)
+        joblib.dump(away_score_model, f'{model_name}_away_score_model.joblib')
+
+    def load_model(self, model_name, outcome):
+        return joblib.load(f'{model_name}_{outcome}_model.joblib')
+
+    def predict(self, data, expected_outcome, algorithm):
+        X = pd.DataFrame([data])
+        model_name = algorithm
+        outcome_model = self.load_model(model_name, expected_outcome)
+        return outcome_model.predict(X)
+
+# # Example usage
+# data = {'home_odd': 5.4, 'away_odd': 1.56, 'odd_difference': 3.84, 'strong_home': 1, 'strong_away': 0, 'strong_draw': 1, 'weak_home': 0, 'weak_away': 0}
+#
+# football_model = FootballPredictionModel('ml2.xlsx')
+# status_prediction = football_model.predict(data, 'status', 'Logistic Regression')
+# home_score_prediction = football_model.predict(data, 'home_score', 'Random Forest')
+# away_score_prediction = football_model.predict(data, 'away_score', 'Decision Tree')
+#
+# print("Status prediction using Logistic Regression:", status_prediction[0])
+# print("Home score prediction using Random Forest:", home_score_prediction[0])
+# print("Away score prediction using Decision Tree:", away_score_prediction[0])

@@ -405,11 +405,13 @@ class PreviousRecordExtractor():
                 # input("::::")
 
                 # e. SAVE GAME DATA TO EXCEL
+                # print(f"Game data: {game_data}")
                 print("[DEBUG] Saving Data")
+
                 self.save_to_excel(game_data)
 
                 self.new_team_name.append(eval(game_data[0])['team'] )
-
+            # print(f"Data Saved! returning new teamname : {self.new_team_name}")
             return self.new_team_name
             pass
         except Exception as e:
