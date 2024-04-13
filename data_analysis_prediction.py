@@ -237,24 +237,25 @@ class FootballPredictionModel:
         return X, y_status, y_home_score, y_away_score
 
     def train_and_save_model(self, model_name):
+
         X, y_status, y_home_score, y_away_score = self.preprocess_data()
-        if model_name == 'Logistic Regression':
+        if str(model_name).lower() == 'Logistic Regression'.lower():
             status_model = LogisticRegression()
             home_score_model = LogisticRegression()
             away_score_model = LogisticRegression()
-        elif model_name == 'Decision Tree':
+        elif str(model_name).lower() == 'Decision Tree'.lower():
             status_model = DecisionTreeClassifier()
             home_score_model = DecisionTreeClassifier()
             away_score_model = DecisionTreeClassifier()
-        elif model_name == 'Random Forest':
+        elif str(model_name).lower() == 'Random Forest'.lower():
             status_model = RandomForestClassifier()
             home_score_model = RandomForestClassifier()
             away_score_model = RandomForestClassifier()
-        elif model_name == 'SVM':
+        elif str(model_name).lower() == 'SVM'.lower():
             status_model = SVC()
             home_score_model = SVC()
             away_score_model = SVC()
-        elif model_name == 'Naive Bayes':
+        elif str(model_name).lower() == 'Naive Bayes'.lower():
             status_model = GaussianNB()
             home_score_model = GaussianNB()
             away_score_model = GaussianNB()
@@ -262,6 +263,11 @@ class FootballPredictionModel:
             raise ValueError("Invalid model name")
 
         # Train the models
+        print()
+        model_name = str(model_name).lower().replace(" ", "_")
+        print(f"Training And dumping model --- {model_name}")
+
+
         status_model.fit(X, y_status)
         joblib.dump(status_model, f'{model_name}_status_model.joblib')
 
@@ -277,6 +283,7 @@ class FootballPredictionModel:
     def predict(self, data, expected_outcome, algorithm):
         X = pd.DataFrame([data])
         model_name = algorithm
+        model_name = str(model_name).lower().replace(" ", "_")
         outcome_model = self.load_model(model_name, expected_outcome)
         return outcome_model.predict(X)
 

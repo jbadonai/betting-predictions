@@ -21,6 +21,8 @@ try:
 
     # timeout = 15
     teamData = 'teamList.txt'
+    algorighm_list = ['LOGISTIC REGRESSION', 'DECISION TREE', 'RANDOM FOREST', 'SVM', 'NAIVE BAYES']
+    use_old_model = False
 
     def initialize_browser():
         # Initialize the webdriver (Make sure you have the appropriate webdriver installed)
@@ -1033,7 +1035,17 @@ try:
         ml['weak_home'] = check_evaluation('weak home', allEvaluation)
         ml['weak_away'] = check_evaluation('weak away', allEvaluation)
 
+        data4Ml2 = {'home_odd':  ml['home_odd'],
+                    'away_odd': ml['away_odd'],
+                    'odd_difference':  ml['odd_difference'],
+                    'strong_home':  ml['strong_home'],
+                    'strong_away': ml['strong_away'],
+                    'strong_draw': ml['strong_draw'],
+                    'weak_home': ml['weak_home'],
+                    'weak_away': ml['weak_away']}
+
         # predict using machine learning based on supplied data ml
+        print("[Debug][ML] ML prediction V1 starting...")
         mlData = ml.copy()
         mlData.pop('home')
         mlData.pop('away')
@@ -1041,12 +1053,17 @@ try:
         # print(f"ML Data: {mlData}")
         # input(":::::::::::::::::")
         mlPrediction = ml_prediction(mlData)
-        print("[Debug][ML] ML prediction done!")
+        print("[Debug][ML] ML prediction V1 done!")
+
+        print("[Debug][ML] ML prediction V2 Starting...!")
+        mlPredictionV2 = V2_prediction(data4Ml2)
+        print("[Debug][ML] ML prediction V2 done!")
 
         result = f"""
 {a.split("|")[0].split(":")[0].strip()}: {a.split("|")[0].split(":")[1]} | {evaluate(a)},{evaluate(b)},{evaluate(c)}
 DEEP CHECK: {deepCheck}
 ML: {mlPrediction}
+ML V2: {mlPredictionV2}
 ===========================================================================================================
 
             """
@@ -1529,20 +1546,89 @@ ML: {mlPrediction}
         print("Initializing Browser for  data extraction! Please wait...")
         url = "https://www.sofascore.com/"
         driver = initialize_browser1()
-        driver.set_page_load_timeout(30)
-        driver.get(url)
-
+        while True:
+            try:
+                driver.set_page_load_timeout(30)
+                driver.get(url)
+                break
+            except TimeoutException:
+                break
+                pass
+            except Exception:
+                print("[DEBUG] - Error loading page! Refreshing and retrying...")
+                driver.refresh()
+                pass
+        print('done loading initial page!')
         for team in teamList:
             home = team[0]
             away = team[1]
             predict(home, away, driver)
 
             print("------>>>>>>> NEXT")
+            # input("Wait.....................................")
             print()
             time.sleep(2)
 
         print("DONE!DONE!DONE!DONE!")
         pass
+
+    def V2_prediction(data):
+        global use_old_model
+        try:
+
+            football_model = FootballPredictionModel('ml2.xlsx')
+            final_result = []
+
+            # expected sample data
+            # data = {'home_odd': 5.4, 'away_odd': 1.56, 'odd_difference': 3.84, 'strong_home': 1, 'strong_away': 0, 'strong_draw': 1, 'weak_home': 0, 'weak_away': 0}
+
+            for algorithm in algorighm_list:
+                algorithm = str(algorithm).lower()
+
+                print(f"Training and predicting with {algorithm}...")
+                # TRAINING MODEL
+                if use_old_model is False:
+                    football_model.train_and_save_model(algorithm)
+                else:
+                    print(f"[DEBUB] Now using existing trained model!")
+
+                # PREDICTING WITH THE MODEL
+                status = football_model.predict(data, 'status', algorithm)
+                home_score = football_model.predict(data, 'home_score', algorithm)
+                away_score = football_model.predict(data, 'away_score', algorithm)
+
+                final_result.append((status[0], home_score[0], away_score[0]))
+                print(f"Training and predicting Done! -  {algorithm}...")
+
+            def analyze_results(results):
+                total_count = len(results)
+                status_counts = {'H': 0, 'D': 0, 'A': 0}
+                total_home_score = 0
+                total_away_score = 0
+
+                for result in results:
+                    status, home_score, away_score = result
+                    status_counts[status] += 1
+                    total_home_score += home_score
+                    total_away_score += away_score
+
+                status_percentages = {status: count / total_count * 100 for status, count in status_counts.items() if count != 0}
+                home_score_average = total_home_score / total_count
+                away_score_average = total_away_score / total_count
+
+                return (status_percentages, round(home_score_average), round(away_score_average))
+
+            # Example usage:
+            print(f"Analyzing and sumarizing V2 results")
+            print(f"V2 Final result: {final_result}")
+            analysis = analyze_results(final_result)
+
+            use_old_model = True
+            return analysis
+        except Exception as e:
+            print(f"An Error occurred in V2 Prediction: {e}")
+            pass
+
 
     def start_extract():
         # Extract data from sporty
