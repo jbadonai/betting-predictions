@@ -1,66 +1,22 @@
 League: Australia ALeague
-08:00  
-Wellington Phoenix FC
-Melbourne Victory
-2.95
-2.30
-        
+06:30  
+Western United FC
+Central Coast Mariners
+3.60
+1.91
+                
 ***************************************************************************
-League: Simulated Reality League LaLiga SRL
-***************************************************************************
-League: Simulated Reality League Serie A SRL
-***************************************************************************
-League: Russia Youth League
-09:00  
-Ural Ekaterinburg
-Chertanovo Moscow
-4.40
-1.52
-        
-***************************************************************************
-League: Simulated Reality League Eredivisie SRL
-***************************************************************************
-League: Simulated Reality League Turkey Super Lig SRL
-***************************************************************************
-League: Israel Liga Alef
-09:00  
-Maccabi Kiryat Ata-Bialik
-Hapoel Kaukab
-1.21
-11.50
-        
-09:45  
-Hapoel Marmorek FC
-Agudat Sport Ashdod FC
-4.00
-1.93
-        
-10:00  
-Hapoel Bikat Hayarden
-Hapoel Herzelia FC
-3.80
+League: Australia South Australia NPL Women
+06:30  
+Adelaide University
+Salisbury Inter
+3.00
 1.97
-        
-***************************************************************************
-League: New Zealand National League
-08:15  
-North Wellington AFC
-Wellington Phoenix FC
-11.00
-1.13
-        
-08:30  
-West Coast Rangers FC
-Auckland City FC
-12.50
-1.09
-        
-***************************************************************************
-League: Greece U19 Super League
-09:30  
-Panserraikos U19
-AEK Athens
-7.25
-1.29
-        
+                
+06:30  
+Sturt Lions
+West Torrens Birkalla
+4.75
+1.53
+                
 ***************************************************************************

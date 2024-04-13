@@ -14,8 +14,8 @@ from selenium.common.exceptions import TimeoutException
 
 
 class PreviousRecordExtractor():
-    def __init__(self):
-        self.driver = None
+    def __init__(self, driver):
+        self.driver = driver
         self.url = "https://www.sofascore.com/"
         self.search_textbox_class = 'sc-30244387-0.hiFyBG'
         # self.data_table_class = "div.sc-fqkvVR.fZdvTU"
@@ -25,7 +25,7 @@ class PreviousRecordExtractor():
         self.new_team_name = []
         self.timeout = 15
 
-        self.initialize()
+        # self.initialize()
 
     def initialize(self):
         self.initialize_browser()
@@ -297,7 +297,7 @@ class PreviousRecordExtractor():
             except:
                 return False
 
-    def start_data_extraction(self, team_names: list):
+    def start_data_extraction_old(self, team_names: list):
         failure_count = 0
         try:
             self.new_team_name.clear()
@@ -319,6 +319,121 @@ class PreviousRecordExtractor():
                 else:
                     print(f"[DEBUG][ERROR] Error Loading main url! Retrying")
                     time.sleep(2)
+
+            # 2. LOOP THROUGH ALL THE TEAMS
+            for team_name in team_names:
+                # a. SEARCH FOR TEAM'S NAME
+                # ---------------------------
+                print(f"[DEBUG] Searching for team's Name: {team_name}")
+                while True:
+                    search_result = self.search_team(team_name)
+                    if search_result is True:
+                        break
+                    else:
+                        print(f"[DEBUG][ERROR] Unable to search for {team_name}. Retrying...")
+                        time.sleep(2)
+
+                # b. GET THE HREF: TEAM'S URL
+                # ---------------------------
+                failure_count = 0
+                while True:
+                    print("[DEBUG] Getting temas' href ")
+                    team_url, errorMessage = self.get_team_href()
+                    if team_url is not None:
+                        break
+
+                    else:
+                        failure_count += 1
+                        if failure_count > 1 or errorMessage is not None:
+                            raise Exception
+                        print(f"[DEBUG][ERROR][{failure_count}] Error Extracting team's url! Retrying...")
+                        time.sleep(2)
+
+                # c. LOAD TEAM URL
+                # --------------------------------
+                failure_count = 0
+                while True:
+                    print("[DEBUG]  Loading team url...")
+                    ans = self.load_url(team_url)
+                    # check for positive response from load url function
+                    if ans is True:
+                        # check if page is properly loaded by checking if search box is on page
+                        # on_page = self.is_element_on_page(self.data_table_class, 'css')
+                        found = False
+                        for data in self.data_table_class_list:
+                            on_page = self.is_element_on_page(data, 'css')
+                            if on_page is True:
+                                print(f"[DEBUG] data table found using class: {data}")
+                                found = True
+                                break
+                            print(f"[DEBUG] data table not found in: {data}! Trying next one........")
+                            time.sleep(1)
+
+                        if found is True:
+                            break
+                        else:
+                            print(f"[DEBUG][ERROR] Team url Page [{team_url}] not properly loaded! DATA TABLE NOT FOUND ON PAGE! Refreshing to retry....")
+                            self.driver.refresh()
+                            time.sleep(5)
+                    else:
+                        print(f"[DEBUG][ERROR] Error Loading team's url [{team_url}]! Retrying")
+                        time.sleep(2)
+
+                # d. EXTRACT DATA FROM THE PAGE
+                # ------------------------------
+                print(f"[DEBUG] Extracting Data...")
+                tester = "sc-gFqAkR"
+                # tester = "div.Text"
+                testerList = ["sc-gFqAkR", "Text"]
+
+                trial = 0
+                while True:
+                    print('[DEBUG] Waiting for data to be availalbe...')
+                    # ans = self.is_element_on_page(tester)
+                    ans = self.is_element_on_page(testerList[trial])
+                    if ans is True:
+                        print(f"[DEBUG] Passed @ {trial}")
+                        break
+
+                    time.sleep(2)
+                    trial += 1
+                    if trial == len(testerList):
+                        trial = 0
+
+                game_data = self.extract_football_data(team_name)
+                # print(f"Game data:: {game_data}")
+                # input("::::")
+
+                # e. SAVE GAME DATA TO EXCEL
+                # print(f"Game data: {game_data}")
+                print("[DEBUG] Saving Data")
+
+                self.save_to_excel(game_data)
+
+                self.new_team_name.append(eval(game_data[0])['team'] )
+            # print(f"Data Saved! returning new teamname : {self.new_team_name}")
+            return self.new_team_name
+            pass
+        except Exception as e:
+            if failure_count > 0:
+                return None
+            print(f"[DEBUG] An Error occurred in start data extraction: {e}")
+
+    def start_data_extraction(self, team_names: list):
+        failure_count = 0
+        try:
+            self.new_team_name.clear()
+
+            # check if page is properly loaded by checking if search box is on page
+            while True:
+                on_page = self.is_element_on_page(self.search_textbox_class)
+                if on_page is True:
+                    break
+                else:
+                    print("[DEBUG][ERROR] Page not properly loaded! Refreshing to retry....")
+                    self.driver.refresh()
+                    time.sleep(5)
+
 
             # 2. LOOP THROUGH ALL THE TEAMS
             for team_name in team_names:

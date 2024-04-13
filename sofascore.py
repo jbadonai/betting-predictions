@@ -843,10 +843,9 @@ try:
             return False, 0
 
 
-    def predict(home, away):
+    def predict(home, away, driver):
         print("PREDICTING...")
-        # home = str(home).title()
-        # away = str(away).title()
+
 
         #  CHECKING IF HOME AND AWAY TEAM ALREADY EXIST IN THE EXCEL SSHEET
         # -----------------------------------------------------------------------------
@@ -855,12 +854,6 @@ try:
 
         time.sleep(1)
 
-        # if bool(h) is False or bool(a) is False:
-        #     print(f"No data for teams! Getting data online")
-        #     if bool(h) is False:
-        #         get_data_for_prediction(home, True)
-        #     else:
-        #         get_data_for_prediction(away, True)
         # INITIALIZE NEW HOME AND NEW AWAY WITH THE PASSED IN VALUES
         # -----------------------------------------------------------------------------
         new_home = home
@@ -878,15 +871,15 @@ try:
             # new_away = get_data_for_prediction(away, True)
             teamsWithMissingData.append(away)
 
+        #  GET DATA FROM SOFASCORE FOR TEAM WITH NO DATA IN THE EXCEL FILE
+        # ---------------------------------------------------------------
         if bool(h) is False or bool(a) is False:
-            dataExtractor = PreviousRecordExtractor()
+            dataExtractor = PreviousRecordExtractor(driver=driver)
             newTeamName = dataExtractor.start_data_extraction(teamsWithMissingData)
 
             if newTeamName is None:
                 return None
 
-            # print(f"NEW TEAM NAME: {newTeamName}")
-            # input("Waiting first..............")
             if len(newTeamName) == 2:
                 new_home = newTeamName[0]
                 new_away = newTeamName[1]
@@ -896,12 +889,6 @@ try:
                 elif bool(a) is False:
                     new_away = newTeamName[0]
 
-
-
-
-
-        # print(f"{home} ==> {new_home}")
-        # print(f"{away} ==> {new_away}")
 
         # =================================================
         # PREDICTION ACTUALLY STARTS HERE
@@ -1416,184 +1403,225 @@ ML: {mlPrediction}
     # ==============================================================================================================
     # MAINS
     # ==============================================================================================================
-    while True:
+    def start_add_pattern():
+        analyzer = CombinationAnalyzer()
+        error = False
 
-        command = "Enter [A]/[P]/[E] for Add Pattern/Predict/Extract: "
-        action = input(command)
+        compbinedData = """Strong Home,Strong Home,Strong Home,{'Home/Draw' : [0.45]} WR: (0%)
+        Strong Home,Strong Home,Strong Away,{'Home/Draw' : [1.42] } WR: (0%)
+        Strong Home,Strong Home,Strong Draw,{'Home/Draw' : ['LO'] | 'Home/Away': ['LO']} WR: (0%)
+        Strong Home,Strong Home,Weak Away,{'Home/Away': []} WR: (0%)
+        Strong Home,Strong Home,Weak Home,{'Home/Away' :  [2.54 - 4.67]} WR: (0%)
+        Strong Home,Strong Away,Strong Draw,{'Draw/Away' : [] | 'Home/Draw': [] }  WR: (0%)
+        Strong Home,Strong Away,Weak Away,{'Home/Away': []} WR: (0%)
+        Strong Home,Strong Away,Weak Home,{'Draw' : []} WR: (0%)
+        Strong Home,Weak Away,Strong Away,{'Home/Away' : []} WR: (0%)
+        Strong Home,Weak Home,Weak Away,{'Home/Away': [] | {'LO/Draw':  [0.9] } WR: (0%)
+        Strong Home,Weak Home,Weak Home,{'Home/Draw' : [] } WR: (0%)
+        Strong Away,Strong Home,Strong Home,{'Home/Away' : []} WR: (0%)
+        Strong Away,Strong Home,Strong Away,{'Home/Away' : []} WR: (0%)
+        Strong Away,Strong Away,Strong Home,{'Away/Draw' : [] } WR: (0%)
+        Strong Away,Strong Away,Strong Away,{'Home/Away' : [2.46]} WR: (0%)
+        Strong Away,Strong Away,Weak Away,{'Away/Draw' : [] | 'Home/Away':  [1.5 - 2.1]} WR: (0%)
+        Strong Away,Strong Draw,Strong Home,{'LO/Draw'  : [1.28] } WR: (0%)
+        Strong Away,Strong Draw,Strong Away,{'Draw/Away' : [] | 'LO/Draw' :  [4.8]} WR: (0%)
+        Strong Away,Strong Draw,Weak Away,{'Away/Draw' : []} WR: (0%)
+        Strong Away,Weak Away,Strong Away,{'Home/Away' :  [ 4.67]} WR: (0%)
+        Strong Away,Weak Away,Weak Away,{'Home/Away' : [0.7]} WR: (0%)
+        Strong Away,Weak Home,Strong Home,{'Home/Away' : []} WR: (0%)
+        Strong Away,Weak Home,Strong Away,{'Home/Away'  :  [0.9]} WR: (0%)
+        Strong Away,Weak Home,Weak Away,{'Home/Away' : [] | 'Away/Draw':  [ 0.5]} WR: (0%)
+        Strong Draw,Strong Home,Strong Home,{'Home/Draw' : [2.43 - 5.26] | 'LO/Draw' : [] | 'Home/Away' :  [0.25]} WR: (0%)
+        Strong Draw,Strong Home,Strong Away,{'Home/Away'  :  [2.89 - 4.39]  | 'LO/Draw' : [ 0.05 - 1.55]} WR: (100%)
+        Strong Draw,Strong Home,Strong Draw,{'Home/Draw'  : [1.5 - 3.2] | 'Home/Away' :  [0.15]} WR: (0%)
+        Strong Draw,Strong Home,Weak Away,{'Home/Draw' :  [1.1 - 1.87]} WR: (0%)
+        Strong Draw,Strong Home,Weak Home,{'Home/Draw' : [3.86] | 'Away/Draw' : [5.51] | 'Home/Away' : [0.3 - 1.3]} WR: (100%)
+        Strong Draw,Strong Away,Strong Home,{'Home/Away' : [1 - 6.3] | 'LO/Draw' :  [0.2]} WR: (0%)
+        Strong Draw,Strong Away,Strong Away,{'Draw/Away' : [] | 'Home/Away':  [6.6 - 9.26] } WR: (0%)
+        Strong Draw,Strong Away,Strong Draw,{'Draw/Away'  : [2.1 - 2.8]} WR: (0%)
+        Strong Draw,Strong Away,Weak Away,{'Draw/Away' :   [0.15 - 2.15]  |  'Home/Away' :  [4.17]} WR: (100%)
+        Strong Draw,Strong Away,Weak Home,{'Draw/Away'  :  [1 - 2.21] | 'Home/Away' :  [2.89]} WR: (0%)
+        Strong Draw,Strong Draw,Strong Home,{'Home/Draw' : [1.43 -  5.5] |'LO/Draw':  [0.5 - 0.65] |'Home/Away':  [0.1 -0.25]} WR: (67%)
+        Strong Draw,Strong Draw,Strong Away,{'Draw/Away' : [0.55 - 0.9] | 'LO/Draw':  [0.95 - 15.9 ] | 'Home/Away' : [0.35]} WR: (100%)
+        Strong Draw,Strong Draw,Strong Draw,{'Home/Draw' :  [ 0.9 - 5.45]} WR: (0%)
+        Strong Draw,Strong Draw,Weak Away,{'Draw/Away' : [0.15 - 1.51] | 'LO/Draw' : [] | 'Home/Away':   [2.16 -  4.7]} WR: (75%)
+        Strong Draw,Strong Draw,Weak Home,{'Home/Draw' :  [0.35  - 6.17 ] | 'LO/Draw' : [] | 'Home/Away' : [0.1] } WR: (50%)
+        Strong Draw,Weak Away,Strong Home,{'Home/Draw' :  [0.45]} WR: (0%)
+        Strong Draw,Weak Away,Strong Draw,{' Away/Draw' : [0.85]} WR: (0%)
+        Strong Draw,Weak Away,Weak Away,{'Draw/Away' : [5.1]} WR: (0%)
+        Strong Draw,Weak Away,Weak Home,{'Home/Draw' : [4.94]} WR: (0%)
+        Strong Draw,Weak Home,Weak Away,{'Home/Draw' : [0.4]} WR: (0%)
+        Weak Away,Strong Home,Strong Home,{'Home/Away' : []} WR: (0%)
+        Weak Away,Strong Home,Weak Away,{'Home/Away' : []} WR: (0%)
+        Weak Away,Strong Away,Strong Away,{'Home/Away' : []} WR: (0%)
+        Weak Away,Strong Away,Weak Home,{'Draw' : []} WR: (0%)
+        Weak Away,Weak Away,Strong Away,{'Home/Away' : []} WR: (0%)
+        Weak Away,Weak Home,Strong Away,{'Home/Away' : [] } WR: (0%)
+        Weak Away,Weak Home,Strong Draw,{'Home/Draw' : []  | 'Away/Draw' : ['away LO odd']} WR: (0%)
+        Weak Home,Strong Home,Strong Home,{'Home/Draw' : []} WR: (0%)
+        Weak Home,Strong Home,Weak Home,{'Home/Away' : [] | 'Home/Draw' :  [0.6 - 1.4] } WR: (0%)
+        Weak Home,Strong Away,Strong Away,{'Home/Away' : [] } WR: (0%)
+        Weak Home,Strong Away,Strong Draw,{'Home/Away' : [0.9]} WR: (0%)
+        Weak Home,Strong Away,Weak Away,{'Home/Away' : []} WR: (0%)
+        Weak Home,Strong Draw,Strong Away,{'Draw/Away' : [] | 'Home/Away' : ['LO for Home']} WR: (0%)
+        Weak Home,Weak Away,Weak Home,{'Home/Away' : []} WR: (0%)
+        Weak Home,Weak Home,Strong Draw,{'Home/Draw' : [] } WR: (0%)
+                    """
+        combinedDataList = compbinedData.split("\n")
 
-        if action.lower() == 'p' or action == '':
-
-            with open('teamOnlyData.txt', 'r') as f:
-                raw = f.read()
-
-            teamList = []
-            rawsplit = raw.strip().split("\n\n")
-            # print(rawsplit)
-            for split in rawsplit:
-                h = split.split("|")[0]
-                a = split.split("|")[1]
-                #  h = split.split("\n")[0]
-                # a = split.split("\n")[1]
-                #
-
-                value = (h, a)
-                teamList.append(value)
-
-            for team in teamList:
-                home = team[0]
-                away = team[1]
-                predict(home, away)
-                print("------>>>>>>> NEXT")
-                print()
-                time.sleep(2)
-
-            print("DONE!DONE!DONE!DONE!")
-
-        elif action.lower() == 'a':
-            analyzer = CombinationAnalyzer()
-            error = False
-
-            compbinedData = """Strong Home,Strong Home,Strong Home,{'Home/Draw' : [0.45]} WR: (0%)
-Strong Home,Strong Home,Strong Away,{'Home/Draw' : [1.42] } WR: (0%)
-Strong Home,Strong Home,Strong Draw,{'Home/Draw' : ['LO'] | 'Home/Away': ['LO']} WR: (0%)
-Strong Home,Strong Home,Weak Away,{'Home/Away': []} WR: (0%)
-Strong Home,Strong Home,Weak Home,{'Home/Away' :  [2.54 - 4.67]} WR: (0%)
-Strong Home,Strong Away,Strong Draw,{'Draw/Away' : [] | 'Home/Draw': [] }  WR: (0%)
-Strong Home,Strong Away,Weak Away,{'Home/Away': []} WR: (0%)
-Strong Home,Strong Away,Weak Home,{'Draw' : []} WR: (0%)
-Strong Home,Weak Away,Strong Away,{'Home/Away' : []} WR: (0%)
-Strong Home,Weak Home,Weak Away,{'Home/Away': [] | {'LO/Draw':  [0.9] } WR: (0%)
-Strong Home,Weak Home,Weak Home,{'Home/Draw' : [] } WR: (0%)
-Strong Away,Strong Home,Strong Home,{'Home/Away' : []} WR: (0%)
-Strong Away,Strong Home,Strong Away,{'Home/Away' : []} WR: (0%)
-Strong Away,Strong Away,Strong Home,{'Away/Draw' : [] } WR: (0%)
-Strong Away,Strong Away,Strong Away,{'Home/Away' : [2.46]} WR: (0%)
-Strong Away,Strong Away,Weak Away,{'Away/Draw' : [] | 'Home/Away':  [1.5 - 2.1]} WR: (0%)
-Strong Away,Strong Draw,Strong Home,{'LO/Draw'  : [1.28] } WR: (0%)
-Strong Away,Strong Draw,Strong Away,{'Draw/Away' : [] | 'LO/Draw' :  [4.8]} WR: (0%)
-Strong Away,Strong Draw,Weak Away,{'Away/Draw' : []} WR: (0%)
-Strong Away,Weak Away,Strong Away,{'Home/Away' :  [ 4.67]} WR: (0%)
-Strong Away,Weak Away,Weak Away,{'Home/Away' : [0.7]} WR: (0%)
-Strong Away,Weak Home,Strong Home,{'Home/Away' : []} WR: (0%)
-Strong Away,Weak Home,Strong Away,{'Home/Away'  :  [0.9]} WR: (0%)
-Strong Away,Weak Home,Weak Away,{'Home/Away' : [] | 'Away/Draw':  [ 0.5]} WR: (0%)
-Strong Draw,Strong Home,Strong Home,{'Home/Draw' : [2.43 - 5.26] | 'LO/Draw' : [] | 'Home/Away' :  [0.25]} WR: (0%)
-Strong Draw,Strong Home,Strong Away,{'Home/Away'  :  [2.89 - 4.39]  | 'LO/Draw' : [ 0.05 - 1.55]} WR: (100%)
-Strong Draw,Strong Home,Strong Draw,{'Home/Draw'  : [1.5 - 3.2] | 'Home/Away' :  [0.15]} WR: (0%)
-Strong Draw,Strong Home,Weak Away,{'Home/Draw' :  [1.1 - 1.87]} WR: (0%)
-Strong Draw,Strong Home,Weak Home,{'Home/Draw' : [3.86] | 'Away/Draw' : [5.51] | 'Home/Away' : [0.3 - 1.3]} WR: (100%)
-Strong Draw,Strong Away,Strong Home,{'Home/Away' : [1 - 6.3] | 'LO/Draw' :  [0.2]} WR: (0%)
-Strong Draw,Strong Away,Strong Away,{'Draw/Away' : [] | 'Home/Away':  [6.6 - 9.26] } WR: (0%)
-Strong Draw,Strong Away,Strong Draw,{'Draw/Away'  : [2.1 - 2.8]} WR: (0%)
-Strong Draw,Strong Away,Weak Away,{'Draw/Away' :   [0.15 - 2.15]  |  'Home/Away' :  [4.17]} WR: (100%)
-Strong Draw,Strong Away,Weak Home,{'Draw/Away'  :  [1 - 2.21] | 'Home/Away' :  [2.89]} WR: (0%)
-Strong Draw,Strong Draw,Strong Home,{'Home/Draw' : [1.43 -  5.5] |'LO/Draw':  [0.5 - 0.65] |'Home/Away':  [0.1 -0.25]} WR: (67%)
-Strong Draw,Strong Draw,Strong Away,{'Draw/Away' : [0.55 - 0.9] | 'LO/Draw':  [0.95 - 15.9 ] | 'Home/Away' : [0.35]} WR: (100%)
-Strong Draw,Strong Draw,Strong Draw,{'Home/Draw' :  [ 0.9 - 5.45]} WR: (0%)
-Strong Draw,Strong Draw,Weak Away,{'Draw/Away' : [0.15 - 1.51] | 'LO/Draw' : [] | 'Home/Away':   [2.16 -  4.7]} WR: (75%)
-Strong Draw,Strong Draw,Weak Home,{'Home/Draw' :  [0.35  - 6.17 ] | 'LO/Draw' : [] | 'Home/Away' : [0.1] } WR: (50%)
-Strong Draw,Weak Away,Strong Home,{'Home/Draw' :  [0.45]} WR: (0%)
-Strong Draw,Weak Away,Strong Draw,{' Away/Draw' : [0.85]} WR: (0%)
-Strong Draw,Weak Away,Weak Away,{'Draw/Away' : [5.1]} WR: (0%)
-Strong Draw,Weak Away,Weak Home,{'Home/Draw' : [4.94]} WR: (0%)
-Strong Draw,Weak Home,Weak Away,{'Home/Draw' : [0.4]} WR: (0%)
-Weak Away,Strong Home,Strong Home,{'Home/Away' : []} WR: (0%)
-Weak Away,Strong Home,Weak Away,{'Home/Away' : []} WR: (0%)
-Weak Away,Strong Away,Strong Away,{'Home/Away' : []} WR: (0%)
-Weak Away,Strong Away,Weak Home,{'Draw' : []} WR: (0%)
-Weak Away,Weak Away,Strong Away,{'Home/Away' : []} WR: (0%)
-Weak Away,Weak Home,Strong Away,{'Home/Away' : [] } WR: (0%)
-Weak Away,Weak Home,Strong Draw,{'Home/Draw' : []  | 'Away/Draw' : ['away LO odd']} WR: (0%)
-Weak Home,Strong Home,Strong Home,{'Home/Draw' : []} WR: (0%)
-Weak Home,Strong Home,Weak Home,{'Home/Away' : [] | 'Home/Draw' :  [0.6 - 1.4] } WR: (0%)
-Weak Home,Strong Away,Strong Away,{'Home/Away' : [] } WR: (0%)
-Weak Home,Strong Away,Strong Draw,{'Home/Away' : [0.9]} WR: (0%)
-Weak Home,Strong Away,Weak Away,{'Home/Away' : []} WR: (0%)
-Weak Home,Strong Draw,Strong Away,{'Draw/Away' : [] | 'Home/Away' : ['LO for Home']} WR: (0%)
-Weak Home,Weak Away,Weak Home,{'Home/Away' : []} WR: (0%)
-Weak Home,Weak Home,Strong Draw,{'Home/Draw' : [] } WR: (0%)
-            """
-            combinedDataList = compbinedData.split("\n")
-
-
-            # while True:
-            for data in combinedDataList:
-                time.sleep(0.2)
-                if error is False:
-                    os.system('cls')
-                # combinations = input("Add combinations [a,b,c,result]: ")
-                combinations = data
-                if combinations == "":
-                    break
+        # while True:
+        for data in combinedDataList:
+            time.sleep(0.2)
+            if error is False:
+                os.system('cls')
+            # combinations = input("Add combinations [a,b,c,result]: ")
+            combinations = data
+            if combinations == "":
+                break
+            else:
+                if combinations.count(",") != 3:
+                    print("Wrong Expected Input! Try again")
+                    error = True
                 else:
-                    if combinations.count(",") != 3:
-                        print("Wrong Expected Input! Try again")
-                        error= True
-                    else:
-                        a, b, c, result = combinations.split(",")
-                        analyzer.add_combination(a, b, c, result)
-                        error = False
+                    a, b, c, result = combinations.split(",")
+                    analyzer.add_combination(a, b, c, result)
+                    error = False
 
-                print(f"Done for {data}")
-            # input("Wait here...................")
+            print(f"Done for {data}")
+        # input("Wait here...................")
+        pass
 
-        elif action.lower() == 'e':
-            # Extract data from sporty
-            reset_file(teamData)
-            reset_file("oddOnlyData.txt")
-            reset_file("teamOnlyData.txt")
+    def start_predict():
+        # open file that contains all the teams to be predicted
+        with open('teamOnlyData.txt', 'r') as f:
+            raw = f.read()
 
-            period = 3
-            ans = input("Period? default=3: ")
-            if ans != "":
-                period = int(ans)
+        teamList = []
+        # split team by new line
+        rawsplit = raw.strip().split("\n\n")
 
-            url = f"https://www.sportybet.com/ng/sport/football?time={period}"
+        # from the split teams extrac home and away team
+        for split in rawsplit:
+            h = split.split("|")[0]
+            a = split.split("|")[1]
 
-            leagueInfo = extract_team_info(url)
+            value = (h, a)
+            teamList.append(value)
 
-            for league in leagueInfo:
-                # print(f"League: {league['title']}")
-                # print(f"Data: {league['data']}")
-                # print("=============================================================")
-                # print()
-                result = f"League: {league['title']}"
-                odd_only = ""
-                team_only= ""
+        # loop through each home and way team to predict
 
-                for data_item in  league['data']:
-                    # excluding simulated reality games
-                    if data_item['home_team'].lower().__contains__('srl'):
-                        continue
+        def initialize_browser1():
+            # Initialize the webdriver (Make sure you have the appropriate webdriver installed)
+            driver = webdriver.Chrome()
+            return driver
 
-                    result2 = f"""{data_item['game_time']}
+        def load_url(driver, url):
+            try:
+                driver.set_page_load_timeout(30)
+                driver.get(url)
+                return True
+            except TimeoutException:
+                return True
+            except Exception as e:
+                return False
+
+        # [experimental] - Trying to use the same driver for all extract
+        print("Initializing Browser for  data extraction! Please wait...")
+        url = "https://www.sofascore.com/"
+        driver = initialize_browser1()
+        driver.set_page_load_timeout(30)
+        driver.get(url)
+
+        for team in teamList:
+            home = team[0]
+            away = team[1]
+            predict(home, away, driver)
+
+            print("------>>>>>>> NEXT")
+            print()
+            time.sleep(2)
+
+        print("DONE!DONE!DONE!DONE!")
+        pass
+
+    def start_extract():
+        # Extract data from sporty
+        reset_file(teamData)
+        reset_file("oddOnlyData.txt")
+        reset_file("teamOnlyData.txt")
+
+        period = 3
+        ans = input("Period? default=3: ")
+        if ans != "":
+            period = int(ans)
+
+        url = f"https://www.sportybet.com/ng/sport/football?time={period}"
+
+        leagueInfo = extract_team_info(url)
+
+        for league in leagueInfo:
+            # print(f"League: {league['title']}")
+            # print(f"Data: {league['data']}")
+            # print("=============================================================")
+            # print()
+            result = f"League: {league['title']}"
+            odd_only = ""
+            team_only = ""
+
+            for data_item in league['data']:
+                # excluding simulated reality games
+                if data_item['home_team'].lower().__contains__('srl'):
+                    continue
+
+                result2 = f"""{data_item['game_time']}
 {data_item['home_team']}
 {data_item['away_team']}
 {data_item['home_odd']}
 {data_item['away_odd']}
-        """
-                    result_odd = f"""{data_item['home_odd']} | {data_item['away_odd']}
+                """
+                result_odd = f"""{data_item['home_odd']} | {data_item['away_odd']}
 
 """
 
-                    result_team = f"""{data_item['home_team']} | {data_item['away_team']}
+                result_team = f"""{data_item['home_team']} | {data_item['away_team']}
 
 """
 
-                    result += f"\n{result2}"
-                    odd_only += f"{result_odd}"
-                    team_only += f"{result_team}"
+                result += f"\n{result2}"
+                odd_only += f"{result_odd}"
+                team_only += f"{result_team}"
 
-                result += f"\n***************************************************************************\n"
+            result += f"\n***************************************************************************\n"
+
+            print(result)
+            write_append_to_file(teamData, result)
+            write_append_to_file("oddOnlyData.txt", odd_only)
+            write_append_to_file("teamOnlyData.txt", team_only)
+
+        # input('waiting...')
+        print("Done! Done! Ok!")
+        pass
 
 
-                print(result)
-                write_append_to_file(teamData, result)
-                write_append_to_file("oddOnlyData.txt", odd_only)
-                write_append_to_file("teamOnlyData.txt", team_only)
+    while True:
+        command = "Enter [A]/[P]/[E] for Add Pattern/Predict/Extract: "
+        action = input(command)
 
-            # input('waiting...')
-            print("Done! Done! Ok!")
+        if action.lower() == 'all':
+            print("Starting data extraction...")
+            start_extract()
+            print("Extraction Completed! Starting prediction...")
+            start_predict()
+
+        elif action.lower() == 'p' or action == '':
+            start_predict()
+
+        elif action.lower() == 'a':
+            start_add_pattern()
+
+        elif action.lower() == 'e':
+            start_extract()
+
         print()
         print()
         ans = input("Press any key to continue or 'e' to exit: ")
