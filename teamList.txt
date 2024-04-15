@@ -1,0 +1,318 @@
+League: Spain LaLiga
+20:00  
+Real Sociedad
+UD Almeria
+1.34
+10.18
+                
+***************************************************************************
+League: Italy Serie A
+19:45  
+Inter
+Cagliari
+1.21
+16.00
+                
+***************************************************************************
+League: France Ligue 1
+19:45  
+Lyon
+Brest
+2.18
+3.67
+                
+***************************************************************************
+League: Spain LaLiga 2
+20:00  
+Racing Club de Ferrol
+SD Huesca
+2.30
+3.60
+                
+***************************************************************************
+League: Brazil Brasileiro Serie A
+20:00  
+AC Goianiense GO
+CR Flamengo RJ
+4.58
+1.86
+                
+20:00  
+CA Paranaense PR
+Cuiaba Esporte Clube MT
+1.70
+5.92
+                
+20:00  
+CR Vasco da Gama RJ
+Gremio FB Porto Alegrense RS
+2.31
+3.33
+                
+20:00  
+SC Corinthians SP
+Atletico Mineiro MG
+2.61
+3.05
+                
+***************************************************************************
+League: Argentina Copa de la Liga
+20:00  
+CA Sarmiento
+CA Platense
+2.60
+3.20
+                
+***************************************************************************
+League: USA MLS
+19:30  
+Atlanta United FC
+Philadelphia Union
+2.35
+2.93
+                
+***************************************************************************
+League: Venezuela Primera Division
+20:00  
+Rayo Zuliano
+Deportivo La Guaira
+3.40
+2.05
+                
+***************************************************************************
+League: Colombia Primera A Apertura
+20:00  
+Boyaca Chico FC
+Boyaca Patriotas
+2.25
+3.40
+                
+***************************************************************************
+League: Chile Primera Division
+20:00  
+Nublense
+CD Palestino
+2.50
+2.85
+                
+***************************************************************************
+League: Argentina Torneo Federal A
+19:30  
+CD de Pronunciamiento
+Def. de Belgrano de Villa Ramallo
+2.55
+2.75
+                
+20:00  
+Crucero del Norte
+CA Sarmiento de la Banda
+2.85
+2.60
+                
+20:00  
+Gimnasia Y Esgrima
+Douglas Haig
+2.80
+2.75
+                
+20:00  
+Gutierrez SC
+CS Estudiantes San Luis
+2.00
+3.75
+                
+20:00  
+Linqueno
+Sp. Belgrano de S. F.
+2.60
+3.00
+                
+***************************************************************************
+League: Argentina Primera B
+19:30  
+CS Italiano
+Argentino de Quilmes
+3.30
+2.25
+                
+***************************************************************************
+League: Argentina Primera Nacional
+19:30  
+Guillermo Brown
+CA Chacarita Juniors
+3.20
+2.30
+                
+20:00  
+Gimnasia Y Tiro de Salta
+Mitre Santiago Del Estero
+2.25
+3.80
+                
+20:00  
+Racing de Cordoba
+Ferro Carril Oeste
+2.30
+3.25
+                
+***************************************************************************
+League: Argentina Primera C
+19:30  
+CA Central Cordoba Rosario
+Club El Porvenir
+2.40
+3.00
+                
+19:30  
+CA Lugano
+CS Barracas
+
+
+                
+19:30  
+CA Victoriano Arenas
+Real Pilar FC
+
+
+                
+19:30  
+CDM Leandro N. Alem
+Deportivo Paraguayo
+1.75
+4.60
+                
+19:30  
+Deportivo Espanol
+Defensores de Cambaceres
+2.00
+3.60
+                
+19:30  
+Juventud Unida San Miguel
+Berazategui
+3.90
+1.86
+                
+***************************************************************************
+League: Slovenia PrvaLiga
+19:15  
+NK Domzale
+Olimpija Ljubljana
+4.70
+1.63
+                
+***************************************************************************
+League: Bolivia Division Profesional
+20:00  
+San Antonio Bulo Bulo
+Club Bolivar
+2.80
+2.20
+                
+***************************************************************************
+League: Iceland Cup
+19:30  
+KFK
+UMF Vidir
+6.50
+1.33
+                
+***************************************************************************
+League: Brazil SulMatoGrossense
+20:00  
+Dourados AC MS
+Operario FC MS
+2.30
+3.00
+                
+***************************************************************************
+League: Brazil Cearense Serie B
+20:00  
+Itapipoca EC CE
+Pague Menos CE
+2.05
+3.40
+                
+***************************************************************************
+League: Brazil Gaucho Serie A2
+19:30  
+CE Aimore RS
+CE Lajeadense RS
+1.83
+3.80
+                
+20:00  
+Passo Fundo
+EC Cruzeiro RS
+1.92
+3.70
+                
+***************************************************************************
+League: Italy Serie C Group B
+19:45  
+Vis Pesaro 1898
+Perugia Calcio Spa
+3.10
+2.30
+                
+***************************************************************************
+League: Italy Serie C Group C
+19:45  
+Audace Cerignola
+Virtus Francavilla Calcio
+1.80
+4.30
+                
+19:45  
+Calcio Catania
+ACR Messina
+1.65
+5.00
+                
+19:45  
+SS Monopoli
+Taranto FC
+2.25
+3.50
+                
+***************************************************************************
+League: France Division 1 Women
+20:00  
+AS Saint-Etienne
+Olympique Lyon W
+29.00
+1.02
+                
+***************************************************************************
+League: Argentina Primera Division Women
+19:30  
+CA Huracan
+Satsaid
+2.60
+2.50
+                
+***************************************************************************
+League: Brazil Brasileiro Serie A2 Women
+20:00  
+EC Bahia BA
+Minas Brasilia DF
+1.32
+7.50
+                
+***************************************************************************
+League: Brazil Campeonato Brasileiro Women
+20:00  
+Ferroviaria SP
+Fluminense FC RJ
+1.37
+6.20
+                
+***************************************************************************
+League: Chile Segunda Division
+20:00  
+General Velasquez
+CD Provincial Ovalle FC
+2.25
+2.75
+                
+***************************************************************************
