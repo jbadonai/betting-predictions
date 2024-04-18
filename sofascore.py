@@ -19,10 +19,24 @@ try:
     from data_extractor import PreviousRecordExtractor
     from data_analysis_prediction import *
 
+    import predictionBot as bot
+    import threading
+
+
     # timeout = 15
     teamData = 'teamList.txt'
     algorighm_list = ['LOGISTIC REGRESSION', 'DECISION TREE', 'RANDOM FOREST', 'SVM', 'NAIVE BAYES']
     use_old_model = False
+
+    def run_function(functionName, join: bool = False, *args):
+        try:
+            t = threading.Thread(target=functionName, args=args)
+            t.daemon = True
+            t.start()
+            if join:
+                t.join()
+        except Exception as e:
+            print(f"An Error Occurred in [generalFunctions.py] > run_function(): {e}")
 
     def initialize_browser():
         # Initialize the webdriver (Make sure you have the appropriate webdriver installed)
@@ -846,6 +860,7 @@ try:
 
 
     def predict(home, away, driver):
+        global bot
         print("PREDICTING...")
 
 
@@ -1057,22 +1072,78 @@ try:
 
         print("[Debug][ML] ML prediction V2 Starting...!")
         mlPredictionV2 = V2_prediction(data4Ml2)
+
+        v2List = []
+        v1List = str(mlPrediction).split(" ")[0].split("/")
+
+        for x in mlPredictionV2[0]:
+            v2List.append(x)
+
+        def combine_lists(list1, list2):
+            # Convert lists to sets to remove duplicates
+            set1 = set(list1)
+            set2 = set(list2)
+
+            # Combine the sets
+            combined_set = set1.union(set2)
+
+            # Convert the combined set back to a list
+            combined_list = list(combined_set)
+
+            return combined_list
+
+        final = combine_lists(v1List, v2List)
         print("[Debug][ML] ML prediction V2 done!")
 
-        result = f"""
-{a.split("|")[0].split(":")[0].strip()}: {a.split("|")[0].split(":")[1]} | {evaluate(a)},{evaluate(b)},{evaluate(c)}
-DEEP CHECK: {deepCheck}
-ML: {mlPrediction}
-ML V2: {mlPredictionV2}
-===========================================================================================================
+        def process_final(fin: list):
+            ans = "/".join(fin)
+            if ans.lower().__contains__("a") and ans.lower().__contains__("h"):
+                return "Home or Away"
+            elif ans.lower().__contains__("d") and ans.lower().__contains__("h"):
+                return "Home or Draw"
+            elif ans.lower().__contains__("d") and ans.lower().__contains__("a"):
+                return "Draw or Away"
+            elif ans.lower() == 'a':
+                return "Away"
+            elif ans.lower() == 'h':
+                return "Home"
+            elif ans.lower() == 'd':
+                return "Draw"
 
+        '''
+            DEEP CHECK: {deepCheck}
+            ML: {mlPrediction}
+            ML V2: {mlPredictionV2}
+        '''
+
+        homeDetail = a.split("|")[0].split(":")[0].strip()
+        awayDetails = a.split("|")[0].split(":")[1]
+
+        homeDetail = homeDetail.strip().split(" ")[:-2]
+
+        awayDetails = awayDetails.strip().split(" ")[1:]
+
+        if len(final) <= 2:
+            result = f"""
+    {" ".join(homeDetail)} : {" ".join(awayDetails)} | [ {evaluate(a)},{evaluate(b)},{evaluate(c)} ]
+    PLAY: [ {process_final(final)} ] | 
+    Scores: {mlPredictionV2[1]} :  {mlPredictionV2[2]} 
+    ===========================================================================================================
+"""
+            # bot.send_message(result)
+            save_ml_to_excel(ml)
+
+            with open("result.txt", 'a', encoding='utf-8') as f:
+                f.write(result)
+        else:
+            result = f"""[->]
+                {" ".join(homeDetail)} : {" ".join(awayDetails)}
+                PLAY: [ {process_final(final)} ]
+                ===========================================================================================================
             """
-        # PLAY: {suggestion}
-
-        save_ml_to_excel(ml)
-
-        with open("result.txt", 'a', encoding='utf-8') as f:
-            f.write(result)
+            with open("result.txt", 'a', encoding='utf-8') as f:
+                f.write("[X]")
+                # f.write(result)
 
     def ml_prediction(data):
         try:
@@ -1509,6 +1580,7 @@ ML V2: {mlPredictionV2}
         pass
 
     def start_predict():
+
         # open file that contains all the teams to be predicted
         with open('teamOnlyData.txt', 'r') as f:
             raw = f.read()
@@ -1629,7 +1701,6 @@ ML V2: {mlPredictionV2}
             print(f"An Error occurred in V2 Prediction: {e}")
             pass
 
-
     def start_extract():
         # Extract data from sporty
         reset_file(teamData)
@@ -1688,6 +1759,11 @@ ML V2: {mlPredictionV2}
         print("Done! Done! Ok!")
         pass
 
+    # ENTRY POINT
+    # ---------------------------------
+    # bot.start()
+    # run_function(bot.start)
+    # time.sleep(10)
 
     while True:
         command = "Enter [A]/[P]/[E] for Add Pattern/Predict/Extract: "

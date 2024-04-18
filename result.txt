@@ -1,0 +1,110 @@
+
+    Union de Santa Fe :  Gimnasia Y Esgrima Mendoza | [ Strong Draw,Strong Draw,Weak Home ]
+    PLAY: [ Home ] | 
+    Scores: 3 :  2 
+    ===========================================================================================================
+
+    Gremio FB Porto Alegrense RS :  CA Paranaense PR | [ Strong Draw,Strong Draw,Weak Home ]
+    PLAY: [ Home or Away ] | 
+    Scores: 2 :  2 
+    ===========================================================================================================
+
+    Red Bull Bragantino SP :  CR Vasco da Gama RJ | [ Strong Draw,Strong Draw,Strong Away ]
+    PLAY: [ Home or Draw ] | 
+    Scores: 1 :  1 
+    ===========================================================================================================
+
+    Atletico Mineiro MG :  Criciuma EC SC | [ Strong Draw,Strong Draw,Weak Home ]
+    PLAY: [ Home or Draw ] | 
+    Scores: 2 :  2 
+    ===========================================================================================================
+[X]
+    Fortaleza EC CE :  Cruzeiro EC MG | [ Strong Draw,Strong Draw,Strong Away ]
+    PLAY: [ Home or Draw ] | 
+    Scores: 1 :  1 
+    ===========================================================================================================
+
+    SE Palmeiras SP :  SC Internacional RS | [ Strong Draw,Strong Draw,Strong Away ]
+    PLAY: [ Home or Draw ] | 
+    Scores: 2 :  0 
+    ===========================================================================================================
+
+    CR Flamengo RJ :  Sao Paulo FC SP | [ Strong Draw,Strong Draw,Strong Away ]
+    PLAY: [ Home ] | 
+    Scores: 2 :  0 
+    ===========================================================================================================
+
+    Club Atletico Rosario Central :  Deportivo Riestra | [ Strong Draw,Strong Draw,Strong Draw ]
+    PLAY: [ Home or Draw ] | 
+    Scores: 3 :  1 
+    ===========================================================================================================
+
+    Millonarios FC :  CD Junior FC | [ Strong Draw,Strong Draw,Strong Home ]
+    PLAY: [ Home or Away ] | 
+    Scores: 3 :  2 
+    ===========================================================================================================
+
+    Atletico Nacional Medellin :  CS Deportivo Pereira | [ Strong Draw,Strong Draw,Weak Away ]
+    PLAY: [ Home or Draw ] | 
+    Scores: 2 :  1 
+    ===========================================================================================================
+[X]
+    North Carolina FC :  Carolina Core FC | [ Strong Draw,Strong Draw,Weak Away ]
+    PLAY: [ Home or Away ] | 
+    Scores: 2 :  1 
+    ===========================================================================================================
+[X]
+    Miami FC :  South Georgia Tormenta FC | [ Strong Draw,Strong Draw,Strong Home ]
+    PLAY: [ Home or Away ] | 
+    Scores: 3 :  2 
+    ===========================================================================================================
+
+    Birmingham Legion FC :  Chattanooga Red Wolves SC | [ Strong Draw,Strong Draw,Strong Away ]
+    PLAY: [ Home ] | 
+    Scores: 2 :  1 
+    ===========================================================================================================
+[X]
+    FC Tulsa :  Northern Colorado Hailstorm FC | [ Strong Draw,Strong Draw,Strong Home ]
+    PLAY: [ Home or Draw ] | 
+    Scores: 2 :  2 
+    ===========================================================================================================
+[X][X][X][X][X][X]
+    Gualaceo SC :  Club Leones Del Norte | [ Strong Draw,Strong Draw,Weak Home ]
+    PLAY: [ Home ] | 
+    Scores: 2 :  1 
+    ===========================================================================================================
+[X][X][X][X][X][X]
+    Masachapa FC :  Art Municipal Jalapa | [ Strong Draw,Strong Draw,Strong Home ]
+    PLAY: [ Draw or Away ] | 
+    Scores: 1 :  2 
+    ===========================================================================================================
+[X][X][X]
+    Club Atletico Pantoja :  Delfines Del Este | [ Strong Draw,Strong Draw,Strong Home ]
+    PLAY: [ Home or Away ] | 
+    Scores: 2 :  2 
+    ===========================================================================================================
+
+    Moca FC :  San Cristobal | [ Strong Draw,Strong Draw,Weak Home ]
+    PLAY: [ Home ] | 
+    Scores: 2 :  0 
+    ===========================================================================================================
+
+    Vega Real :  Universidad O&M | [ Strong Draw,Strong Draw,Strong Away ]
+    PLAY: [ Draw or Away ] | 
+    Scores: 0 :  1 
+    ===========================================================================================================
+
+    Marcílio Dias U20 :  Avaí U20 | [ Strong Draw,Strong Draw,Strong Home ]
+    PLAY: [ Away ] | 
+    Scores: 0 :  2 
+    ===========================================================================================================
+
+    Boca Juniors :  CA Platense | [ Strong Draw,Strong Draw,Strong Draw ]
+    PLAY: [ Home ] | 
+    Scores: 3 :  1 
+    ===========================================================================================================
+
+    CA Penarol Montevideo :  Montevideo City Torque | [ Strong Draw,Strong Draw,Weak Away ]
+    PLAY: [ Home or Draw ] | 
+    Scores: 2 :  1 
+    ===========================================================================================================

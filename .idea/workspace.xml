@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="615" mnemonic="3" />
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="878" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="629" mnemonic="3" />
     <bookmark url="file://$PROJECT_DIR$/data_extractor.py" line="307" mnemonic="9" />
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="1574" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="1132" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="1763" mnemonic="2" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7ecc080-d00c-46fb-bc4b-2e7547988e5e" name="Default Changelist" comment="">
@@ -30,12 +30,14 @@
       <change beforePath="$PROJECT_DIR$/random_forest_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/random_forest_model.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/random_forest_status_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/random_forest_status_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sofascore.py" beforeDir="false" afterPath="$PROJECT_DIR$/sofascore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/svm_away_score_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/svm_away_score_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/svm_home_score_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/svm_home_score_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/svm_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/svm_model.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/svm_status_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/svm_status_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teamList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/teamList.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teamOnlyData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/teamOnlyData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,8 +50,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sofascore.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32760">
-              <caret line="1560" column="41" selection-start-line="1560" selection-start-column="41" selection-end-line="1560" selection-end-column="41" />
+            <state relative-caret-position="191">
+              <caret line="1128" column="39" selection-start-line="1128" selection-start-column="39" selection-end-line="1128" selection-end-column="39" />
+              <folding>
+                <element signature="e#40276#40592#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -57,7 +62,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data_extractor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
+            <state relative-caret-position="21">
               <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
@@ -80,7 +85,23 @@
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/result.txt">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1806">
+              <caret line="101" column="16" selection-start-line="101" selection-start-column="3" selection-end-line="101" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/predictionBot.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4725">
+              <caret line="229" column="8" selection-start-line="229" selection-start-column="8" selection-end-line="229" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -104,14 +125,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>stalem</find>
-      <find>'W'</find>
-      <find>error:</find>
-      <find>['h', 'd', 'a']</find>
-      <find>play:</find>
-      <find>start_data_extraction</find>
-      <find>Waiting for data to be availalbe...</find>
-      <find>add parter</find>
       <find>DATA TABLE NOT FOUND ON PAGE!</find>
       <find>data_table_class</find>
       <find>sc-gFqAkR</find>
@@ -134,6 +147,14 @@
       <find>status_model</find>
       <find>self.dataFile</find>
       <find>Banbury United</find>
+      <find>v2</find>
+      <find>subscription featu</find>
+      <find>filters</find>
+      <find>bot</find>
+      <find>(</find>
+      <find>AL Ahly SC</find>
+      <find>FC Kolkheti</find>
+      <find>send_messag</find>
     </findStrings>
     <replaceStrings>
       <replace>away</replace>
@@ -156,13 +177,14 @@
         <option value="$PROJECT_DIR$/predict.py" />
         <option value="$PROJECT_DIR$/pattern.py" />
         <option value="$PROJECT_DIR$/combinations.json" />
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/data_extractor.py" />
-        <option value="$PROJECT_DIR$/teamOnlyData.txt" />
-        <option value="$PROJECT_DIR$/oddOnlyData.txt" />
         <option value="$PROJECT_DIR$/data_analysis_prediction.py" />
-        <option value="$PROJECT_DIR$/sofascore.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/predictionBot.py" />
+        <option value="$PROJECT_DIR$/oddOnlyData.txt" />
+        <option value="$PROJECT_DIR$/teamOnlyData.txt" />
         <option value="$PROJECT_DIR$/result.txt" />
+        <option value="$PROJECT_DIR$/sofascore.py" />
       </list>
     </option>
   </component>
@@ -191,6 +213,9 @@
       </pane>
       <pane id="Scope" />
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../telegrambot" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -226,27 +251,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="gamePrediction" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="bettingPrediction" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gamePrediction.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="predict" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="bettingPrediction" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -260,6 +264,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/predict.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="predictionBot" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="bettingPrediction" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/predictionBot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -314,9 +339,9 @@
       <list>
         <item itemvalue="Python.sofascore" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.predictionBot" />
         <item itemvalue="Python.data_analysis_prediction" />
         <item itemvalue="Python.predict" />
-        <item itemvalue="Python.gamePrediction" />
       </list>
     </recent_temporary>
   </component>
@@ -342,13 +367,13 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.38297874" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.36824876" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.36988544" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.19476268" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -446,13 +471,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gamePrediction.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -464,20 +482,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sofascore.py">
+    <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32760">
-          <caret line="1560" column="41" selection-start-line="1560" selection-start-column="41" selection-end-line="1560" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data_extractor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="192">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
@@ -491,14 +499,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/predictionBot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4725">
+          <caret line="229" column="8" selection-start-line="229" selection-start-column="8" selection-end-line="229" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/teamOnlyData.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/oddOnlyData.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/data_extractor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sofascore.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="1128" column="39" selection-start-line="1128" selection-start-column="39" selection-end-line="1128" selection-end-column="39" />
+          <folding>
+            <element signature="e#40276#40592#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/result.txt">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1806">
+          <caret line="101" column="16" selection-start-line="101" selection-start-column="3" selection-end-line="101" selection-end-column="16" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>
