@@ -19,7 +19,6 @@
       <change beforePath="$PROJECT_DIR$/logistic_regression_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/logistic_regression_model.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logistic_regression_status_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/logistic_regression_status_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/ml.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml2.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/ml2.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/naive_bayes_away_score_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/naive_bayes_away_score_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/naive_bayes_home_score_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/naive_bayes_home_score_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/naive_bayes_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/naive_bayes_model.pkl" afterDir="false" />
@@ -83,7 +82,11 @@
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/result.txt">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="76" column="19" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="19" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -363,14 +366,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26860118" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3797054" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32405892" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -539,7 +541,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/result.txt">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="76" column="19" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="19" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

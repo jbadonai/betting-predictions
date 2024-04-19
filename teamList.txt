@@ -1,0 +1,254 @@
+League: Australia ALeague
+10:45  
+Newcastle United Jets FC
+Wellington Phoenix FC
+2.85
+2.20
+                
+***************************************************************************
+League: China FA Cup
+07:00  
+Hangzhou Qiantang FC
+Nantong Haimen Codion
+5.75
+1.61
+                
+***************************************************************************
+League: Australia Victoria NPL
+10:30  
+Heidelberg United FC
+Moreland City FC
+1.17
+11.00
+                
+10:45  
+Dandenong City SC
+South Melbourne FC
+4.25
+1.65
+                
+11:15  
+Oakleigh Cannons
+St Albans Saints
+1.11
+15.00
+                
+***************************************************************************
+League: Simulated Reality League Bundesliga SRL
+***************************************************************************
+League: Simulated Reality League LaLiga SRL
+***************************************************************************
+League: Simulated Reality League Ligue 1 SRL
+***************************************************************************
+League: Australia Northern NSW NPL
+11:15  
+New Lambton FC
+Weston Workers FC
+6.10
+1.38
+                
+***************************************************************************
+League: Australia Queensland NPL
+11:30  
+Gold Coast Knights
+Brisbane City FC
+1.30
+7.70
+                
+***************************************************************************
+League: Simulated Reality League Serie A SRL
+***************************************************************************
+League: Australia South Australia NPL
+11:00  
+Croydon Kings FC
+Adelaide Olympic FC
+1.94
+3.10
+                
+11:00  
+Para Hills Knights SC
+North Eastern Metrostars SC
+6.50
+1.32
+                
+***************************************************************************
+League: Australia Tasmania NPL
+11:15  
+Glenorchy Knights FC
+Kingborough Lions United FC
+2.05
+3.10
+                
+11:15  
+Riverside Olympic FC
+Launceston United Soccer Club
+1.86
+3.25
+                
+***************************************************************************
+League: Russia Youth League
+09:00  
+FK Rostov
+FC Fakel Voronezh Youth
+1.31
+6.90
+                
+11:00  
+FK Nizhny Novgorod
+Ural Ekaterinburg
+2.70
+2.20
+                
+11:00  
+Strogino Moscow
+UOR-5
+1.93
+2.95
+                
+***************************************************************************
+League: Republic of Korea K3 League
+07:00  
+Daejeon Korail FC
+Paju Citizen FC
+1.95
+3.60
+                
+***************************************************************************
+League: Simulated Reality League Turkey Super Lig SRL
+***************************************************************************
+League: Australia Victoria Premier League 1
+11:30  
+Brunswick City SC
+Western United FC Youth
+3.10
+1.95
+                
+11:30  
+Werribee City FC
+Northcote City
+5.30
+1.46
+                
+***************************************************************************
+League: Australia Queensland Premier League 1
+11:30  
+Caboolture FC
+Capalaba Bulldogs
+2.25
+2.50
+                
+***************************************************************************
+League: Israel Liga Alef
+11:40  
+Agudat Sport Ashdod FC
+Hapoel Bikat Hayarden
+2.00
+3.60
+                
+11:40  
+Hapoel Herzelia FC
+Shimshon Tel Aviv
+1.97
+3.50
+                
+11:40  
+Maccabi Shaaraim
+Maccabi Ironi Ashdod FC
+2.55
+2.70
+                
+11:40  
+Shimshon Kafr Qasim
+FC Holon Yirmiyahu
+3.80
+1.93
+                
+***************************************************************************
+League: New Zealand National League
+08:00  
+Birkenhead United AFC
+East Coast Bays
+1.16
+9.90
+                
+***************************************************************************
+League: Bangladesh Premier League
+10:45  
+Abahani Limited Dhaka
+Sheikh Jamal DC
+1.72
+4.50
+                
+10:45  
+Bangladesh Police FC
+Sheikh Russel KC
+1.96
+3.40
+                
+***************************************************************************
+League: Algeria Ligue 2 Reserves
+10:00  
+Nrb Teleghma U21
+Js Bordj Menaiel U21
+2.35
+2.70
+                
+10:00  
+Msp Batna
+Olympique Akbou U21
+3.00
+2.05
+                
+***************************************************************************
+League: Ukraine U19
+09:00  
+FC Chernomorets Odessa
+FC Kryvbas Kriviy Rih U19
+3.60
+1.80
+                
+***************************************************************************
+League: Slovakia U19 1 Liga
+10:00  
+MSK Zilina
+ZP Sport Podbrezova
+1.39
+5.40
+                
+***************************************************************************
+League: Poland Ekstraliga Women
+10:00  
+Gornik Leczna
+UKS SMS Lodz
+3.50
+1.85
+                
+***************************************************************************
+League: Australia South Australia NPL Women
+09:45  
+Flinders United Wfc
+Adelaide University
+2.10
+2.90
+                
+11:45  
+Salisbury Inter
+Sturt Lions
+1.50
+4.90
+                
+11:45  
+West Adelaide
+Adelaide Comets FC
+3.00
+2.05
+                
+***************************************************************************
+League: Australia Victoria NPL Women
+10:30  
+Box Hill United
+FC Bulleen Lions
+4.90
+1.53
+                
+***************************************************************************
