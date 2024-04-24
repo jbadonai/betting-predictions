@@ -6,7 +6,7 @@ try:
     from selenium.webdriver.common.keys import Keys
     import time
     from bs4 import BeautifulSoup
-    from predict import FootballPrediction
+    from predict import *
     import os
     import pandas as pd
     import ast  # To evaluate the string representation of the dictionary
@@ -777,14 +777,6 @@ try:
 
 
     def retrieve_data(file_path='datafile.xlsx'):
-        # try:
-        #     # Try loading existing file
-        #     df = pd.read_excel(file_path)
-        #     return df.to_dict('records')
-        # except FileNotFoundError:
-        #     # Return an empty list if the file doesn't exist
-        #     return []
-
         try:
             # Try loading existing file
             df = pd.read_excel(file_path)
@@ -805,9 +797,34 @@ try:
             # Return an empty list if the file doesn't exist
             return []
 
-
-    def check_team_existence(team_name, file_path='datafile.xlsx'):
+    def retrieve_data_bb(file_path='datafile_bb.xlsx'):
         try:
+            # Try loading existing file
+            df = pd.read_excel(file_path)
+
+            # Convert 'home_score' and 'away_score' columns to integers
+            df['home_score'] = pd.to_numeric(df['home_score'], errors='coerce').astype('Int64')
+            df['away_score'] = pd.to_numeric(df['away_score'], errors='coerce').astype('Int64')
+
+            # Exclude rows with blank, NaN, "N/A", or "?" values in 'home_score' and 'away_score'
+            df = df.dropna(subset=['home_score', 'away_score'])
+            df = df[~df['home_score'].isin(['', 'N/A', '?'])]
+            df = df[~df['away_score'].isin(['', 'N/A', '?'])]
+
+            # Return the filtered DataFrame as a list of dictionaries
+            return df.to_dict('records')
+
+        except FileNotFoundError:
+            # Return an empty list if the file doesn't exist
+            return []
+
+    def check_team_existence(team_name, sport='football'):
+        try:
+            if sport == 'football':
+                file_path='datafile.xlsx'
+            elif sport == 'basketball':
+                file_path = 'datafile_bb.xlsx'
+
             # Try loading existing file
             df = pd.read_excel(file_path)
             team_count = df['team'].eq(team_name).sum()
@@ -815,7 +832,6 @@ try:
         except FileNotFoundError:
             # Return False and 0 if the file doesn't exist
             return False, 0
-
 
     def check_team_existence2(team_name, file_path='datafile.xlsx'):
         try:
@@ -858,16 +874,14 @@ try:
             # Return False and 0 if the file doesn't exist
             return False, 0
 
-
-    def predict(home, away, driver):
-        global bot
+    def predict(home, away, driver, sport="football"):
         print("PREDICTING...")
 
 
         #  CHECKING IF HOME AND AWAY TEAM ALREADY EXIST IN THE EXCEL SSHEET
         # -----------------------------------------------------------------------------
-        h, ch = check_team_existence(home)  # h-home, ch-count home
-        a, ca = check_team_existence(away)  # a-away, ca-count away
+        h, ch = check_team_existence(home, sport)  # h-home, ch-count home
+        a, ca = check_team_existence(away, sport)  # a-away, ca-count away
 
         time.sleep(1)
 
@@ -875,6 +889,7 @@ try:
         # -----------------------------------------------------------------------------
         new_home = home
         new_away = away
+        # print(f"name before: {new_home}<>{new_away}")
 
         teamsWithMissingData = []
 
@@ -891,7 +906,7 @@ try:
         #  GET DATA FROM SOFASCORE FOR TEAM WITH NO DATA IN THE EXCEL FILE
         # ---------------------------------------------------------------
         if bool(h) is False or bool(a) is False:
-            dataExtractor = PreviousRecordExtractor(driver=driver)
+            dataExtractor = PreviousRecordExtractor(driver=driver, sport=sport)
             newTeamName = dataExtractor.start_data_extraction(teamsWithMissingData)
 
             if newTeamName is None:
@@ -906,34 +921,81 @@ try:
                 elif bool(a) is False:
                     new_away = newTeamName[0]
 
-
+        # print(f"names after: {new_home}<>{new_away}")
         # =================================================
         # PREDICTION ACTUALLY STARTS HERE
         # =================================================
 
 
+
         # LOAD DATA FROM THE DATABASE (I.E THE EXCEL SHEET)
         # -----------------------------------------------------------------------------
-        newdata = retrieve_data()
+        if sport == 'football':
+            newdata = retrieve_data()
+        elif sport == 'basketball':
+            newdata = retrieve_data_bb()
+
+        # print(newdata)
+        # for data in newdata:
+        #     print(data)
+
 
         # CREATE AN INSTANCE OF THE PREDICTING ENGINE
         # -----------------------------------------------------------------------------
-        predict_engine = FootballPrediction()
+        # predict_engine = FootballPrediction()
 
-        time.sleep(1)
 
+        if sport == 'football':
+            predict_engine = FootballPrediction()
+        elif sport == 'basketball':
+            predict_engine = BasketballPrediction()
+
+        # time.sleep(1)
+        # a = predict_engine.analyze_matches(newdata, new_home, new_away)
+        # print(a)
+
+        # input('pause prediction')
         # PASS THE SAME DATA TO 3 DIFFERENT ALGORITHMS FOR ANALYSIS
         # -----------------------------------------------------------------------------
+
+        # ndd = newdata.copy()
+        #
+        # for nd in newdata:
+        #     # print(type(nd))
+        #     new_home = nd['home']
+        #     new_away = nd['away']
+        #
+        #     # print(new_home, "<>", new_away)
+        #
+        #     a = predict_engine.analyze_matches(ndd, new_home, new_away)
+        #     b = predict_engine.analyze_by_average_goal_scored(ndd, new_home, new_away)
+        #     c = predict_engine.analyze_by_poisson_analysis(ndd, new_home, new_away)
+        #
+        #     print(a,b,c)
+        #
+        # input('cp:::')
+
         a = predict_engine.analyze_matches(newdata, new_home, new_away)
         b = predict_engine.analyze_by_average_goal_scored(newdata, new_home, new_away)
         c = predict_engine.analyze_by_poisson_analysis(newdata, new_home, new_away)
 
+        # print(f"a: {a}")
+        # print(f"b: {b}")
+        # print(f"c: {c}")
+        #
+        # print()
+        # input('cp')
+
+
+
         # EVALUATING THE RESULT FROM THE ALGORITHMS TO MAKE INFORMED DECISION
         # -----------------------------------------------------------------------------
-        all = a + b + c
-        h_count = all.count("Home")
-        a_count = all.count("Away")
-        d_count = all.count("Draw")
+        # all = a + b + c
+        # h_count = all.count("Home")
+        # a_count = all.count("Away")
+        # d_count = all.count("Draw")
+        #
+        # print(h_count,"<>", a_count, "<>", d_count)
 
         def evaluate(text):
             ans = None
@@ -952,24 +1014,56 @@ try:
             elif drawcount == 2:
                 return "Strong Draw"
 
+        def evaluate_scores(text):
+            homescore = str(text).split(":")[0].strip().split(" ")[-1]
+            awayscore = str(text).split(":")[-1].strip().split(" ")[0]
+            return homescore, awayscore
+            pass
+
         analyzer = CombinationAnalyzer()
+        # print('to evaluate..')
+        # print(evaluate(a), "<>", evaluate_scores(a))
+        # print(evaluate(b), "<>",  evaluate_scores(b))
+        # print(evaluate(c), "<>", evaluate_scores(c))
+
+        # exttract home and away scores and find the average
+        homeScore = round((float(evaluate_scores(a)[0]) + float(evaluate_scores(b)[0]) + float(evaluate_scores(c)[0])) / 3)
+        awayScore = round((float(evaluate_scores(a)[1]) + float(evaluate_scores(b)[1]) + float(evaluate_scores(c)[1])) / 3)
+
+        def complete_evaluation(a, b, c):
+            new_a = a.lower().replace(" ",'_')
+            new_b = b.lower().replace(" ",'_')
+            new_c = c.lower().replace(" ",'_')
+
+            # strong_home	strong_away	strong_draw	weak_home	weak_away
+            eval_data = {'strong_home': 0,
+                  'strong_away': 0,
+                  'strong_draw': 0,
+                  'weak_home': 0,
+                  'weak_away': 0
+                  }
+
+            eval_data[new_a] = 1
+            eval_data[new_b] = 1
+            eval_data[new_c] = 1
+
+            return  eval_data
+
+            pass
+
+        comp_eval = complete_evaluation(evaluate(a), evaluate(b), evaluate(c))
+        print(f'complete evaluation: {comp_eval}')
+
+        # get suggestion based on previous result given by the prediction stored
         suggestion = analyzer.analyze(evaluate(a), evaluate(b), evaluate(c))
 
-        # print(a, "-", evaluate(a))
-        # print(b, "-", evaluate(b))
-        # print(c, "-", evaluate(c))
-        # print()
-        # print(f"H:A:D: {h_count}:{a_count}:{d_count}")
-        # print(f"PLAY: {suggestion}")
-
-        # {a} - {evaluate(a)}
-        # {b} - {evaluate(b)}
-        # {c} - {evaluate(c)}
-
+        # get the home and away odds
         odds = get_home_away_odds(home, away)
 
+        # using the odds and suggestion to make a deeper infomed decision or predition
         deepCheck = deep_check(odds, suggestion)
 
+        # declaring machine learning container that holds data to be passed to machine learning
         ml ={}
 
         def check_evaluation(test, all_evaluation):
@@ -1039,6 +1133,9 @@ try:
 
         allEvaluation = f"{evaluate(a)},{evaluate(b)},{evaluate(c)}"
 
+        # THE SCRIPT USES 2 DIFFERENT MACHINE LEARNING ALGORIGHMS THEIR DATA WILL BE PREPARED BELOW
+        # populate data for the machine learning V1
+        # ------------------------------------
         ml['home'] = home
         ml['away'] = away
         ml['home_odd'] = round(float(odds[0]), 2)
@@ -1050,6 +1147,8 @@ try:
         ml['weak_home'] = check_evaluation('weak home', allEvaluation)
         ml['weak_away'] = check_evaluation('weak away', allEvaluation)
 
+        #  populate data for machine learning version 2
+        # -------------------------------------------------
         data4Ml2 = {'home_odd':  ml['home_odd'],
                     'away_odd': ml['away_odd'],
                     'odd_difference':  ml['odd_difference'],
@@ -1061,12 +1160,12 @@ try:
 
         # predict using machine learning based on supplied data ml
         print("[Debug][ML] ML prediction V1 starting...")
+
+        # create a copy of ml data so it can be modified for ml
         mlData = ml.copy()
         mlData.pop('home')
         mlData.pop('away')
-        # print(f"ML: {ml}")
-        # print(f"ML Data: {mlData}")
-        # input(":::::::::::::::::")
+
         mlPrediction = ml_prediction(mlData)
         print("[Debug][ML] ML prediction V1 done!")
 
@@ -1098,11 +1197,11 @@ try:
         def process_final(fin: list):
             ans = "/".join(fin)
             if ans.lower().__contains__("a") and ans.lower().__contains__("h"):
-                return "Home or Away"
+                return "Home or Away [ 12 ] "
             elif ans.lower().__contains__("d") and ans.lower().__contains__("h"):
-                return "Home or Draw"
+                return "Home or Draw [ 1X ] "
             elif ans.lower().__contains__("d") and ans.lower().__contains__("a"):
-                return "Draw or Away"
+                return "Draw or Away [ X2 ] "
             elif ans.lower() == 'a':
                 return "Away"
             elif ans.lower() == 'h':
@@ -1120,30 +1219,34 @@ try:
         awayDetails = a.split("|")[0].split(":")[1]
 
         homeDetail = homeDetail.strip().split(" ")[:-2]
-
         awayDetails = awayDetails.strip().split(" ")[1:]
 
         if len(final) <= 2:
             result = f"""
-    {" ".join(homeDetail)} : {" ".join(awayDetails)} | [ {evaluate(a)},{evaluate(b)},{evaluate(c)} ]
-    PLAY: [ {process_final(final)} ] | 
+    {' '.join(homeDetail)} {homeScore} : {awayScore} {' '.join(awayDetails)} | [ {evaluate(a)},{evaluate(b)},{evaluate(c)} ]
+    PLAY: [ {process_final(final)} ] 
     Scores: {mlPredictionV2[1]} :  {mlPredictionV2[2]} 
     ===========================================================================================================
 """
-            # bot.send_message(result)
+
             save_ml_to_excel(ml)
 
             with open("result.txt", 'a', encoding='utf-8') as f:
                 f.write(result)
         else:
-            result = f"""[->]
-                {" ".join(homeDetail)} : {" ".join(awayDetails)}
-                PLAY: [ {process_final(final)} ]
-                ===========================================================================================================
-            """
+            resultx = f"""[->]
+    {' '.join(homeDetail)} {homeScore} : {awayScore} {' '.join(awayDetails)}
+    PLAY:  {v1List}  | {mlPrediction}
+           {v2List}  | {mlPredictionV2}
+    ===========================================================================================================
+"""
+
+            save_ml_to_excel(ml)
             with open("result.txt", 'a', encoding='utf-8') as f:
                 f.write("[X]")
                 # f.write(result)
+            with open("result_excluded.txt", 'a', encoding='utf-8') as f:
+                f.write(resultx)
 
     def ml_prediction(data):
         try:
@@ -1229,8 +1332,7 @@ try:
             except:
                 return False
 
-
-    def extract_team_info(url):
+    def extract_team_info(url, sport='football'):
         # variable declarations
         no_bet_class = "m-sport-bet-no-data"
         match_league = "match-league"
@@ -1278,6 +1380,7 @@ try:
             # Loop through the leagues
             # -----------------------------
             for index, league in enumerate(leagues):
+
                 league_details = {}
                 # GET THE LEAGUE TITLE
                 # ---------------------
@@ -1302,6 +1405,7 @@ try:
 
                         gameTime = row.find_element(By.CLASS_NAME, game_time_class).text
                         single_game_detail['game_time'] = gameTime
+                        # print(f"game time: {gameTime}")
 
                         homeTeam = row.find_element(By.CLASS_NAME, home_team_class).text
                         single_game_detail['home_team'] = homeTeam
@@ -1312,14 +1416,21 @@ try:
                         oddMarkets = row.find_element(By.CLASS_NAME, odd_market_class) # trying to select the first one only
                         outcomeOdds = oddMarkets.find_elements(By.CLASS_NAME, outcome_odds_class)
 
+                        # print(f'total: {len(outcomeOdds)} | {single_game_detail["home_team"]}')
                         homeWinOdd = outcomeOdds[0].text
                         single_game_detail['home_odd'] = homeWinOdd
 
-                        drawOdd = outcomeOdds[1].text
-                        single_game_detail['draw_odd'] = drawOdd
+                        if sport == 'football':
+                            # print("[]Football")
+                            drawOdd = outcomeOdds[1].text
+                            single_game_detail['draw_odd'] = drawOdd
 
-                        awayWinOdd = outcomeOdds[2].text
-                        single_game_detail['away_odd'] = awayWinOdd
+                            awayWinOdd = outcomeOdds[2].text
+                            single_game_detail['away_odd'] = awayWinOdd
+                        elif sport == 'basketball':
+                            # print("[]Basketball")
+                            awayWinOdd = outcomeOdds[1].text
+                            single_game_detail['away_odd'] = awayWinOdd
 
                         gameDetails.append(single_game_detail)
                     except Exception as e:
@@ -1341,32 +1452,26 @@ try:
                 print("No league found")
             pass
 
-
     def clean_text(text):
         # Remove non-character elements using regular expression
         clean = re.sub(r'[^\w\s]', '', text)
         return clean
 
-
     def get_league_title(driver, class_name):
         title = driver.find_element(By.CLASS_NAME, class_name)
         return title.text
-
 
     def get_match_table(driver, class_name):
         table = driver.find_element(By.CLASS_NAME, class_name)
         return table
 
-
     def get_table_rows(driver, class_name):
         rows = driver.find_elements(By.CLASS_NAME, class_name)
         return rows
 
-
     def reset_file(filename):
         with open(filename, 'w') as f:
             f.write("")
-
 
     def write_append_to_file(filename, data):
         with open(filename, 'a') as f:
@@ -1438,6 +1543,9 @@ try:
 
         # {'Home/Draw' : [1.43 -  5.5] |'LO/Draw':  [0.5 - 0.65] |'Home/Away':  [0.1 -0.25]} WR: (67%)
         # print(f"SUGGESTION HERE: {suggestion}")
+        if suggestion.lower() == 'unknown':
+            return None
+
         mainData, wr = suggestion.split('WR:')
 
         # print(f"maindata b4: {mainData} --- {type(mainData)}")
@@ -1579,7 +1687,7 @@ try:
         # input("Wait here...................")
         pass
 
-    def start_predict():
+    def start_predict(sport='football'):
 
         # open file that contains all the teams to be predicted
         with open('teamOnlyData.txt', 'r') as f:
@@ -1615,26 +1723,32 @@ try:
                 return False
 
         # [experimental] - Trying to use the same driver for all extract
-        print("Initializing Browser for  data extraction! Please wait...")
-        url = "https://www.sofascore.com/"
-        driver = initialize_browser1()
-        while True:
-            try:
-                driver.set_page_load_timeout(30)
-                driver.get(url)
-                break
-            except TimeoutException:
-                break
-                pass
-            except Exception:
-                print("[DEBUG] - Error loading page! Refreshing and retrying...")
-                driver.refresh()
-                pass
-        print('done loading initial page!')
+        def load_browser():
+            print("Initializing Browser for  data extraction! Please wait...")
+            url = "https://www.sofascore.com/"
+            driver = initialize_browser1()
+            while True:
+                try:
+                    driver.set_page_load_timeout(30)
+                    driver.get(url)
+                    break
+                except TimeoutException:
+                    break
+                    pass
+                except Exception:
+                    print("[DEBUG] - Error loading page! Refreshing and retrying...")
+                    driver.refresh()
+                    pass
+            print('done loading initial page!')
+            return driver
+
+        driver = None
+        driver = load_browser()
+
         for team in teamList:
             home = team[0]
             away = team[1]
-            predict(home, away, driver)
+            predict(home, away, driver, sport)
 
             print("------>>>>>>> NEXT")
             # input("Wait.....................................")
@@ -1701,7 +1815,7 @@ try:
             print(f"An Error occurred in V2 Prediction: {e}")
             pass
 
-    def start_extract():
+    def start_extract(sport = "football"):
         # Extract data from sporty
         reset_file(teamData)
         reset_file("oddOnlyData.txt")
@@ -1712,13 +1826,14 @@ try:
         if ans != "":
             period = int(ans)
 
-        url = f"https://www.sportybet.com/ng/sport/football?time={period}"
+        url = f"https://www.sportybet.com/ng/sport/{sport}?time={period}"
 
-        leagueInfo = extract_team_info(url)
+        leagueInfo = extract_team_info(url, sport)
 
         for league in leagueInfo:
             # print(f"League: {league['title']}")
             # print(f"Data: {league['data']}")
+            # input('waiting......')
             # print("=============================================================")
             # print()
             result = f"League: {league['title']}"
@@ -1759,30 +1874,30 @@ try:
         print("Done! Done! Ok!")
         pass
 
+    # ---------------------------------
     # ENTRY POINT
     # ---------------------------------
-    # bot.start()
-    # run_function(bot.start)
-    # time.sleep(10)
+
+    sport = 'football'
 
     while True:
-        command = "Enter [A]/[P]/[E] for Add Pattern/Predict/Extract: "
+        command = f"[{sport.upper()}] Enter [A]/[P]/[E] for Add Pattern/Predict/Extract: "
         action = input(command)
 
         if action.lower() == 'all':
             print("Starting data extraction...")
-            start_extract()
+            start_extract(sport)
             print("Extraction Completed! Starting prediction...")
-            start_predict()
+            start_predict(sport)
 
         elif action.lower() == 'p' or action == '':
-            start_predict()
+            start_predict(sport)
 
         elif action.lower() == 'a':
             start_add_pattern()
 
         elif action.lower() == 'e':
-            start_extract()
+            start_extract(sport)
 
         print()
         print()

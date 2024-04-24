@@ -1,80 +1,50 @@
-[X]
-    Heidelberg United FC :  Moreland City FC | [ Strong Draw,Strong Draw,Strong Away ]
-    PLAY: [ Home ] | 
-    Scores: 3 :  0 
-    ===========================================================================================================
 
-    Dandenong City SC :  South Melbourne FC | [ Strong Draw,Strong Draw,Strong Away ]
-    PLAY: [ Draw or Away ] | 
-    Scores: 0 :  1 
-    ===========================================================================================================
-
-    Oakleigh Cannons :  St Albans Saints | [ Strong Draw,Strong Draw,Weak Away ]
-    PLAY: [ Home or Draw ] | 
-    Scores: 3 :  0 
-    ===========================================================================================================
-
-    Gold Coast Knights :  Brisbane City FC | [ Strong Draw,Strong Draw,Weak Away ]
-    PLAY: [ Home ] | 
-    Scores: 3 :  1 
-    ===========================================================================================================
-[X]
-    Para Hills Knights SC :  North Eastern Metrostars SC | [ Strong Draw,Strong Draw,Strong Home ]
-    PLAY: [ Home or Away ] | 
-    Scores: 1 :  1 
-    ===========================================================================================================
-[X]
-    FK Rostov :  FC Fakel Voronezh Youth | [ Strong Draw,Strong Draw,Strong Home ]
-    PLAY: [ Home ] | 
+    Yokohama Marinos 1 : 1  Ulsan Hyundai FC | [ Weak Away,Weak Home,Weak Home ]
+    PLAY: [ Home ] 
     Scores: 2 :  1 
     ===========================================================================================================
-[X]
-    Strogino Moscow :  UOR-5 | [ Strong Draw,Strong Draw,Strong Home ]
-    PLAY: [ Home or Draw ] | 
-    Scores: 3 :  3 
+
+    AC Nagano Parceiro 2 : 1  Kyoto Sanga FC | [ Strong Home,Strong Home,Strong Home ]
+    PLAY: [ Home or Away [ 12 ]  ] 
+    Scores: 1 :  1 
     ===========================================================================================================
 
-    Daejeon Korail FC :  Paju Citizen FC | [ Strong Draw,Strong Draw,Weak Home ]
-    PLAY: [ Home or Away ] | 
-    Scores: 2 :  2 
+    Blaublitz Akita 1 : 1  Shonan Bellmare | [ Strong Away,Strong Away,Strong Away ]
+    PLAY: [ Home or Draw [ 1X ]  ] 
+    Scores: 2 :  1 
     ===========================================================================================================
 
-    Werribee City FC :  Northcote City | [ Strong Draw,Strong Draw,Weak Away ]
-    PLAY: [ Away ] | 
-    Scores: 0 :  1 
-    ===========================================================================================================
-[X][X][X]
-    Shimshon Kafr Qasim :  FC Holon Yirmiyahu | [ Strong Draw,Strong Draw,Weak Away ]
-    PLAY: [ Draw or Away ] | 
-    Scores: 0 :  1 
+    Fagiano Okayama 1 : 1  Yokohama FC | [ Weak Away,Weak Home,Weak Away ]
+    PLAY: [ Home or Draw [ 1X ]  ] 
+    Scores: 2 :  1 
     ===========================================================================================================
 
-    Abahani Limited Dhaka :  Sheikh Jamal DC | [ Strong Draw,Strong Draw,Strong Home ]
-    PLAY: [ Home ] | 
-    Scores: 4 :  2 
-    ===========================================================================================================
-[X][X][X][X]
-    MSK Zilina :  ZP Sport Podbrezova | [ Strong Draw,Strong Draw,Weak Away ]
-    PLAY: [ Home ] | 
-    Scores: 3 :  1 
+    FC Ryukyu 2 : 1  Gamba Osaka | [ Strong Home,Strong Home,Strong Home ]
+    PLAY: [ Home or Away [ 12 ]  ] 
+    Scores: 1 :  1 
     ===========================================================================================================
 
-    Gornik Leczna :  UKS SMS Lodz | [ Strong Draw,Strong Draw,Weak Home ]
-    PLAY: [ Draw or Away ] | 
-    Scores: 0 :  2 
+    Kataller Toyama 1 : 1  Shimizu S-Pulse | [ Weak Home,Weak Away,Weak Home ]
+    PLAY: [ Home or Away [ 12 ]  ] 
+    Scores: 1 :  1 
     ===========================================================================================================
 
-    Flinders United Wfc :  Adelaide University | [ Strong Draw,Strong Draw,Weak Home ]
-    PLAY: [ Home or Draw ] | 
-    Scores: 3 :  2 
-    ===========================================================================================================
-[X]
-    West Adelaide :  Adelaide Comets FC | [ Strong Draw,Strong Draw,Weak Away ]
-    PLAY: [ Home or Away ] | 
-    Scores: 0 :  1 
-    ===========================================================================================================
-
-    Box Hill United :  FC Bulleen Lions | [ Strong Draw,Strong Draw,Weak Home ]
-    PLAY: [ Away ] | 
+    Nara Club 2 : 1  Sanfrecce Hiroshima | [ Weak Home,Strong Draw,Strong Home ]
+    PLAY: [ Home or Away [ 12 ]  ] 
     Scores: 1 :  3 
+    ===========================================================================================================
+
+    Roasso Kumamoto 1 : 1  Sagan Tosu | [ Strong Away,Weak Away,Weak Home ]
+    PLAY: [ Home or Draw [ 1X ]  ] 
+    Scores: 2 :  1 
+    ===========================================================================================================
+
+    Thespakusatsu 0 : 1  Kashiwa Reysol | [ Strong Draw,Strong Away,Weak Home ]
+    PLAY: [ Home or Away [ 12 ]  ] 
+    Scores: 1 :  2 
+    ===========================================================================================================
+[X]
+    FC Ska-Khabarovsk 2 : 1  Rodina Moscow | [ Strong Home,Strong Away,Strong Home ]
+    PLAY: [ Home or Draw [ 1X ]  ] 
+    Scores: 2 :  1 
     ===========================================================================================================

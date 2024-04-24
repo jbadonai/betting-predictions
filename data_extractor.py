@@ -14,16 +14,21 @@ from selenium.common.exceptions import TimeoutException
 
 
 class PreviousRecordExtractor():
-    def __init__(self, driver):
+    def __init__(self, driver, sport):
         self.driver = driver
         self.url = "https://www.sofascore.com/"
         self.search_textbox_class = 'sc-30244387-0.hiFyBG'
         # self.data_table_class = "div.sc-fqkvVR.fZdvTU"
         self.data_table_class = "div.js-list-cell-target"
         self.data_table_class_list = ["div.sc-fqkvVR.fZdvTU", "div.js-list-cell-target" ]
-        self.dataFile = 'datafile.xlsx'
+        if sport == 'football':
+            self.dataFile = 'datafile.xlsx'
+        elif sport == 'basketball':
+            self.dataFile = 'datafile_bb.xlsx'
+
         self.new_team_name = []
         self.timeout = 15
+        self.sport = sport
 
         # self.initialize()
 
@@ -140,12 +145,13 @@ class PreviousRecordExtractor():
                 game = link.find_element(By.CLASS_NAME, game_confirmation_class).text
 
                 # filter out only football link
-                if str(game).lower() == 'football':
+                if str(game).lower() == self.sport.lower():
                     # extract the href which is requried
                     team_url = link.get_attribute('href')
                     # print(f"Team URL: {team_url}")
                     # print("FOUND!!!!!!")
                     return team_url, errorMessage
+
 
         except Exception as e:
             print(f"[DEBUG][ERROR] An error occurred in get team href function: {e}")
@@ -231,6 +237,98 @@ class PreviousRecordExtractor():
             except Exception as e:
                 # print(f"error:-----------")
                 continue
+
+        # returned compiled final game data
+        return gameData
+        pass
+
+    def extract_basketball_data(self, team):
+        gameData = []   # stores final game data
+
+        # declare classes required for extraction
+        data_table_class_list = ["div.js-list-cell-target", "div.sc-fqkvVR.fZdvTU div.sc-fqkvVR.iGqHmj a.sc-631ef08b-0"]
+
+        ha_class_list = ["sc-gFqAkR", "Text"]
+
+        suitable_data_table_class = self.find_suitable_class_name(data_table_class_list, False)     # using CSS
+        if suitable_data_table_class is None:
+            print(f"[DEBUG][ERROR!] NO SUITABLE CLASS NAME FOUND FOR [DATA TABLE CLASS] - REPRESENTING EACH ROW IN THE TABLE\n"
+                  f"UPDATE THE DATA_TABLE_CLASS_LIST WITH NEW CLASS NAME")
+            raise Exception
+        else:
+            print(f"[DEBUG] suitable data class name found @ {suitable_data_table_class}")
+
+        # get the whole table containing all the data
+        table = self.driver.find_elements(By.CSS_SELECTOR, suitable_data_table_class)
+        singleGameData = {}     # stores a single row of data in the table
+
+        print(f"[DEBUG] Finding suitable class name for 'ha': .....")
+        suitable_ha_class = self.find_suitable_class_name(ha_class_list)
+        if suitable_ha_class is None:
+            print(f"[DEBUG][ERROR!] NO SUITABLE CLASS NAME FOUND FOR  HA [actual data] - REPRESENTING EACH TO BE EXTRACTED\n"
+                  f"UPDATE THE 'HA_CLASS WITH NEW CLASS NAME")
+            raise Exception
+        else:
+            print(f"[DEBUG] suitable HA CLASS found @ {suitable_data_table_class}")
+
+        # loop through all the rows in the table to extract each data in the row
+        for table_data in table:
+            try:
+                # get all data holder in each rows
+                # ha = table_data.find_elements(By.CLASS_NAME, ha_class)
+                ha = table_data.find_elements(By.CLASS_NAME, suitable_ha_class)
+                # print(f"HA:::: {ha}")
+
+                # print(f"Total data: {len(ha)}")
+                # for index, h in enumerate(ha):
+                #     print(f"{index} - {h.text}")
+
+                # extract the required data from the holder
+                home = ha[4].text
+                away = ha[5].text
+                home_Q1_score= ha[6].text
+                home_Q2_score= ha[8].text
+                home_Q3_score= ha[10].text
+                home_Q4_score= ha[12].text
+                home_Q5_score= ha[14].text
+                away_Q1_score= ha[16].text
+                away_Q2_score= ha[18].text
+                away_Q3_score= ha[20].text
+                away_Q4_score= ha[22].text
+                away_Q5_score= ha[24].text
+                home_score = ha[26].text
+                away_score = ha[28].text
+                wld = ha[30].text
+
+                # create a dictionary of the extracted data
+                singleGameData['league'] = "my league"
+                singleGameData['team'] = team
+                singleGameData['home'] = home
+                singleGameData['away'] = away
+                singleGameData['home_Q1_score'] = 0 if home_Q1_score=="" else home_Q1_score
+                singleGameData['home_Q2_score'] = 0 if home_Q2_score=="" else home_Q2_score
+                singleGameData['home_Q3_score'] = 0 if home_Q3_score=="" else home_Q3_score
+                singleGameData['home_Q4_score'] = 0 if home_Q4_score=="" else home_Q4_score
+                singleGameData['home_Q5_score'] = 0 if home_Q5_score=="" else home_Q5_score
+                singleGameData['away_Q1_score'] = 0 if away_Q1_score=="" else away_Q1_score
+                singleGameData['away_Q2_score'] = 0 if away_Q2_score=="" else away_Q2_score
+                singleGameData['away_Q3_score'] = 0 if away_Q3_score=="" else away_Q3_score
+                singleGameData['away_Q4_score'] = 0 if away_Q4_score=="" else away_Q4_score
+                singleGameData['away_Q5_score'] = 0 if away_Q5_score=="" else away_Q5_score
+                singleGameData['home_score'] = 0 if home_score=="" else home_score
+                singleGameData['away_score'] = 0 if away_score=="" else away_score
+                singleGameData['status'] = wld
+
+                # append it to the final game data
+                gameData.append(str(singleGameData))
+
+            except Exception as e:
+                # print(f"error:-----------")
+                continue
+        # print(gameData)
+        # for data in gameData:
+        #     print(data)
+        # input("waiting basketball....")
 
         # returned compiled final game data
         return gameData
@@ -425,6 +523,7 @@ class PreviousRecordExtractor():
             self.new_team_name.clear()
 
             # check if page is properly loaded by checking if search box is on page
+            # --------------------------------------------------------------------
             while True:
                 on_page = self.is_element_on_page(self.search_textbox_class)
                 if on_page is True:
@@ -436,6 +535,7 @@ class PreviousRecordExtractor():
 
 
             # 2. LOOP THROUGH ALL THE TEAMS
+            # ----------------------------
             for team_name in team_names:
                 # a. SEARCH FOR TEAM'S NAME
                 # ---------------------------
@@ -515,7 +615,13 @@ class PreviousRecordExtractor():
                     if trial == len(testerList):
                         trial = 0
 
-                game_data = self.extract_football_data(team_name)
+
+                if self.sport == 'football':
+                    game_data = self.extract_football_data(team_name)
+                elif self.sport == 'basketball':
+                    self.driver.maximize_window()
+                    game_data = self.extract_basketball_data(team_name)
+
                 # print(f"Game data:: {game_data}")
                 # input("::::")
 
