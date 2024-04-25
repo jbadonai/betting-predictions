@@ -402,12 +402,6 @@ class BasketballPrediction():
         # Filter data for relevant matches
         relevant_matches = match_df[match_df['status'] == 'W']
 
-        # # Filter relevant matches for home and away teams
-        # home_matches = relevant_matches[
-        #     (relevant_matches['home'].str.strip() == home_team) | (relevant_matches['away'].str.strip() == home_team)]
-        # away_matches = relevant_matches[
-        #     (relevant_matches['home'].str.strip() == away_team) | (relevant_matches['away'].str.strip() == away_team)]
-
         # Function to check similarity for each row
         def check_similarity_home(row):
             return are_similar(row['home'].strip(), home_team) or are_similar(row['away'].strip(), home_team)
@@ -419,16 +413,14 @@ class BasketballPrediction():
         # Apply similarity check and filter relevant matches
         home_matches = relevant_matches[relevant_matches.apply(check_similarity_home, axis=1)]
         away_matches = relevant_matches[relevant_matches.apply(check_similarity_away, axis=1)]
-        #
-        # print('HOME MATCHES:')
-        # print(home_matches)
-        # print()
-        #
-        # print('AWAY MATCHES')
-        # print(away_matches)
-        # print()
-        #
-        # input('waiting')
+
+        print('HOME MATCHES:')
+        print(home_matches)
+        print()
+
+        print('AWAY MATCHES')
+        print(away_matches)
+        print()
 
         # Analyze home matches
         for match in home_matches.itertuples():
@@ -464,7 +456,7 @@ class BasketballPrediction():
             winner = "Draw"
 
         result_str = f"{home_team} {round(expected_home_score, 1)} : {round(expected_away_score, 1)} {away_team} | [{winner}]"
-
+        input('waiting')
         return result_str
 
     def analyze_by_poisson_analysis(self, data, home_team, away_team):

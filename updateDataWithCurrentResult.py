@@ -158,13 +158,9 @@ if ans == 'y' or ans == 'Y' or ans == '':
     print('done logging in')
     time.sleep(5)
 
-    urls_string = """https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240423173612ord65110502
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240423170716ord64182218
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240423161909ord62700024
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240423110632ord53131449
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240423110321ord53039554
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240423073343ord47786120
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240422202653ord39324463"""
+    urls_string = """https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240424204611ord05514572
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240424202608ord04642719
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240424201108ord04010038"""
 
     urls = urls_string.split("\n")
     data = []

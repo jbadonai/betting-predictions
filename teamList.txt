@@ -1,88 +1,42 @@
-League: International Clubs AFC Champions League
-11:00  
-Yokohama Marinos
-Ulsan Hyundai FC
-2.25
-3.10
+League: Australia Northern NSW NPL
+05:30  
+Adamstown Rosebud FC
+Weston Workers FC
+5.40
+1.41
                 
-***************************************************************************
-League: Japan JLeague Cup
-11:00  
-AC Nagano Parceiro
-Kyoto Sanga FC
-3.90
-1.90
-                
-11:00  
-Blaublitz Akita
-Shonan Bellmare
-2.95
-2.45
-                
-11:00  
-Fagiano Okayama
-Yokohama FC
-2.95
-2.50
-                
-11:00  
-FC Ryukyu
-Gamba Osaka
-4.10
-1.72
-                
-11:00  
-Kataller Toyama
-Shimizu S-Pulse
-5.10
-1.71
-                
-11:00  
-Nara Club
-Sanfrecce Hiroshima
-10.50
-1.25
-                
-11:00  
-Roasso Kumamoto
-Sagan Tosu
-2.50
-2.60
-                
-11:00  
-Thespakusatsu
-Kashiwa Reysol
-5.75
-1.55
-                
-***************************************************************************
-League: International Clubs AFC Cup
-10:00  
-Central Coast Mariners
-FC Abdysh-Ata Kant
-1.37
-7.50
-                
-***************************************************************************
-League: Simulated Reality League Ligue 1 SRL
 ***************************************************************************
 League: Simulated Reality League Premier League SRL
+***************************************************************************
+League: Australia South Australia NPL
+11:00  
+White City FK Beograd
+Campbelltown City SC
+4.60
+1.56
+                
 ***************************************************************************
 League: Simulated Reality League Eredivisie SRL
 ***************************************************************************
 League: Indonesia Liga 1
 09:00  
-Persebaya Surabaya
-Bali United FC
-2.85
-2.25
+Barito Putera
+Bhayangkara FC
+1.89
+3.80
+                
+09:00  
+Dewa United
+Madura United
+2.10
+2.95
                 
 ***************************************************************************
-League: Russia 1 Liga
-10:00  
-FC Ska-Khabarovsk
-Rodina Moscow
-2.50
-2.80
+League: Republic of Korea WKLeague
+11:00  
+Sejong Sportstoto WFC
+Suwon WFC
+2.75
+2.35
                 
 ***************************************************************************

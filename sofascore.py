@@ -880,6 +880,7 @@ try:
 
         #  CHECKING IF HOME AND AWAY TEAM ALREADY EXIST IN THE EXCEL SSHEET
         # -----------------------------------------------------------------------------
+        print(f'[DEBUG] Checking teams: "{home}" and "{away}" recent matches locally...')
         h, ch = check_team_existence(home, sport)  # h-home, ch-count home
         a, ca = check_team_existence(away, sport)  # a-away, ca-count away
 
@@ -897,15 +898,18 @@ try:
         # -----------------------------------------------------------------------------
         if bool(h) is False:
             # new_home = get_data_for_prediction(home, True)
+            print(f'[DEBUG] "{home}" not in local database! adding it to checklist...')
             teamsWithMissingData.append(home)
 
         if bool(a) is False:
             # new_away = get_data_for_prediction(away, True)
+            print(f'[DEBUG] "{away}" not in local database! adding it to checklist...')
             teamsWithMissingData.append(away)
 
         #  GET DATA FROM SOFASCORE FOR TEAM WITH NO DATA IN THE EXCEL FILE
         # ---------------------------------------------------------------
         if bool(h) is False or bool(a) is False:
+            print(f'[DEBUG] Intializing recent game data extraction...')
             dataExtractor = PreviousRecordExtractor(driver=driver, sport=sport)
             newTeamName = dataExtractor.start_data_extraction(teamsWithMissingData)
 
@@ -930,9 +934,12 @@ try:
 
         # LOAD DATA FROM THE DATABASE (I.E THE EXCEL SHEET)
         # -----------------------------------------------------------------------------
+        print(f'[DEBUG] Recent game data confirmed! Prediction begins...')
         if sport == 'football':
+            print(f'[DEBUG] Retrieving recent football data from file for processing...')
             newdata = retrieve_data()
         elif sport == 'basketball':
+            print(f'[DEBUG] Retrieving recent basketball data from file for processing...')
             newdata = retrieve_data_bb()
 
         # print(newdata)
@@ -944,7 +951,7 @@ try:
         # -----------------------------------------------------------------------------
         # predict_engine = FootballPrediction()
 
-
+        print(f'[DEBUG] Recent game data extracted from file. Intializing Predicting Engine...')
         if sport == 'football':
             predict_engine = FootballPrediction()
         elif sport == 'basketball':
@@ -974,9 +981,15 @@ try:
         #     print(a,b,c)
         #
         # input('cp:::')
-
+        print(f'[DEBUG] [PREDICTING] Using WINS ratio and H2H data...')
         a = predict_engine.analyze_matches(newdata, new_home, new_away)
+        print(f'[DEBUG] [PREDICTING] Using AVERAGE GOALS and EXPECTED GOAL analysis...')
+        print(f"new home: {new_home}")
+        print(f"new away: {new_away}")
+        print(f"new data: {newdata}")
+        print()
         b = predict_engine.analyze_by_average_goal_scored(newdata, new_home, new_away)
+        print(f'[DEBUG] [PREDICTING] Using POISSON analysis...')
         c = predict_engine.analyze_by_poisson_analysis(newdata, new_home, new_away)
 
         # print(f"a: {a}")
@@ -996,6 +1009,8 @@ try:
         # d_count = all.count("Draw")
         #
         # print(h_count,"<>", a_count, "<>", d_count)
+
+        print(f'[DEBUG] [PREDICTING] Evaluating results from the 3 alorighms...')
 
         def evaluate(text):
             ans = None
@@ -1054,6 +1069,7 @@ try:
         comp_eval = complete_evaluation(evaluate(a), evaluate(b), evaluate(c))
         print(f'complete evaluation: {comp_eval}')
 
+        print(f'[DEBUG] [PREDICTING] Evaluation completed! Concluding/Predicting based on the evaluation...')
         # get suggestion based on previous result given by the prediction stored
         suggestion = analyzer.analyze(evaluate(a), evaluate(b), evaluate(c))
 
@@ -1064,6 +1080,7 @@ try:
         deepCheck = deep_check(odds, suggestion)
 
         # declaring machine learning container that holds data to be passed to machine learning
+        print(f'[DEBUG] [PREDICTING LEVEL 2] Preparing data for MACHINE LEARNING algorighms...')
         ml ={}
 
         def check_evaluation(test, all_evaluation):
@@ -1161,17 +1178,22 @@ try:
         # predict using machine learning based on supplied data ml
         print("[Debug][ML] ML prediction V1 starting...")
 
+        print(f'[DEBUG] [PREDICTING LEVEL 2] spliting input data into 2 for V1 and V2 Machine learning algorithms...')
         # create a copy of ml data so it can be modified for ml
         mlData = ml.copy()
         mlData.pop('home')
         mlData.pop('away')
 
+        print(f'[DEBUG] [PREDICTING LEVEL 2] parsing data to V1 MACHINE LEARNING algorith...')
         mlPrediction = ml_prediction(mlData)
-        print("[Debug][ML] ML prediction V1 done!")
-
-        print("[Debug][ML] ML prediction V2 Starting...!")
+        print(f'[DEBUG] [PREDICTING LEVEL 2] V1 MACHINE LEARNING prediction Completed!')
+        print()
+        print(f'[DEBUG] [PREDICTING LEVEL 2] parsing data to V2 MACHINE LEARNING algorighms...')
         mlPredictionV2 = V2_prediction(data4Ml2)
+        print(f'[DEBUG] [PREDICTING LEVEL 2] V2 MACHINE LEARNING prediction Completed!')
 
+        print()
+        print(f'[DEBUG] [PREDICTING LEVEL 2] Evaluating result from both V1 and V2 MACHINE LEARNING algorighms...')
         v2List = []
         v1List = str(mlPrediction).split(" ")[0].split("/")
 
@@ -1220,6 +1242,8 @@ try:
 
         homeDetail = homeDetail.strip().split(" ")[:-2]
         awayDetails = awayDetails.strip().split(" ")[1:]
+
+        print(f'[DEBUG] [PREDICTING LEVEL 2] Making final prediction based on evaluation of V1 and V2 MACHINE LEARNING algorighm results ')
 
         if len(final) <= 2:
             result = f"""
