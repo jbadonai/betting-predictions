@@ -1,40 +1,135 @@
-
-    Adamstown Rosebud FC 1 : 1  Weston Workers FC | [ Strong Draw,Weak Away,Weak Away ]
+[X]
+    VfL Bochum 1 : 1  Hoffenheim | [ Strong Draw,Strong Away,Strong Draw ]
     PLAY: [ Home or Away [ 12 ]  ] 
-    Scores: 1 :  1 
+    Scores: 2 :  1 
     ===========================================================================================================
 
-    White City FK Beograd 1 : 1  Campbelltown City SC | [ Weak Home,Weak Away,Strong Away ]
-    PLAY: [ Home or Away [ 12 ]  ] 
-    Scores: 1 :  1 
+    Frosinone 1 : 1  US Salernitana | [ Strong Draw,Strong Home,Weak Away ]
+    PLAY: [ Home ] 
+    Scores: 2 :  1 
     ===========================================================================================================
 
-    Adamstown Rosebud FC 1 : 1  Weston Workers FC | [ Strong Draw,Weak Away,Weak Away ]
+    Montpellier 1 : 1  Nantes | [ Weak Home,Strong Home,Weak Away ]
+    PLAY: [ Home ] 
+    Scores: 2 :  2 
+    ===========================================================================================================
+
+    Queens Park Rangers 0 : 1  Leeds United | [ Strong Draw,Strong Away,Weak Away ]
     PLAY: [ Home or Away [ 12 ]  ] 
-    Scores: 1 :  1 
+    Scores: 0 :  1 
+    ===========================================================================================================
+
+    Gil Vicente Barcelos 0 : 1  FC Arouca | [ Weak Away,Strong Away,Strong Away ]
+    PLAY: [ Home or Away [ 12 ]  ] 
+    Scores: 2 :  1 
+    ===========================================================================================================
+
+    FC St. Pauli 1 : 1  Hansa Rostock | [ Weak Away,Strong Away,Strong Home ]
+    PLAY: [ Home or Away [ 12 ]  ] 
+    Scores: 3 :  1 
+    ===========================================================================================================
+
+    Hertha 3 : 1  Hannover | [ Weak Home,Strong Home,Strong Home ]
+    PLAY: [ Home ] 
+    Scores: 3 :  3 
+    ===========================================================================================================
+
+    Mamelodi Sundowns 1 : 0  Esperance Sportive de Tunis | [ Strong Draw,Strong Home,Strong Home ]
+    PLAY: [ Home ] 
+    Scores: 3 :  1 
+    ===========================================================================================================
+
+    AL Ahly SC (Egy) 1 : 1  TP Mazembe | [ Strong Home,Strong Home,Weak Away ]
+    PLAY: [ Home ] 
+    Scores: 2 :  1 
+    ===========================================================================================================
+
+    FC Andorra 0 : 2  Racing Santander | [ Strong Away,Strong Away,Weak Away ]
+    PLAY: [ Home or Draw [ 1X ]  ] 
+    Scores: 3 :  1 
+    ===========================================================================================================
+
+    SC Pisa 2 : 1  US Catanzaro | [ Strong Home,Strong Home,Strong Home ]
+    PLAY: [ Home ] 
+    Scores: 2 :  2 
+    ===========================================================================================================
+
+    Venezia FC 1 : 1  US Cremonese | [ Weak Home,Strong Home,Strong Home ]
+    PLAY: [ Home ] 
+    Scores: 3 :  3 
+    ===========================================================================================================
+
+    Adana Demirspor 2 : 2  Galatasaray Istanbul | [ Strong Home,Weak Away,Weak Home ]
+    PLAY: [ Home or Away [ 12 ]  ] 
+    Scores: 1 :  2 
+    ===========================================================================================================
+
+    De Graafschap 2 : 1  MVV Maastricht | [ Weak Away,Strong Home,Weak Home ]
+    PLAY: [ Home or Away [ 12 ]  ] 
+    Scores: 2 :  2 
+    ===========================================================================================================
+[X][X]
+    TOP Oss 1 : 2  Jong AZ Alkmaar | [ Strong Away,Strong Away,Weak Home ]
+    PLAY: [ Home or Away [ 12 ]  ] 
+    Scores: 2 :  2 
+    ===========================================================================================================
+[X][X]
+    KAS Eupen 1 : 0  Royal Charleroi SC | [ Strong Home,Strong Home,Strong Home ]
+    PLAY: [ Home or Away [ 12 ]  ] 
+    Scores: 2 :  2 
+    ===========================================================================================================
+
+    Lyngby BK 2 : 1  Vejle BK | [ Strong Home,Weak Home,Strong Home ]
+    PLAY: [ Home or Away [ 12 ]  ] 
+    Scores: 2 :  2 
+    ===========================================================================================================
+
+    Airdrieonians FC 2 : 0  Dundee United | [ Strong Draw,Strong Home,Strong Home ]
+    PLAY: [ Draw or Away [ X2 ]  ] 
+    Scores: 1 :  2 
+    ===========================================================================================================
+
+    NK Istra 1961 1 : 1  NK Slaven Belupo | [ Strong Away,Weak Home,Weak Away ]
+    PLAY: [ Home or Draw [ 1X ]  ] 
+    Scores: 3 :  1 
+    ===========================================================================================================
+
+    Chamois Niort FC 1 : 1  FC Martigues | [ Weak Home,Strong Home,Strong Home ]
+    PLAY: [ Home or Away [ 12 ]  ] 
+    Scores: 3 :  3 
+    ===========================================================================================================
+
+    Dijon 1 : 0  FC Goal | [ Strong Draw,Strong Home,Weak Away ]
+    PLAY: [ Home ] 
+    Scores: 2 :  2 
     ===========================================================================================================
 [X]
-    Adamstown Rosebud FC 1 : 1  Weston Workers FC | [ Strong Draw,Weak Away,Weak Away ]
-    PLAY: [ Home or Away [ 12 ]  ] 
-    Scores: 1 :  1 
+    FC Villefranche-Beaujolais 1 : 1  US Avranches | [ Weak Away,Strong Away,Strong Away ]
+    PLAY: [ Home ] 
+    Scores: 3 :  1 
+    ===========================================================================================================
+[X][X]
+    Nancy-Lorraine 2 : 1  Le Mans FC | [ Strong Home,Weak Home,Strong Home ]
+    PLAY: [ Home or Draw [ 1X ]  ] 
+    Scores: 3 :  3 
     ===========================================================================================================
 
-    White City FK Beograd 1 : 1  Campbelltown City SC | [ Weak Home,Weak Away,Strong Away ]
+    Stade Olympique Choletais 0 : 1  FC Rouen | [ Strong Draw,Strong Away,Weak Home ]
     PLAY: [ Home or Away [ 12 ]  ] 
-    Scores: 1 :  1 
-    ===========================================================================================================
-
-    Adamstown Rosebud FC 1 : 1  Weston Workers FC | [ Strong Draw,Weak Away,Strong Draw ]
-    PLAY: [ Home or Away [ 12 ]  ] 
-    Scores: 1 :  1 
+    Scores: 0 :  1 
     ===========================================================================================================
 [X]
-    Adamstown Rosebud FC 1 : 1  Weston Workers FC | [ Strong Draw,Weak Away,Strong Draw ]
+    FC Aarau 2 : 2  AC Bellinzona | [ Strong Away,Strong Away,Strong Home ]
     PLAY: [ Home or Away [ 12 ]  ] 
-    Scores: 1 :  1 
+    Scores: 2 :  3 
+    ===========================================================================================================
+[X]
+    Saumur Olympique 0 : 1  Les Herbiers | [ Strong Draw,Strong Away,Weak Away ]
+    PLAY: [ Home or Away [ 12 ]  ] 
+    Scores: 3 :  1 
     ===========================================================================================================
 
-    White City FK Beograd 1 : 1  Campbelltown City SC | [ Weak Home,Weak Away,Strong Away ]
+    FC Pirin Blagoevgrad 1 : 1  POFC Botev Vratsa | [ Strong Away,Strong Away,Weak Away ]
     PLAY: [ Home or Away [ 12 ]  ] 
-    Scores: 1 :  1 
+    Scores: 3 :  2 
     ===========================================================================================================

@@ -982,12 +982,13 @@ try:
         #
         # input('cp:::')
         print(f'[DEBUG] [PREDICTING] Using WINS ratio and H2H data...')
+        print(f"newdata: {newdata}")
         a = predict_engine.analyze_matches(newdata, new_home, new_away)
         print(f'[DEBUG] [PREDICTING] Using AVERAGE GOALS and EXPECTED GOAL analysis...')
-        print(f"new home: {new_home}")
-        print(f"new away: {new_away}")
-        print(f"new data: {newdata}")
-        print()
+        # print(f"new home: {new_home}")
+        # print(f"new away: {new_away}")
+        # print(f"new data: {newdata}")
+        # print()
         b = predict_engine.analyze_by_average_goal_scored(newdata, new_home, new_away)
         print(f'[DEBUG] [PREDICTING] Using POISSON analysis...')
         c = predict_engine.analyze_by_poisson_analysis(newdata, new_home, new_away)
@@ -1498,15 +1499,15 @@ try:
             f.write("")
 
     def write_append_to_file(filename, data):
-        with open(filename, 'a') as f:
+        with open(filename, 'a', encoding='utf-8') as f:
             f.write(data)
 
     def get_all_odds_data():
         oddData = []
-        with open('teamOnlyData.txt', 'r') as f:
+        with open('teamOnlyData.txt', 'r', encoding='utf-8') as f:
             data = f.read()
 
-        with open('oddOnlyData.txt', 'r') as f:
+        with open('oddOnlyData.txt', 'r', encoding='utf-8') as f:
             data2 = f.read()
 
         dataList = data.split("\n\n")
@@ -1714,7 +1715,7 @@ try:
     def start_predict(sport='football'):
 
         # open file that contains all the teams to be predicted
-        with open('teamOnlyData.txt', 'r') as f:
+        with open('teamOnlyData.txt', 'r', encoding='utf-8') as f:
             raw = f.read()
 
         teamList = []
