@@ -181,6 +181,9 @@ class PreviousRecordExtractor():
         ha_class = "Text"
         ha_class_list = ["sc-gFqAkR", "Text"]
 
+        # suggested_data_table_class = ""
+        # suggested_ha_class = ""
+
         # print(f"finding suitable class name for DATA TABLE CLASS...")
         suitable_data_table_class = self.find_suitable_class_name(data_table_class_list, False)     # using CSS
         if suitable_data_table_class is None:

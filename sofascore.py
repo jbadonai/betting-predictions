@@ -982,14 +982,11 @@ try:
         #
         # input('cp:::')
         print(f'[DEBUG] [PREDICTING] Using WINS ratio and H2H data...')
-        print(f"newdata: {newdata}")
         a = predict_engine.analyze_matches(newdata, new_home, new_away)
+
         print(f'[DEBUG] [PREDICTING] Using AVERAGE GOALS and EXPECTED GOAL analysis...')
-        # print(f"new home: {new_home}")
-        # print(f"new away: {new_away}")
-        # print(f"new data: {newdata}")
-        # print()
         b = predict_engine.analyze_by_average_goal_scored(newdata, new_home, new_away)
+
         print(f'[DEBUG] [PREDICTING] Using POISSON analysis...')
         c = predict_engine.analyze_by_poisson_analysis(newdata, new_home, new_away)
 

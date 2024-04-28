@@ -156,10 +156,19 @@ if ans == 'y' or ans == 'Y' or ans == '':
     print('trying to login...')
     login_to_sportybet(driver, '8022224284', "Afolayemi1")
     print('done logging in')
+
     time.sleep(5)
 
-    urls_string = """https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240426054336ord38355785
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240426054601ord38384818"""
+    urls_string = """https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240426054601ord38384818
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240426153227ord52662200
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240426153432ord52717530
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240426153618ord52765568
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240426154120ord52914224
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240427045751ord70396344
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240427052006ord70714277
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240427172254ord06514424
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240427174733ord07307949
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240427182911ord08983183"""
 
     urls = urls_string.split("\n")
     data = []
