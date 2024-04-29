@@ -1,72 +1,38 @@
-League: Japan JLeague 2
-05:00  
-Fagiano Okayama
-Shimizu S-Pulse
-3.00
-2.30
-                
-05:00  
-Roasso Kumamoto
-Oita Trinita
-2.15
-3.20
-                
-***************************************************************************
-League: Japan J3 League
-05:00  
-Gainare Tottori
-FC Ryukyu
-2.50
-2.55
-                
-***************************************************************************
-League: Australia Northern NSW NPL
-05:30  
-Charlestown Azzurri FC
-Broadmeadow Magic FC
-3.90
-1.64
-                
-05:30  
-Newcastle Olympic FC
-New Lambton FC
-1.42
-6.10
-                
-***************************************************************************
-League: Japan Nadeshiko League Div 2 Women
-05:00  
-Fukuoka J. Anclas Women
-Yamato Sylphid Women
-3.90
-1.81
-                
-***************************************************************************
-League: Japan Nadeshiko League Div 1 Women
-05:00  
-Bunnys Gunma FC White Star
-Speranza Osaka-Takatsuki
+League: Russia Premier League
+11:00  
+PFK Krylia Sovetov Samara
+FK Krasnodar
 3.10
-2.05
-                
-05:00  
-Iga FC Kunoichi
-Nippatsu Yokohama FC Seagulls
-2.40
-2.50
-                
-05:00  
-Nittaidai FC
-NGU Loveledge Nagoya
-2.65
 2.25
                 
 ***************************************************************************
-League: Japan WE League Women
-05:00  
-Albirex Niigata
-JEF United Ichihara Chiba
-1.83
-4.60
+League: Simulated Reality League LaLiga SRL
+***************************************************************************
+League: Simulated Reality League Serie A SRL
+***************************************************************************
+League: Simulated Reality League Turkey Super Lig SRL
+***************************************************************************
+League: Indonesia Liga 1
+09:00  
+Persikabo 1973
+Barito Putera
+3.20
+2.00
+                
+***************************************************************************
+League: England Amateur Professional Development League
+11:00  
+Sheffield Wednesday
+Swansea City
+2.30
+2.55
+                
+***************************************************************************
+League: Japan Nadeshiko League Div 1 Women
+07:00  
+AS Harima Albion
+Shizuoka SSU Bonita
+2.30
+2.75
                 
 ***************************************************************************

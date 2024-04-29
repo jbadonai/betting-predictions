@@ -14,11 +14,17 @@ class CombinationAnalyzer:
         self.save_combinations()
 
     def analyze(self, a, b, c):
-        self.load_combinations()
+        try:
+            self.load_combinations()
 
-        key = (str(a).lower().strip(), str(b).lower().strip(), str(c).lower().strip())
-        print(f"key to get: {key}")
-        return self.combinations.get(str(key), "Unknown")
+            key = (str(a).lower().strip(), str(b).lower().strip(), str(c).lower().strip())
+            print(f"key to get: {key}")
+            return self.combinations.get(str(key), "Unknown")
+        except:
+            print()
+            print(f"THE ERROR!!!!!!!!!!!!!!!!")
+            print()
+            return "Unknown"
 
     def save_combinations(self):
         with open(self.filename, 'w') as file:

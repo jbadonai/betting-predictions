@@ -1070,9 +1070,14 @@ try:
         print(f'[DEBUG] [PREDICTING] Evaluation completed! Concluding/Predicting based on the evaluation...')
         # get suggestion based on previous result given by the prediction stored
         suggestion = analyzer.analyze(evaluate(a), evaluate(b), evaluate(c))
+        print(f'suggestion: {suggestion}')
 
         # get the home and away odds
         odds = get_home_away_odds(home, away)
+        print(f"odds: {odds}")
+
+        if odds is None:
+            return
 
         # using the odds and suggestion to make a deeper infomed decision or predition
         deepCheck = deep_check(odds, suggestion)
@@ -1557,6 +1562,8 @@ try:
                 continue
 
     def deep_check(odd_info, suggestion):
+        if odd_info is None:
+            return "UNKNOW | odd info not available!"
         homeOdd = round(float(odd_info[0]),2)
         awayOdd = round(float(odd_info[1]), 2)
 
