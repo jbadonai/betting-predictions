@@ -4,6 +4,10 @@ import numpy as np
 from scipy.stats import poisson
 import pandas as pd
 import Levenshtein
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+import numpy as np
 
 
 def are_similar_old(string1, string2, threshold=0.3):
@@ -390,170 +394,75 @@ class FootballPrediction():
             print(f"Inner error at ANALYZE BY AVERAGE GOAL SCORED: {e}")
             pass
 
-# class BasketballPrediction():
-#
-#     def __init__(self):
-#         pass
-#
-#     def analyze_matches(self, data, home_team, away_team):
-#         print('analyzing matches...')
-#
-#         # Helper function to calculate average
-#         def calculate_average(scores):
-#             return sum(scores) / len(scores) if scores else 0
-#
-#         # Initialize variables
-#         home_wins = away_wins = home_goals = away_goals = 0
-#         home_scores = []
-#         away_scores = []
-#
-#         # Create DataFrame to store match data
-#         match_df = pd.DataFrame(data)
-#
-#         # Filter data for relevant matches
-#         relevant_matches = match_df[match_df['status'] == 'W']
-#
-#         # Function to check similarity for each row
-#         def check_similarity_home(row):
-#             return are_similar(row['home'].strip(), home_team) or are_similar(row['away'].strip(), home_team)
-#
-#         # Function to check similarity for each row
-#         def check_similarity_away(row):
-#             return are_similar(row['home'].strip(), away_team) or are_similar(row['away'].strip(), away_team)
-#
-#         # Apply similarity check and filter relevant matches
-#         home_matches = relevant_matches[relevant_matches.apply(check_similarity_home, axis=1)]
-#         away_matches = relevant_matches[relevant_matches.apply(check_similarity_away, axis=1)]
-#
-#         print('HOME MATCHES:')
-#         print(home_matches)
-#         print()
-#
-#         print('AWAY MATCHES')
-#         print(away_matches)
-#         print()
-#
-#         # Analyze home matches
-#         for match in home_matches.itertuples():
-#             home_wins += 1
-#             home_goals += match.home_score
-#             home_scores.append(match.home_score)
-#
-#         # Analyze away matches
-#         for match in away_matches.itertuples():
-#             away_wins += 1
-#             away_goals += match.away_score
-#             away_scores.append(match.away_score)
-#
-#         # Calculate goal difference and average scores
-#         home_avg_score = round(calculate_average(home_scores), 2)
-#         away_avg_score = round(calculate_average(away_scores), 2)
-#
-#         # Calculate team strength
-#         total_wins = home_wins + away_wins
-#         home_strength = round((home_wins / total_wins) * 100) if total_wins else 50
-#         away_strength = round((away_wins / total_wins) * 100) if total_wins else 50
-#
-#         # Calculate expected scores (using average scores as a simple method)
-#         expected_home_score = round(home_avg_score * (away_strength / 100), 2)
-#         expected_away_score = round(away_avg_score * (home_strength / 100), 2)
-#
-#         # Determine winner
-#         if expected_home_score > expected_away_score:
-#             winner = "Home"
-#         elif expected_home_score < expected_away_score:
-#             winner = "Away"
-#         else:
-#             winner = "Draw"
-#
-#         result_str = f"{home_team} {round(expected_home_score, 1)} : {round(expected_away_score, 1)} {away_team} | [{winner}]"
-#         input('waiting')
-#         return result_str
-#
-#     def analyze_by_poisson_analysis(self, data, home_team, away_team):
-#         print('analyzing by poisson analysis....')
-#
-#         df = pd.DataFrame(data)
-#
-#         # Filter data for home and away
-#         home_data = df[df['team'] == home_team]
-#         away_data = df[df['team'] == away_team]
-#
-#         # Define the mean goals scored for each team
-#         home_avg_goals = home_data['away_score'].mean()
-#         away_avg_goals = away_data['away_score'].mean()
-#
-#         # Simulate match scores using Poisson distribution
-#         num_simulations = 100000  # Adjust the number of simulations as needed
-#
-#         home_home_goals_sim = poisson.rvs(home_avg_goals, size=num_simulations)
-#         away_away_goals_sim = poisson.rvs(away_avg_goals, size=num_simulations)
-#
-#         # Calculate average goals from simulations
-#         home_avg_home_goals_sim = np.mean(home_home_goals_sim)
-#         away_avg_away_goals_sim = np.mean(away_away_goals_sim)
-#
-#         # Display the results
-#         # print(f'{home_team} Average Home Goals (Simulated): {home_avg_home_goals_sim:.2f}')
-#         # print(f'{away_team} Average Away Goals (Simulated): {away_avg_away_goals_sim:.2f}')
-#         if round(home_avg_home_goals_sim,1) > round(away_avg_away_goals_sim,1):
-#             winner = "Home"
-#         elif round(home_avg_home_goals_sim,1) < round(away_avg_away_goals_sim,1):
-#             winner = "Away"
-#         else:
-#             winner = "Draw"
-#
-#         if round(home_avg_home_goals_sim) > round(away_avg_away_goals_sim):
-#             winner2 = "Home"
-#         elif round(home_avg_home_goals_sim) < round(away_avg_away_goals_sim):
-#             winner2 = "Away"
-#         else:
-#             winner2 = "Draw"
-#
-#         return f"{home_team} {round(home_avg_home_goals_sim,1)} : {round(away_avg_away_goals_sim,1)} {away_team} |  [{winner}] -  [{winner2}]"
-#
-#         pass
-#
-#     def analyze_by_average_goal_scored(self, data, home_team, away_team):
-#         try:
-#
-#             data = pd.DataFrame(data)
-#
-#             # Assuming 'data' is a pandas DataFrame containing your match data
-#             # Calculate the average home and away goals for each team
-#             average_home_goals = data.groupby('home')['home_score'].mean()
-#             average_away_goals = data.groupby('away')['away_score'].mean()
-#
-#             # Function to calculate expected goals (xG)
-#             def calculate_xg(home_team, away_team):
-#                 xG_home = average_home_goals.get(home_team, 0)
-#                 xG_away = average_away_goals.get(away_team, 0)
-#                 return xG_home, xG_away
-#
-#             # Example usage
-#             xG_home, xG_away = calculate_xg(home_team, away_team)
-#             # print(f"Expected Goals for {home_team} (Home): {xG_home}")
-#             # print(f"Expected Goals for {away_team} (Away): {xG_away}")
-#
-#             if round(xG_home,1) > round(xG_away,1):
-#                 winner = "Home"
-#             elif round(xG_home,1) < round(xG_away,1):
-#                 winner = "Away"
-#             else:
-#                 winner = "Draw"
-#
-#             if round(xG_home) > round(xG_away):
-#                 winner2 = "Home"
-#             elif round(xG_home) < round(xG_away):
-#                 winner2 = "Away"
-#             else:
-#                 winner2 = "Draw"
-#
-#             return f"{home_team}  {round(xG_home,1)} :  {round(xG_away,1)} {away_team} |  [{winner}] -  [{winner2}]"
-#         except Exception as e:
-#             print(f'An error occurred in ANALYZE BY AVERAGE GOAL SCORED: {e}')
-#             input('error inside:')
-#             pass
+
+class BasketballPrediction():
+
+    def __init__(self):
+        pass
+
+    def analyze_bb_matches(self, cleaned_data, home_team, away_team):
+        try:
+            # Filter data for the specified home and away teams
+            similar_matches = [match for match in cleaned_data if
+                               are_similar(match['home'], home_team) or are_similar(match['away'], home_team)
+                               or are_similar(match['away'], away_team) or are_similar(match['home'], away_team)]
+
+            if not similar_matches:
+                return "No matches found for the specified home and away teams.", cleaned_data, home_team, away_team
+
+            # Prepare data for machine learning models
+            X = np.array([[match['home_Q1_score'], match['home_Q2_score'], match['home_Q3_score'], match['home_Q4_score'],
+                           match['away_Q1_score'], match['away_Q2_score'], match['away_Q3_score'], match['away_Q4_score']]
+                          for match in similar_matches])
+            y_total_home = np.array([match['home_score'] for match in similar_matches])
+            y_total_away = np.array([match['away_score'] for match in similar_matches])
+            y_quarterly_home = np.array(
+                [[match['home_Q1_score'], match['home_Q2_score'], match['home_Q3_score'], match['home_Q4_score']] for match
+                 in similar_matches])
+            y_quarterly_away = np.array(
+                [[match['away_Q1_score'], match['away_Q2_score'], match['away_Q3_score'], match['away_Q4_score']] for match
+                 in similar_matches])
+
+            # Split data into training and testing sets
+            X_train, X_test, y_total_home_train, y_total_home_test, y_total_away_train, y_total_away_test, y_quarterly_home_train, y_quarterly_home_test, y_quarterly_away_train, y_quarterly_away_test = train_test_split(
+                X, y_total_home, y_total_away, y_quarterly_home, y_quarterly_away, test_size=0.2, random_state=42)
+
+            # Train machine learning models
+            rf_total_home = RandomForestRegressor(random_state=42)
+            rf_total_away = RandomForestRegressor(random_state=42)
+
+            rf_total_home.fit(X_train, y_total_home_train)
+            rf_total_away.fit(X_train, y_total_away_train)
+
+            # Make predictions
+            total_score_prediction_home = rf_total_home.predict(X_test)
+            total_score_prediction_away = rf_total_away.predict(X_test)
+
+            # Calculate mean squared error
+            total_score_mse_home = mean_squared_error(y_total_home_test, total_score_prediction_home)
+            total_score_mse_away = mean_squared_error(y_total_away_test, total_score_prediction_away)
+
+            # Calculate average predictions
+            avg_prediction_home = np.mean(total_score_prediction_home)
+            avg_prediction_away = np.mean(total_score_prediction_away)
+
+            # Calculate average quarterly scores
+            avg_quarterly_home = np.mean(y_quarterly_home_test, axis=0)
+            avg_quarterly_away = np.mean(y_quarterly_away_test, axis=0)
+
+            # Prepare predictions in dictionary format
+            predictions = {
+                'Average_Total_Score_Prediction_Home': avg_prediction_home,
+                'Average_Total_Score_Prediction_Away': avg_prediction_away,
+                'Average_Quarterly_Score_Home': avg_quarterly_home.tolist(),
+                'Average_Quarterly_Score_Away': avg_quarterly_away.tolist(),
+                'Total_Score_MSE_Home': total_score_mse_home,
+                'Total_Score_MSE_Away': total_score_mse_away
+            }
+
+            return predictions
+        except Exception as e:
+            return e, cleaned_data, home_team, away_team
 
 
 

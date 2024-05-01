@@ -1,15 +1,26 @@
 
-    PFK Krylia Sovetov Samara 0 : 1  FK Krasnodar | [ Strong Draw,Strong Away,Weak Away ]
-    PLAY: [ Home or Away [ 12 ]  ] 
-    Scores: 1 :  2 
-    ===========================================================================================================
-
-    Persikabo 1973 2 : 1  Barito Putera | [ Strong Draw,Strong Home,Strong Home ]
-    PLAY: [ Away ] 
-    Scores: 1 :  2 
-    ===========================================================================================================
-
-    Sheffield Wednesday 1 : 1  Swansea City | [ Strong Draw,Strong Away,Strong Home ]
-    PLAY: [ Home or Away [ 12 ]  ] 
-    Scores: 1 :  2 
-    ===========================================================================================================
+                US Cremonese 1 : 1  SC Pisa | [ Weak Away,Strong Draw,Weak Away ]
+                PLAY: [ Home or Away [ 12 ]  ] 
+                Scores: 2 :  1 
+                ===========================================================================================================
+            
+                Central Coast Mariners 2 : 2  Adelaide United FC | [ Weak Home,Strong Draw,Weak Away ]
+                PLAY: [ Home or Away [ 12 ]  ] 
+                Scores: 2 :  1 
+                ===========================================================================================================
+            
+                Changchun Yatai 0 : 1  Sichuan Jiuniu | [ Strong Draw,Weak Home,Strong Away ]
+                PLAY: [ Home or Away [ 12 ]  ] 
+                Scores: 2 :  1 
+                ===========================================================================================================
+            
+                Qingdao Hainiu FC 1 : 1  Shanghai Port FC | [ Strong Away,Strong Home,Strong Away ]
+                PLAY: [ Away ] 
+                Scores: 0 :  4 
+                ===========================================================================================================
+            
+                Daegu FC 1 : 1  Ulsan Hyundai FC | [ Strong Home,Weak Away,Weak Home ]
+                PLAY: [ Home or Away [ 12 ]  ] 
+                Scores: 1 :  2 
+                ===========================================================================================================
+            [X][X][X]

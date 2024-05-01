@@ -159,10 +159,8 @@ if ans == 'y' or ans == 'Y' or ans == '':
 
     time.sleep(5)
 
-    urls_string = """https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240428203317ord57743898
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240428203602ord57830773
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240428204841ord58241491
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240428210052ord58584991"""
+    urls_string = """https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240430202009ord16992013
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240430202240ord17091492"""
 
     urls = urls_string.split("\n")
     data = []

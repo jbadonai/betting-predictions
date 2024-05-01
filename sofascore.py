@@ -799,20 +799,33 @@ try:
 
     def retrieve_data_bb(file_path='datafile_bb.xlsx'):
         try:
-            # Try loading existing file
-            df = pd.read_excel(file_path)
+            # Load data from Excel file
+            try:
+                df = pd.read_excel(file_path)
+            except Exception as e:
+                print("Error loading data:", str(e))
+                return []
 
-            # Convert 'home_score' and 'away_score' columns to integers
-            df['home_score'] = pd.to_numeric(df['home_score'], errors='coerce').astype('Int64')
-            df['away_score'] = pd.to_numeric(df['away_score'], errors='coerce').astype('Int64')
+             # Drop rows with any NaN values
+            df = df.dropna()
 
-            # Exclude rows with blank, NaN, "N/A", or "?" values in 'home_score' and 'away_score'
-            df = df.dropna(subset=['home_score', 'away_score'])
-            df = df[~df['home_score'].isin(['', 'N/A', '?'])]
-            df = df[~df['away_score'].isin(['', 'N/A', '?'])]
+            # Remove rows with blank or "?" values in any column
+            df = df[~df.isin(["", "?"])]
 
-            # Return the filtered DataFrame as a list of dictionaries
-            return df.to_dict('records')
+            # Convert specified columns to integers
+            int_columns = ['home_Q1_score', 'home_Q2_score', 'home_Q3_score', 'home_Q4_score',
+                           'home_Q5_score', 'away_Q1_score', 'away_Q2_score', 'away_Q3_score',
+                           'away_Q4_score', 'away_Q5_score', 'home_score', 'away_score']
+            for col in int_columns:
+                df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype(int)
+
+            # # Return the cleaned DataFrame
+            # return df
+
+
+            # Return the cleaned DataFrame as a list of dictionaries
+            cleaned_data = df.to_dict(orient='records')
+            return cleaned_data
 
         except FileNotFoundError:
             # Return an empty list if the file doesn't exist
@@ -877,6 +890,170 @@ try:
     def predict(home, away, driver, sport="football"):
         print("PREDICTING...")
 
+        def save_ml_to_excel(data, filename='ml.xlsx'):
+            # Check if file exists
+            file_exists = os.path.isfile(filename)
+
+            # Create DataFrame from data
+            df = pd.DataFrame([data])
+
+            # Add 'status' column with default value 'pending'
+            df['status'] = 'pending'
+
+            # Reorder columns to ensure 'status' is the last column
+            column_order = list(df.columns)
+            column_order.remove('status')
+            column_order.append('status')
+            df = df[column_order]
+
+            # Check if file exists and has data
+            if file_exists:
+                existing_data = pd.read_excel(filename)
+                if not existing_data.empty:
+                    df = pd.concat([existing_data, df], ignore_index=True)
+
+            # Save DataFrame to Excel
+            df.to_excel(filename, index=False)
+
+        def evaluate(text):
+            ans = None
+            awaycount = str(text).count("Away")
+            homecount = str(text).count("Home")
+            drawcount = str(text).count("Draw")
+
+            if awaycount == 2:
+                return "Strong Away"
+            elif homecount == 2:
+                return "Strong Home"
+            elif homecount == 1 and drawcount == 1:
+                return "Weak Home"
+            elif awaycount == 1 and drawcount == 1:
+                return "Weak Away"
+            elif drawcount == 2:
+                return "Strong Draw"
+
+        def evaluate_scores(text):
+            homescore = str(text).split(":")[0].strip().split(" ")[-1]
+            awayscore = str(text).split(":")[-1].strip().split(" ")[0]
+            return homescore, awayscore
+            pass
+
+        def complete_evaluation(a, b, c):
+            new_a = a.lower().replace(" ", '_')
+            new_b = b.lower().replace(" ", '_')
+            new_c = c.lower().replace(" ", '_')
+
+            # strong_home	strong_away	strong_draw	weak_home	weak_away
+            eval_data = {'strong_home': 0,
+                         'strong_away': 0,
+                         'strong_draw': 0,
+                         'weak_home': 0,
+                         'weak_away': 0
+                         }
+
+            eval_data[new_a] = 1
+            eval_data[new_b] = 1
+            eval_data[new_c] = 1
+
+            return eval_data
+
+            pass
+
+        def check_evaluation(test, all_evaluation):
+            if str(all_evaluation).strip().lower().__contains__(str(test).lower().strip()):
+                return 1
+            else:
+                return 0
+
+        def save_ml_to_excel_not_working(data, filename='ml.xlsx'):
+            # Check if file exists
+            file_exists = os.path.isfile(filename)
+
+            # Create DataFrame from data
+            df = pd.DataFrame([data])
+
+            # Add 'status' column with default value 'pending'
+            df['status'] = 'pending'
+
+            # Reorder columns to ensure 'status' is the last column
+            column_order = list(df.columns)
+            column_order.remove('status')
+            column_order.append('status')
+            df = df[column_order]
+
+            # Check if file exists and has data
+            if file_exists:
+                existing_data = pd.read_excel(filename)
+                if not existing_data.empty:
+                    # Check if any row in the new data already exists in the Excel file
+                    existing_data_no_status = existing_data.drop(columns=['status'])
+                    df_no_status = df.drop(columns=['status'])
+                    if (existing_data_no_status.values == df_no_status.values).any():
+                        print("Data already exists in the Excel file. Skipping...")
+                        return
+                    else:
+                        with pd.ExcelWriter(filename, mode='a', if_sheet_exists='replace') as writer:
+                            df.to_excel(writer, index=False, header=False)
+                else:
+                    df.to_excel(filename, index=False)
+            else:
+                df.to_excel(filename, index=False)
+
+        def combine_lists(list1, list2):
+            # Convert lists to sets to remove duplicates
+            set1 = set(list1)
+            set2 = set(list2)
+
+            # Combine the sets
+            combined_set = set1.union(set2)
+
+            # Convert the combined set back to a list
+            combined_list = list(combined_set)
+
+            return combined_list
+
+        def process_final(fin: list):
+            ans = "/".join(fin)
+            if ans.lower().__contains__("a") and ans.lower().__contains__("h"):
+                return "Home or Away [ 12 ] "
+            elif ans.lower().__contains__("d") and ans.lower().__contains__("h"):
+                return "Home or Draw [ 1X ] "
+            elif ans.lower().__contains__("d") and ans.lower().__contains__("a"):
+                return "Draw or Away [ X2 ] "
+            elif ans.lower() == 'a':
+                return "Away"
+            elif ans.lower() == 'h':
+                return "Home"
+            elif ans.lower() == 'd':
+                return "Draw"
+
+        def combine_lists(list1, list2):
+            # Convert lists to sets to remove duplicates
+            set1 = set(list1)
+            set2 = set(list2)
+
+            # Combine the sets
+            combined_set = set1.union(set2)
+
+            # Convert the combined set back to a list
+            combined_list = list(combined_set)
+
+            return combined_list
+
+        def process_final(fin: list):
+            ans = "/".join(fin)
+            if ans.lower().__contains__("a") and ans.lower().__contains__("h"):
+                return "Home or Away [ 12 ] "
+            elif ans.lower().__contains__("d") and ans.lower().__contains__("h"):
+                return "Home or Draw [ 1X ] "
+            elif ans.lower().__contains__("d") and ans.lower().__contains__("a"):
+                return "Draw or Away [ X2 ] "
+            elif ans.lower() == 'a':
+                return "Away"
+            elif ans.lower() == 'h':
+                return "Home"
+            elif ans.lower() == 'd':
+                return "Draw"
 
         #  CHECKING IF HOME AND AWAY TEAM ALREADY EXIST IN THE EXCEL SSHEET
         # -----------------------------------------------------------------------------
@@ -954,326 +1131,189 @@ try:
         print(f'[DEBUG] Recent game data extracted from file. Intializing Predicting Engine...')
         if sport == 'football':
             predict_engine = FootballPrediction()
+
+            print(f'[DEBUG] [PREDICTING] Using WINS ratio and H2H data...')
+            a = predict_engine.analyze_matches(newdata, new_home, new_away)
+
+            print(f'[DEBUG] [PREDICTING] Using AVERAGE GOALS and EXPECTED GOAL analysis...')
+            b = predict_engine.analyze_by_average_goal_scored(newdata, new_home, new_away)
+
+            print(f'[DEBUG] [PREDICTING] Using POISSON analysis...')
+            c = predict_engine.analyze_by_poisson_analysis(newdata, new_home, new_away)
+
+            print(f'[DEBUG] [PREDICTING] Evaluating results from the 3 alorighms...')
+
+            analyzer = CombinationAnalyzer()
+
+            homeScore = round(
+                (float(evaluate_scores(a)[0]) + float(evaluate_scores(b)[0]) + float(evaluate_scores(c)[0])) / 3)
+            awayScore = round(
+                (float(evaluate_scores(a)[1]) + float(evaluate_scores(b)[1]) + float(evaluate_scores(c)[1])) / 3)
+
+            comp_eval = complete_evaluation(evaluate(a), evaluate(b), evaluate(c))
+            print(f'complete evaluation: {comp_eval}')
+
+            print(f'[DEBUG] [PREDICTING] Evaluation completed! Concluding/Predicting based on the evaluation...')
+            # get suggestion based on previous result given by the prediction stored
+            suggestion = analyzer.analyze(evaluate(a), evaluate(b), evaluate(c))
+            print(f'suggestion: {suggestion}')
+
+            # get the home and away odds
+            odds = get_home_away_odds(home, away)
+            print(f"odds: {odds}")
+
+            if odds is None:
+                return
+
+            # using the odds and suggestion to make a deeper infomed decision or predition
+            deepCheck = deep_check(odds, suggestion)
+
+            # declaring machine learning container that holds data to be passed to machine learning
+            print(f'[DEBUG] [PREDICTING LEVEL 2] Preparing data for MACHINE LEARNING algorighms...')
+            ml = {}
+
+            allEvaluation = f"{evaluate(a)},{evaluate(b)},{evaluate(c)}"
+
+            # THE SCRIPT USES 2 DIFFERENT MACHINE LEARNING ALGORIGHMS THEIR DATA WILL BE PREPARED BELOW
+            # populate data for the machine learning V1
+            # ------------------------------------
+            ml['home'] = home
+            ml['away'] = away
+            ml['home_odd'] = round(float(odds[0]), 2)
+            ml['away_odd'] = round(float(odds[1]), 2)
+            ml['odd_difference'] = abs(ml['home_odd'] - ml['away_odd'])
+            ml['strong_home'] = check_evaluation('strong home', allEvaluation)
+            ml['strong_away'] = check_evaluation('strong away', allEvaluation)
+            ml['strong_draw'] = check_evaluation('strong draw', allEvaluation)
+            ml['weak_home'] = check_evaluation('weak home', allEvaluation)
+            ml['weak_away'] = check_evaluation('weak away', allEvaluation)
+
+            #  populate data for machine learning version 2
+            # -------------------------------------------------
+            data4Ml2 = {'home_odd': ml['home_odd'],
+                        'away_odd': ml['away_odd'],
+                        'odd_difference': ml['odd_difference'],
+                        'strong_home': ml['strong_home'],
+                        'strong_away': ml['strong_away'],
+                        'strong_draw': ml['strong_draw'],
+                        'weak_home': ml['weak_home'],
+                        'weak_away': ml['weak_away']}
+
+            # predict using machine learning based on supplied data ml
+            print("[Debug][ML] ML prediction V1 starting...")
+
+            print(
+                f'[DEBUG] [PREDICTING LEVEL 2] spliting input data into 2 for V1 and V2 Machine learning algorithms...')
+            # create a copy of ml data so it can be modified for ml
+            mlData = ml.copy()
+            mlData.pop('home')
+            mlData.pop('away')
+
+            print(f'[DEBUG] [PREDICTING LEVEL 2] parsing data to V1 MACHINE LEARNING algorith...')
+            mlPrediction = ml_prediction(mlData)
+            print(f'[DEBUG] [PREDICTING LEVEL 2] V1 MACHINE LEARNING prediction Completed!')
+            print()
+            print(f'[DEBUG] [PREDICTING LEVEL 2] parsing data to V2 MACHINE LEARNING algorighms...')
+            mlPredictionV2 = V2_prediction(data4Ml2)
+            print(f'[DEBUG] [PREDICTING LEVEL 2] V2 MACHINE LEARNING prediction Completed!')
+
+            print()
+            print(f'[DEBUG] [PREDICTING LEVEL 2] Evaluating result from both V1 and V2 MACHINE LEARNING algorighms...')
+            v2List = []
+            v1List = str(mlPrediction).split(" ")[0].split("/")
+
+            for x in mlPredictionV2[0]:
+                v2List.append(x)
+
+            final = combine_lists(v1List, v2List)
+            print("[Debug][ML] ML prediction V2 done!")
+
+            '''
+                DEEP CHECK: {deepCheck}
+                ML: {mlPrediction}
+                ML V2: {mlPredictionV2}
+            '''
+
+            homeDetail = a.split("|")[0].split(":")[0].strip()
+            awayDetails = a.split("|")[0].split(":")[1]
+
+            homeDetail = homeDetail.strip().split(" ")[:-2]
+            awayDetails = awayDetails.strip().split(" ")[1:]
+
+            print(
+                f'[DEBUG] [PREDICTING LEVEL 2] Making final prediction based on evaluation of V1 and V2 MACHINE LEARNING algorighm results ')
+
+            if len(final) <= 2:
+                result = f"""
+                {' '.join(homeDetail)} {homeScore} : {awayScore} {' '.join(awayDetails)} | [ {evaluate(a)},{evaluate(
+                    b)},{evaluate(c)} ]
+                PLAY: [ {process_final(final)} ] 
+                Scores: {mlPredictionV2[1]} :  {mlPredictionV2[2]} 
+                ===========================================================================================================
+            """
+
+                save_ml_to_excel(ml)
+
+                with open("result.txt", 'a', encoding='utf-8') as f:
+                    f.write(result)
+            else:
+                resultx = f"""[->]
+                {' '.join(homeDetail)} {homeScore} : {awayScore} {' '.join(awayDetails)}
+                PLAY:  {v1List}  | {mlPrediction}
+                       {v2List}  | {mlPredictionV2}
+                ===========================================================================================================
+            """
+
+                save_ml_to_excel(ml)
+                with open("result.txt", 'a', encoding='utf-8') as f:
+                    f.write("[X]")
+                    # f.write(result)
+                with open("result_excluded.txt", 'a', encoding='utf-8') as f:
+                    f.write(resultx)
+
         elif sport == 'basketball':
+            print(f"[BB][DEBUG] Initalizing predicting enging...")
             predict_engine = BasketballPrediction()
 
-        # time.sleep(1)
-        # a = predict_engine.analyze_matches(newdata, new_home, new_away)
-        # print(a)
+            print(f'[BB][DEBUG] [PREDICTING] Using WINS ratio and H2H data...')
+            # get test result of machine lerarning on the data
+            a = predict_engine.analyze_bb_matches(newdata, new_home, new_away)
 
-        # input('pause prediction')
-        # PASS THE SAME DATA TO 3 DIFFERENT ALGORITHMS FOR ANALYSIS
-        # -----------------------------------------------------------------------------
+            if type(a) is tuple:
+                print(f"No data for {a[2]} and {a[3]}")
+                print(a[1])
+                print()
 
-        # ndd = newdata.copy()
-        #
-        # for nd in newdata:
-        #     # print(type(nd))
-        #     new_home = nd['home']
-        #     new_away = nd['away']
-        #
-        #     # print(new_home, "<>", new_away)
-        #
-        #     a = predict_engine.analyze_matches(ndd, new_home, new_away)
-        #     b = predict_engine.analyze_by_average_goal_scored(ndd, new_home, new_away)
-        #     c = predict_engine.analyze_by_poisson_analysis(ndd, new_home, new_away)
-        #
-        #     print(a,b,c)
-        #
-        # input('cp:::')
-        print(f'[DEBUG] [PREDICTING] Using WINS ratio and H2H data...')
-        a = predict_engine.analyze_matches(newdata, new_home, new_away)
+                return
 
-        print(f'[DEBUG] [PREDICTING] Using AVERAGE GOALS and EXPECTED GOAL analysis...')
-        b = predict_engine.analyze_by_average_goal_scored(newdata, new_home, new_away)
+            def get_and_save_bb_ml_data(a):
+                odds = get_home_away_odds(home, away)
+                print(f"odds: {odds}")
+                print(a)
+                print()
+                ml={}
 
-        print(f'[DEBUG] [PREDICTING] Using POISSON analysis...')
-        c = predict_engine.analyze_by_poisson_analysis(newdata, new_home, new_away)
+                ml['home'] = new_home
+                ml['away'] = new_away
+                ml['home_odd'] = round(float(odds[0]), 2)
+                ml['away_odd'] = round(float(odds[1]), 2)
+                ml['odd_difference'] = abs(ml['home_odd'] - ml['away_odd'])
+                ml['home_Q1'] = a['Average_Quarterly_Score_Home'][0]
+                ml['home_Q2'] = a['Average_Quarterly_Score_Home'][1]
+                ml['home_Q3'] = a['Average_Quarterly_Score_Home'][2]
+                ml['home_Q4'] = a['Average_Quarterly_Score_Home'][3]
+                ml['away_Q1'] = a['Average_Quarterly_Score_Away'][0]
+                ml['away_Q2'] = a['Average_Quarterly_Score_Away'][1]
+                ml['away_Q3'] = a['Average_Quarterly_Score_Away'][2]
+                ml['away_Q4'] = a['Average_Quarterly_Score_Away'][3]
+                ml['home_score'] = a['Average_Total_Score_Prediction_Home']
+                ml['away_score'] = a['Average_Total_Score_Prediction_Away']
+                ml['status'] = "pending"
 
-        # print(f"a: {a}")
-        # print(f"b: {b}")
-        # print(f"c: {c}")
-        #
-        # print()
-        # input('cp')
+                save_ml_to_excel(ml, 'ml_bb.xlsx')
 
+            get_and_save_bb_ml_data(a)
 
-
-        # EVALUATING THE RESULT FROM THE ALGORITHMS TO MAKE INFORMED DECISION
-        # -----------------------------------------------------------------------------
-        # all = a + b + c
-        # h_count = all.count("Home")
-        # a_count = all.count("Away")
-        # d_count = all.count("Draw")
-        #
-        # print(h_count,"<>", a_count, "<>", d_count)
-
-        print(f'[DEBUG] [PREDICTING] Evaluating results from the 3 alorighms...')
-
-        def evaluate(text):
-            ans = None
-            awaycount = str(text).count("Away")
-            homecount = str(text).count("Home")
-            drawcount = str(text).count("Draw")
-
-            if awaycount == 2:
-                return "Strong Away"
-            elif homecount == 2:
-                return  "Strong Home"
-            elif homecount == 1 and drawcount == 1:
-                return  "Weak Home"
-            elif awaycount == 1 and drawcount == 1:
-                return  "Weak Away"
-            elif drawcount == 2:
-                return "Strong Draw"
-
-        def evaluate_scores(text):
-            homescore = str(text).split(":")[0].strip().split(" ")[-1]
-            awayscore = str(text).split(":")[-1].strip().split(" ")[0]
-            return homescore, awayscore
-            pass
-
-        analyzer = CombinationAnalyzer()
-        # print('to evaluate..')
-        # print(evaluate(a), "<>", evaluate_scores(a))
-        # print(evaluate(b), "<>",  evaluate_scores(b))
-        # print(evaluate(c), "<>", evaluate_scores(c))
-
-        # exttract home and away scores and find the average
-        homeScore = round((float(evaluate_scores(a)[0]) + float(evaluate_scores(b)[0]) + float(evaluate_scores(c)[0])) / 3)
-        awayScore = round((float(evaluate_scores(a)[1]) + float(evaluate_scores(b)[1]) + float(evaluate_scores(c)[1])) / 3)
-
-        def complete_evaluation(a, b, c):
-            new_a = a.lower().replace(" ",'_')
-            new_b = b.lower().replace(" ",'_')
-            new_c = c.lower().replace(" ",'_')
-
-            # strong_home	strong_away	strong_draw	weak_home	weak_away
-            eval_data = {'strong_home': 0,
-                  'strong_away': 0,
-                  'strong_draw': 0,
-                  'weak_home': 0,
-                  'weak_away': 0
-                  }
-
-            eval_data[new_a] = 1
-            eval_data[new_b] = 1
-            eval_data[new_c] = 1
-
-            return  eval_data
-
-            pass
-
-        comp_eval = complete_evaluation(evaluate(a), evaluate(b), evaluate(c))
-        print(f'complete evaluation: {comp_eval}')
-
-        print(f'[DEBUG] [PREDICTING] Evaluation completed! Concluding/Predicting based on the evaluation...')
-        # get suggestion based on previous result given by the prediction stored
-        suggestion = analyzer.analyze(evaluate(a), evaluate(b), evaluate(c))
-        print(f'suggestion: {suggestion}')
-
-        # get the home and away odds
-        odds = get_home_away_odds(home, away)
-        print(f"odds: {odds}")
-
-        if odds is None:
-            return
-
-        # using the odds and suggestion to make a deeper infomed decision or predition
-        deepCheck = deep_check(odds, suggestion)
-
-        # declaring machine learning container that holds data to be passed to machine learning
-        print(f'[DEBUG] [PREDICTING LEVEL 2] Preparing data for MACHINE LEARNING algorighms...')
-        ml ={}
-
-        def check_evaluation(test, all_evaluation):
-            if str(all_evaluation).strip().lower().__contains__(str(test).lower().strip()):
-                return 1
-            else:
-                return 0
-
-        def save_ml_to_excel(data, filename='ml.xlsx'):
-            # Check if file exists
-            file_exists = os.path.isfile(filename)
-
-            # Create DataFrame from data
-            df = pd.DataFrame([data])
-
-            # Add 'status' column with default value 'pending'
-            df['status'] = 'pending'
-
-            # Reorder columns to ensure 'status' is the last column
-            column_order = list(df.columns)
-            column_order.remove('status')
-            column_order.append('status')
-            df = df[column_order]
-
-            # Check if file exists and has data
-            if file_exists:
-                existing_data = pd.read_excel(filename)
-                if not existing_data.empty:
-                    df = pd.concat([existing_data, df], ignore_index=True)
-
-            # Save DataFrame to Excel
-            df.to_excel(filename, index=False)
-
-        def save_ml_to_excel_not_working(data, filename='ml.xlsx'):
-            # Check if file exists
-            file_exists = os.path.isfile(filename)
-
-            # Create DataFrame from data
-            df = pd.DataFrame([data])
-
-            # Add 'status' column with default value 'pending'
-            df['status'] = 'pending'
-
-            # Reorder columns to ensure 'status' is the last column
-            column_order = list(df.columns)
-            column_order.remove('status')
-            column_order.append('status')
-            df = df[column_order]
-
-            # Check if file exists and has data
-            if file_exists:
-                existing_data = pd.read_excel(filename)
-                if not existing_data.empty:
-                    # Check if any row in the new data already exists in the Excel file
-                    existing_data_no_status = existing_data.drop(columns=['status'])
-                    df_no_status = df.drop(columns=['status'])
-                    if (existing_data_no_status.values == df_no_status.values).any():
-                        print("Data already exists in the Excel file. Skipping...")
-                        return
-                    else:
-                        with pd.ExcelWriter(filename, mode='a', if_sheet_exists='replace') as writer:
-                            df.to_excel(writer, index=False, header=False)
-                else:
-                    df.to_excel(filename, index=False)
-            else:
-                df.to_excel(filename, index=False)
-
-        allEvaluation = f"{evaluate(a)},{evaluate(b)},{evaluate(c)}"
-
-        # THE SCRIPT USES 2 DIFFERENT MACHINE LEARNING ALGORIGHMS THEIR DATA WILL BE PREPARED BELOW
-        # populate data for the machine learning V1
-        # ------------------------------------
-        ml['home'] = home
-        ml['away'] = away
-        ml['home_odd'] = round(float(odds[0]), 2)
-        ml['away_odd'] = round(float(odds[1]), 2)
-        ml['odd_difference'] = abs(ml['home_odd'] - ml['away_odd'])
-        ml['strong_home'] = check_evaluation('strong home', allEvaluation)
-        ml['strong_away'] = check_evaluation('strong away', allEvaluation)
-        ml['strong_draw'] = check_evaluation('strong draw', allEvaluation)
-        ml['weak_home'] = check_evaluation('weak home', allEvaluation)
-        ml['weak_away'] = check_evaluation('weak away', allEvaluation)
-
-        #  populate data for machine learning version 2
-        # -------------------------------------------------
-        data4Ml2 = {'home_odd':  ml['home_odd'],
-                    'away_odd': ml['away_odd'],
-                    'odd_difference':  ml['odd_difference'],
-                    'strong_home':  ml['strong_home'],
-                    'strong_away': ml['strong_away'],
-                    'strong_draw': ml['strong_draw'],
-                    'weak_home': ml['weak_home'],
-                    'weak_away': ml['weak_away']}
-
-        # predict using machine learning based on supplied data ml
-        print("[Debug][ML] ML prediction V1 starting...")
-
-        print(f'[DEBUG] [PREDICTING LEVEL 2] spliting input data into 2 for V1 and V2 Machine learning algorithms...')
-        # create a copy of ml data so it can be modified for ml
-        mlData = ml.copy()
-        mlData.pop('home')
-        mlData.pop('away')
-
-        print(f'[DEBUG] [PREDICTING LEVEL 2] parsing data to V1 MACHINE LEARNING algorith...')
-        mlPrediction = ml_prediction(mlData)
-        print(f'[DEBUG] [PREDICTING LEVEL 2] V1 MACHINE LEARNING prediction Completed!')
-        print()
-        print(f'[DEBUG] [PREDICTING LEVEL 2] parsing data to V2 MACHINE LEARNING algorighms...')
-        mlPredictionV2 = V2_prediction(data4Ml2)
-        print(f'[DEBUG] [PREDICTING LEVEL 2] V2 MACHINE LEARNING prediction Completed!')
-
-        print()
-        print(f'[DEBUG] [PREDICTING LEVEL 2] Evaluating result from both V1 and V2 MACHINE LEARNING algorighms...')
-        v2List = []
-        v1List = str(mlPrediction).split(" ")[0].split("/")
-
-        for x in mlPredictionV2[0]:
-            v2List.append(x)
-
-        def combine_lists(list1, list2):
-            # Convert lists to sets to remove duplicates
-            set1 = set(list1)
-            set2 = set(list2)
-
-            # Combine the sets
-            combined_set = set1.union(set2)
-
-            # Convert the combined set back to a list
-            combined_list = list(combined_set)
-
-            return combined_list
-
-        final = combine_lists(v1List, v2List)
-        print("[Debug][ML] ML prediction V2 done!")
-
-        def process_final(fin: list):
-            ans = "/".join(fin)
-            if ans.lower().__contains__("a") and ans.lower().__contains__("h"):
-                return "Home or Away [ 12 ] "
-            elif ans.lower().__contains__("d") and ans.lower().__contains__("h"):
-                return "Home or Draw [ 1X ] "
-            elif ans.lower().__contains__("d") and ans.lower().__contains__("a"):
-                return "Draw or Away [ X2 ] "
-            elif ans.lower() == 'a':
-                return "Away"
-            elif ans.lower() == 'h':
-                return "Home"
-            elif ans.lower() == 'd':
-                return "Draw"
-
-        '''
-            DEEP CHECK: {deepCheck}
-            ML: {mlPrediction}
-            ML V2: {mlPredictionV2}
-        '''
-
-        homeDetail = a.split("|")[0].split(":")[0].strip()
-        awayDetails = a.split("|")[0].split(":")[1]
-
-        homeDetail = homeDetail.strip().split(" ")[:-2]
-        awayDetails = awayDetails.strip().split(" ")[1:]
-
-        print(f'[DEBUG] [PREDICTING LEVEL 2] Making final prediction based on evaluation of V1 and V2 MACHINE LEARNING algorighm results ')
-
-        if len(final) <= 2:
-            result = f"""
-    {' '.join(homeDetail)} {homeScore} : {awayScore} {' '.join(awayDetails)} | [ {evaluate(a)},{evaluate(b)},{evaluate(c)} ]
-    PLAY: [ {process_final(final)} ] 
-    Scores: {mlPredictionV2[1]} :  {mlPredictionV2[2]} 
-    ===========================================================================================================
-"""
-
-            save_ml_to_excel(ml)
-
-            with open("result.txt", 'a', encoding='utf-8') as f:
-                f.write(result)
-        else:
-            resultx = f"""[->]
-    {' '.join(homeDetail)} {homeScore} : {awayScore} {' '.join(awayDetails)}
-    PLAY:  {v1List}  | {mlPrediction}
-           {v2List}  | {mlPredictionV2}
-    ===========================================================================================================
-"""
-
-            save_ml_to_excel(ml)
-            with open("result.txt", 'a', encoding='utf-8') as f:
-                f.write("[X]")
-                # f.write(result)
-            with open("result_excluded.txt", 'a', encoding='utf-8') as f:
-                f.write(resultx)
 
     def ml_prediction(data):
         try:
@@ -1287,32 +1327,56 @@ try:
 
             # logistic regression
             print('[Debug][ML] checking logistic regression...')
-            logisticRegression.train_model('ml.xlsx')
+            if os.path.exists(logisticRegression.model_file) is False:
+                print('\t\t[Debug][ML]Training model using updated data...')
+                logisticRegression.train_model('ml.xlsx')
+            else:
+                print('\t\t[Debug][ML]Skipping model Traininga...')
             predictions = logisticRegression.predict(data)
             predictionData.append(predictions)
 
 
             # decision tree
             print('[Debug][ML] checking decision tree...')
-            decisionTree.train_model('ml.xlsx')
+            if os.path.exists(decisionTree.model_file) is False:
+                print('\t\t[Debug][ML]Training model using updated data...')
+                decisionTree.train_model('ml.xlsx')
+            else:
+                print('\t\t[Debug][ML]Skipping model Traininga...')
+
             predictions = decisionTree.predict(data)
             predictionData.append(predictions)
 
             # random forest
             print('[Debug][ML] checking random forest...')
-            randomForest.train_model('ml.xlsx')
+            if os.path.exists(randomForest.model_file) is False:
+                print('\t\t[Debug][ML]Training model using updated data...')
+                randomForest.train_model('ml.xlsx')
+            else:
+                print('\t\t[Debug][ML]Skipping model Traininga...')
+
             predictions = randomForest.predict(data)
             predictionData.append(predictions,)
 
             # SVM
             print('[Debug][ML] checking SVM')
-            svm.train_model('ml.xlsx')
+            if os.path.exists(svm.model_file) is False:
+                print('\t\t[Debug][ML]Training model using updated data...')
+                svm.train_model('ml.xlsx')
+            else:
+                print('\t\t[Debug][ML]Skipping model Traininga...')
+
             predictions = svm.predict(data)
             predictionData.append(predictions)
 
             # Naive bayes
             print('Checking Naive bayes...')
-            naiveBayes.train_model('ml.xlsx')
+            if os.path.exists(naiveBayes.model_file) is False:
+                print('\t\t[Debug][ML]Training model using updated data...')
+                naiveBayes.train_model('ml.xlsx')
+            else:
+                print('\t\t[Debug][ML]Skipping model Traininga...')
+
             predictions = naiveBayes.predict(data)
             predictionData.append(predictions)
 
@@ -1628,6 +1692,26 @@ try:
     # ==============================================================================================================
     # MAINS
     # ==============================================================================================================
+    # clean model files
+    def clean_model_files():
+        try:
+            logisticRegression = LogisticRegressionModel()
+            decisionTree = DecisionTreeModel()
+            randomForest = RandomForestModel()
+            svm = SVMModel()
+            naiveBayes = NaiveBayesModel()
+
+            logisticRegression.delete_model_file()
+            decisionTree.delete_model_file()
+            randomForest.delete_model_file()
+            svm.delete_model_file()
+            naiveBayes.delete_model_file()
+            print(f"EXISTING MODEL FILE CLEANED SUCCESSFULLY")
+        except Exception as e:
+            print(f"An Error occurred while cleaning model files: [e")
+            print(f"CLEANING OF EXISTING MODEL FILE FAILED!")
+            pass
+
     def start_add_pattern():
         analyzer = CombinationAnalyzer()
         error = False
@@ -1717,6 +1801,8 @@ try:
         pass
 
     def start_predict(sport='football'):
+        # delete existing model
+        clean_model_files()
 
         # open file that contains all the teams to be predicted
         with open('teamOnlyData.txt', 'r', encoding='utf-8') as f:
@@ -1766,13 +1852,15 @@ try:
                     pass
                 except Exception:
                     print("[DEBUG] - Error loading page! Refreshing and retrying...")
+                    time.sleep(5)
                     driver.refresh()
                     pass
             print('done loading initial page!')
             return driver
 
         driver = None
-        driver = load_browser()
+        # driver = load_browser()
+
 
         for team in teamList:
             home = team[0]
@@ -1785,6 +1873,9 @@ try:
             time.sleep(2)
 
         print("DONE!DONE!DONE!DONE!")
+
+
+
         pass
 
     def V2_prediction(data):

@@ -5,7 +5,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 from sklearn.naive_bayes import GaussianNB
-
+import os
 
 from sklearn.metrics import accuracy_score
 import joblib
@@ -16,6 +16,11 @@ class RandomForestModelOld:
     def __init__(self, model_file='random_forest_model.pkl'):
         self.model_file = model_file
         self.model = None
+
+    def delete_model_file(self):
+        full_path = os.path.join(os.getcwd(), self.model_file)
+        if os.path.exists(full_path):
+            os.remove(full_path)
 
     def train_model(self, data):
         # Splitting data into features and target
@@ -59,6 +64,12 @@ class LogisticRegressionModel:
         self.model_file = model_file
         self.model = None
 
+    def delete_model_file(self):
+        full_path = os.path.join(os.getcwd(), self.model_file)
+        if os.path.exists(full_path):
+            os.remove(full_path)
+
+
     def clean_data(self, data_file):
         df = pd.read_excel(data_file)
         df.dropna(inplace=True)
@@ -99,6 +110,11 @@ class DecisionTreeModel:
         self.model_file = model_file
         self.model = None
 
+    def delete_model_file(self):
+        full_path = os.path.join(os.getcwd(), self.model_file)
+        if os.path.exists(full_path):
+            os.remove(full_path)
+
     def clean_data(self, data_file):
         df = pd.read_excel(data_file)
         df.dropna(inplace=True)
@@ -130,6 +146,11 @@ class RandomForestModel:
     def __init__(self, model_file='random_forest_model.pkl'):
         self.model_file = model_file
         self.model = None
+
+    def delete_model_file(self):
+        full_path = os.path.join(os.getcwd(), self.model_file)
+        if os.path.exists(full_path):
+            os.remove(full_path)
 
     def clean_data(self, data_file):
         df = pd.read_excel(data_file)
@@ -164,6 +185,11 @@ class SVMModel:
         self.model_file = model_file
         self.model = None
 
+    def delete_model_file(self):
+        full_path = os.path.join(os.getcwd(), self.model_file)
+        if os.path.exists(full_path):
+            os.remove(full_path)
+
     def clean_data(self, data_file):
         df = pd.read_excel(data_file)
         df.dropna(inplace=True)
@@ -196,6 +222,11 @@ class NaiveBayesModel:
     def __init__(self, model_file='naive_bayes_model.pkl'):
         self.model_file = model_file
         self.model = None
+
+    def delete_model_file(self):
+        full_path = os.path.join(os.getcwd(), self.model_file)
+        if os.path.exists(full_path):
+            os.remove(full_path)
 
     def clean_data(self, data_file):
         df = pd.read_excel(data_file)
