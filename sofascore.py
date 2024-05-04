@@ -1211,10 +1211,35 @@ try:
 
             print(f'[DEBUG] [PREDICTING LEVEL 2] parsing data to V1 MACHINE LEARNING algorith...')
             mlPrediction = ml_prediction(mlData)
+            required = mlPrediction.split("(")[-1].replace(")","").replace("%","")
+            required_split = required.split("/")
+            required_dict = {}
+            for r in required_split:
+                d = r.split(":")
+                required_dict[d[0].strip()] = d[1].strip()
+
             print(f'[DEBUG] [PREDICTING LEVEL 2] V1 MACHINE LEARNING prediction Completed!')
-            print()
+
             print(f'[DEBUG] [PREDICTING LEVEL 2] parsing data to V2 MACHINE LEARNING algorighms...')
             mlPredictionV2 = V2_prediction(data4Ml2)
+            print(f"ml prediction v2: {mlPredictionV2[0]}")
+            required2_dict = mlPredictionV2[0]
+
+            required_final = {}
+            tp = ['H', 'A', 'D'] # total possibilities
+
+            for t in tp:
+                d1 = required_dict.get(t, 0)
+                d2 = required2_dict.get(t, 0)
+
+                add = float(d1) + float(d2)
+                if add > 0:
+                    required_final[t] = add
+
+            print(f"required final: {required_final}")
+
+
+
             print(f'[DEBUG] [PREDICTING LEVEL 2] V2 MACHINE LEARNING prediction Completed!')
 
             print()
@@ -1243,12 +1268,14 @@ try:
             print(
                 f'[DEBUG] [PREDICTING LEVEL 2] Making final prediction based on evaluation of V1 and V2 MACHINE LEARNING algorighm results ')
 
-            if len(final) <= 2:
+            # if len(final) <= 2:
+            if len(final) == 1:
                 result = f"""
                 {' '.join(homeDetail)} {homeScore} : {awayScore} {' '.join(awayDetails)} | [ {evaluate(a)},{evaluate(
                     b)},{evaluate(c)} ]
-                PLAY: [ {process_final(final)} ] 
-                Scores: {mlPredictionV2[1]} :  {mlPredictionV2[2]} 
+                PLAY:       [ {process_final(final)} ] 
+                RQD FINAL:  {required_final}
+                Scores:     {mlPredictionV2[1]} :  {mlPredictionV2[2]} 
                 ===========================================================================================================
             """
 
@@ -1259,8 +1286,10 @@ try:
             else:
                 resultx = f"""[->]
                 {' '.join(homeDetail)} {homeScore} : {awayScore} {' '.join(awayDetails)}
-                PLAY:  {v1List}  | {mlPrediction}
-                       {v2List}  | {mlPredictionV2}
+                PLAY:       {v1List}  | {mlPrediction}
+                            {v2List}  | {mlPredictionV2}
+                            [ {process_final(final)} ] 
+                RQD FINAL:  {required_final}
                 ===========================================================================================================
             """
 
@@ -1859,7 +1888,7 @@ try:
             return driver
 
         driver = None
-        # driver = load_browser()
+        driver = load_browser()
 
 
         for team in teamList:
