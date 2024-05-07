@@ -1,42 +1,199 @@
-Paysandu SC PA | Avai FC SC
+Pittsburgh Riverhounds | FC Tulsa
 
-Coquimbo Unido | Huachipato
+Atlanta United FC | Charlotte Independence
 
-Minnesota United FC 2 | Saint Louis City SC 2
+CD Palestino | CR Flamengo RJ
 
-Atlanta United 2 | New York City FC II
+Club Nacional de Football | CA River Plate (ARG)
 
-San Jose Earthquakes II | Houston Dynamo 2
+Deportivo Tachira | Libertad Asuncion
 
-Richmond Kickers | One Knoxville SC
+Botafogo FC SP | Mirassol FC SP
 
-CS Cienciano | CD Universidad Cesar Vallejo
+CD Universidad Cesar Vallejo | Independiente Medellin
 
-Club Atletico Los Andes | CSD San Martin
+Houston Dynamo | Detroit City FC
 
-Club Nacional de Football | Racing Club Montevideo
+Manta FC | San Antonio FC
 
-Orense SC | CD El Nacional
+Alianza FC Valledupar | Cruzeiro EC MG
 
-Colon de Santa Fe | Club Almagro
+Sportivo Ameliano | Danubio FC
 
-Estudiantes Rio Cuarto | CA Brown de Adrogue
+FC Dallas | Memphis 901 FC
 
-Sportivo Ameliano | Club Guarani Asuncion
+AD San Carlos | Deportivo Saprissa San Jose
 
-Libertad Asuncion | Cerro Porteno
+Universitario de Deportes | CD Junior FC
 
-Nacional Asuncion | Sportivo Luqueno
+Always Ready | Defensa y Justicia
 
-Arturo Fernandez Vial | CD General Velasquez
+Orange County SC | Loudoun United FC
 
-Iguatu CE | Santa Cruz FC RN
+San Jose Earthquakes | Oakland Roots SC
 
-Club Necaxa | Atletico San Luis
+Municipal Liberia | Municipal Grecia
 
-Puebla FC | Deportivo Toluca FC
+Sacramento Republic FC | Monterey Bay FC
 
-Millonarios FC | Independiente Santa Fe
+Mohammedan SC Dhaka | Bangladesh Police FC
 
-CD Trasandino de Los Andes | Deportes Concepcion
+Gold Coast United FC | Souths United
 
+Wofoo Tai Po | Hong Kong FC
+
+Bristol City | Charlton Athletic
+
+Peterborough United Reserve | Coventry City Reserve
+
+Queens Park Rangers | Barnsley FC
+
+Mbarara FC | URA FC
+
+El Sekka El Hadid | Petrojet FC
+
+Grobinas SC | BFC Daugavpils
+
+FK Riteriai | FK Banga Gargzdai
+
+FK Indija | FK Smederevo 1924
+
+FK Tekstilac Odzaci | FK Radnicki Sremska Mitrovica
+
+RFK Graficar Beograd | FK Jedinstvo UB
+
+FK Tukums 2000/TSS | FS Jelgava
+
+Forge FC Hamilton | HFX Wanderers FC
+
+FC Ararat-Armenia | FC BKMA Vagharshapat
+
+AL Ahly SC (Egy) | Al Ittihad Al Sakandary
+
+FK Radnik Surdulica | FK Javor Ivanjica
+
+FK Spartak Subotica | FK Radnicki Nis
+
+Ethnikos Achnas FC | AEL Limassol
+
+Karmiotissa FC | Nea Salamina Famagusta
+
+Othellos Athienou | Doxa Katokopias
+
+FC Buzau | FC Unirea 2004 Slobozia
+
+Bnei Yehuda Tel Aviv FC | Maccabi Kabilio Jaffa
+
+FC Kafr Qasim | Hapoel Rishon Lezion FC
+
+Hapoel Acre FC | Hapoel Ramat Gan Givatayim FC
+
+Hapoel Afula FC | Ihud Bnei Shfaram
+
+Hapoel Ironi Kiryat Shmona FC | Ironi Tiberias
+
+Hapoel Nof Hagalil FC | Hapoel Nir Ramat Hasharon FC
+
+Hapoel Umm AL Fahm | Maccabi Herzliya
+
+Sektzia Ness Ziona FC | Hapoel Kfar Saba FC
+
+FK Atmosfera | Baltijos Futbolo Akademija
+
+FK Garliava | FK Kauno Zalgiris
+
+Kampala Capital City Authority FC | Updf FC
+
+Al-Nasr SC | Al-Arabi (KW)
+
+Jeddah Club | AL Faisaly FC
+
+VfL 1899 Osnabruck | Schalke
+
+VPS Akatemia | Saaripotku
+
+Al Wahda FC (UAE) | Al-Nasr Dubai CSC
+
+Orgryte IS | Helsingborgs IF
+
+FK Vozdovac Belgrade | FK Zeleznicar Pancevo
+
+SC Weiz | USV Weindorf St. Anna am Aigen
+
+Wuppertaler SV | Fortuna Dusseldorf II
+
+Floriana FC | Gzira United FC
+
+PPJ | Japs/47
+
+Besiktas Istanbul | MKE Ankaragucu
+
+Cape Town City FC | Swallows FC
+
+Kaizer Chiefs | TS Galaxy FC
+
+Royal AM FC | Cape Town Spurs
+
+Supersport United | Sekhukhune United
+
+Colchester United | Watford FC
+
+Ir/Lettir | Selfoss/Ham/Aeg/Ar
+
+Fluminense FC RJ | SE Kindermann SC
+
+CA Banfield | San Lorenzo de Almagro Res.
+
+CA Talleres de Remedios | Racing de Cordoba
+
+AS Giana Erminio | Pro Vercelli 1892
+
+AS Gubbio | Rimini FC 1912
+
+Atalanta BC U23 | AC Trento
+
+Audace Cerignola | FC Giugliano 1928
+
+Delfino Pescara | US Citta Di Pontedera
+
+Juventus FC | SS Arezzo
+
+Legnago Salus | AC Lumezzane
+
+Taranto FC | Latina Calcio
+
+Crawley Town | Milton Keynes Dons
+
+HK Kopavogur | Grotta
+
+Airdrieonians FC | Partick Thistle FC
+
+Alloa Athletic FC | Hamilton Academical FC
+
+Montrose FC | Inverness Caledonian Thistle FC
+
+Dumbarton FC | Stirling Albion FC
+
+Spartans FC | Peterhead FC
+
+PSG | Borussia D
+
+AZ Picerno | Crotone
+
+Bolton Wanderers | Barnsley
+
+Rsb Berkane | Moghreb Athletic de Tetouan
+
+Club Leones Del Norte | CD Independiente Juniors
+
+UMFN Njarðvík U19 | Keflavik/Reynir/Vidir U19
+
+FH | Haukar/Ka
+
+Caracas FC | CA Penarol Montevideo
+
+Club Atletico Rosario Central | Atletico Mineiro MG
+
+Nacional Asuncion | SC Corinthians SP
+
+Racing Club Montevideo | Argentinos Juniors

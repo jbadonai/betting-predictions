@@ -1,13 +1,1 @@
-[X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X]
-                Iguatu CE 1 : 1  Santa Cruz FC RN | [ Weak Home,Strong Away,Strong Away ]
-                PLAY:       [ Home ] 
-                RQD FINAL:  {'H': 200.0}
-                Scores:     2 :  1 
-                ===========================================================================================================
-            [X]
-                Puebla FC 2 : 1  Deportivo Toluca FC | [ Strong Home,Strong Away,Weak Home ]
-                PLAY:       [ Away ] 
-                RQD FINAL:  {'A': 200.0}
-                Scores:     0 :  3 
-                ===========================================================================================================
-            [X][X]
+[X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X]

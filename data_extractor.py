@@ -96,9 +96,7 @@ class PreviousRecordExtractor():
 
         try:
             # wait for all list to be visible
-            print('waiting for search list to be visible')
             self.wait_for_element(all_search_list_class, 4, 'css')
-            print('done!')
 
             # find and click on team only filter
             filterFound = False
@@ -106,7 +104,6 @@ class PreviousRecordExtractor():
             for filter in gameFilterButton:
                 if filter.text == "Team":
                     filter.click()
-                    print(f"{filter.text} has been clicked!")
                     filterFound = True
                     break
 
@@ -116,18 +113,14 @@ class PreviousRecordExtractor():
                 raise Exception
 
             # after selecting team filter check if there is result:
-            print("Checkin for team error...")
             errorFound = False
             teamErrors = self.driver.find_elements(By.CLASS_NAME, team_error_class)
-            print(f"Total team errors to check = {len(teamErrors)}")
             for index,teamError in enumerate(teamErrors):
                 if teamError.text == "No results found":
                     errorFound = True
-                    print(f"[{index}]Team not found!")
                     break
 
                 if index > 10:
-                    print('Break by assumption!')
                     break
 
             # input("Testing waiting...........")
@@ -139,7 +132,6 @@ class PreviousRecordExtractor():
             all_links = self.driver.find_elements(By.CLASS_NAME, each_team_link_class)
 
             # scan the links to select link for football only for the team
-            print('Scanning links...')
             for link in all_links:
                 # get the game: football, clrcket...
                 game = link.find_element(By.CLASS_NAME, game_confirmation_class).text
@@ -148,8 +140,6 @@ class PreviousRecordExtractor():
                 if str(game).lower() == self.sport.lower():
                     # extract the href which is requried
                     team_url = link.get_attribute('href')
-                    # print(f"Team URL: {team_url}")
-                    # print("FOUND!!!!!!")
                     return team_url, errorMessage
 
 
@@ -184,7 +174,6 @@ class PreviousRecordExtractor():
         # suggested_data_table_class = ""
         # suggested_ha_class = ""
 
-        # print(f"finding suitable class name for DATA TABLE CLASS...")
         suitable_data_table_class = self.find_suitable_class_name(data_table_class_list, False)     # using CSS
         if suitable_data_table_class is None:
             print(f"[DEBUG][ERROR!] NO SUITABLE CLASS NAME FOUND FOR [DATA TABLE CLASS] - REPRESENTING EACH ROW IN THE TABLE\n"
@@ -196,8 +185,6 @@ class PreviousRecordExtractor():
         # get the whole table containing all the data
         # table = self.driver.find_elements(By.CSS_SELECTOR, data_table_class)
         table = self.driver.find_elements(By.CSS_SELECTOR, suitable_data_table_class)
-        # print(f"Total data in table : {len(table)}")
-        # input("wait 1...........")
 
         singleGameData = {}     # stores a single row of data in the table
 
@@ -216,7 +203,6 @@ class PreviousRecordExtractor():
                 # get all data holder in each rows
                 # ha = table_data.find_elements(By.CLASS_NAME, ha_class)
                 ha = table_data.find_elements(By.CLASS_NAME, suitable_ha_class)
-                # print(f"HA:::: {ha}")
 
                 # extract the required data from the holder
                 home = ha[4].text
@@ -238,7 +224,6 @@ class PreviousRecordExtractor():
                 gameData.append(str(singleGameData))
 
             except Exception as e:
-                # print(f"error:-----------")
                 continue
 
         # returned compiled final game data
@@ -280,11 +265,6 @@ class PreviousRecordExtractor():
                 # get all data holder in each rows
                 # ha = table_data.find_elements(By.CLASS_NAME, ha_class)
                 ha = table_data.find_elements(By.CLASS_NAME, suitable_ha_class)
-                # print(f"HA:::: {ha}")
-
-                # print(f"Total data: {len(ha)}")
-                # for index, h in enumerate(ha):
-                #     print(f"{index} - {h.text}")
 
                 # extract the required data from the holder
                 home = ha[4].text
@@ -326,12 +306,7 @@ class PreviousRecordExtractor():
                 gameData.append(str(singleGameData))
 
             except Exception as e:
-                # print(f"error:-----------")
                 continue
-        # print(gameData)
-        # for data in gameData:
-        #     print(data)
-        # input("waiting basketball....")
 
         # returned compiled final game data
         return gameData
@@ -438,7 +413,7 @@ class PreviousRecordExtractor():
                 # ---------------------------
                 failure_count = 0
                 while True:
-                    print("[DEBUG] Getting temas' href ")
+                    print("[DEBUG] Getting team's href ")
                     team_url, errorMessage = self.get_team_href()
                     if team_url is not None:
                         break
@@ -502,17 +477,12 @@ class PreviousRecordExtractor():
                         trial = 0
 
                 game_data = self.extract_football_data(team_name)
-                # print(f"Game data:: {game_data}")
-                # input("::::")
 
-                # e. SAVE GAME DATA TO EXCEL
-                # print(f"Game data: {game_data}")
                 print("[DEBUG] Saving Data")
 
                 self.save_to_excel(game_data)
 
                 self.new_team_name.append(eval(game_data[0])['team'] )
-            # print(f"Data Saved! returning new teamname : {self.new_team_name}")
             return self.new_team_name
             pass
         except Exception as e:
@@ -625,17 +595,12 @@ class PreviousRecordExtractor():
                     self.driver.maximize_window()
                     game_data = self.extract_basketball_data(team_name)
 
-                # print(f"Game data:: {game_data}")
-                # input("::::")
 
-                # e. SAVE GAME DATA TO EXCEL
-                # print(f"Game data: {game_data}")
                 print("[DEBUG] Saving Data")
 
                 self.save_to_excel(game_data)
 
                 self.new_team_name.append(eval(game_data[0])['team'] )
-            # print(f"Data Saved! returning new teamname : {self.new_team_name}")
             return self.new_team_name
             pass
         except Exception as e:

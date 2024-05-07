@@ -159,18 +159,12 @@ if ans == 'y' or ans == 'Y' or ans == '':
 
     time.sleep(5)
 
-    urls_string = """https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240503080821ord92237722
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240503115908ord98962774
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240503122454ord99784272
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240503170228ord09052998
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240503170913ord09262411
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240503171906ord09601558
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240503172115ord09670679
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240503172529ord09814755
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240503174936ord10628367
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240503215002ord19300820
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240503215239ord19380176
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240503215746ord19537281"""
+    urls_string = """https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240506055502ord24562962
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240506091642ord28083272
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240506160022ord38877472
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240506185504ord44878133
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240506190338ord45228602
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240506204944ord48667869"""
 
     urls = urls_string.split("\n")
     data = []
