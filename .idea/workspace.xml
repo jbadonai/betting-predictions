@@ -1,45 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2129" mnemonic="8" />
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2033" mnemonic="9" />
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2049" mnemonic="4" />
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="1610" mnemonic="3" />
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2039" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2322" mnemonic="8" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2219" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="1412" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="1465" mnemonic="4" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2305" mnemonic="6" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2226" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7ecc080-d00c-46fb-bc4b-2e7547988e5e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_extractor.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_extractor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bak/ml.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/bak/ml.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bak/ml2.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/bak/ml2.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datafile.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/datafile.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafile_bb.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/datafile_bb.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/decision_tree_away_score_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/decision_tree_away_score_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/decision_tree_home_score_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/decision_tree_home_score_model.joblib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/decision_tree_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/decision_tree_model.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decision_tree_model.pkl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/decision_tree_status_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/decision_tree_status_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logistic_regression_away_score_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/logistic_regression_away_score_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logistic_regression_home_score_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/logistic_regression_home_score_model.joblib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logistic_regression_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/logistic_regression_model.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logistic_regression_model.pkl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/logistic_regression_status_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/logistic_regression_status_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/ml.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml2.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/ml2.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_bb.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/ml_bb.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/naive_bayes_away_score_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/naive_bayes_away_score_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/naive_bayes_home_score_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/naive_bayes_home_score_model.joblib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/naive_bayes_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/naive_bayes_model.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/naive_bayes_model.pkl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/naive_bayes_status_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/naive_bayes_status_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oddOnlyData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/oddOnlyData.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/random_forest_away_score_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/random_forest_away_score_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/random_forest_home_score_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/random_forest_home_score_model.joblib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/random_forest_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/random_forest_model.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/random_forest_model.pkl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/random_forest_status_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/random_forest_status_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/result_excluded.txt" beforeDir="false" afterPath="$PROJECT_DIR$/result_excluded.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sofascore.py" beforeDir="false" afterPath="$PROJECT_DIR$/sofascore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/svm_away_score_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/svm_away_score_model.joblib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/svm_home_score_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/svm_home_score_model.joblib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/svm_model.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/svm_model.pkl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/svm_model.pkl" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/svm_status_model.joblib" beforeDir="false" afterPath="$PROJECT_DIR$/svm_status_model.joblib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teamList.txt" beforeDir="false" afterPath="$PROJECT_DIR$/teamList.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/teamOnlyData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/teamOnlyData.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/timeOnlyData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/timeOnlyData.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/updateDataWithCurrentResult.py" beforeDir="false" afterPath="$PROJECT_DIR$/updateDataWithCurrentResult.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,25 +54,112 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sofascore.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="1122" column="28" selection-start-line="1122" selection-start-column="28" selection-end-line="1122" selection-end-column="28" />
+            <state relative-caret-position="285">
+              <caret line="817" column="10" selection-start-line="817" selection-start-column="10" selection-end-line="817" selection-end-column="10" />
+              <folding>
+                <element signature="e#32965#33856#0" />
+                <element signature="e#33906#34495#0" />
+                <element signature="e#34552#34750#0" />
+                <element signature="e#34814#35457#0" />
+                <element signature="e#35531#35690#0" />
+                <element signature="e#35780#37336#0" />
+                <element signature="e#37399#37743#0" />
+                <element signature="e#37803#38453#0" />
+                <element signature="e#38516#38860#0" />
+                <element signature="e#38920#39570#0" />
+                <element signature="e#41240#41908#0" />
+                <element signature="e#53102#54144#0" />
+                <element signature="e#57592#58011#0" />
+                <element signature="e#58992#59689#0" />
+                <element signature="e#60577#61375#0" />
+                <element signature="e#59315#60412#0" />
+                <element signature="e#62242#62990#0" />
+                <element signature="e#62661#62937#0" />
+                <element signature="e#56309#59996#0" />
+                <element signature="e#60226#60510#0" />
+                <element signature="e#68085#68501#1" />
+                <element signature="e#68568#68819#0" />
+                <element signature="e#68880#69771#0" />
+                <element signature="e#70850#73953#0" />
+                <element signature="e#74013#74552#0" />
+                <element signature="e#68117#68239#0" />
+                <element signature="e#68295#68375#0" />
+                <element signature="e#68430#68505#0" />
+                <element signature="e#68559#68633#0" />
+                <element signature="e#68673#68727#0" />
+                <element signature="e#68783#68857#0" />
+                <element signature="e#68896#69423#0" />
+                <element signature="e#69473#70529#0" />
+                <element signature="e#70581#72622#0" />
+                <element signature="e#72933#73627#0" />
+                <element signature="e#73666#79597#0" />
+                <element signature="e#80511#80660#0" />
+                <element signature="e#80709#80951#0" />
+                <element signature="e#81066#81764#0" />
+                <element signature="e#82269#84645#0" />
+                <element signature="e#93373#93399#0" />
+                <element signature="e#93555#93649#0" />
+                <element signature="e#93972#94013#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/result.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="82">
+              <caret line="74" column="27" lean-forward="true" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/result_excluded.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="103">
+              <caret line="178" column="30" selection-start-line="178" selection-start-column="20" selection-end-line="178" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/oddOnlyData.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/result_excluded.txt">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/teamOnlyData.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="33" column="27" lean-forward="true" selection-end-line="344" selection-end-column="16" />
+            <state relative-caret-position="84">
+              <caret line="4" column="35" lean-forward="true" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bb_result.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="227" column="38" selection-start-line="227" selection-start-column="16" selection-end-line="227" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/updateDataWithCurrentResult.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-734">
+              <caret line="135" column="27" lean-forward="true" selection-start-line="135" selection-start-column="27" selection-end-line="135" selection-end-column="27" />
+              <folding>
+                <element signature="e#27#57#0" expanded="true" />
+                <element signature="e#567#1738#0" />
+                <element signature="e#1782#2903#0" />
+                <element signature="e#4423#4723#1" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,16 +175,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ever</find>
-      <find>analyze_matches</find>
-      <find>retrieve_data_bb(</find>
-      <find>save_ml_to_excel</find>
-      <find>[DEBUG] Recent game data extracted from file. Intializing Predicting Engine...</find>
-      <find>training</find>
-      <find>brus</find>
-      <find>result</find>
-      <find>200.0</find>
-      <find>Ruch Chorzow</find>
       <find>New York Red Bulls II</find>
       <find>result =</find>
       <find>FC Voluntari</find>
@@ -114,6 +195,16 @@
       <find>.join</find>
       <find>Real Cartagena FC</find>
       <find>Londrina EC PR</find>
+      <find>svm</find>
+      <find>Queens Park Rangers</find>
+      <find>[DEBUG] Loading url...</find>
+      <find>Making final prediction based on evaluation of V1 and V2 MACHINE LEARNING algorighm</find>
+      <find>sure</find>
+      <find>3/0</find>
+      <find>filteredResultList</find>
+      <find>Sparta Prague B</find>
+      <find>MFk Vyskov</find>
+      <find>dropna</find>
     </findStrings>
     <replaceStrings>
       <replace>away</replace>
@@ -141,11 +232,12 @@
         <option value="$PROJECT_DIR$/data_analysis_prediction.py" />
         <option value="$PROJECT_DIR$/teamOnlyData.txt" />
         <option value="$PROJECT_DIR$/oddOnlyData.txt" />
-        <option value="$PROJECT_DIR$/sofascore.py" />
         <option value="$PROJECT_DIR$/data_extractor.py" />
-        <option value="$PROJECT_DIR$/updateDataWithCurrentResult.py" />
-        <option value="$PROJECT_DIR$/result.txt" />
+        <option value="$PROJECT_DIR$/bb_result.txt" />
         <option value="$PROJECT_DIR$/result_excluded.txt" />
+        <option value="$PROJECT_DIR$/result.txt" />
+        <option value="$PROJECT_DIR$/sofascore.py" />
+        <option value="$PROJECT_DIR$/updateDataWithCurrentResult.py" />
       </list>
     </option>
   </component>
@@ -190,7 +282,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.sofascore">
+  <component name="RunManager" selected="Python.updateDataWithCurrentResult">
     <configuration name="predict" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="bettingPrediction" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -298,8 +390,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.sofascore" />
         <item itemvalue="Python.updateDataWithCurrentResult" />
+        <item itemvalue="Python.sofascore" />
         <item itemvalue="Python.predict" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.predictionBot" />
@@ -321,20 +413,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26488096" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.30278233" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30932897" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3633388" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.31587562" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -469,11 +560,6 @@
     <entry file="file://$PROJECT_DIR$/timeOnlyData.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/oddOnlyData.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-126" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/predict.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9618">
@@ -497,15 +583,45 @@
     <entry file="file://$PROJECT_DIR$/teamList.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/teamOnlyData.txt">
+    <entry file="file://$PROJECT_DIR$/oddOnlyData.txt">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/teamOnlyData.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="35" lean-forward="true" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bb_result.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="227" column="38" selection-start-line="227" selection-start-column="16" selection-end-line="227" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/result.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="74" column="27" lean-forward="true" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/result_excluded.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="178" column="30" selection-start-line="178" selection-start-column="20" selection-end-line="178" selection-end-column="30" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/updateDataWithCurrentResult.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="164" column="94" lean-forward="true" selection-start-line="164" selection-start-column="94" selection-end-line="164" selection-end-column="94" />
+        <state relative-caret-position="-734">
+          <caret line="135" column="27" lean-forward="true" selection-start-line="135" selection-start-column="27" selection-end-line="135" selection-end-column="27" />
           <folding>
             <element signature="e#27#57#0" expanded="true" />
+            <element signature="e#567#1738#0" />
+            <element signature="e#1782#2903#0" />
             <element signature="e#4423#4723#1" />
           </folding>
         </state>
@@ -513,18 +629,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sofascore.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="1122" column="28" selection-start-line="1122" selection-start-column="28" selection-end-line="1122" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/result.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/result_excluded.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="33" column="27" lean-forward="true" selection-end-line="344" selection-end-column="16" />
+        <state relative-caret-position="285">
+          <caret line="817" column="10" selection-start-line="817" selection-start-column="10" selection-end-line="817" selection-end-column="10" />
+          <folding>
+            <element signature="e#32965#33856#0" />
+            <element signature="e#33906#34495#0" />
+            <element signature="e#34552#34750#0" />
+            <element signature="e#34814#35457#0" />
+            <element signature="e#35531#35690#0" />
+            <element signature="e#35780#37336#0" />
+            <element signature="e#37399#37743#0" />
+            <element signature="e#37803#38453#0" />
+            <element signature="e#38516#38860#0" />
+            <element signature="e#38920#39570#0" />
+            <element signature="e#41240#41908#0" />
+            <element signature="e#53102#54144#0" />
+            <element signature="e#57592#58011#0" />
+            <element signature="e#58992#59689#0" />
+            <element signature="e#60577#61375#0" />
+            <element signature="e#59315#60412#0" />
+            <element signature="e#62242#62990#0" />
+            <element signature="e#62661#62937#0" />
+            <element signature="e#56309#59996#0" />
+            <element signature="e#60226#60510#0" />
+            <element signature="e#68085#68501#1" />
+            <element signature="e#68568#68819#0" />
+            <element signature="e#68880#69771#0" />
+            <element signature="e#70850#73953#0" />
+            <element signature="e#74013#74552#0" />
+            <element signature="e#68117#68239#0" />
+            <element signature="e#68295#68375#0" />
+            <element signature="e#68430#68505#0" />
+            <element signature="e#68559#68633#0" />
+            <element signature="e#68673#68727#0" />
+            <element signature="e#68783#68857#0" />
+            <element signature="e#68896#69423#0" />
+            <element signature="e#69473#70529#0" />
+            <element signature="e#70581#72622#0" />
+            <element signature="e#72933#73627#0" />
+            <element signature="e#73666#79597#0" />
+            <element signature="e#80511#80660#0" />
+            <element signature="e#80709#80951#0" />
+            <element signature="e#81066#81764#0" />
+            <element signature="e#82269#84645#0" />
+            <element signature="e#93373#93399#0" />
+            <element signature="e#93555#93649#0" />
+            <element signature="e#93972#94013#0" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -22,6 +22,17 @@ try:
     import predictionBot as bot
     import threading
 
+    import pandas as pd
+    from sklearn.model_selection import train_test_split
+    from sklearn.preprocessing import LabelEncoder
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.tree import DecisionTreeClassifier
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.svm import SVC
+    from sklearn.naive_bayes import GaussianNB
+    from sklearn.metrics import accuracy_score
+    import joblib
+
 
     # timeout = 15
     teamData = 'teamList.txt'
@@ -1271,64 +1282,76 @@ try:
 
                 # if len(final) <= 2:
                 def analyze_sure(result):
-                    resultList = str(result).split("\n")
-                    filteredResultList = [item for item in resultList if item != ""]
+                    try:
+                        resultList = str(result).split("\n")
+                        filteredResultList = [item for item in resultList if item != ""]
+                        # for f in filteredResultList:
+                        #     print(f)
+                        #
+                        # input('ms')
 
-                    focus = None
-                    focusCount = 0
-                    drawCount = 0
-                    focusAbbr = None
+                        focus = None
+                        focusCount = 0
+                        drawCount = 0
+                        focusAbbr = None
 
-                    if 'away' in filteredResultList[1].lower():
-                        focus = "Away"
-                        focusAbbr = "A"
-                    elif 'home' in filteredResultList[1].lower():
-                        focus = "Home"
-                        focusAbbr = "H"
+                        if 'away' in filteredResultList[2].lower():
+                            focus = "Away"
+                            focusAbbr = "A"
+                        elif 'home' in filteredResultList[2].lower():
+                            focus = "Home"
+                            focusAbbr = "H"
 
-                    # 1/5 analysis
-                    if filteredResultList[0].__contains__(f"Strong {focus}"):
-                        focusCount += 1
+                        # 1/5 analysis
+                        if filteredResultList[1].__contains__(f"Strong {focus}"):
+                            focusCount += 1
 
-                    # 2/5 analysis
-                    if filteredResultList[1].__contains__(focus):
-                        focusCount += 1
+                        # 2/5 analysis
+                        if filteredResultList[2].__contains__(focus):
+                            focusCount += 1
 
-                    # 3/5 analysis
-                    if filteredResultList[2].split(":")[1].__contains__(focusAbbr):
-                        focusCount += 1
+                        # 3/5 analysis
+                        if filteredResultList[3].split(":")[1].__contains__(focusAbbr):
+                            focusCount += 1
 
-                    # 4/5 analysis
-                    scores = filteredResultList[3].split(":")
-                    hs = int(scores[1].strip())
-                    a_s = int(scores[2].strip())
+                        # 4/5 analysis
+                        scores = filteredResultList[4].split(":")
+                        hs = int(scores[1].strip())
+                        a_s = int(scores[2].strip())
 
-                    if hs == a_s:
-                        drawCount += 1
-                    else:
-                        if hs > a_s :   # if home score is greater than away score
-                            if focus == "Home":
-                                focusCount += 1
+                        if hs == a_s:
+                            drawCount += 1
                         else:
-                            if focus == "Away":
-                                focusCount += 1
+                            if hs > a_s :   # if home score is greater than away score
+                                if focus == "Home":
+                                    focusCount += 1
+                            else:
+                                if focus == "Away":
+                                    focusCount += 1
 
-                    # 5/5 analysis
-                    scores = filteredResultList[0].split(":")
-                    hs = int(scores[0].strip().split(" ")[-1].strip())
-                    a_s = int(scores[1].strip().split(" ")[0].strip())
+                        # 5/5 analysis
+                        scores = filteredResultList[1].split(":")
+                        hs = int(scores[0].strip().split(" ")[-1].strip())
+                        a_s = int(scores[1].strip().split(" ")[0].strip())
 
-                    if hs == a_s:
-                        drawCount += 1
-                    else:
-                        if hs > a_s :   # if home score is greater than away score
-                            if focus == "Home":
-                                focusCount += 1
+                        if hs == a_s:
+                            drawCount += 1
                         else:
-                            if focus == "Away":
-                                focusCount += 1
+                            if hs > a_s :   # if home score is greater than away score
+                                if focus == "Home":
+                                    focusCount += 1
+                            else:
+                                if focus == "Away":
+                                    focusCount += 1
 
-                    return f"{focusCount}/{drawCount}"
+                        return f"{focusCount}/{drawCount}"
+                    except Exception as e:
+                        print()
+                        print(f"[ERROR!] {e}" )
+                        print(result)
+                        print()
+                        return f"-/-"
+                        pass
 
                     pass
 
@@ -1384,6 +1407,11 @@ try:
                 # get test result of machine lerarning on the data
                 a = predict_engine.analyze_bb_matches(newdata, new_home, new_away)
 
+                print(f"ANALYSIS RESULT:")
+                print(a)
+
+                # input("milestone 1")
+
                 if type(a) is tuple:
                     print(f"No data for {a[2]} and {a[3]}")
                     print(a[1])
@@ -1391,7 +1419,11 @@ try:
 
                     return
 
+                bb_pred_features = {}
+
                 def get_and_save_bb_ml_data(a):
+
+
                     odds = get_home_away_odds(home, away)
                     print(f"odds: {odds}")
                     print(a)
@@ -1415,13 +1447,159 @@ try:
                     ml['away_score'] = a['Average_Total_Score_Prediction_Away']
                     ml['status'] = "pending"
 
+                    features = ml.copy()
+
+                    features.pop('home')
+                    features.pop('away')
+                    features.pop('status')
+
+                    print(f"final feature: {features}")
+
                     save_ml_to_excel(ml, 'ml_bb.xlsx')
 
-                get_and_save_bb_ml_data(a)
+                    return features
+
+                print(f"[BB][DEBUG] Saving past matches analysis to ML file")
+                bb_pred_features = get_and_save_bb_ml_data(a)
+
+                print('Starting machine learning algorithms...')
+                prediction, accuracy = basketball_ml_predictions(bb_pred_features)
+
+                result = f"""
+                {new_home} : {new_away}
+                Prediction:     {prediction}
+                Accuracy:       {accuracy}
+                ********************************************************************************
+                """
+
+                print(result)
+
+                with open("bb_result.txt", 'a', encoding='utf-8') as f:
+                    f.write(result)
+
         except Exception as e:
             print(f"An Error occurred in Predict(): {e}")
             print('SKIPPING.....')
 
+    def basketball_ml_predictions(featured_data=None):
+
+        def load_and_prepare_data(file_path):
+            data = pd.read_excel(file_path)
+            # Remove rows with 'pending' status and missing values
+            data = data[(data['status'] != 'pending') & (data['status'].notna())]
+            features = data.drop(columns=["home", "away", "status"])
+            target = data["status"]
+            le = LabelEncoder()
+            target_encoded = le.fit_transform(target)
+            return features, target_encoded, le
+
+        # Function to train models and calculate accuracy
+        def train_and_evaluate_models(X_train, X_test, y_train, y_test):
+            models = {
+                "Logistic Regression": LogisticRegression(max_iter=1000),
+                "Decision Tree": DecisionTreeClassifier(),
+                "Random Forest": RandomForestClassifier(),
+                "SVM": SVC(),
+                "Naive Bayes": GaussianNB()
+            }
+            accuracies = {}
+            for model_name, model in models.items():
+                model.fit(X_train, y_train)
+                joblib.dump(model, f"{model_name}.pkl")
+                predictions = model.predict(X_test)
+                accuracy = accuracy_score(y_test, predictions)
+                accuracies[model_name] = accuracy * 100  # Convert to percentage
+            return accuracies
+
+        def predict_old(features_list):
+            # Define the feature names based on the training data
+            feature_names = ['home_odd', 'away_odd', 'odd_difference', 'home_Q1', 'home_Q2', 'home_Q3', 'home_Q4',
+                             'away_Q1', 'away_Q2', 'away_Q3', 'away_Q4', 'home_score', 'away_score']
+
+            # Convert the list of features into a DataFrame with feature names
+            features_df = pd.DataFrame([features_list], columns=feature_names)
+
+            predictions = []
+            for model_name in ["Logistic Regression", "Decision Tree", "Random Forest", "SVM", "Naive Bayes"]:
+                loaded_model = joblib.load(f"{model_name}.pkl")
+                pred = loaded_model.predict(features_df)
+                predictions.append(label_encoder.inverse_transform(pred)[0])
+            return predictions
+
+        def predict(features):
+            # Define the feature names based on the training data
+            feature_names = ['home_odd', 'away_odd', 'odd_difference', 'home_Q1', 'home_Q2', 'home_Q3', 'home_Q4',
+                             'away_Q1', 'away_Q2', 'away_Q3', 'away_Q4', 'home_score', 'away_score']
+
+            # Check if features is a list, convert to DataFrame
+            if isinstance(features, list):
+                features_df = pd.DataFrame([features], columns=feature_names)
+            # Check if features is a dictionary, convert to DataFrame
+            elif isinstance(features, dict):
+                features_df = pd.DataFrame([features])
+            else:
+                raise ValueError("Features must be either a list or a dictionary.")
+
+            predictions = []
+            for model_name in ["Logistic Regression", "Decision Tree", "Random Forest", "SVM", "Naive Bayes"]:
+                loaded_model = joblib.load(f"{model_name}.pkl")
+                pred = loaded_model.predict(features_df)
+                predictions.append(label_encoder.inverse_transform(pred)[0])
+            return predictions
+
+        # Main script
+        # Load and prepare data
+        print(f"[BB][ML][DEBUG] Loading and cleaning data...")
+        features, target_encoded, label_encoder = load_and_prepare_data("ml_bb.xlsx")
+
+        print(f"[BB][ML][DEBUG] Training data...")
+        X_train, X_test, y_train, y_test = train_test_split(features, target_encoded, test_size=0.2,
+                                                            random_state=42)
+
+        # Train models and get accuracy
+        model_accuracies = train_and_evaluate_models(X_train, X_test, y_train, y_test)
+        print("Model Accuracies:")
+        accuracy_list = []
+        for model_name, accuracy in model_accuracies.items():
+            # print(f"{model_name}: {accuracy:.2f}%")
+            accuracy_list.append(float(f"{accuracy:.2f}"))
+
+        # sample_features = [1.8, 1.87, 0.07, 18.75, 14.25, 16, 19.25, 18.5, 20, 21, 17.75, 96.055, 95.265]
+        sample_features_dict = {
+            'home_odd': 1.8, 'away_odd': 1.87, 'odd_difference': 0.07, 'home_Q1': 18.75, 'home_Q2': 14.25,
+            'home_Q3': 16, 'home_Q4': 19.25, 'away_Q1': 18.5, 'away_Q2': 20, 'away_Q3': 21, 'away_Q4': 17.75,
+            'home_score': 96.055, 'away_score': 95.265
+        }
+        # print()
+        # print(featured_data)
+        # print()
+        result = predict(featured_data)
+        # print("Predictions:", result)
+        # print("Accuracy: ", accuracy_list)
+
+        def remove_below_threshold(labels, values, threshold):
+            # Make sure the lengths of both lists are equal
+            if len(labels) != len(values):
+                raise ValueError("Lengths of lists must be equal")
+
+            # Create a new list to store filtered values and labels
+            filtered_labels = []
+            filtered_values = []
+
+            # Iterate through both lists simultaneously
+            for label, value in zip(labels, values):
+                # Check if the value is greater than or equal to the threshold
+                if value >= threshold:
+                    # If so, add the label and value to the filtered lists
+                    filtered_labels.append(label)
+                    filtered_values.append(value)
+
+            return filtered_labels, filtered_values
+
+        pred, acc = remove_below_threshold(result, accuracy_list, 0)
+        # print("Pred:", pred)
+        # print("acc:", acc)
+        return pred, acc
 
 
     def ml_prediction(data):
@@ -1592,21 +1770,25 @@ try:
 
         try:
             # initialize driver
+            print("[DEBUG] Initializing browser...")
             driver = initialize_browser()
             # load url
+            print("[DEBUG] Loading url...")
             load_url(driver, url)
             # check if team data is available on page
+            print("[DEBUG] Checking for data availability on the page...")
             no_bet = element_exists(driver, no_bet_class)
             if no_bet is True:
                 raise Exception
 
             for x in range(no_of_pages):
+                print(f"[DEBUG] Starting Data Extraction on page {x+1}...")
                 # get list of all leagues available
-                print("Waiting for league table to be loaded....")
+                print("[DEBUG] Waiting for league table to be loaded....")
                 pagination = WebDriverWait(driver, 60).until(
                     EC.presence_of_element_located((By.CLASS_NAME, match_league))
                 )
-                print("league table found! proceeding")
+                print("[DEBUG] League table detected! Getting all leagues on page...")
 
                 leagues = driver.find_elements(By.CLASS_NAME, match_league)
 
@@ -1617,8 +1799,9 @@ try:
 
                 # Loop through the leagues
                 # -----------------------------
+                print("[DEBUG] Looping through all leagues to extract game data...")
                 for index, league in enumerate(leagues):
-
+                    print(f"\r[DEBUG][{league}] Extracting game data...", end="")
                     league_details = {}
                     # GET THE LEAGUE TITLE
                     # ---------------------
@@ -1684,10 +1867,11 @@ try:
                     # checking of multiple pages exists
                     ans = check_pagination_exists(driver)
                     if ans is False:
-                        print("Pagination not found on page!")
+                        # print("Pagination not found on page!")
                         break
                     else:
-                        print("pagination section seen on page.")
+                        # print("pagination section seen on page.")
+                        pass
 
                     print(f"NAVIGATING TO NEXT PAGE | page {x+2}")
                     ans2 = click_next_button(driver)
@@ -1699,14 +1883,16 @@ try:
                     print("NO MORE PAGES TO EXTRACT! PROCEEDING...")
 
             # print(f"total all league data = {len(all_leagues_data)}")
+            print()
+            print("[DEBUG] Data Extraction from webpage completed!...")
             return all_leagues_data
 
         except Exception as e:
             if no_bet is True:
-                print("Bet is not available for current period. change the period or try again latter!")
+                print("[DEBUG] Bet is not available for current period. change the period or try again latter!")
 
             if len(leagues) == 0:
-                print("No league found")
+                print("[DEBUG] No league found")
             pass
 
     def clean_text(text):
@@ -1992,7 +2178,7 @@ try:
             value = (h, a)
             teamList.append(value)
 
-        # loop through each home and way team to predict
+
 
         def initialize_browser1():
             # Initialize the webdriver (Make sure you have the appropriate webdriver installed)
@@ -2033,6 +2219,7 @@ try:
         driver = None
         driver = load_browser()
 
+        # loop through each home and way team to predict
         for index, team in  enumerate(teamList):
             home = team[0]
             away = team[1]
@@ -2115,16 +2302,22 @@ try:
         reset_file("timeOnlyData.txt")
 
         period = 3
-        ans = input("Period? default=3: ")
+        # ans = input("Period? default=3: ")
+        ans = input (f"( {sport.upper()} )( EXTRACT DATA ) Set Start Time >  [ Default = 3 ]: ")
         if ans != "":
             period = int(ans)
 
+        print()
+        print("[DEBUG] Strting Data extraction...")
         url = f"https://www.sportybet.com/ng/sport/{sport}?time={period}"
 
+        # print("[DEBUG] Extracting team info...")
         leagueInfo = extract_team_info(url, sport, no_of_pages)
 
         allData = []
+        print("[DEBUG] Compiling Extracted Data...")
         for league in leagueInfo:
+            print(f"\r[DEBUG] Compiling Extracted Data {league}...", end="")
             # print(f"League: {league['title']}")
             # print(f"Data: {league['data']}")
             # input('waiting......')
@@ -2172,15 +2365,16 @@ try:
             return datetime.strptime(tup[2], "%H:%M")
 
         # Sorting the list based on time
-        print('sorting data....')
+        print("[DEBUG] Sorting Extracted Data by time...")
         sorted_data = sorted(allData, key=get_time)
 
-        print('seaprating data...')
+        print("[DEBUG] Spliting Sorted Data into 'OddsData' | 'TeamsData | TimeData...")
         # Extracting items at index 0 and 1 from sorted data
         oddsData = [item[0] for item in sorted_data]
         teamsData = [item[1] for item in sorted_data]
         timeData = [item[2] for item in sorted_data]
 
+        print("[DEBUG] Writing sorted data to files...")
         # Writing items at odds data to a text file
         with open("oddOnlyData.txt", "w", encoding='utf-8') as file:
             file.write("\n\n".join(oddsData))
@@ -2194,26 +2388,44 @@ try:
             file.write("\n\n".join(timeData))
 
         # input('waiting...')
-        print("Done! Done! Ok!")
+        print("[DEBUG] COMPLETED!")
+        print()
         pass
 
     # ---------------------------------
+    # ---------------------------------
     # ENTRY POINT
+    # ---------------------------------
     # ---------------------------------
 
     sport = 'football'
+    # sport = 'basketball'
 
     while True:
-        command = f"[{sport.upper()}] Enter [A]/[P]/[E] for Add Pattern/Predict/Extract: "
+        s = input("Select Sport > [ {F}ootball | {B}asketball ] :  ")
+        if s.lower() == 'f' or s.lower() == "football" or s == "":
+            sport = "football"
+            break
+        elif s.lower() == 'b' or s.lower() == 'basketball':
+            sport = 'basketball'
+            break
+        else:
+            os.system('cls')
+            print('[ERROR] Unrecognized sport provided! Please try again!')
+            print()
+
+    while True:
+
+        command = f"Select Action ( {sport.upper()} ) > " + " [ {all} | {P}redict | {E}xtract ]: "
         action = input(command)
 
-        if action.lower() == 'all':
-            print("Starting data extraction...")
+        if action.lower() == 'all' or action == '':
+            print("[DEBUG] Starting data extraction...")
             start_extract(sport)
-            print("Extraction Completed! Starting prediction...")
+            print("[DEBUG] Extraction Completed! Starting prediction...")
             start_predict(sport)
 
-        elif action.lower() == 'p' or action == '':
+        elif action.lower() == 'p':
             start_predict(sport)
 
         elif action.lower() == 'a':
@@ -2221,6 +2433,12 @@ try:
 
         elif action.lower() == 'e':
             start_extract(sport)
+
+        else:
+            os.system('cls')
+            print("[ERROR!] Unrecognized action provided! Please try again!")
+            print()
+            continue
 
         print()
         print()

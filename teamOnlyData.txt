@@ -1,199 +1,129 @@
-Pittsburgh Riverhounds | FC Tulsa
+Sao Paulo FC | Minas Tenis Clube MG
 
-Atlanta United FC | Charlotte Independence
+Santo Andre/Apaba | Ituano
 
-CD Palestino | CR Flamengo RJ
+CA Nacional Potosi | Carl A-Z Oruro
 
-Club Nacional de Football | CA River Plate (ARG)
+Obras Sanitarias | Quimsa Santiogo Del Estero
 
-Deportivo Tachira | Libertad Asuncion
+New York Knicks | Indiana Pacers
 
-Botafogo FC SP | Mirassol FC SP
+CA Platense | Gimnasia de Comodoro
 
-CD Universidad Cesar Vallejo | Independiente Medellin
+IA Central Cordoba | Union de Santa Fe
 
-Houston Dynamo | Detroit City FC
+Basquetbol La Paz | Juan Misael Saracho de Oruro
 
-Manta FC | San Antonio FC
+Defensor Sporting | Hebraica Macabi
 
-Alianza FC Valledupar | Cruzeiro EC MG
+Titanes de Barranquilla | Caribbean Storm Cimarrones
 
-Sportivo Ameliano | Danubio FC
+Canterbury Rams | Taranaki Mountainairs
 
-FC Dallas | Memphis 901 FC
+Bulacan Kuyas | South Cotabato Warriors
 
-AD San Carlos | Deportivo Saprissa San Jose
+Batang Pier | Dyip
 
-Universitario de Deportes | CD Junior FC
+Guangdong Southern Tigers | Liaoning Flying Leopards
 
-Always Ready | Defensa y Justicia
+Rizal EMKAI Xentromall | Pasay Voyagers
 
-Orange County SC | Loudoun United FC
+KK Vrijednosnice Osijek | KK Skrljevo
 
-San Jose Earthquakes | Oakland Roots SC
+Sigortam.net | Final Spor
 
-Municipal Liberia | Municipal Grecia
+BC Zalgiris Kaunas | BC Juventus Utena
 
-Sacramento Republic FC | Monterey Bay FC
+Helsinki Seagulls | BC Nokia
 
-Mohammedan SC Dhaka | Bangladesh Police FC
+Washington Mystics | Minnesota Lynx
 
-Gold Coast United FC | Souths United
+BC Uniks Kazan | BC Lokomotiv Kuban Krasnodar
 
-Wofoo Tai Po | Hong Kong FC
+KK FMP Belgrade | KK Borac Cacak
 
-Bristol City | Charlton Athletic
+AEK Larnaca | Apoel Nicosia
 
-Peterborough United Reserve | Coventry City Reserve
+CSU Sibiu | CS Dinamo Bucuresti
 
-Queens Park Rangers | Barnsley FC
+BK Decin | Sluneta Usti nad Labem
 
-Mbarara FC | URA FC
+Chernomorets Burgas | Balkan Botevgrad
 
-El Sekka El Hadid | Petrojet FC
+Kaposvari KK | Atomeromu SE
 
-Grobinas SC | BFC Daugavpils
+Ose Lions | KTE Kecskemeti
 
-FK Riteriai | FK Banga Gargzdai
+SZTE-Szedeak | BC Kormend
 
-FK Indija | FK Smederevo 1924
+KSC Szekszard | Sopron Basket
 
-FK Tekstilac Odzaci | FK Radnicki Sremska Mitrovica
+Niners Chemnitz | Basketball Lowen Braunschweig
 
-RFK Graficar Beograd | FK Jedinstvo UB
+Rostock Seawolves | Crailsheim Merlins
 
-FK Tukums 2000/TSS | FS Jelgava
+S.Oliver Wurzburg | MLP Academics Heidelberg
 
-Forge FC Hamilton | HFX Wanderers FC
+KK Podcetrtek | Helios Domzale
 
-FC Ararat-Armenia | FC BKMA Vagharshapat
+BC Kalev | Kk Rapla
 
-AL Ahly SC (Egy) | Al Ittihad Al Sakandary
+CS Rapid Bucuresti | Abc Athletic Constanta
 
-FK Radnik Surdulica | FK Javor Ivanjica
+AS Monaco | Fenerbahce Istanbul
 
-FK Spartak Subotica | FK Radnicki Nis
+Skyliners Frankfurt | Science City Jena
 
-Ethnikos Achnas FC | AEL Limassol
+KK Siroki | KK Bosna Royal Sarajevo
 
-Karmiotissa FC | Nea Salamina Famagusta
+Norrkoping Dolphins | Boraas Basket
 
-Othellos Athienou | Doxa Katokopias
+Giessen 46ers | PS Karlsruhe Lions
 
-FC Buzau | FC Unirea 2004 Slobozia
+Donar Groningen | Basketball Academie Limburg
 
-Bnei Yehuda Tel Aviv FC | Maccabi Kabilio Jaffa
+Landstede Hammers | Aris Leeuwarden
 
-FC Kafr Qasim | Hapoel Rishon Lezion FC
+Alba Berlin | Baskets Bonn
 
-Hapoel Acre FC | Hapoel Ramat Gan Givatayim FC
+Riesen Ludwigsburg | Bayern Munich
 
-Hapoel Afula FC | Ihud Bnei Shfaram
+Heroes Den Bosch | Yoast United
 
-Hapoel Ironi Kiryat Shmona FC | Ironi Tiberias
+Zorg En Zekerheid Leiden | Feyenoord Basketbal Rotterdam
 
-Hapoel Nof Hagalil FC | Hapoel Nir Ramat Hasharon FC
+Antwerp Giants | Belfius Mons-Hainaut
 
-Hapoel Umm AL Fahm | Maccabi Herzliya
+KK Borac Banja Luka | Mladost Mrkonjic
 
-Sektzia Ness Ziona FC | Hapoel Kfar Saba FC
+KK Sencur | KD Ilirija
 
-FK Atmosfera | Baltijos Futbolo Akademija
+Magnolia Basket | Umana Venezia
 
-FK Garliava | FK Kauno Zalgiris
+ASD Latina Basket | San Giobbe Chiusi
 
-Kampala Capital City Authority FC | Updf FC
+Fortitudo Agrigento | Benedetto Xiv Cento
 
-Al-Nasr SC | Al-Arabi (KW)
+Luiss Roma | Frata Nardo
 
-Jeddah Club | AL Faisaly FC
+BC Oostende | Leuven Bears
 
-VfL 1899 Osnabruck | Schalke
+Limburg United | Kangoeroes Basket Mechelen
 
-VPS Akatemia | Saaripotku
+AL Riyadi Beirut | Shahrdari Gorgan
 
-Al Wahda FC (UAE) | Al-Nasr Dubai CSC
+FC Barcelona | BC Olympiakos Piraeus
 
-Orgryte IS | Helsingborgs IF
+Virtus Eirene Ragusa | PF Schio
 
-FK Vozdovac Belgrade | FK Zeleznicar Pancevo
+UMF Grindavik | Keflavik
 
-SC Weiz | USV Weindorf St. Anna am Aigen
+CA Paulistano SP | Sesi/Franca BC SP
 
-Wuppertaler SV | Fortuna Dusseldorf II
+Lsb RJ / Sodie Doces | Vera Cruz Campinas
 
-Floriana FC | Gzira United FC
+Boca Juniors | Argentino Junin
 
-PPJ | Japs/47
+Aguada | Club Malvin
 
-Besiktas Istanbul | MKE Ankaragucu
-
-Cape Town City FC | Swallows FC
-
-Kaizer Chiefs | TS Galaxy FC
-
-Royal AM FC | Cape Town Spurs
-
-Supersport United | Sekhukhune United
-
-Colchester United | Watford FC
-
-Ir/Lettir | Selfoss/Ham/Aeg/Ar
-
-Fluminense FC RJ | SE Kindermann SC
-
-CA Banfield | San Lorenzo de Almagro Res.
-
-CA Talleres de Remedios | Racing de Cordoba
-
-AS Giana Erminio | Pro Vercelli 1892
-
-AS Gubbio | Rimini FC 1912
-
-Atalanta BC U23 | AC Trento
-
-Audace Cerignola | FC Giugliano 1928
-
-Delfino Pescara | US Citta Di Pontedera
-
-Juventus FC | SS Arezzo
-
-Legnago Salus | AC Lumezzane
-
-Taranto FC | Latina Calcio
-
-Crawley Town | Milton Keynes Dons
-
-HK Kopavogur | Grotta
-
-Airdrieonians FC | Partick Thistle FC
-
-Alloa Athletic FC | Hamilton Academical FC
-
-Montrose FC | Inverness Caledonian Thistle FC
-
-Dumbarton FC | Stirling Albion FC
-
-Spartans FC | Peterhead FC
-
-PSG | Borussia D
-
-AZ Picerno | Crotone
-
-Bolton Wanderers | Barnsley
-
-Rsb Berkane | Moghreb Athletic de Tetouan
-
-Club Leones Del Norte | CD Independiente Juniors
-
-UMFN Njarðvík U19 | Keflavik/Reynir/Vidir U19
-
-FH | Haukar/Ka
-
-Caracas FC | CA Penarol Montevideo
-
-Club Atletico Rosario Central | Atletico Mineiro MG
-
-Nacional Asuncion | SC Corinthians SP
-
-Racing Club Montevideo | Argentinos Juniors
+Bucaros de Bucaramanga | Motilones Del Norte

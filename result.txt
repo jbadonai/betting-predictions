@@ -1,1 +1,190 @@
-[X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X][X]
+
+                    
+                    [00:00]
+                    Orlando City B 1 : 2  New York Red Bulls II | [ Weak Away,Strong Draw,Strong Away ]
+                    PLAY:       [ Away ] 
+                    RQD FINAL:  {'A': 200.0}
+                    Scores:     2 :  2 
+                    RATINGS:       4/1
+                    ===========================================================================================================
+                    
+                    
+                    [00:00]
+                    Charleston Battery 3 : 1  South Georgia Tormenta FC | [ Strong Home,Strong Home,Weak Home ]
+                    PLAY:       [ Home ] 
+                    RQD FINAL:  {'H': 200.0}
+                    Scores:     2 :  0 
+                    RATINGS:       5/0
+                    ===========================================================================================================
+                    [X][X][X][X]
+                    
+                    [00:30]
+                    Tampa Bay Rowdies 2 : 1  Birmingham Legion FC | [ Strong Home,Strong Home,Strong Home ]
+                    PLAY:       [ Home ] 
+                    RQD FINAL:  {'H': 200.0}
+                    Scores:     1 :  2 
+                    RATINGS:       4/0
+                    ===========================================================================================================
+                    [X]
+                    
+                    [01:00]
+                    America FC MG 1 : 0  Vila Nova FC GO | [ Strong Away,Strong Draw,Strong Home ]
+                    PLAY:       [ Home ] 
+                    RQD FINAL:  {'H': 200.0}
+                    Scores:     2 :  0 
+                    RATINGS:       5/0
+                    ===========================================================================================================
+                    
+                    
+                    [01:00]
+                    Cuiaba Esporte Clube MT 1 : 1  Metropolitanos FC | [ Strong Away,Strong Home,Weak Home ]
+                    PLAY:       [ Home ] 
+                    RQD FINAL:  {'H': 200.0}
+                    Scores:     3 :  0 
+                    RATINGS:       4/1
+                    ===========================================================================================================
+                    [X][X][X][X][X]
+                    
+                    [01:30]
+                    CS Deportivo Pereira 1 : 1  Fortaleza FC | [ Strong Away,Strong Home,Weak Away ]
+                    PLAY:       [ Home ] 
+                    RQD FINAL:  {'H': 200.0}
+                    Scores:     2 :  2 
+                    RATINGS:       3/2
+                    ===========================================================================================================
+                    [X]
+                    
+                    [02:00]
+                    New Mexico United 2 : 1  Real Salt Lake | [ Weak Home,Weak Away,Strong Home ]
+                    PLAY:       [ Away ] 
+                    RQD FINAL:  {'A': 200.0}
+                    Scores:     1 :  2 
+                    RATINGS:       3/0
+                    ===========================================================================================================
+                    [X][X][X]
+                    
+                    [03:00]
+                    Millonarios FC 1 : 1  Club Bolivar | [ Strong Away,Strong Home,Strong Home ]
+                    PLAY:       [ Home ] 
+                    RQD FINAL:  {'H': 200.0}
+                    Scores:     1 :  0 
+                    RATINGS:       4/1
+                    ===========================================================================================================
+                    [X][X][X][X][X][X]
+                    
+                    [09:30]
+                    Sparta Prague B 2 : 1  SK Lisen Brno | [ Strong Away,Strong Home,Strong Home ]
+                    PLAY:       [ Home ] 
+                    RQD FINAL:  {'H': 200.0}
+                    Scores:     1 :  2 
+                    RATINGS:       4/0
+                    ===========================================================================================================
+                    [X][X][X][X][X][X][X][X][X][X][X]
+                    
+                    [16:00]
+                    Oulun Luistinseura 1 : 1  Seinajoen JK | [ Strong Draw,Strong Home,Strong Away ]
+                    PLAY:       [ Away ] 
+                    RQD FINAL:  {'A': 200.0}
+                    Scores:     0 :  4 
+                    RATINGS:       4/1
+                    ===========================================================================================================
+                    [X][X][X]
+                    
+                    [16:30]
+                    MFK Chrudim 2 : 0  Dukla Prague | [ Strong Draw,Strong Home,Strong Home ]
+                    PLAY:       [ Away ] 
+                    RQD FINAL:  {'A': 200.0}
+                    Scores:     1 :  2 
+                    RATINGS:       3/0
+                    ===========================================================================================================
+                    
+                    
+                    [16:30]
+                    FC Honka 1 : 1  PK-35 Helsinki | [ Weak Home,Strong Away,Weak Home ]
+                    PLAY:       [ Away ] 
+                    RQD FINAL:  {'A': 200.0}
+                    Scores:     0 :  4 
+                    RATINGS:       4/1
+                    ===========================================================================================================
+                    
+                    
+                    [16:30]
+                    FC Vaajakoski 1 : 1  FC KTP Kotka | [ Weak Home,Strong Home,Strong Away ]
+                    PLAY:       [ Away ] 
+                    RQD FINAL:  {'A': 200.0}
+                    Scores:     0 :  3 
+                    RATINGS:       4/1
+                    ===========================================================================================================
+                    
+                    
+                    [16:30]
+                    GBK Kokkola 2 : 2  AC Oulu | [ Weak Away,Strong Home,Strong Home ]
+                    PLAY:       [ Away ] 
+                    RQD FINAL:  {'A': 200.0}
+                    Scores:     0 :  3 
+                    RATINGS:       3/1
+                    ===========================================================================================================
+                    [X][X][X][X][X]
+                    
+                    [17:00]
+                    Lysekloster 2 : 1  KFUM Oslo | [ Strong Home,Strong Home,Weak Away ]
+                    PLAY:       [ Away ] 
+                    RQD FINAL:  {'A': 200.0}
+                    Scores:     1 :  2 
+                    RATINGS:       3/0
+                    ===========================================================================================================
+                    [X][X]
+                    
+                    [17:00]
+                    Stabaek IF 1 : 2  Bryne FK | [ Strong Draw,Strong Away,Weak Away ]
+                    PLAY:       [ Home ] 
+                    RQD FINAL:  {'H': 200.0}
+                    Scores:     3 :  1 
+                    RATINGS:       3/0
+                    ===========================================================================================================
+                    [X][X][X][X][X]
+                    
+                    [17:00]
+                    VJS 2 : 2  IF Gnistan | [ Strong Home,Weak Home,Strong Away ]
+                    PLAY:       [ Away ] 
+                    RQD FINAL:  {'A': 200.0}
+                    Scores:     0 :  3 
+                    RATINGS:       4/1
+                    ===========================================================================================================
+                    [X]
+                    
+                    [17:30]
+                    FK Mladost Lucani 1 : 0  FK Crvena Zvezda Belgrade | [ Strong Draw,Strong Home,Strong Home ]
+                    PLAY:       [ Away ] 
+                    RQD FINAL:  {'A': 200.0}
+                    Scores:     0 :  4 
+                    RATINGS:       3/0
+                    ===========================================================================================================
+                    [X][X][X][X][X]
+                    
+                    [18:05]
+                    Levanger FK 1 : 2  Viking FK | [ Strong Home,Strong Away,Strong Away ]
+                    PLAY:       [ Away ] 
+                    RQD FINAL:  {'A': 200.0}
+                    Scores:     1 :  2 
+                    RATINGS:       5/0
+                    ===========================================================================================================
+                    [X]
+                    
+                    [18:30]
+                    FCI Levadia Tallinn 0 : 1  Viimsi JK | [ Strong Draw,Strong Draw,Strong Away ]
+                    PLAY:       [ Home ] 
+                    RQD FINAL:  {'H': 200.0}
+                    Scores:     4 :  0 
+                    RATINGS:       3/0
+                    ===========================================================================================================
+                    [X][X][X][X][X][X][X]
+                    
+                    [22:05]
+                    Colon de Santa Fe 1 : 1  Club Atletico Los Andes | [ Strong Away,Weak Home,Weak Home ]
+                    PLAY:       [ Home ] 
+                    RQD FINAL:  {'H': 200.0}
+                    Scores:     3 :  0 
+                    RATINGS:       3/1
+                    ===========================================================================================================
+                    [X][X][X]

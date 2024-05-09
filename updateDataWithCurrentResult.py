@@ -10,7 +10,7 @@ import time
 
 main_url = 'https://www.sportybet.com/'
 data_url = 'https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240420045904ord28819061'
-
+sport = 'football'
 
 def login_to_sportybet(driver, username, password):
 
@@ -87,9 +87,13 @@ def update_excel_data_old(new_data):
         print("No matching data found.")
 
 
-def update_excel_data(new_data_list):
+def update_excel_data(new_data_list, sport='football'):
     # Load the Excel file
-    excel_file = 'ml.xlsx'
+    if sport == 'football':
+        excel_file = 'ml.xlsx'
+    elif sport == 'basketball':
+        excel_file = 'ml_bb.xlsx'
+
     df = pd.read_excel(excel_file)
 
     for new_data in new_data_list:
@@ -107,18 +111,36 @@ def update_excel_data(new_data_list):
             df.loc[match_index, 'status'] = status
 
             # Add home_score and away_score columns if not already present
-            if 'home_score' not in df.columns:
-                df['home_score'] = ''
-            if 'away_score' not in df.columns:
-                df['away_score'] = ''
+            if sport == 'football':
+                if 'home_score' not in df.columns:
+                    df['home_score'] = ''
+                if 'away_score' not in df.columns:
+                    df['away_score'] = ''
+            # elif sport == 'basketball':
+            #     if 'home_score_actual' not in df.columns:
+            #         df['home_score_actual'] = ''
+            #     if 'away_score_actual' not in df.columns:
+            #         df['away_score_actual'] = ''
+
+
 
             # Update home_score and away_score columns
-            df.loc[match_index, 'home_score'] = home_score
-            df.loc[match_index, 'away_score'] = away_score
+            if sport == 'football':
+                df.loc[match_index, 'home_score'] = home_score
+                df.loc[match_index, 'away_score'] = away_score
+            # elif sport == 'basketball':
+            #     df.loc[match_index, 'home_score_actual'] = home_score
+            #     df.loc[match_index, 'away_score_actual'] = away_score
 
     # Convert 'home_score' and 'away_score' columns to numeric
-    df['home_score'] = pd.to_numeric(df['home_score'], errors='coerce')
-    df['away_score'] = pd.to_numeric(df['away_score'], errors='coerce')
+    if sport == 'football':
+        df['home_score'] = pd.to_numeric(df['home_score'], errors='coerce')
+        df['away_score'] = pd.to_numeric(df['away_score'], errors='coerce')
+    elif sport == 'basketball':
+        df['home_score'] = pd.to_numeric(df['home_score'], errors='coerce')
+        df['away_score'] = pd.to_numeric(df['away_score'], errors='coerce')
+        # df['home_score_actual'] = pd.to_numeric(df['home_score_actual'], errors='coerce')
+        # df['home_score_actual'] = pd.to_numeric(df['home_score_actual'], errors='coerce')
 
     # Remove rows with status 'pending'
     df = df[df['status'] != 'pending']
@@ -146,6 +168,14 @@ home_score_class = 'div.home-score.main'
 away_score_class = 'div.away-score.main'
 
 ans = input("Have you updated the url list for the last game? ")
+s = input("Select Sport > [{F}ootball | {B}asketball]: ")
+if s.lower() == 'f' or s.lower() == '':
+    sport = "football"
+elif s.lower() == 'b':
+    sport = "basketball"
+else:
+    print("Unrecognized sport! Football selected for you!")
+    sport = "football"
 
 if ans == 'y' or ans == 'Y' or ans == '':
     # load the web browser
@@ -159,12 +189,8 @@ if ans == 'y' or ans == 'Y' or ans == '':
 
     time.sleep(5)
 
-    urls_string = """https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240506055502ord24562962
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240506091642ord28083272
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240506160022ord38877472
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240506185504ord44878133
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240506190338ord45228602
-https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240506204944ord48667869"""
+    urls_string = """https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240508094227ord86778907
+https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240508093244ord86505038"""
 
     urls = urls_string.split("\n")
     data = []
@@ -223,5 +249,7 @@ https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets/detail/240506204
 
     # for d in data:
     #     print(d)
+    #
+    # input('ms')
 
-    update_excel_data(data)
+    update_excel_data(data, sport=sport)
