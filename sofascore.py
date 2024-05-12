@@ -1347,8 +1347,8 @@ try:
                         return f"{focusCount}/{drawCount}"
                     except Exception as e:
                         print()
-                        print(f"[ERROR!] {e}" )
-                        print(result)
+                        # print(f"[ERROR!] {e}" )
+                        # print(result)
                         print()
                         return f"-/-"
                         pass
@@ -1407,14 +1407,9 @@ try:
                 # get test result of machine lerarning on the data
                 a = predict_engine.analyze_bb_matches(newdata, new_home, new_away)
 
-                print(f"ANALYSIS RESULT:")
-                print(a)
-
-                # input("milestone 1")
 
                 if type(a) is tuple:
                     print(f"No data for {a[2]} and {a[3]}")
-                    print(a[1])
                     print()
 
                     return
@@ -1425,8 +1420,7 @@ try:
 
 
                     odds = get_home_away_odds(home, away)
-                    print(f"odds: {odds}")
-                    print(a)
+
                     print()
                     ml={}
 
@@ -1453,8 +1447,6 @@ try:
                     features.pop('away')
                     features.pop('status')
 
-                    print(f"final feature: {features}")
-
                     save_ml_to_excel(ml, 'ml_bb.xlsx')
 
                     return features
@@ -1465,14 +1457,61 @@ try:
                 print('Starting machine learning algorithms...')
                 prediction, accuracy = basketball_ml_predictions(bb_pred_features)
 
+                def calculate_summary(prediction, accuracy):
+                    print("Calculating surmary...")
+                    # Make sure the lengths of both lists are equal
+                    if len(prediction) != len(accuracy):
+                        raise ValueError("Lengths of lists must be equal")
+
+                    # Initialize dictionaries to store total accuracy and count for each prediction
+                    total_accuracy = {'A': 0, 'H': 0}
+                    count = {'A': 0, 'H': 0}
+
+                    # Iterate through the prediction and accuracy lists simultaneously
+                    for pred, acc in zip(prediction, accuracy):
+                        # Update total accuracy and count for each prediction class
+                        total_accuracy[pred] += acc
+                        count[pred] += 1
+
+                    # Calculate the average accuracy for each prediction class
+                    average_accuracy = {pred: total_accuracy[pred] / count[pred] if count[pred] != 0 else 0 for pred in
+                                        total_accuracy}
+
+                    # Remove keys with value 0
+                    average_accuracy = {key: value for key, value in average_accuracy.items() if value != 0}
+
+                    # Round up the values to the nearest whole number
+                    average_accuracy = {key: round(value) for key, value in average_accuracy.items()}
+
+                    return average_accuracy
+
+                def count_occurrences(lst):
+                    # Initialize an empty dictionary to store the counts
+                    counts = {}
+
+                    # Iterate through the list
+                    for element in lst:
+                        # If the element is already in the dictionary, increment its count
+                        if element in counts:
+                            counts[element] += 1
+                        # If the element is not in the dictionary, add it with a count of 1
+                        else:
+                            counts[element] = 1
+
+                    return counts
+
                 result = f"""
-                {new_home} : {new_away}
+                Game Time:      [ {game_time} ]
+                Teams:          {new_home} : {new_away}
                 Prediction:     {prediction}
                 Accuracy:       {accuracy}
+                Summary:        {calculate_summary(prediction,accuracy)}
+                                {count_occurrences(prediction)}
                 ********************************************************************************
                 """
-
+                print()
                 print(result)
+                print()
 
                 with open("bb_result.txt", 'a', encoding='utf-8') as f:
                     f.write(result)
@@ -1558,7 +1597,7 @@ try:
 
         # Train models and get accuracy
         model_accuracies = train_and_evaluate_models(X_train, X_test, y_train, y_test)
-        print("Model Accuracies:")
+        # print("Model Accuracies:")
         accuracy_list = []
         for model_name, accuracy in model_accuracies.items():
             # print(f"{model_name}: {accuracy:.2f}%")
@@ -1570,12 +1609,8 @@ try:
             'home_Q3': 16, 'home_Q4': 19.25, 'away_Q1': 18.5, 'away_Q2': 20, 'away_Q3': 21, 'away_Q4': 17.75,
             'home_score': 96.055, 'away_score': 95.265
         }
-        # print()
-        # print(featured_data)
-        # print()
+
         result = predict(featured_data)
-        # print("Predictions:", result)
-        # print("Accuracy: ", accuracy_list)
 
         def remove_below_threshold(labels, values, threshold):
             # Make sure the lengths of both lists are equal
@@ -1597,8 +1632,7 @@ try:
             return filtered_labels, filtered_values
 
         pred, acc = remove_below_threshold(result, accuracy_list, 0)
-        # print("Pred:", pred)
-        # print("acc:", acc)
+
         return pred, acc
 
 
@@ -1801,13 +1835,13 @@ try:
                 # -----------------------------
                 print("[DEBUG] Looping through all leagues to extract game data...")
                 for index, league in enumerate(leagues):
-                    print(f"\r[DEBUG][{league}] Extracting game data...", end="")
+
                     league_details = {}
                     # GET THE LEAGUE TITLE
                     # ---------------------
                     title = get_league_title(league, league_title)
                     league_details['title'] = clean_text(title).strip()
-
+                    print(f"\r[DEBUG][{league_details['title']}] Extracting game data...", end="")
                     # GET MATCH TABLE
                     # -----------------
                     matchTableData = get_match_table(league, match_table_class)
@@ -1863,6 +1897,7 @@ try:
                     all_leagues_data.append(league_details)
                     # print(f"{index}/{len(leagues)} >. data added for {title}")
 
+                print()
                 if x+1 < no_of_pages:
                     # checking of multiple pages exists
                     ans = check_pagination_exists(driver)
@@ -2401,44 +2436,51 @@ try:
     sport = 'football'
     # sport = 'basketball'
 
-    while True:
-        s = input("Select Sport > [ {F}ootball | {B}asketball ] :  ")
-        if s.lower() == 'f' or s.lower() == "football" or s == "":
-            sport = "football"
-            break
-        elif s.lower() == 'b' or s.lower() == 'basketball':
-            sport = 'basketball'
-            break
-        else:
-            os.system('cls')
-            print('[ERROR] Unrecognized sport provided! Please try again!')
-            print()
+
 
     while True:
+        # ensuring correct SPORT  is obtained before proceeeding..
+        while True:
+            s = input("Select Sport > [ {F}ootball | {B}asketball ] :  ")
+            if s.lower() == 'f' or s.lower() == "football" or s == "":
+                sport = "football"
+                break
+            elif s.lower() == 'b' or s.lower() == 'basketball':
+                sport = 'basketball'
+                break
+            else:
+                os.system('cls')
+                print('[ERROR] Unrecognized sport provided! Please try again!')
+                print()
 
-        command = f"Select Action ( {sport.upper()} ) > " + " [ {all} | {P}redict | {E}xtract ]: "
-        action = input(command)
+        # ensuring correct ACTION is obtained before proceeding
+        while True:
+            command = f"Select Action ( {sport.upper()} ) > " + " [ {all} | {P}redict | {E}xtract ]: "
+            action = input(command)
 
-        if action.lower() == 'all' or action == '':
-            print("[DEBUG] Starting data extraction...")
-            start_extract(sport)
-            print("[DEBUG] Extraction Completed! Starting prediction...")
-            start_predict(sport)
+            if action.lower() == 'all' or action == '':
+                print("[DEBUG] Starting data extraction...")
+                start_extract(sport)
+                print("[DEBUG] Extraction Completed! Starting prediction...")
+                start_predict(sport)
+                break
 
-        elif action.lower() == 'p':
-            start_predict(sport)
+            elif action.lower() == 'p':
+                start_predict(sport)
+                break
 
-        elif action.lower() == 'a':
-            start_add_pattern()
+            elif action.lower() == 'a':
+                start_add_pattern()
+                break
 
-        elif action.lower() == 'e':
-            start_extract(sport)
+            elif action.lower() == 'e':
+                start_extract(sport)
+                break
 
-        else:
-            os.system('cls')
-            print("[ERROR!] Unrecognized action provided! Please try again!")
-            print()
-            continue
+            else:
+                os.system('cls')
+                print("[ERROR!] Unrecognized action provided! Please try again!")
+                print()
 
         print()
         print()
