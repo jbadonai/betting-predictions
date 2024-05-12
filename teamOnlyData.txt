@@ -1,199 +1,159 @@
-FC Obolon Kiev | FC Rukh Lviv
+Rochedale Rovers | Brisbane City FC
 
-GVVV Veenendaal | SV Spakenburg
+Pohang Steelers FC | Jeju United FC
 
-Koninklijke HFC | HHC Hardenberg
+Ulsan Hyundai FC | Gimcheon Sangmu FC
 
-Scheveningen | Almere City FC
+FC Anyang | Gimpo FC
 
-FC Banik Ostrava | FK Mlada Boleslav
+Gyeongnam FC | Seongnam Ilhwa
 
-FC Viktoria Plzen | 1. FC Slovacko Uherske Hradiste
+Wuxi Wugou | Shanghai Jiading City Dev
 
-AIK | IK Sirius
+Shandong Taishan B | Nantong Haimen Codion
 
-Halmstads BK | Mjallby AIF
+Ganzhou Ruishi FC | Quanzhou Yaxin
 
-Al Mokawloon Al Arab | Al Ittihad Al Sakandary
+Capalaba Bulldogs | SWQ Thunder FC
 
-ADO 20 Heemskerk | Kozakken Boys Werkendam
+Borussia Monchengladbach | VfL Wolfsburg II
 
-Amsterdamsche FC | ACV Assen
+FC Carl Zeiss Jena | Eintracht Frankfurt II
 
-Rijnsburgse Boys | FC Lisse
+SC Sand | FSV Gutersloh
 
-GIF Sundsvall | Landskrona BoIS
+SG 99 Andernach | 1. FFC Turbine Potsdam 71
 
-Varbergs BoIS | Orgryte IS
+SV Meppen | SV 67 Weinberg
 
-Atalanta BC | Hellas Verona FC
+AC Milan | Frosinone Calcio
 
-UC Sampdoria | Empoli FC
+Getafe CF B | Marbella FC
 
-Benevento Calcio | Cosenza Calcio
+Hunan Xiangtao | Guangxi Lanhang
 
-Brescia Calcio | FC Sudtirol Bolzano U19
+FC Elva | Tallinna FC Flora U21
 
-US Cremonese | AS Cittadella
+FC Oleksandriya | SC Dnipro-1
 
-Borussia M | Eintracht
+Bucheon FC | Jeonnam Dragons
 
-Cologne | Union Berlin
+CD Atletico Paso | Barakaldo CF
 
-Freiburg | 1. FC Heidenheim 1846
+CD Manchego Ciudad Real | Real Aviles CF
 
-Leipzig | Werder
+Deportivo Aragon | Pontevedra CF
 
-FK Spartak Moscow | FK Krasnodar
+Rayo Cantabria | San Sebastian Reyes
 
-Jong Sparta Rotterdam | K.v.v. Quick Boys
+SD Formentera | CD Izarra
 
-VV Katwijk | Excelsior Maassluis
+Lazio | Empoli
 
-Bournemouth | Brentford FC
+Puszcza Niepolomice | KS Warta Poznan
 
-Everton | Sheffield Utd
+Norwich | Leeds United
 
-Newcastle | Brighton
+FC Orenburg | Lokomotiv Moscow
 
-Tottenham | Burnley
+Gefle IF | Skovde AIK
 
-West Ham | Luton Town
+BK Avarta | Naesby BK
 
-Wolves | Crystal Palace
+Juventus Turin | AC Monza
 
-Heart of Midlothian FC | FC Dundee
+US Lecce | AS Roma
 
-Livingston FC | St Johnstone FC
+Eintracht Braunschweig | SV Wehen Wiesbaden
 
-Ross County FC | Motherwell FC
+FC St. Pauli | VfL 1899 Osnabruck
 
-St Mirren FC | Kilmarnock FC
+Karlsruher SC | Hannover
 
-Hamilton Academical FC | Alloa Athletic FC
+Gent | Oud-Heverlee Leuven
 
-Inverness Caledonian Thistle FC | Montrose FC
+Guangzhou FC | Qingdao Red Lions
 
-Peterhead FC | Spartans FC
+Shijiazhuang Gongfu FC | Foshan Nanshi FC
 
-Stirling Albion FC | Dumbarton FC
+Yunnan Yukun | Yanbian Longding
 
-East Kilbride FC | Stranraer FC
+Cangzhou Mighty Lions | Zhejiang Professional
 
-FC Arda Kardzhali | Botev Plovdiv
+Cadiz CF | Getafe
 
-Calcio Caldiero Terme | Union Clodiense Chioggia SSD
+SD Amorebieta | Villarreal CF B
 
-Aalesunds FK | Valerenga IF Oslo
+Hacken Gothenburg | Kalmar FF
 
-Asane Fotball | IK Start
+IFK Norrkoping FK | Hammarby IF
 
-Bryne FK | Mjondalen IF
+Sichuan Jiuniu | Qingdao Zhongchuang Hengtai
 
-Kongsvinger IL Fotball | Raufoss IL
+Randers FC | Hvidovre IF
 
-Lyn 1896 FK | Levanger FK
+Viborg FF | Vejle BK
 
-Moss FK | Stabaek IF
+FC Fredericia | Kolding IF
 
-Ranheim | Egersunds IK
+Bayern Munich II | Hamburger SV
 
-Sogndal IL | Sandnes Ulf
+FC Ingolstadt 04 | TSG Hoffenheim II
 
-FC Bulle | FC Paradiso
+Esbjerg FB | FC Roskilde
 
-Villarreal | Sevilla
+FC Winterthur | FC Zurich
 
-Racing Club de Ferrol | AD Alcorcon
+Ajax | Almere City FC
 
-Sporting Gijon | FC Andorra
+Excelsior Rotterdam | Heracles Almelo
 
-FC Vizela | Estrela Amadora
+FC Twente Enschede | FC Volendam
 
-Portimonense SC | Rio Ave FC
+FC Utrecht | Sparta Rotterdam
 
-Shakhtar D | FC Dynamo Kiev
+Fortuna Sittard | PSV Eindhoven
 
-NK Varazdin | HNK Rijeka
+Go Ahead Eagles | Alkmaar
 
-Al Hilal Rijad | AL Hazem FC
+NEC Nijmegen | Feyenoord Rotterdam
 
-AL Raed FC | AL Tai
+RKC Waalwijk | PEC Zwolle
 
-Gateshead FC | Solihull Moors FC
+SC Heerenveen | Vitesse Arnhem
 
-Sparta Prague | Slavia Prague
+Kristiansund BK | Bodoe/Glimt
 
-GAIS | Vasteras SK
+FC Chernomorets Odessa | FC Metalist 1925 Kharkiv
 
-Napoli | Bologna
+SR Delemont | FC Zurich II
 
-Molde FK | Rosenborg BK
+FK TSC Backa Topola | FK Cukaricki Belgrade
 
-FK Zenit Saint Petersburg | CSKA Moscow
+Genoa | Sassuolo
 
-Al Masry Club | Pyramids FC
+Verona | FC Torino
 
-Baladiyyat AL Mehalla | AL Ahly SC (Egy)
+Bohemians Prague 1905 | FK Jablonec
 
-FC Thun | FC Schaffhausen
+FC Slovan Liberec | FK Teplice
 
-Neuchatel Xamax | FC Vaduz
+FK Pardubice | SK Dynamo Ceske Budejovice
 
-EFC Frejus Saint-Raphael | FC Chamalieres
+SK Sigma Olomouc | FC Hradec Kralove
 
-FCSR Haguenau | FC 93 Bobigny BG
+Chisola Calcio | Rg Ticino
 
-Racing CF | EA Guingamp II
+ASD Romana Football Club | Ischia Isolaverde
 
-SC Toulon | Le Puy Foot 43 Auvergne
+Helsingborgs IF | Sandvikens IF
 
-SO Romorantin | Angouleme Charente FC
+IK Brage | Ostersunds FK
 
-US Saint-Malo | US Boulogne
+Bologna FC | Torino FC
 
-De Treffers Groesbeek | VV Noordwijk
+Sassuolo Calcio | ACF Fiorentina
 
-KAS Eupen | RWD Molenbeek 47
+Liverpool Montevideo | Cerro Largo FC
 
-Royal Charleroi SC | KV Kortrijk
-
-Nottingham Forest | Chelsea
-
-Granada | Real Madrid
-
-Mainz | Borussia D
-
-Valladolid | Espanyol
-
-Huachipato | Union Espanola
-
-Ludogorets | PFC CSKA Sofia
-
-Estoril Praia | Sporting
-
-Atromitos Athinon | Asteras Tripolis
-
-OFI Crete | Panaitolikos Agrinio
-
-Panseraikos FC | AE Kifisia FC
-
-PAS Giannina | Volos NPS
-
-Linqueno | CD de Pronunciamiento
-
-Fotbal Club FCSB | CFR Cluj
-
-CA Huracan | Defensa y Justicia
-
-GNK Dinamo Zagreb | NK Osijek
-
-Douglas Haig | Def. de Belgrano de Villa Ramallo
-
-San Martin de Mendoza | CD Argentino Monte Maiz
-
-CD Santamarina Tandil | Club Circulo Deportivo
-
-Kimberley de Mar Del Plata | CA Sansinena SD
-
-AL Shabab FC (KSA) | AL Ahli Saudi
+Widzew Lodz | KGHM Zaglebie Lubin

@@ -1,0 +1,9 @@
+
+                Game Time:      [ 00:00 ]
+                Teams:          Obera Tenis Club  :  CA San Lorenzo de Almagro
+                Prediction:     ['H', 'A', 'A', 'H', 'H']
+                Accuracy:       [62.16, 64.86, 56.76, 51.35, 64.86]
+                Summary:        {'A': 61, 'H': 59}
+                                {'H': 3, 'A': 2}
+                ********************************************************************************
+                
