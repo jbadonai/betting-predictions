@@ -465,4 +465,60 @@ class BasketballPrediction():
             return e, cleaned_data, home_team, away_team
 
 
+class FootballPrediction2():
+
+    def __init__(self):
+        pass
+
+    def analyze_fb_matches(self, cleaned_data, home_team, away_team):
+        try:
+            # Filter data for the specified home and away teams
+            similar_matches = [match for match in cleaned_data if
+                               are_similar(match['home'], home_team) or are_similar(match['away'], home_team)
+                               or are_similar(match['away'], away_team) or are_similar(match['home'], away_team)]
+
+            if not similar_matches:
+                return "No matches found for the specified home and away teams."
+
+            # Prepare data for machine learning models
+            X = np.array([[match['home_score'], match['away_score']] for match in similar_matches])
+            y_home = np.array([match['home_score'] for match in similar_matches])
+            y_away = np.array([match['away_score'] for match in similar_matches])
+
+            # Split data into training and testing sets
+            X_train, X_test, y_home_train, y_home_test, y_away_train, y_away_test = train_test_split(
+                X, y_home, y_away, test_size=0.2, random_state=42)
+
+            # Train machine learning models
+            rf_home = RandomForestRegressor(random_state=42)
+            rf_away = RandomForestRegressor(random_state=42)
+
+            rf_home.fit(X_train, y_home_train)
+            rf_away.fit(X_train, y_away_train)
+
+            # Make predictions
+            home_score_prediction = rf_home.predict(X_test)
+            away_score_prediction = rf_away.predict(X_test)
+
+            # Calculate mean squared error
+            mse_home = mean_squared_error(y_home_test, home_score_prediction)
+            mse_away = mean_squared_error(y_away_test, away_score_prediction)
+
+            # Calculate average predictions
+            avg_prediction_home = np.mean(home_score_prediction)
+            avg_prediction_away = np.mean(away_score_prediction)
+
+            # Prepare predictions in dictionary format
+            predictions = {
+                'Average_Total_Score_Prediction_Home': avg_prediction_home,
+                'Average_Total_Score_Prediction_Away': avg_prediction_away,
+                'Total_Score_MSE_Home': mse_home,
+                'Total_Score_MSE_Away': mse_away
+            }
+
+            return predictions
+        except Exception as e:
+            return e, cleaned_data, home_team, away_team
+
+
 

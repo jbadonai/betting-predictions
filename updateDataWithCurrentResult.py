@@ -99,12 +99,13 @@ def update_excel_data_old(new_data):
         print("No matching data found.")
 
 
-def update_excel_data(new_data_list, sport='football'):
+def update_excel_data(new_data_list, sport, excel_file):
     # Load the Excel file
-    if sport == 'football':
-        excel_file = 'ml.xlsx'
-    elif sport == 'basketball':
-        excel_file = 'ml_bb.xlsx'
+    # if sport == 'football':
+    #     excel_file = 'ml.xlsx'
+    #     # excel_file = 'ml_fb.xlsx'
+    # elif sport == 'basketball':
+    #     excel_file = 'ml_bb.xlsx'
 
     df = pd.read_excel(excel_file)
 
@@ -289,14 +290,14 @@ def get_urls_with_data(driver, currentDate, start_page=1):
             basketball_data.extend(bb_data)
 
             if str(today).strip() != str(current_date).strip():
-                cap += 1
-                if cap < 5:
-                    print(f"DATE OUT OF RANGE, TRYING NEXT...")
-                    continue
-                else:
-                    print()
-                    print(f"CURRENT DATE SPECIFIED COMPLETED!")
-                    return football_data, basketball_data
+                # cap += 1
+                # if cap < 5:
+                #     print(f"DATE OUT OF RANGE, TRYING NEXT...")
+                #     continue
+                # else:
+                print()
+                print(f"CURRENT DATE SPECIFIED COMPLETED!")
+                return football_data, basketball_data
 
             driver.back()
             time.sleep(3)
@@ -335,9 +336,10 @@ print()
 
 if len(footballData) > 1:
     print("updating football data on file..")
-    update_excel_data(footballData, sport="football")
+    update_excel_data(footballData, sport="football", excel_file="ml.xlsx")
+    update_excel_data(footballData, sport="football", excel_file="ml_fb.xlsx")
 
 if len(basketballData) > 1:
     print("updating basketball data on file..")
-    update_excel_data(basketballData, sport="basketball")
+    update_excel_data(basketballData, sport="basketball", excel_file="ml_bb.xlsx")
 

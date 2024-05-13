@@ -655,7 +655,6 @@ try:
                 time.sleep(10)
                 pass
 
-
     def retrieve_from_excel(filename='datafile.xlsx'):
         try:
             # Load data from the Excel file
@@ -668,7 +667,6 @@ try:
         data_list = df.to_dict(orient='records')
 
         return data_list
-
 
     def reconfirm_team_name1(team_name, data):
         actual_team_name = None
@@ -696,7 +694,6 @@ try:
 
         return actual_team_name
 
-
     def reconfirm_team_name2(team_name, data):
         print(data)
 
@@ -723,7 +720,6 @@ try:
 
         pass
 
-
     def is_data_valid_for(home, away, data):
         h = reconfirm_team_name(home, data)
         a = reconfirm_team_name(away, data)
@@ -733,7 +729,6 @@ try:
             return False
 
         return True
-
 
     def save_to_excel(data_list, file_path='datafile.xlsx'):
         try:
@@ -754,7 +749,6 @@ try:
 
         # Save DataFrame to Excel file
         df.to_excel(file_path, index=False)
-
 
     def save_to_excel1(data_list, file_path='datafile.xlsx'):
         try:
@@ -785,7 +779,6 @@ try:
 
             # Save DataFrame to Excel file
             df.to_excel(file_path, index=False)
-
 
     def retrieve_data(file_path='datafile.xlsx'):
         try:
@@ -876,7 +869,6 @@ try:
         except FileNotFoundError:
             # Return False and 0 if the file doesn't exist
             return False, 0
-
 
     def check_team_existence3(team_name, file_path='datafile.xlsx'):
         try:
@@ -1134,6 +1126,8 @@ try:
             # print(newdata)
             # for data in newdata:
             #     print(data)
+            #
+            # input('ms')
 
 
             # CREATE AN INSTANCE OF THE PREDICTING ENGINE
@@ -1417,8 +1411,6 @@ try:
                 bb_pred_features = {}
 
                 def get_and_save_bb_ml_data(a):
-
-
                     odds = get_home_away_odds(home, away)
 
                     print()
@@ -1514,6 +1506,113 @@ try:
                 print()
 
                 with open("bb_result.txt", 'a', encoding='utf-8') as f:
+                    f.write(result)
+
+            elif sport == 'football_new':
+                print(f"[FB][DEBUG] Initalizing predicting enging...")
+                predict_engine = FootballPrediction2()
+
+                print(f'[FB][DEBUG] [PREDICTING] Using WINS ratio and H2H data...')
+                # get test result of machine lerarning on the data
+                a = predict_engine.analyze_fb_matches(newdata, new_home, new_away)
+
+                if type(a) is tuple:
+                    print(f"No data for {a[2]} and {a[3]}")
+                    print()
+
+                    return
+
+                bb_pred_features = {}
+
+                def get_and_save_fb_ml_data(a):
+                    odds = get_home_away_odds(home, away)
+
+                    print()
+                    ml={}
+
+                    ml['home'] = new_home
+                    ml['away'] = new_away
+                    ml['home_odd'] = round(float(odds[0]), 2)
+                    ml['away_odd'] = round(float(odds[1]), 2)
+                    ml['odd_difference'] = abs(ml['home_odd'] - ml['away_odd'])
+                    ml['home_score'] = a['Average_Total_Score_Prediction_Home']
+                    ml['away_score'] = a['Average_Total_Score_Prediction_Away']
+                    ml['status'] = "pending"
+
+                    features = ml.copy()
+
+                    features.pop('home')
+                    features.pop('away')
+                    features.pop('status')
+
+                    save_ml_to_excel(ml, 'ml_fb.xlsx')
+
+                    return features
+
+                print(f"[FB][DEBUG] Saving past matches analysis to ML file")
+                # save match alnalysis to file and retreive features for ML prediction
+                fb_pred_features = get_and_save_fb_ml_data(a)
+
+                print('Starting machine learning algorithms...')
+                prediction, accuracy = football_ml_predictions(fb_pred_features)
+
+                def calculate_summary(prediction, accuracy):
+                    print("Calculating surmary...")
+                    # Make sure the lengths of both lists are equal
+                    if len(prediction) != len(accuracy):
+                        raise ValueError("Lengths of lists must be equal")
+
+                    # Initialize dictionaries to store total accuracy and count for each prediction
+                    total_accuracy = {'A': 0, 'H': 0, 'D':0}
+                    count = {'A': 0, 'H': 0, 'D': 0}
+
+                    # Iterate through the prediction and accuracy lists simultaneously
+                    for pred, acc in zip(prediction, accuracy):
+                        # Update total accuracy and count for each prediction class
+                        total_accuracy[pred] += acc
+                        count[pred] += 1
+
+                    # Calculate the average accuracy for each prediction class
+                    average_accuracy = {pred: total_accuracy[pred] / count[pred] if count[pred] != 0 else 0 for pred in
+                                        total_accuracy}
+
+                    # Remove keys with value 0
+                    average_accuracy = {key: value for key, value in average_accuracy.items() if value != 0}
+
+                    # Round up the values to the nearest whole number
+                    average_accuracy = {key: round(value) for key, value in average_accuracy.items()}
+
+                    return average_accuracy
+
+                def count_occurrences(lst):
+                    # Initialize an empty dictionary to store the counts
+                    counts = {}
+
+                    # Iterate through the list
+                    for element in lst:
+                        # If the element is already in the dictionary, increment its count
+                        if element in counts:
+                            counts[element] += 1
+                        # If the element is not in the dictionary, add it with a count of 1
+                        else:
+                            counts[element] = 1
+
+                    return counts
+
+                result = f"""
+                Game Time:      [ {game_time} ]
+                Teams:          {new_home} : {new_away}
+                Prediction:     {prediction}
+                Accuracy:       {accuracy}
+                Summary:        {calculate_summary(prediction,accuracy)}
+                                {count_occurrences(prediction)}
+                ********************************************************************************
+                """
+                print()
+                print(result)
+                print()
+
+                with open("fb_result.txt", 'a', encoding='utf-8') as f:
                     f.write(result)
 
         except Exception as e:
@@ -1635,6 +1734,106 @@ try:
 
         return pred, acc
 
+    def football_ml_predictions(featured_data=None):
+
+        def load_and_prepare_data(file_path):
+            data = pd.read_excel(file_path)
+            # Remove rows with 'pending' status and missing values
+            data = data[(data['status'] != 'pending') & (data['status'].notna())]
+            features = data.drop(columns=["home", "away", "status"])
+            target = data["status"]
+            le = LabelEncoder()
+            target_encoded = le.fit_transform(target)
+            return features, target_encoded, le
+
+        # Function to train models and calculate accuracy
+        def train_and_evaluate_models(X_train, X_test, y_train, y_test):
+            models = {
+                "Logistic Regression": LogisticRegression(max_iter=1000),
+                "Decision Tree": DecisionTreeClassifier(),
+                "Random Forest": RandomForestClassifier(),
+                "SVM": SVC(),
+                "Naive Bayes": GaussianNB()
+            }
+            accuracies = {}
+            for model_name, model in models.items():
+                model.fit(X_train, y_train)
+                joblib.dump(model, f"{model_name}.pkl")
+                predictions = model.predict(X_test)
+                accuracy = accuracy_score(y_test, predictions)
+                accuracies[model_name] = accuracy * 100  # Convert to percentage
+            return accuracies
+
+        def predict(features):
+            # Define the feature names based on the training data
+            # Features: {'home_odd': 3.33, 'away_odd': 1.99, 'odd_difference': 1.34, 'home_score': 1.8938461538461537, 'away_score': 1.616923076923077}
+
+            feature_names = ['home_odd', 'away_odd', 'odd_difference', 'home_score', 'away_score']
+
+            # Check if features is a list, convert to DataFrame
+            if isinstance(features, list):
+                features_df = pd.DataFrame([features], columns=feature_names)
+            # Check if features is a dictionary, convert to DataFrame
+            elif isinstance(features, dict):
+                features_df = pd.DataFrame([features])
+            else:
+                raise ValueError("Features must be either a list or a dictionary.")
+
+            predictions = []
+            for model_name in ["Logistic Regression", "Decision Tree", "Random Forest", "SVM", "Naive Bayes"]:
+                loaded_model = joblib.load(f"{model_name}.pkl")
+                pred = loaded_model.predict(features_df)
+                predictions.append(label_encoder.inverse_transform(pred)[0])
+            return predictions
+
+        # Main script
+        # Load and prepare data
+        print(f"[FB][ML][DEBUG] Loading and cleaning data...")
+        features, target_encoded, label_encoder = load_and_prepare_data("ml_fb.xlsx")
+
+        print(f"[FB][ML][DEBUG] Training data...")
+        X_train, X_test, y_train, y_test = train_test_split(features, target_encoded, test_size=0.2,
+                                                            random_state=42)
+
+        # Train models and get accuracy
+        model_accuracies = train_and_evaluate_models(X_train, X_test, y_train, y_test)
+        # print("Model Accuracies:")
+        accuracy_list = []
+        for model_name, accuracy in model_accuracies.items():
+            # print(f"{model_name}: {accuracy:.2f}%")
+            accuracy_list.append(float(f"{accuracy:.2f}"))
+
+        # sample_features = [1.8, 1.87, 0.07, 18.75, 14.25, 16, 19.25, 18.5, 20, 21, 17.75, 96.055, 95.265]
+        sample_features_dict = {
+            'home_odd': 1.8, 'away_odd': 1.87, 'odd_difference': 0.07, 'home_Q1': 18.75, 'home_Q2': 14.25,
+            'home_Q3': 16, 'home_Q4': 19.25, 'away_Q1': 18.5, 'away_Q2': 20, 'away_Q3': 21, 'away_Q4': 17.75,
+            'home_score': 96.055, 'away_score': 95.265
+        }
+
+        result = predict(featured_data)
+
+        def remove_below_threshold(labels, values, threshold):
+            # Make sure the lengths of both lists are equal
+            if len(labels) != len(values):
+                raise ValueError("Lengths of lists must be equal")
+
+            # Create a new list to store filtered values and labels
+            filtered_labels = []
+            filtered_values = []
+
+            # Iterate through both lists simultaneously
+            for label, value in zip(labels, values):
+                # Check if the value is greater than or equal to the threshold
+                if value >= threshold:
+                    # If so, add the label and value to the filtered lists
+                    filtered_labels.append(label)
+                    filtered_values.append(value)
+
+            return filtered_labels, filtered_values
+
+        pred, acc = remove_below_threshold(result, accuracy_list, 0)
+
+        return pred, acc
 
     def ml_prediction(data):
         try:
@@ -2074,8 +2273,6 @@ try:
 
         pass
 
-
-
     # ==============================================================================================================
     # MAINS
     # ==============================================================================================================
@@ -2212,8 +2409,6 @@ try:
 
             value = (h, a)
             teamList.append(value)
-
-
 
         def initialize_browser1():
             # Initialize the webdriver (Make sure you have the appropriate webdriver installed)
@@ -2435,7 +2630,6 @@ try:
 
     sport = 'football'
     # sport = 'basketball'
-
 
 
     while True:
