@@ -560,13 +560,20 @@ class PreviousRecordExtractor():
                         if found is True:
                             break
                         else:
+                            if failure_count >= 5:
+                                return None
+                            failure_count += 1
                             print(f"[DEBUG][ERROR] Team url Page [{team_url}] not properly loaded! DATA TABLE NOT FOUND ON PAGE! Refreshing to retry....")
                             self.driver.refresh()
                             time.sleep(5)
                     else:
+                        if failure_count >= 5:
+                            return None
+                        failure_count += 1
                         print(f"[DEBUG][ERROR] Error Loading team's url [{team_url}]! Retrying")
                         time.sleep(2)
 
+                failure_count = 0
                 # d. EXTRACT DATA FROM THE PAGE
                 # ------------------------------
                 print(f"[DEBUG] Extracting Data...")

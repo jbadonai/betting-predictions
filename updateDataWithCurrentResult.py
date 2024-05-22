@@ -124,8 +124,10 @@ def update_excel_data(new_data_list, sport, excel_file):
             df.loc[match_index, 'status'] = status
 
             # Add home_score and away_score columns if not already present
+            version1 = False
             if sport == 'football':
                 if 'home_score' not in df.columns:
+                    version1 = True
                     df['home_score'] = ''
                 if 'away_score' not in df.columns:
                     df['away_score'] = ''
@@ -139,8 +141,9 @@ def update_excel_data(new_data_list, sport, excel_file):
 
             # Update home_score and away_score columns
             if sport == 'football':
-                df.loc[match_index, 'home_score'] = home_score
-                df.loc[match_index, 'away_score'] = away_score
+                if version1 is True:
+                    df.loc[match_index, 'home_score'] = home_score
+                    df.loc[match_index, 'away_score'] = away_score
             # elif sport == 'basketball':
             #     df.loc[match_index, 'home_score_actual'] = home_score
             #     df.loc[match_index, 'away_score_actual'] = away_score
@@ -242,7 +245,8 @@ def get_urls_with_data(driver, currentDate, start_page=1):
     football_data = []
     basketball_data = []
 
-    current_date = int(currentDate)
+    # current_date = int(currentDate)
+    current_date = [int(x) for x in currentDate]
     cap = 0
     for page_no in range(start_page, 100):
         page_url = f"https://www.sportybet.com/ng/my_accounts/bet_history/sport_bets?page={page_no}"
@@ -289,7 +293,8 @@ def get_urls_with_data(driver, currentDate, start_page=1):
             football_data.extend(fb_data)
             basketball_data.extend(bb_data)
 
-            if str(today).strip() != str(current_date).strip():
+            # if str(today).strip() != str(current_date).strip():
+            if int(today.strip()) not in current_date:
                 # cap += 1
                 # if cap < 5:
                 #     print(f"DATE OUT OF RANGE, TRYING NEXT...")
@@ -312,9 +317,13 @@ def get_urls_with_data(driver, currentDate, start_page=1):
 #-----------------------------------------------------------------
 dt = input("Specify date(day): ")
 if dt == "":
-    dt = get_today()
+    dt =[get_today()]
 else:
-    dt = int(dt)
+    if "," not in dt:
+        dt = [dt]
+    else:
+        dt = dt.split(",")
+    # dt = int(dt)
 
 startPage = input("Specify start page: ")
 if startPage == "":
@@ -336,7 +345,7 @@ print()
 
 if len(footballData) > 1:
     print("updating football data on file..")
-    update_excel_data(footballData, sport="football", excel_file="ml.xlsx")
+    # update_excel_data(footballData, sport="football", excel_file="ml.xlsx")
     update_excel_data(footballData, sport="football", excel_file="ml_fb.xlsx")
 
 if len(basketballData) > 1:

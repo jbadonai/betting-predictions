@@ -723,7 +723,7 @@ try:
     def is_data_valid_for(home, away, data):
         h = reconfirm_team_name(home, data)
         a = reconfirm_team_name(away, data)
-        print(f"h: {h} --  a: {a}")
+        # print(f"h: {h} --  a: {a}")
 
         if h is None or a is None:
             return False
@@ -844,7 +844,11 @@ try:
 
             # Try loading existing file
             df = pd.read_excel(file_path)
-            team_count = df['team'].eq(team_name).sum()
+            try:
+                team_count = df['team'].eq(team_name).sum()
+            except:
+                return False, 0
+
             return team_count > 0, team_count
         except FileNotFoundError:
             # Return False and 0 if the file doesn't exist
@@ -1075,6 +1079,7 @@ try:
 
             teamsWithMissingData = []
 
+
             # IF HOME OR AWAY IS NOT IN THE DATA BASE, EXTRACT THEIR DATA AND SAVE IN DATABASE
             # -----------------------------------------------------------------------------
             if bool(h) is False:
@@ -1086,6 +1091,8 @@ try:
                 # new_away = get_data_for_prediction(away, True)
                 print(f'[DEBUG] "{away}" not in local database! adding it to checklist...')
                 teamsWithMissingData.append(away)
+
+            print(f"h: {bool(h)} : a: {bool(a)}")
 
             #  GET DATA FROM SOFASCORE FOR TEAM WITH NO DATA IN THE EXCEL FILE
             # ---------------------------------------------------------------
@@ -1133,265 +1140,506 @@ try:
             # CREATE AN INSTANCE OF THE PREDICTING ENGINE
             # -----------------------------------------------------------------------------
             # predict_engine = FootballPrediction()
+            def football_prediction_old():
+                try:
+                    predict_engine = FootballPrediction()
+
+                    print(f'[DEBUG] [PREDICTING] Using WINS ratio and H2H data...')
+                    a = predict_engine.analyze_matches(newdata, new_home, new_away)
+
+                    print(f'[DEBUG] [PREDICTING] Using AVERAGE GOALS and EXPECTED GOAL analysis...')
+                    b = predict_engine.analyze_by_average_goal_scored(newdata, new_home, new_away)
+
+                    print(f'[DEBUG] [PREDICTING] Using POISSON analysis...')
+                    c = predict_engine.analyze_by_poisson_analysis(newdata, new_home, new_away)
+
+                    print(f'[DEBUG] [PREDICTING] Evaluating results from the 3 alorighms...')
+
+                    analyzer = CombinationAnalyzer()
+
+                    homeScore = round(
+                        (float(evaluate_scores(a)[0]) + float(evaluate_scores(b)[0]) + float(
+                            evaluate_scores(c)[0])) / 3)
+                    awayScore = round(
+                        (float(evaluate_scores(a)[1]) + float(evaluate_scores(b)[1]) + float(
+                            evaluate_scores(c)[1])) / 3)
+
+                    comp_eval = complete_evaluation(evaluate(a), evaluate(b), evaluate(c))
+                    print(f'complete evaluation: {comp_eval}')
+
+                    print(
+                        f'[DEBUG] [PREDICTING] Evaluation completed! Concluding/Predicting based on the evaluation...')
+                    # get suggestion based on previous result given by the prediction stored
+                    suggestion = analyzer.analyze(evaluate(a), evaluate(b), evaluate(c))
+                    print(f'suggestion: {suggestion}')
+
+                    # get the home and away odds
+                    odds = get_home_away_odds(home, away)
+                    print(f"odds: {odds}")
+
+                    if odds is None:
+                        return
+
+                    # using the odds and suggestion to make a deeper infomed decision or predition
+                    deepCheck = deep_check(odds, suggestion)
+
+                    # declaring machine learning container that holds data to be passed to machine learning
+                    print(f'[DEBUG] [PREDICTING LEVEL 2] Preparing data for MACHINE LEARNING algorighms...')
+                    ml = {}
+
+                    allEvaluation = f"{evaluate(a)},{evaluate(b)},{evaluate(c)}"
+
+                    # THE SCRIPT USES 2 DIFFERENT MACHINE LEARNING ALGORIGHMS THEIR DATA WILL BE PREPARED BELOW
+                    # populate data for the machine learning V1
+                    # ------------------------------------
+                    ml['home'] = home
+                    ml['away'] = away
+                    ml['home_odd'] = round(float(odds[0]), 2)
+                    ml['away_odd'] = round(float(odds[1]), 2)
+                    ml['odd_difference'] = abs(ml['home_odd'] - ml['away_odd'])
+                    ml['strong_home'] = check_evaluation('strong home', allEvaluation)
+                    ml['strong_away'] = check_evaluation('strong away', allEvaluation)
+                    ml['strong_draw'] = check_evaluation('strong draw', allEvaluation)
+                    ml['weak_home'] = check_evaluation('weak home', allEvaluation)
+                    ml['weak_away'] = check_evaluation('weak away', allEvaluation)
+
+                    #  populate data for machine learning version 2
+                    # -------------------------------------------------
+                    data4Ml2 = {'home_odd': ml['home_odd'],
+                                'away_odd': ml['away_odd'],
+                                'odd_difference': ml['odd_difference'],
+                                'strong_home': ml['strong_home'],
+                                'strong_away': ml['strong_away'],
+                                'strong_draw': ml['strong_draw'],
+                                'weak_home': ml['weak_home'],
+                                'weak_away': ml['weak_away']}
+
+                    # predict using machine learning based on supplied data ml
+                    print("[Debug][ML] ML prediction V1 starting...")
+
+                    print(
+                        f'[DEBUG] [PREDICTING LEVEL 2] spliting input data into 2 for V1 and V2 Machine learning algorithms...')
+                    # create a copy of ml data so it can be modified for ml
+                    mlData = ml.copy()
+                    mlData.pop('home')
+                    mlData.pop('away')
+
+                    print(f'[DEBUG] [PREDICTING LEVEL 2] parsing data to V1 MACHINE LEARNING algorith...')
+                    mlPrediction = ml_prediction(mlData)
+                    required = mlPrediction.split("(")[-1].replace(")", "").replace("%", "")
+                    required_split = required.split("/")
+                    required_dict = {}
+                    for r in required_split:
+                        d = r.split(":")
+                        required_dict[d[0].strip()] = d[1].strip()
+
+                    print(f'[DEBUG] [PREDICTING LEVEL 2] V1 MACHINE LEARNING prediction Completed!')
+
+                    print(f'[DEBUG] [PREDICTING LEVEL 2] parsing data to V2 MACHINE LEARNING algorighms...')
+                    mlPredictionV2 = V2_prediction(data4Ml2)
+                    print(f"ml prediction v2: {mlPredictionV2[0]}")
+                    required2_dict = mlPredictionV2[0]
+
+                    required_final = {}
+                    tp = ['H', 'A', 'D']  # total possibilities
+
+                    for t in tp:
+                        d1 = required_dict.get(t, 0)
+                        d2 = required2_dict.get(t, 0)
+
+                        add = float(d1) + float(d2)
+                        if add > 0:
+                            required_final[t] = add
+
+                    print(f"required final: {required_final}")
+
+                    print(f'[DEBUG] [PREDICTING LEVEL 2] V2 MACHINE LEARNING prediction Completed!')
+
+                    print()
+                    print(
+                        f'[DEBUG] [PREDICTING LEVEL 2] Evaluating result from both V1 and V2 MACHINE LEARNING algorighms...')
+                    v2List = []
+                    v1List = str(mlPrediction).split(" ")[0].split("/")
+
+                    for x in mlPredictionV2[0]:
+                        v2List.append(x)
+
+                    final = combine_lists(v1List, v2List)
+                    print("[Debug][ML] ML prediction V2 done!")
+
+                    '''
+                        DEEP CHECK: {deepCheck}
+                        ML: {mlPrediction}
+                        ML V2: {mlPredictionV2}
+                    '''
+
+                    homeDetail = a.split("|")[0].split(":")[0].strip()
+                    awayDetails = a.split("|")[0].split(":")[1]
+
+                    homeDetail = homeDetail.strip().split(" ")[:-2]
+                    awayDetails = awayDetails.strip().split(" ")[1:]
+
+                    print(
+                        f'[DEBUG] [PREDICTING LEVEL 2] Making final prediction based on evaluation of V1 and V2 MACHINE LEARNING algorighm results ')
+
+                    # if len(final) <= 2:
+                    def analyze_sure(result):
+                        try:
+                            resultList = str(result).split("\n")
+                            filteredResultList = [item for item in resultList if item != ""]
+                            # for f in filteredResultList:
+                            #     print(f)
+                            #
+                            # input('ms')
+
+                            focus = None
+                            focusCount = 0
+                            drawCount = 0
+                            focusAbbr = None
+
+                            if 'away' in filteredResultList[2].lower():
+                                focus = "Away"
+                                focusAbbr = "A"
+                            elif 'home' in filteredResultList[2].lower():
+                                focus = "Home"
+                                focusAbbr = "H"
+
+                            # 1/5 analysis
+                            if filteredResultList[1].__contains__(f"Strong {focus}"):
+                                focusCount += 1
+
+                            # 2/5 analysis
+                            if filteredResultList[2].__contains__(focus):
+                                focusCount += 1
+
+                            # 3/5 analysis
+                            if filteredResultList[3].split(":")[1].__contains__(focusAbbr):
+                                focusCount += 1
+
+                            # 4/5 analysis
+                            scores = filteredResultList[4].split(":")
+                            hs = int(scores[1].strip())
+                            a_s = int(scores[2].strip())
+
+                            if hs == a_s:
+                                drawCount += 1
+                            else:
+                                if hs > a_s:  # if home score is greater than away score
+                                    if focus == "Home":
+                                        focusCount += 1
+                                else:
+                                    if focus == "Away":
+                                        focusCount += 1
+
+                            # 5/5 analysis
+                            scores = filteredResultList[1].split(":")
+                            hs = int(scores[0].strip().split(" ")[-1].strip())
+                            a_s = int(scores[1].strip().split(" ")[0].strip())
+
+                            if hs == a_s:
+                                drawCount += 1
+                            else:
+                                if hs > a_s:  # if home score is greater than away score
+                                    if focus == "Home":
+                                        focusCount += 1
+                                else:
+                                    if focus == "Away":
+                                        focusCount += 1
+
+                            return f"{focusCount}/{drawCount}"
+                        except Exception as e:
+                            print()
+                            # print(f"[ERROR!] {e}" )
+                            # print(result)
+                            print()
+                            return f"-/-"
+                            pass
+
+                        pass
+
+                    if len(final) == 1:
+                        result = f"""
+                                        [{game_time}]
+                                        {' '.join(homeDetail)} {homeScore} : {awayScore} {' '.join(
+                            awayDetails)} | [ {evaluate(a)},{evaluate(
+                            b)},{evaluate(c)} ]
+                                        PLAY:       [ {process_final(final)} ] 
+                                        RQD FINAL:  {required_final}
+                                        Scores:     {mlPredictionV2[1]} :  {mlPredictionV2[2]} """
+
+                        result_sure = f"""
+                                        {result}
+                                        RATINGS:       {analyze_sure(result)}
+                                        ===========================================================================================================
+                                        """
+
+                        save_ml_to_excel(ml)
+
+                        with open("result.txt", 'a', encoding='utf-8') as f:
+                            f.write(result_sure)
+                    else:
+                        resultx = f"""
+                                        [{game_time}]
+                                        {' '.join(homeDetail)} {homeScore} : {awayScore} {' '.join(awayDetails)}
+                                        PLAY:       {v1List}  | {mlPrediction}
+                                                    {v2List}  | {mlPredictionV2}
+                                                    [ {process_final(final)} ] 
+                                        RQD FINAL:  {required_final}
+                                        ===========================================================================================================
+                                    """
+
+                        save_ml_to_excel(ml)
+
+                        with open("result.txt", 'a', encoding='utf-8') as f:
+                            f.write("[X]")
+                            # f.write(result)
+
+                        if len(final) == 2:
+                            with open("result_excluded.txt", 'a', encoding='utf-8') as f:
+                                f.write(resultx)
+                        else:
+                            with open("result_excluded.txt", 'a', encoding='utf-8') as f:
+                                f.write("[X]")
+                    pass
+                except Exception as e:
+                    print(f"[ERROR][football_prediciton_old()] {e}")
+
+            def football_prediction_new():
+                try:
+                    print(f"[FB][DEBUG] Initalizing predicting enging...")
+                    predict_engine = FootballPrediction2()
+
+                    print(f'[FB][DEBUG] [PREDICTING] Using WINS ratio and H2H data...')
+                    # get test result of machine lerarning on the data
+                    a = predict_engine.analyze_fb_matches(newdata, new_home, new_away)
+
+                    if type(a) is tuple:
+                        print(f"No data for {a[2]} and {a[3]}")
+                        print()
+
+                        return
+
+                    bb_pred_features = {}
+
+                    def get_and_save_fb_ml_data(a):
+                        odds = get_home_away_odds(home, away)
+
+                        print()
+                        ml = {}
+
+                        ml['home'] = new_home
+                        ml['away'] = new_away
+                        ml['home_odd'] = round(float(odds[0]), 2)
+                        ml['away_odd'] = round(float(odds[1]), 2)
+                        ml['odd_difference'] = abs(ml['home_odd'] - ml['away_odd'])
+                        ml['home_score'] = a['Average_Total_Score_Prediction_Home']
+                        ml['away_score'] = a['Average_Total_Score_Prediction_Away']
+                        ml['status'] = "pending"
+
+                        features = ml.copy()
+
+                        features.pop('home')
+                        features.pop('away')
+                        features.pop('status')
+
+                        save_ml_to_excel(ml, 'ml_fb.xlsx')
+
+                        return features
+
+                    print(f"[FB][DEBUG] Saving past matches analysis to ML file")
+                    # save match alnalysis to file and retreive features for ML prediction
+                    fb_pred_features = get_and_save_fb_ml_data(a)
+
+                    print('Starting machine learning algorithms...')
+                    prediction, accuracy = football_ml_predictions(fb_pred_features)
+
+                    def calculate_summary(prediction, accuracy):
+                        print("Calculating surmary...")
+                        # Make sure the lengths of both lists are equal
+                        if len(prediction) != len(accuracy):
+                            raise ValueError("Lengths of lists must be equal")
+
+                        # Initialize dictionaries to store total accuracy and count for each prediction
+                        total_accuracy = {'A': 0, 'H': 0, 'D': 0}
+                        count = {'A': 0, 'H': 0, 'D': 0}
+
+                        # Iterate through the prediction and accuracy lists simultaneously
+                        for pred, acc in zip(prediction, accuracy):
+                            # Update total accuracy and count for each prediction class
+                            total_accuracy[pred] += acc
+                            count[pred] += 1
+
+                        # Calculate the average accuracy for each prediction class
+                        average_accuracy = {pred: total_accuracy[pred] / count[pred] if count[pred] != 0 else 0 for pred
+                                            in
+                                            total_accuracy}
+
+                        # Remove keys with value 0
+                        average_accuracy = {key: value for key, value in average_accuracy.items() if value != 0}
+
+                        # Round up the values to the nearest whole number
+                        average_accuracy = {key: round(value) for key, value in average_accuracy.items()}
+
+                        return average_accuracy
+
+                    def count_occurrences(lst):
+                        # Initialize an empty dictionary to store the counts
+                        counts = {}
+
+                        # Iterate through the list
+                        for element in lst:
+                            # If the element is already in the dictionary, increment its count
+                            if element in counts:
+                                counts[element] += 1
+                            # If the element is not in the dictionary, add it with a count of 1
+                            else:
+                                counts[element] = 1
+
+                        return counts
+
+                    occurrence_count = count_occurrences(prediction)
+
+                    def format_dict_values(input_data):
+                        # If the input is a string, convert it to a dictionary
+                        if isinstance(input_data, str):
+                            input_data = ast.literal_eval(input_data)
+
+                        # Define the order of keys and initialize the result list
+                        key_order = ['H', 'A', 'D']
+                        result = []
+
+                        # Construct the result list based on the key order
+                        for key in key_order:
+                            if key in input_data:
+                                result.append(str(input_data[key]))
+                            else:
+                                result.append('0')
+
+                        # Join the result list with '--' and return the result string
+                        return ''.join(result)
+
+                    def update_dict_with_list(main_dict, keys_to_add):
+                        for key in keys_to_add:
+                            if key not in main_dict:
+                                main_dict[key] = ''
+                        return main_dict
+
+                    def get_code_dict():
+                        try:
+                            with open("code_dict.txt", 'r', encoding='utf-8') as f:
+                                d = f.read()
+                                if d == "":
+                                    return {}
+                                else:
+                                    if isinstance(d,str):
+                                        d = eval(d)
+                                        return d
+                            pass
+                        except:
+                            return {}
+                        pass
+
+                    def save_code_dict(codeDict):
+                        try:
+                            with open("code_dict.txt", 'w', encoding='utf-8') as f:
+                                f.write(str(codeDict))
+                            pass
+                        except:
+                            pass
+
+                    def save_code(code):
+                        newCode = []
+                        try:
+                            with open("code.txt", 'r', encoding='utf-8') as f:
+                                loaded_code = f.read()
+                                if loaded_code == "":
+                                    loaded_code = []
+                        except:
+                            loaded_code = []
+
+                        if isinstance(loaded_code, str):
+                            loaded_code = eval(loaded_code)
+
+                        loaded_code.append(code)
+                        # print(f"1. {loaded_code}")
+
+                        loaded_code = list(set(loaded_code))
+                        # print(f"2. {loaded_code}")
+
+                        # print(f"writing: {loaded_code}")
+                        with open("code.txt", 'w', encoding='utf-8') as f:
+                            f.write(str(loaded_code))
+
+                        return loaded_code
+
+                    code = format_dict_values(occurrence_count)
+                    last_loaded_code_list = save_code(code)
+                    main_code_dict = get_code_dict()
+
+                    updated_code_dict = update_dict_with_list(main_code_dict, last_loaded_code_list)
+
+                    save_code_dict(updated_code_dict)
+
+                    def get_experienced_result(code):
+                        mainDict = get_code_dict()
+                        result = mainDict.get(code, "No Record")
+
+                        if result == "":
+                            return "Unknown"
+
+                        return result
+
+                    def simplify_experience(experience):
+                        if experience == "H/D":
+                            return "Home or Draw [1X]"
+                        elif experience == "H/A":
+                            return "Home or Away [12]"
+                        elif experience == "A/D":
+                            return "Away or Draw [X2]"
+                        elif  experience == "D" :
+                            return f"Lowest odd (H/A) / D"
+                        else:
+                            return "N/A"
+
+                    def sum_dictionary_values(input_data):
+                        # If the input is a string, convert it to a dictionary
+                        if isinstance(input_data, str):
+                            input_data = ast.literal_eval(input_data)
+
+                        # Calculate the sum of values in the dictionary
+                        total_sum = sum(input_data.values())
+
+                        return total_sum
+                    summary = calculate_summary(prediction, accuracy)
+                    experience = get_experienced_result(code)
+
+                    result = f"""
+                                   Game Time:      [ {game_time} ]
+                                   Teams:          {new_home} : {new_away}
+                                   Prediction:     {prediction}
+                                   Accuracy:       {accuracy}
+                                   Summary:        {summary}  [{sum_dictionary_values(summary)}]
+                                                   {occurrence_count} [{code}]
+                                                   {experience}  [{simplify_experience(experience)}]
+                                   ********************************************************************************
+                                   """
+                    print()
+                    print(result)
+                    print()
+
+                    with open("fb_result.txt", 'a', encoding='utf-8') as f:
+                        f.write(result)
+
+
+                    pass
+                except Exception as e:
+                    print(f"[ERROR][FOOTBALL_PREDICTION_NEW] {e}")
+
 
             print(f'[DEBUG] Recent game data extracted from file. Intializing Predicting Engine...')
             if sport == 'football':
-                predict_engine = FootballPrediction()
-
-                print(f'[DEBUG] [PREDICTING] Using WINS ratio and H2H data...')
-                a = predict_engine.analyze_matches(newdata, new_home, new_away)
-
-                print(f'[DEBUG] [PREDICTING] Using AVERAGE GOALS and EXPECTED GOAL analysis...')
-                b = predict_engine.analyze_by_average_goal_scored(newdata, new_home, new_away)
-
-                print(f'[DEBUG] [PREDICTING] Using POISSON analysis...')
-                c = predict_engine.analyze_by_poisson_analysis(newdata, new_home, new_away)
-
-                print(f'[DEBUG] [PREDICTING] Evaluating results from the 3 alorighms...')
-
-                analyzer = CombinationAnalyzer()
-
-                homeScore = round(
-                    (float(evaluate_scores(a)[0]) + float(evaluate_scores(b)[0]) + float(evaluate_scores(c)[0])) / 3)
-                awayScore = round(
-                    (float(evaluate_scores(a)[1]) + float(evaluate_scores(b)[1]) + float(evaluate_scores(c)[1])) / 3)
-
-                comp_eval = complete_evaluation(evaluate(a), evaluate(b), evaluate(c))
-                print(f'complete evaluation: {comp_eval}')
-
-                print(f'[DEBUG] [PREDICTING] Evaluation completed! Concluding/Predicting based on the evaluation...')
-                # get suggestion based on previous result given by the prediction stored
-                suggestion = analyzer.analyze(evaluate(a), evaluate(b), evaluate(c))
-                print(f'suggestion: {suggestion}')
-
-                # get the home and away odds
-                odds = get_home_away_odds(home, away)
-                print(f"odds: {odds}")
-
-                if odds is None:
-                    return
-
-                # using the odds and suggestion to make a deeper infomed decision or predition
-                deepCheck = deep_check(odds, suggestion)
-
-                # declaring machine learning container that holds data to be passed to machine learning
-                print(f'[DEBUG] [PREDICTING LEVEL 2] Preparing data for MACHINE LEARNING algorighms...')
-                ml = {}
-
-                allEvaluation = f"{evaluate(a)},{evaluate(b)},{evaluate(c)}"
-
-                # THE SCRIPT USES 2 DIFFERENT MACHINE LEARNING ALGORIGHMS THEIR DATA WILL BE PREPARED BELOW
-                # populate data for the machine learning V1
-                # ------------------------------------
-                ml['home'] = home
-                ml['away'] = away
-                ml['home_odd'] = round(float(odds[0]), 2)
-                ml['away_odd'] = round(float(odds[1]), 2)
-                ml['odd_difference'] = abs(ml['home_odd'] - ml['away_odd'])
-                ml['strong_home'] = check_evaluation('strong home', allEvaluation)
-                ml['strong_away'] = check_evaluation('strong away', allEvaluation)
-                ml['strong_draw'] = check_evaluation('strong draw', allEvaluation)
-                ml['weak_home'] = check_evaluation('weak home', allEvaluation)
-                ml['weak_away'] = check_evaluation('weak away', allEvaluation)
-
-                #  populate data for machine learning version 2
-                # -------------------------------------------------
-                data4Ml2 = {'home_odd': ml['home_odd'],
-                            'away_odd': ml['away_odd'],
-                            'odd_difference': ml['odd_difference'],
-                            'strong_home': ml['strong_home'],
-                            'strong_away': ml['strong_away'],
-                            'strong_draw': ml['strong_draw'],
-                            'weak_home': ml['weak_home'],
-                            'weak_away': ml['weak_away']}
-
-                # predict using machine learning based on supplied data ml
-                print("[Debug][ML] ML prediction V1 starting...")
-
-                print(
-                    f'[DEBUG] [PREDICTING LEVEL 2] spliting input data into 2 for V1 and V2 Machine learning algorithms...')
-                # create a copy of ml data so it can be modified for ml
-                mlData = ml.copy()
-                mlData.pop('home')
-                mlData.pop('away')
-
-                print(f'[DEBUG] [PREDICTING LEVEL 2] parsing data to V1 MACHINE LEARNING algorith...')
-                mlPrediction = ml_prediction(mlData)
-                required = mlPrediction.split("(")[-1].replace(")","").replace("%","")
-                required_split = required.split("/")
-                required_dict = {}
-                for r in required_split:
-                    d = r.split(":")
-                    required_dict[d[0].strip()] = d[1].strip()
-
-                print(f'[DEBUG] [PREDICTING LEVEL 2] V1 MACHINE LEARNING prediction Completed!')
-
-                print(f'[DEBUG] [PREDICTING LEVEL 2] parsing data to V2 MACHINE LEARNING algorighms...')
-                mlPredictionV2 = V2_prediction(data4Ml2)
-                print(f"ml prediction v2: {mlPredictionV2[0]}")
-                required2_dict = mlPredictionV2[0]
-
-                required_final = {}
-                tp = ['H', 'A', 'D'] # total possibilities
-
-                for t in tp:
-                    d1 = required_dict.get(t, 0)
-                    d2 = required2_dict.get(t, 0)
-
-                    add = float(d1) + float(d2)
-                    if add > 0:
-                        required_final[t] = add
-
-                print(f"required final: {required_final}")
-
-
-
-                print(f'[DEBUG] [PREDICTING LEVEL 2] V2 MACHINE LEARNING prediction Completed!')
-
-                print()
-                print(f'[DEBUG] [PREDICTING LEVEL 2] Evaluating result from both V1 and V2 MACHINE LEARNING algorighms...')
-                v2List = []
-                v1List = str(mlPrediction).split(" ")[0].split("/")
-
-                for x in mlPredictionV2[0]:
-                    v2List.append(x)
-
-                final = combine_lists(v1List, v2List)
-                print("[Debug][ML] ML prediction V2 done!")
-
-                '''
-                    DEEP CHECK: {deepCheck}
-                    ML: {mlPrediction}
-                    ML V2: {mlPredictionV2}
-                '''
-
-                homeDetail = a.split("|")[0].split(":")[0].strip()
-                awayDetails = a.split("|")[0].split(":")[1]
-
-                homeDetail = homeDetail.strip().split(" ")[:-2]
-                awayDetails = awayDetails.strip().split(" ")[1:]
-
-                print(
-                    f'[DEBUG] [PREDICTING LEVEL 2] Making final prediction based on evaluation of V1 and V2 MACHINE LEARNING algorighm results ')
-
-                # if len(final) <= 2:
-                def analyze_sure(result):
-                    try:
-                        resultList = str(result).split("\n")
-                        filteredResultList = [item for item in resultList if item != ""]
-                        # for f in filteredResultList:
-                        #     print(f)
-                        #
-                        # input('ms')
-
-                        focus = None
-                        focusCount = 0
-                        drawCount = 0
-                        focusAbbr = None
-
-                        if 'away' in filteredResultList[2].lower():
-                            focus = "Away"
-                            focusAbbr = "A"
-                        elif 'home' in filteredResultList[2].lower():
-                            focus = "Home"
-                            focusAbbr = "H"
-
-                        # 1/5 analysis
-                        if filteredResultList[1].__contains__(f"Strong {focus}"):
-                            focusCount += 1
-
-                        # 2/5 analysis
-                        if filteredResultList[2].__contains__(focus):
-                            focusCount += 1
-
-                        # 3/5 analysis
-                        if filteredResultList[3].split(":")[1].__contains__(focusAbbr):
-                            focusCount += 1
-
-                        # 4/5 analysis
-                        scores = filteredResultList[4].split(":")
-                        hs = int(scores[1].strip())
-                        a_s = int(scores[2].strip())
-
-                        if hs == a_s:
-                            drawCount += 1
-                        else:
-                            if hs > a_s :   # if home score is greater than away score
-                                if focus == "Home":
-                                    focusCount += 1
-                            else:
-                                if focus == "Away":
-                                    focusCount += 1
-
-                        # 5/5 analysis
-                        scores = filteredResultList[1].split(":")
-                        hs = int(scores[0].strip().split(" ")[-1].strip())
-                        a_s = int(scores[1].strip().split(" ")[0].strip())
-
-                        if hs == a_s:
-                            drawCount += 1
-                        else:
-                            if hs > a_s :   # if home score is greater than away score
-                                if focus == "Home":
-                                    focusCount += 1
-                            else:
-                                if focus == "Away":
-                                    focusCount += 1
-
-                        return f"{focusCount}/{drawCount}"
-                    except Exception as e:
-                        print()
-                        # print(f"[ERROR!] {e}" )
-                        # print(result)
-                        print()
-                        return f"-/-"
-                        pass
-
-                    pass
-
-
-                if len(final) == 1:
-                    result = f"""
-                    [{game_time}]
-                    {' '.join(homeDetail)} {homeScore} : {awayScore} {' '.join(awayDetails)} | [ {evaluate(a)},{evaluate(
-                        b)},{evaluate(c)} ]
-                    PLAY:       [ {process_final(final)} ] 
-                    RQD FINAL:  {required_final}
-                    Scores:     {mlPredictionV2[1]} :  {mlPredictionV2[2]} """
-
-                    result_sure = f"""
-                    {result}
-                    RATINGS:       {analyze_sure(result)}
-                    ===========================================================================================================
-                    """
-
-                    save_ml_to_excel(ml)
-
-                    with open("result.txt", 'a', encoding='utf-8') as f:
-                        f.write(result_sure)
-                else:
-                    resultx = f"""
-                    [{game_time}]
-                    {' '.join(homeDetail)} {homeScore} : {awayScore} {' '.join(awayDetails)}
-                    PLAY:       {v1List}  | {mlPrediction}
-                                {v2List}  | {mlPredictionV2}
-                                [ {process_final(final)} ] 
-                    RQD FINAL:  {required_final}
-                    ===========================================================================================================
-                """
-
-                    save_ml_to_excel(ml)
-
-                    with open("result.txt", 'a', encoding='utf-8') as f:
-                        f.write("[X]")
-                        # f.write(result)
-
-                    if len(final) == 2:
-                        with open("result_excluded.txt", 'a', encoding='utf-8') as f:
-                            f.write(resultx)
-                    else:
-                        with open("result_excluded.txt", 'a', encoding='utf-8') as f:
-                            f.write("[X]")
+                # football_prediction_old()
+                football_prediction_new()
 
             elif sport == 'basketball':
                 print(f"[BB][DEBUG] Initalizing predicting enging...")
@@ -1509,111 +1757,8 @@ try:
                     f.write(result)
 
             elif sport == 'football_new':
-                print(f"[FB][DEBUG] Initalizing predicting enging...")
-                predict_engine = FootballPrediction2()
+                football_prediction_new()
 
-                print(f'[FB][DEBUG] [PREDICTING] Using WINS ratio and H2H data...')
-                # get test result of machine lerarning on the data
-                a = predict_engine.analyze_fb_matches(newdata, new_home, new_away)
-
-                if type(a) is tuple:
-                    print(f"No data for {a[2]} and {a[3]}")
-                    print()
-
-                    return
-
-                bb_pred_features = {}
-
-                def get_and_save_fb_ml_data(a):
-                    odds = get_home_away_odds(home, away)
-
-                    print()
-                    ml={}
-
-                    ml['home'] = new_home
-                    ml['away'] = new_away
-                    ml['home_odd'] = round(float(odds[0]), 2)
-                    ml['away_odd'] = round(float(odds[1]), 2)
-                    ml['odd_difference'] = abs(ml['home_odd'] - ml['away_odd'])
-                    ml['home_score'] = a['Average_Total_Score_Prediction_Home']
-                    ml['away_score'] = a['Average_Total_Score_Prediction_Away']
-                    ml['status'] = "pending"
-
-                    features = ml.copy()
-
-                    features.pop('home')
-                    features.pop('away')
-                    features.pop('status')
-
-                    save_ml_to_excel(ml, 'ml_fb.xlsx')
-
-                    return features
-
-                print(f"[FB][DEBUG] Saving past matches analysis to ML file")
-                # save match alnalysis to file and retreive features for ML prediction
-                fb_pred_features = get_and_save_fb_ml_data(a)
-
-                print('Starting machine learning algorithms...')
-                prediction, accuracy = football_ml_predictions(fb_pred_features)
-
-                def calculate_summary(prediction, accuracy):
-                    print("Calculating surmary...")
-                    # Make sure the lengths of both lists are equal
-                    if len(prediction) != len(accuracy):
-                        raise ValueError("Lengths of lists must be equal")
-
-                    # Initialize dictionaries to store total accuracy and count for each prediction
-                    total_accuracy = {'A': 0, 'H': 0, 'D':0}
-                    count = {'A': 0, 'H': 0, 'D': 0}
-
-                    # Iterate through the prediction and accuracy lists simultaneously
-                    for pred, acc in zip(prediction, accuracy):
-                        # Update total accuracy and count for each prediction class
-                        total_accuracy[pred] += acc
-                        count[pred] += 1
-
-                    # Calculate the average accuracy for each prediction class
-                    average_accuracy = {pred: total_accuracy[pred] / count[pred] if count[pred] != 0 else 0 for pred in
-                                        total_accuracy}
-
-                    # Remove keys with value 0
-                    average_accuracy = {key: value for key, value in average_accuracy.items() if value != 0}
-
-                    # Round up the values to the nearest whole number
-                    average_accuracy = {key: round(value) for key, value in average_accuracy.items()}
-
-                    return average_accuracy
-
-                def count_occurrences(lst):
-                    # Initialize an empty dictionary to store the counts
-                    counts = {}
-
-                    # Iterate through the list
-                    for element in lst:
-                        # If the element is already in the dictionary, increment its count
-                        if element in counts:
-                            counts[element] += 1
-                        # If the element is not in the dictionary, add it with a count of 1
-                        else:
-                            counts[element] = 1
-
-                    return counts
-
-                result = f"""
-                Game Time:      [ {game_time} ]
-                Teams:          {new_home} : {new_away}
-                Prediction:     {prediction}
-                Accuracy:       {accuracy}
-                Summary:        {calculate_summary(prediction,accuracy)}
-                                {count_occurrences(prediction)}
-                ********************************************************************************
-                """
-                print()
-                print(result)
-                print()
-
-                with open("fb_result.txt", 'a', encoding='utf-8') as f:
-                    f.write(result)
 
         except Exception as e:
             print(f"An Error occurred in Predict(): {e}")
@@ -2292,9 +2437,28 @@ try:
             naiveBayes.delete_model_file()
             print(f"EXISTING MODEL FILE CLEANED SUCCESSFULLY")
         except Exception as e:
-            print(f"An Error occurred while cleaning model files: [e")
+            print(f"An Error occurred while cleaning model files: {e}")
             print(f"CLEANING OF EXISTING MODEL FILE FAILED!")
             pass
+
+    def clean_data_file():
+        try:
+            test = 0
+            while True:
+                if os.path.exists(f"datafile{test}.xlsx") is True:
+                    test += 1
+                    pass
+                else:
+                    print(f'[{test}]Now renaming...')
+                    path = os.getcwd()
+                    if os.path.exists(f"datafile.xlsx") is True:
+                        os.rename(os.path.join(path, "datafile.xlsx"), os.path.join(path, f"datafile{test}.xlsx"))
+                    break
+                time.sleep(1)
+        except Exception as e:
+            print(f"[ERROR][clean_data_file()] {e}")
+            pass
+
 
     def start_add_pattern():
         analyzer = CombinationAnalyzer()
@@ -2525,6 +2689,9 @@ try:
             pass
 
     def start_extract(sport = "football", no_of_pages=1):
+        # reset datafile.xlsx to contain only new extracted data.
+        clean_data_file()
+
         # Extract data from sporty
         reset_file(teamData)
         reset_file("oddOnlyData.txt")

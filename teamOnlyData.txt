@@ -1,199 +1,91 @@
-Miami FC | Indy Eleven
+Cocodrilos de Caracas | Diablos de Miranda
 
-Saint Louis City SC 2 | Austin FC II
+Llaneros de Guarico | Broncos De Caracas
 
-Leones Negros UDEG | Atlante FC
+Panteras De Miranda | Centauros de Portuguesa
 
-Barcelona SC | SD Aucas
+Atlanta Dream | Dallas Wings
 
-Montevideo City Torque | Uruguay Montevideo FC
+Trotamundos de Carabobo | Taurinos de Aragua
 
-Vancouver Langley FC | Atletico Ottawa
+Boston Celtics | Indiana Pacers
 
-Atletico Tucuman | Boca Juniors
+Independiente de Oliva | CA Platense
 
-Carabobo FC | Academia Puerto Cabello
+La Union Formosa | Obras Sanitarias
 
-Universitario de Deportes | Sporting Cristal
+CA Penarol | Defensor Sporting
 
-Real Santa Cruz | Jorge Wilstermann
+Piratas de Bogota | Titanes de Barranquilla
 
-Deportes Iquique | Nublense
+Ciclista Olimpico de La Banda | Gimnasia de Comodoro
 
-CA Tigre | Estudiantes de La Plata
+BC Chalchuapa United | San Salvador BC
 
-Deportivo Riestra | CA San Lorenzo de Almagro
+Las Vegas Aces | Phoenix Mercury
 
-ASC Otelul Galati | FC Botosani
+Los Angeles Sparks | Washington Mystics
 
-CSM Politehnica Iasi | FC Petrolul Ploiesti
+Taranaki Mountainairs | Hawke's Bay Hawks
 
-FC Dinamo Bucuresti 1948 | FC Uta Arad
+Mindoro Tamaraws | San Juan Kings
 
-FC U Craiova 1948 | AFC Hermannstadt
+Ryukyu Golden Kings Okinawa | Chiba Jets Funabashi
 
-FC Voluntari | FC Universitatea Cluj
+BC Kutaisi | Kavkasia BC
 
-Club Atletico Acassuso | Club Atletico Los Andes
+BC Zalgiris Kaunas | BC Lietkabelis Panevezys
 
-CSD Flandria | Comunicaciones
+BC Nokia | Helsinki Seagulls
 
-CSD San Martin | Ferrocarril Midland
+Trefl Sopot | Slask Wroclaw
 
-Deportivo Merlo | Club Villa Dalmine
+Elitzur Kiryat Atta | Maccabi Ironi Ramat Gan
 
-CA Alvarado | CA Talleres de Remedios
+Kk Rapla | Kk Parnu
 
-CD Maipu | Ferro Carril Oeste
+Basketball Nymburk | Sluneta Usti nad Labem
 
-CA Victoriano Arenas | Berazategui
+Baskets Bonn | Alba Berlin
 
-CDM Leandro N. Alem | CS Barracas
+KK MZT Skopje | Pelister Bitola
 
-Defensores de Cambaceres | Real Pilar FC
+Phoenix Hagen | PS Karlsruhe Lions
 
-Deportivo Espanol | Justo Jose de Urquiza
+KK Krka Novo Mesto | Helios Domzale
 
-Maracana CE | Treze FC PB
+FC Porto | Ovarense Basquetebol
 
-Atalanta | Roma
+Rasta Vechta | Niners Chemnitz
 
-Betis | UD Almeria
+Basquet Manresa | CB Malaga
 
-Clermont Foot 63 | Lyon
+Paris Basketball | Cholet Basket
 
-Marseille | FC Lorient
+Fortitudo Bologna | Real Sebastiani Rieti
 
-Montpellier | Monaco
+Pallacanestro 2.015 Forli | Trieste 2004
 
-Nantes | Lille
+Pallacanestro Cantu | APU Udine
 
-PSG | Toulouse
+Virtus Basket Padova | Pallacanestro Vicenza
 
-Rennes | RC Lens
+Virtus Bologna | Derthona Basket
 
-Strasbourg | Metz
+Libertas Livorno | Basket Jesi Academy
 
-Rsb Berkane | Zamalek SC
+Pallacanestro Roseto | Fabriano Basket
 
-Elche CF | SD Huesca
+PF Schio | Umana Venezia
 
-AC Goianiense GO | Cruzeiro EC MG
+Talos Ruvo Di Puglia | Herons Basket
 
-Fortaleza EC CE | Botafogo FR RJ
+Sao Jose Dos Campos | SC Corinthians SP
 
-SE Palmeiras SP | CA Paranaense PR
+Aguada | Club Nacional
 
-Mirassol FC SP | Paysandu SC PA
+Bauru Basket SP | Flamengo RJ
 
-Audax Italiano | Colo-Colo
+Santo Andre/Apaba | Vera Cruz Campinas
 
-Columbus Crew 2 | FC Cincinnati 2
-
-Sporting Kansas City II | Colorado Rapids 2
-
-CA Patronato Parana | CA Chacarita Juniors
-
-Gimnasia Jujuy | CA San Miguel
-
-Independiente Petrolero | Club Bolivar
-
-Barra FC SC | Cascavel PR
-
-Fluminense EC PI | Tocantinopolis EC TO
-
-Itabuna EC BA | Audax Rio EC RJ
-
-Manauara EC AM | Porto Velho Ec/Ro
-
-Moto Clube MA | Maranhao AC MA
-
-Sousa EC PB | ACD Potiguar RN
-
-Barcelona RO | Uniao Cacoalense RO
-
-Fylkir Reykjavik | Breidablik Kopavogur
-
-Vikingur Reykjavik | FH Hafnarfjordur
-
-Porto | Boavista Porto
-
-CS Alagoano AL | Athletic Club Sjdr MG
-
-Ferroviaria SP | Nautico PE
-
-Los Angeles FC 2 | Vancouver Whitecaps FC II
-
-CD Atletico Huila | Llaneros FC
-
-Cucuta Deportivo FC | Real Soacha Cundinamarca
-
-Itagui Leones FC | Deportes Quindio
-
-Orsomarso SC | Bogota FC
-
-Tigres FC | Real Cartagena FC
-
-Deportivo Garcilaso | Atletico Grau
-
-Delfines Del Este | Vega Real
-
-Comerciantes FC | CDU San Martin
-
-Delfin SC | Orense SC
-
-Nueva Chicago | Gimnasia Y Esgrima Mendoza
-
-Club Oriental de Football | Tacuarembo FC
-
-Cerro Porteno | Club Olimpia
-
-Atletico Lanus | Independiente Rivadavia
-
-CA Belgrano | Racing Club Avellaneda
-
-Portland Timbers | Seattle Sounders
-
-Angostura FC | Portuguesa FC
-
-Racing de Cordoba | CA Estudiantes
-
-Deportivo Saprissa San Jose | Santos de Guapiles
-
-Liga Deportiva Alajuelense | AD Guanacasteca
-
-Municipal Grecia | AD San Carlos
-
-Perez Zeledon | Municipal Liberia
-
-Sporting FC | CS Herediano
-
-CD Aguila San Miguel | CD FAS Santa Ana
-
-Mixto MT | Uniao EC MT
-
-CD Platense U20 | CD Dragon U20
-
-Cunupia FC | FC Phoenix 1976
-
-CR Vasco da Gama RJ | EC Vitoria BA
-
-EC Bahia BA | Red Bull Bragantino SP
-
-Curico Unido | San Luis de Quillota
-
-Juventud Pinulteca | Juventud Copalera
-
-Club Aurora | Oriente Petrolero
-
-Herrera FC | CD Plaza Amador Panama City
-
-Clube do Remo PA | Floresta EC CE
-
-Volta Redonda FC RJ | Botafogo FC PB
-
-Mount Pleasant FC | Waterhouse FC
-
-CD La Equidad | Independiente Santa Fe
-
-Maringa FC | Costa Rica EC MS
+Piratas de La Guaira | Guaiqueries De Margarita
