@@ -1594,7 +1594,7 @@ try:
                             return "Home or Draw [1X]"
                         elif experience == "H/A":
                             return "Home or Away [12]"
-                        elif experience == "A/D":
+                        elif experience == "D/A":
                             return "Away or Draw [X2]"
                         elif  experience == "D" :
                             return f"Lowest odd (H/A) / D"
@@ -2443,18 +2443,22 @@ try:
 
     def clean_data_file():
         try:
-            test = 0
-            while True:
-                if os.path.exists(f"datafile{test}.xlsx") is True:
-                    test += 1
-                    pass
-                else:
-                    print(f'[{test}]Now renaming...')
-                    path = os.getcwd()
-                    if os.path.exists(f"datafile.xlsx") is True:
-                        os.rename(os.path.join(path, "datafile.xlsx"), os.path.join(path, f"datafile{test}.xlsx"))
-                    break
-                time.sleep(1)
+            if os.path.exists(f"datafile.xlsx") is True:
+                path = os.getcwd()
+                os.remove(os.path.join(path, "datafile.xlsx"))
+
+            # test = 0
+            # while True:
+            #     if os.path.exists(f"datafile{test}.xlsx") is True:
+            #         test += 1
+            #         pass
+            #     else:
+            #         print(f'[{test}]Now renaming...')
+            #         path = os.getcwd()
+            #         if os.path.exists(f"datafile.xlsx") is True:
+            #             os.rename(os.path.join(path, "datafile.xlsx"), os.path.join(path, f"datafile{test}.xlsx"))
+            #         break
+            #     time.sleep(1)
         except Exception as e:
             print(f"[ERROR][clean_data_file()] {e}")
             pass
