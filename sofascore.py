@@ -2088,19 +2088,26 @@ try:
             except:
                 return False
 
-    def extract_team_info(url, sport='football', no_of_pages=1):
+    def extract_team_info(url, focussed_days: list, sport='football', no_of_pages=1, tomorrow=False):
+        if tomorrow is True:
+            no_of_pages = 100
+
+
         # variable declarations
         no_bet_class = "m-sport-bet-no-data"
         match_league = "match-league"
         league_title = "league-title"
         match_table_class = "m-table.match-table"
         match_content_row_class = "m-table-row.m-content-row.match-row"
+        all_rows_class = "m-table-row"
+        match_date_row_class = "m-table-row.date-row"
         game_time_class = "clock-time"
         home_team_class = "home-team"
         away_team_class = "away-team"
         odd_market_class = "m-market.market" # 2 available pick the first one
         outcome_odds_class = "m-outcome-odds"
         no_bet = None
+        league_games_date_class = "m-table-cell.date"
 
         all_leagues_data = []
 
@@ -2133,10 +2140,22 @@ try:
                 # time.sleep(1)
                 # next_button.click()
 
+
                 # Wait for the span element to be clickable
                 span_element = WebDriverWait(driver, 10).until(
                     EC.element_to_be_clickable((By.CSS_SELECTOR, ".pageNum.icon-next"))
                 )
+
+                try:
+                    # check if disabled next icon is on page.
+                    span_element = WebDriverWait(driver, 2).until(
+                        EC.element_to_be_clickable((By.CSS_SELECTOR, ".pageNum.icon-next.icon-disabled"))
+                    )
+
+                    return False
+                except:
+                    pass
+
                 print("span element found! Tring to click it")
                 # Click the span element
                 span_element.click()
@@ -2186,13 +2205,79 @@ try:
                     title = get_league_title(league, league_title)
                     league_details['title'] = clean_text(title).strip()
                     print(f"\r[DEBUG][{league_details['title']}] Extracting game data...", end="")
+
                     # GET MATCH TABLE
                     # -----------------
+                    # contains all the
                     matchTableData = get_match_table(league, match_table_class)
+
+                    # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    # DESIGNED TO SKIP GAMES IN UNWANTED DATE (to be reviewed)
+                    # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    # if tomorrow is True:
+                    #     # GET THE DAY(DATE) THE GAMES IN THE ROWS WILL BE PLAYED.
+                    #     games_date = get_game_date(matchTableData, league_games_date_class).text
+                    #
+                    #     todayDate = int(datetime.today().day)
+                    #     gameDate = int(games_date.split('/')[0])
+                    #
+                    #     # if gameDate != todayDate + 1:
+                    #     if str(gameDate) not in focussed_days:
+                    #         print()
+                    #         # print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                    #         print(f"\t[][][][][]date {gameDate}! Not in range....")
+                    #         # print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                    #         time.sleep(2)
+                    #         # skip the extraction and check the next one. as we are looking only for tomorrow's date
+                    #         continue
+                    #     else:
+                    #         print()
+                    #         print(f"\tYEAH!  - {gameDate} - Working on tomorrows's game......")
+                    # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
                     # GET THE NUMBER OF ROWS IN THE MATCH TABLE
                     #------------------------------------------
-                    tableRows = get_table_rows(matchTableData, match_content_row_class)
+                    # tableRows = get_table_rows(matchTableData, match_content_row_class) # to be replace by below
+
+                    tableRows =[]
+                    # trying to separate date row from content row
+                    all_rows = get_table_rows(matchTableData, all_rows_class)
+                    print(f"TOTAL ROWS BEFORE: {len(all_rows)}")
+
+                    # looping through the rows to filter out games in unwanted dates.
+                    skip = False
+                    for row in all_rows:
+                        className = row.get_attribute('class')
+
+                        # if current item is a date row
+                        if className == "m-table-row date-row":
+                            # check date
+                            # GET THE DAY(DATE) THE GAMES IN THE ROWS WILL BE PLAYED.
+                            games_date = get_game_date(row, league_games_date_class).text
+
+                            todayDate = int(datetime.today().day)
+                            gameDate = int(games_date.split('/')[0])
+
+                            if str(gameDate) not in focussed_days:
+                                print(f"[][][] REJected Date - {gameDate} not in {focussed_days}")
+                                skip = True
+                            else:
+                                print(f"<><><> Accepted date - {gameDate}")
+                                skip = False
+                            pass
+
+                        # if current itme is a content row
+                        print(f"CLASS NAME: {className} --- skip {skip}")
+                        if className == "m-table-row m-content-row match-row":
+                            print('class name found for content row')
+                            if skip is False:
+                                tableRows.append(row)
+
+                    print(f"TOTAL ROWS AFTER: {len(tableRows)}")
+
+                    if len(tableRows) <= 0:
+                        print(f"No suitable game in {title}! Going next...")
+                        continue
 
                     # LOOP THROUGH THE ROWS IN THE TABLE TO EXTRACT DATA
                     # ---------------------------------------------------
@@ -2204,6 +2289,8 @@ try:
 
                             gameTime = row.find_element(By.CLASS_NAME, game_time_class).text
                             single_game_detail['game_time'] = gameTime
+
+                            single_game_detail['league'] = league_details['title']
                             # print(f"game time: {gameTime}")
 
                             homeTeam = row.find_element(By.CLASS_NAME, home_team_class).text
@@ -2246,10 +2333,10 @@ try:
                     # checking of multiple pages exists
                     ans = check_pagination_exists(driver)
                     if ans is False:
-                        # print("Pagination not found on page!")
+                        print(f"[{x+1}] Pagination not found on page!")
                         break
                     else:
-                        # print("pagination section seen on page.")
+                        print(f"[{x+1}] pagination section seen on page.")
                         pass
 
                     print(f"NAVIGATING TO NEXT PAGE | page {x+2}")
@@ -2290,6 +2377,10 @@ try:
     def get_table_rows(driver, class_name):
         rows = driver.find_elements(By.CLASS_NAME, class_name)
         return rows
+
+    def get_game_date(driver, class_name):
+        dt = driver.find_element(By.CLASS_NAME, class_name)
+        return dt
 
     def reset_file(filename):
         with open(filename, 'w') as f:
@@ -2693,6 +2784,7 @@ try:
             pass
 
     def start_extract(sport = "football", no_of_pages=1):
+        tomorrow = None
         # reset datafile.xlsx to contain only new extracted data.
         clean_data_file()
 
@@ -2702,18 +2794,48 @@ try:
         reset_file("teamOnlyData.txt")
         reset_file("timeOnlyData.txt")
 
+        def get_today():
+            # Get today's date
+            today = datetime.today()
+
+            # Extract the day component
+            day = today.day
+
+            return str(day)
+
         period = 3
-        # ans = input("Period? default=3: ")
-        ans = input (f"( {sport.upper()} )( EXTRACT DATA ) Set Start Time >  [ Default = 3 ]: ")
-        if ans != "":
-            period = int(ans)
+        focussedDays = None
+
+        dt = input("Specify dates(day) to extract [25] or [25,26] or [Enter for today]: ")
+        if dt == "":
+            tomorrow = False
+            focussedDays = [get_today()]
+
+        elif dt.strip() == str(get_today()):
+            # in case today's date was typed manually instead of pressing Enter
+            tomorrow = False
+            focussedDays = [get_today()]
+        else:
+            tomorrow = True
+            if "," not in dt:
+                focussedDays = [dt]
+            else:
+                focussedDays = dt.split(",")
+
+        if tomorrow is False:
+            ans = input (f"( {sport.upper()} )( EXTRACT DATA ) Set Start Time >  [ Default = 3 ]: ")
+            if ans != "":
+                period = int(ans)
 
         print()
-        print("[DEBUG] Strting Data extraction...")
-        url = f"https://www.sportybet.com/ng/sport/{sport}?time={period}"
+        print("[DEBUG] Starting Data extraction...")
+        url = f"https://www.sportybet.com/ng/sport/{sport}"
+
+        if tomorrow is False:
+            url = f"https://www.sportybet.com/ng/sport/{sport}?time={period}"
 
         # print("[DEBUG] Extracting team info...")
-        leagueInfo = extract_team_info(url, sport, no_of_pages)
+        leagueInfo = extract_team_info(url=url, focussed_days=focussedDays,sport=sport, no_of_pages=no_of_pages, tomorrow=tomorrow)
 
         allData = []
         print("[DEBUG] Compiling Extracted Data...")
@@ -2746,8 +2868,9 @@ try:
                 result_odd = f"""{data_item['home_odd']} | {data_item['away_odd']}"""
                 result_team = f"""{data_item['home_team']} | {data_item['away_team']}"""
                 result_time = f"""{data_item['game_time'].strip()}"""
+                result_team_with_league = f"""{data_item['home_team']} | {data_item['away_team']} | {data_item['league']}"""
 
-                allData.append((result_odd, result_team, result_time))
+                allData.append((result_odd, result_team, result_time, result_team_with_league))
 
                 # result += f"\n{result2}"
                 # odd_only += f"{result_odd}"
@@ -2774,6 +2897,7 @@ try:
         oddsData = [item[0] for item in sorted_data]
         teamsData = [item[1] for item in sorted_data]
         timeData = [item[2] for item in sorted_data]
+        teamsDataWithLeague = [item[3] for item in sorted_data]
 
         print("[DEBUG] Writing sorted data to files...")
         # Writing items at odds data to a text file
@@ -2787,6 +2911,10 @@ try:
         # Writing items at time only data to a text file
         with open("timeOnlyData.txt", "w", encoding='utf-8') as file:
             file.write("\n\n".join(timeData))
+
+        # Writing items at time only data to a text file
+        with open("teamWithLeaguestxt", "w", encoding='utf-8') as file:
+            file.write("\n\n".join(teamsDataWithLeague))
 
         # input('waiting...')
         print("[DEBUG] COMPLETED!")
@@ -2839,6 +2967,7 @@ try:
                 break
 
             elif action.lower() == 'e':
+
                 start_extract(sport)
                 break
 

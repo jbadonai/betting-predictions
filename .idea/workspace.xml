@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2617" mnemonic="9" />
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2706" mnemonic="6" />
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="1697" mnemonic="3" />
-    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="1515" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2708" mnemonic="9" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2825" mnemonic="6" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2970" mnemonic="7" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2211" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2239" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/sofascore.py" line="2255" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7ecc080-d00c-46fb-bc4b-2e7547988e5e" name="Default Changelist" comment="">
@@ -14,12 +16,10 @@
       <change beforePath="$PROJECT_DIR$/Naive Bayes.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Naive Bayes.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Random Forest.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/Random Forest.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SVM.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/SVM.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bak/ml_bb.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/bak/ml_bb.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bak/ml_fb.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/bak/ml_fb.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code.txt" beforeDir="false" afterPath="$PROJECT_DIR$/code.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code_dict.txt" beforeDir="false" afterPath="$PROJECT_DIR$/code_dict.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafile0.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_bb.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/ml_bb.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafile.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fb_result.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fb_result.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml_fb.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/ml_fb.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oddOnlyData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/oddOnlyData.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sofascore.py" beforeDir="false" afterPath="$PROJECT_DIR$/sofascore.py" afterDir="false" />
@@ -40,14 +40,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sofascore.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="707">
-              <caret line="2340" column="52" selection-start-line="2340" selection-start-column="52" selection-end-line="2340" selection-end-column="52" />
+            <state relative-caret-position="574">
+              <caret line="2272" column="45" lean-forward="true" selection-start-line="2272" selection-start-column="45" selection-end-line="2272" selection-end-column="45" />
               <folding>
                 <element signature="e#20002#20930#0" />
                 <element signature="e#21033#22949#0" />
                 <element signature="e#23109#24107#0" />
+                <element signature="e#87758#88174#1" />
+                <element signature="e#88241#88492#0" />
+                <element signature="e#88553#89444#0" />
+                <element signature="e#92068#92127#0" />
                 <element signature="e#101052#101062#0" />
                 <element signature="e#101646#106689#0" />
+                <element signature="e#115058#115211#0" />
+                <element signature="e#113548#113585#0" />
+                <element signature="e#114779#114805#0" />
+                <element signature="e#114961#115055#0" />
               </folding>
             </state>
           </provider>
@@ -55,33 +63,28 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fb_result.txt">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="306" column="35" selection-end-line="441" selection-end-column="35" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/updateDataWithCurrentResult.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="53">
-              <caret line="325" column="18" lean-forward="true" selection-start-line="325" selection-start-column="18" selection-end-line="325" selection-end-column="18" />
+            <state relative-caret-position="80">
+              <caret line="321" column="21" lean-forward="true" selection-start-line="321" selection-start-column="21" selection-end-line="321" selection-end-column="21" />
               <folding>
                 <element signature="e#27#57#0" expanded="true" />
+                <element signature="e#756#1927#0" />
+                <element signature="e#1971#3092#0" />
+                <element signature="e#3156#5836#0" />
+                <element signature="e#6445#8432#0" />
+                <element signature="e#8498#10791#0" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code_dict.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="124" selection-start-column="124" selection-end-column="124" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bb_result.txt">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -105,14 +108,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>h:</find>
-      <find>La Union Formosa</find>
-      <find>023</find>
-      <find>Besiktas Istanbul</find>
-      <find>Berazategui</find>
-      <find>summary:</find>
-      <find>CA Defensores Unidos</find>
-      <find>UD Ourense</find>
       <find>KF Egnatia Rrogozhine</find>
       <find>410</find>
       <find>San Martin de Mendoza</find>
@@ -133,8 +128,16 @@
       <find>203</find>
       <find>Denmark</find>
       <find>Home or</find>
-      <find>[050]</find>
       <find>[500]</find>
+      <find>[050]</find>
+      <find>Carrarese Calcio</find>
+      <find>500</find>
+      <find>extract(</find>
+      <find>extract_team_info(</find>
+      <find>start_extract(</find>
+      <find>pagenum</find>
+      <find>tomorrow</find>
+      <find>match_table_class</find>
     </findStrings>
     <replaceStrings>
       <replace>away</replace>
@@ -169,16 +172,16 @@
         <option value="$PROJECT_DIR$/updateDataWithCurrentResult.py" />
         <option value="$PROJECT_DIR$/bb_result.txt" />
         <option value="$PROJECT_DIR$/code_dict.txt" />
-        <option value="$PROJECT_DIR$/sofascore.py" />
         <option value="$PROJECT_DIR$/fb_result.txt" />
+        <option value="$PROJECT_DIR$/sofascore.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="784" />
+    <option name="x" value="-12" />
+    <option name="y" value="-12" />
+    <option name="width" value="1944" />
+    <option name="height" value="1044" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -352,7 +355,7 @@
       <window_info id="Favorites" order="2" side_tool="true" weight="0.3296131" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3617021" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4222586" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -507,9 +510,6 @@
     <entry file="file://$PROJECT_DIR$/result.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/updateDataWithCurrentResult.spec">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/data_extractor.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-40">
@@ -527,45 +527,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/teamOnlyData.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/oddOnlyData.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/bb_result.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/code_dict.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="124" selection-start-column="124" selection-end-column="124" />
+          <caret column="46" selection-start-column="46" selection-end-column="46" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/updateDataWithCurrentResult.spec">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fb_result.txt">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="306" column="35" selection-end-line="441" selection-end-column="35" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sofascore.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="707">
-          <caret line="2340" column="52" selection-start-line="2340" selection-start-column="52" selection-end-line="2340" selection-end-column="52" />
+        <state relative-caret-position="574">
+          <caret line="2272" column="45" lean-forward="true" selection-start-line="2272" selection-start-column="45" selection-end-line="2272" selection-end-column="45" />
           <folding>
             <element signature="e#20002#20930#0" />
             <element signature="e#21033#22949#0" />
             <element signature="e#23109#24107#0" />
+            <element signature="e#87758#88174#1" />
+            <element signature="e#88241#88492#0" />
+            <element signature="e#88553#89444#0" />
+            <element signature="e#92068#92127#0" />
             <element signature="e#101052#101062#0" />
             <element signature="e#101646#106689#0" />
+            <element signature="e#115058#115211#0" />
+            <element signature="e#113548#113585#0" />
+            <element signature="e#114779#114805#0" />
+            <element signature="e#114961#115055#0" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/teamOnlyData.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/oddOnlyData.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/updateDataWithCurrentResult.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="325" column="18" lean-forward="true" selection-start-line="325" selection-start-column="18" selection-end-line="325" selection-end-column="18" />
+        <state relative-caret-position="80">
+          <caret line="321" column="21" lean-forward="true" selection-start-line="321" selection-start-column="21" selection-end-line="321" selection-end-column="21" />
           <folding>
             <element signature="e#27#57#0" expanded="true" />
+            <element signature="e#756#1927#0" />
+            <element signature="e#1971#3092#0" />
+            <element signature="e#3156#5836#0" />
+            <element signature="e#6445#8432#0" />
+            <element signature="e#8498#10791#0" />
           </folding>
         </state>
       </provider>
