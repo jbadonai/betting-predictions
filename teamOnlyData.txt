@@ -1,167 +1,139 @@
-CA Independiente Avellaneda | Velez Sarsfield
+Floresta EC CE | Ferroviario AC CE
 
-CD Once Caldas | CD Tolima
+Sao Raimundo EC RR | Nautico RR
 
-Independiente Santa Fe | CD La Equidad
+Club Bolivar | CD Palestino
 
-Houston Dynamo 2 | Tacoma Defiance
+CR Flamengo RJ | Millonarios FC
 
-Saint Louis City SC 2 | San Jose Earthquakes II
+CD Independiente Juniors | San Antonio FC
 
-Vancouver Whitecaps FC II | Los Angeles Galaxy II
+Gremio Atletico Sampaio RR | Monte Roraima RR
 
-Capital FC | Tacoma Stars
+Westchester Flames | Paisley Athletic FC
 
-Patuxent Football Athletics | Christos FC
+Coquimbo Unido | Red Bull Bragantino SP
 
-River Light FC | St Charles FC
+Delfin SC | CD Real Tomayapo
 
-Orense SC | Cumbaya FC
+Racing Club Avellaneda | Sportivo Luqueno
 
-He Garden Hotspurs | Newtown United FC
+SC Internacional RS | CA Belgrano
 
-CS Cerrito | Uruguay Montevideo FC
+Real Cartagena FC | CD Atletico Huila
 
-Oriente Petrolero | The Strongest
+Yokohama Marinos | Kashiwa Reysol
 
-Guatemala | Nicaragua
+Tokyo Verdy | Real Sociedad
 
-Portuguesa FC | Carabobo FC
+Edgeworth FC | Adamstown Rosebud FC
 
-Colorado Rapids 2 | Minnesota United FC 2
+Maitland FC | Charlestown Azzurri FC
 
-AC Houston Sur | Brazos Valley Cavalry FC
+Daejeon Citizen FC | Jeju United FC
 
-CD Santa Cruz | Deportes Limache
+Gangwon FC | Jeonbuk Hyundai Motors
 
-CF America | Cruz Azul
+Incheon United FC | Ulsan Hyundai FC
 
-Irvine Zeta FC | Capo FC
+Suwon FC | Daegu FC
 
-Kuching City U23 | Negeri Sembilan U23
+FC Epitsentr Dunaivtsi | Veres Rivne
 
-Penang U23 | Kedah FA U23
+Philippine Army | Manila Montet FC
 
-Kelantan United FC U23 | Kuala Lumpur FA U23
+Tobol Kostanay | FK Atyrau
 
-FC Bulleen Lions | Alamein FC
+FK Ural Yekaterinburg | FK Akron Tolyatti
 
-Ansan Greeners | Busan I Park
+KKS 1925 Kalisz | KS Polonia Bytom SA
 
-Bucheon FC | Chungnam Asan FC
+US Follonica Gavorrano | Trapani Calcio
 
-Melbourne Victory | Preston Lions FC
+Ajman Club | FC Baniyas
 
-Kastamonuspor | Igdir FK
+Emirates Club | AL Bataeh (UAE)
 
-Pyramids FC | El Gouna FC
+FC Obolon Kiev | FC Levy Bereg Kiev
 
-Lokomotiv Tashkent | Surkhon-2011
+FK Liepaja | Grobinas SC
 
-Shabab Al-Ahli Dubai FC U21 | Al-Wasl U21
+FK Metta / Lu | FK Rigas Futbola Skola
 
-FC Lahti | Seinajoen JK
+FC Aktobe | Elimai FC
 
-Vaasan Palloseura | FC Inter Turku
+FC Inter 2 | Tampereen-Viipurin Ilves-Kissat
 
-FC KTP Kotka | KaPa Kapylan Pallo
+FC Kirkkonummi | VJS II
 
-PK-35 Helsinki | SalPa
+HaPK | Kultsu FC
 
-Al Ittihad Al Sakandary | Zamalek SC
+PIF | MaPS
 
-Tartu JK Tammeka | JK Narva Trans
+JK Tallinna Kalev | Flora Tallinn
 
-FC Kolkheti-1913 Poti | FC Dinamo Tbilisi
+Paide Linnameeskond | FCI Levadia Tallinn
 
-IFK Norrkoping FK | IFK Varnamo
+FC Honka | HJS
 
-Botev Plovdiv | FC Arda Kardzhali
+Tampereen Ilves 2 | P-Iirot
 
-PFC Slavia Sofia | FC CSKA 1948
+FCJ Blackbird | ViPa
 
-FK Csikszereda Miercurea Ciuc | FC Dinamo Bucuresti 1948
+VPV | KPV/Akatemia
 
-Aalesunds FK | Asane Fotball
+HJK Klubi 04 | PK Keski-Uusimaa
 
-Bryne FK | Ranheim
+FK Nizhny Novgorod | PFK Arsenal Tula
 
-Mjondalen IF | Moss FK
+ZKS Stal Stalowa Wola | MKS Chojniczanka Chojnice
 
-Raufoss IL | Lyn 1896 FK
+Mjallby AIF | Hacken Gothenburg
 
-Sandnes Ulf | Kongsvinger IL Fotball
+Bodoe/Glimt | Sandefjord Fotball
 
-Stabaek IF | Egersunds IK
+SK Brann | Kristiansund BK
 
-Trelleborgs FF | GIF Sundsvall
+Tromsoe IL | Fredrikstad FK
 
-Utsiktens BK | IK Brage
+Al-Ain FC | Al-Wasl FC
 
-Maghreb AS de Fes | Hassania Union Sport Agadir
+Hatta SC | Shabab Al-Ahli Dubai FC
 
-FC Dinamo Batumi | FC Dila Gori
+IK Franke | Taby FK
 
-BK Olympic | Lunds BK
+Riga FC | FK Tukums 2000/TSS
 
-Jonkopings Sodra IF | Angelholms FF
+GrIFK/U23 | PPJ/Ruoholahti
 
-FC Dnepr Mogilev | FC Gomel
+Crumlin United FC | Killester Donnycarney FC
 
-AIK | IFK Goteborg
+CR Flamengo RJ | AC Goianiense GO
 
-CA Sansinena SD | Villa Mitre de Bahia Blanca
+Club El Porvenir | CD Godoy Cruz
 
-AL Ahli Saudi | AL Fayha FC
+St. Mochtas | Bangor GG FC
 
-AL Hazem FC | Abha Club
+Olympiacos | Fiorentina
 
-AL Khaleej Saihat FC | AL Riyadh
+RC Deportivo La Coruna | CD Castellon
 
-AL Nassr FC | Al-Ittihad Jeddah
+SC Corinthians SP | RB Bragantino SP
 
-AL Shabab FC (KSA) | AL Fateh SC
+9 de Octubre FC | Gualaceo SC
 
-AL Taawoun FC | AL Ettifaq FC
+Chacaritas FC | Cuniburo FC
 
-AL Tai | AL Akhdood
+Club Atletico Pantoja | Vega Real
 
-AL Wehda FC | Al Hilal Rijad
+EC Sao Jose RS | Volta Redonda FC RJ
 
-Damac FC | AL Raed FC
+Estudiantes de La Plata | Huachipato
 
-Deportivo Coopsol | AD Cantolao
+Gremio FB Porto Alegrense RS | The Strongest
 
-Fortuna D | VfL Bochum
+Atletico Lanus | Cuiaba Esporte Clube MT
 
-Sacachispas FC | Club Atletico Los Andes
+Metropolitanos FC | Deportivo Garcilaso
 
-CA Lugano | Club Mercedes
-
-Centro Espanol | CS Barracas
-
-Defensores de Cambaceres | Justo Jose de Urquiza
-
-Union Touarga | Moghreb Athletic de Tetouan
-
-Fylkir Reykjavik | HK Kopavogur
-
-Hamar Hveragerði | Skallagrimur
-
-KH Hlídarendi | Tindastóll
-
-Kría | Árborg
-
-Union Comercio | CS Cienciano
-
-Santos FC Nasca | CDU San Martin
-
-Defensores de Belgrano | CA Aldosivi
-
-Union de Santa Fe | Barracas Central
-
-Coritiba FC PR | Operario Ferroviario EC PR
-
-AC Barnechea | Universidad de Concepcion
-
-GV Club Deportivo San Jose de Oruro | San Antonio Bulo Bulo
+Sampaio Correa FC MA | Maranhao AC MA
