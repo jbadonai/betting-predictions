@@ -24,6 +24,21 @@ filter.py
 '''
 
 
+"""
+PROCEDURE
+************
+1. IF THERE IS AN EXISTING GAME PLAYED.
+    > RUN 'updateDataWithCurrentResult.
+    
+2. > RUN 'sofascore.py'
+
+3. > RUN 'filter.py'
+
+4. > RUN 'book_game.py'
+
+"""
+
+
 try:
     from selenium import webdriver
     from selenium.webdriver.common.by import By

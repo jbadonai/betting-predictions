@@ -1,139 +1,181 @@
-CA Banfield | Newell's Old Boys
+Cuiaba Esporte Clube MT | EC Vitoria BA
 
-Independiente Rivadavia | Union de Santa Fe
+Alexandria Reds | Virginia Dream FC
 
-Brazil | Jamaica
+Athens United | Dothan United SC
 
-FC Frederick | Grove Soccer United
+Charlottesville Blues | Lionsbridge FC
 
-Pathfinder FC New York | AC Connecticut
+Flint City Bucks | AFC Ann Arbor
 
-South Carolina United FC | North Carolina Fusion U23
+Kalamazoo FC | Midwest United FC
 
-AA Portuguesa RJ | Democrata SL MG
+Wake FC | Tobacco Road FC
 
-Greenville Liberty | Southern Soccer Academy
+Montevideo City Torque | Albion FC
 
-Canada | Mexico
+Nacional AC Muriae MG | Betim Futebol MG
 
-West Chester United Usl2 | Real Central New Jersey
+Urt MG | Varginha EC MG
 
-Sao Raimundo EC RR | Gremio Atletico Sampaio RR
+Curacao | Barbados
 
-Huachipato | Gremio FB Porto Alegrense RS
+Trinidad and Tobago | Grenada
 
-Nicaragua | Peru
+Chattanooga Red Wolves SC | Union Omaha SC
 
-USA | Republic of Korea
+Boston Bolts | Blackwatch Rush
 
-RKC Soccer Club | Bavarian United SC
+Brooke House FC | Brevard Fire SC
 
-Manta FC | Club Leones Del Norte
+Morris Elite SC | Manhattan SC
 
-Paysandu SC PA | America FC MG
+Sunflower State FC | Kansas City Sol
 
-CD Real Tomayapo | SC Internacional RS
+Cuniburo FC | 9 de Octubre FC
 
-Brazos Valley Cavalry FC | AHFC Royals
+SC Corinthians SP | Santos FC SP
 
-Negeri Sembilan U20 | Kelantan Darul Naim FC U20
+Arsenal de Sarandi | Velez Sarsfield
 
-Selangor FA U20 | Kedah Darul Aman FC U20
+Fortaleza EC CE | CR Brasil AL
 
-Cerezo Osaka | Machida Zelvia
+Mexico | Uruguay
 
-FC Tokyo | Sanfrecce Hiroshima
+San Antonio FC | El Paso Locomotive FC
 
-Kashiwa Reysol | Nagoya Grampus
+Guatemala | Dominica
 
-Niigata Albirex | V-Varen Nagasaki
+Nicaragua | Montserrat
 
-Hokkaido Consadole Sapporo | Kataller Toyama
+Kelantan U20 | Sabah FA U20
 
-Ivory Coast Youth | Korea Republic Youth
+Indonesia | Iraq
 
-Richards Bay FC | Pretoria University FC
+Bangladesh | Australia
 
-Emirates Club | Al-Ain FC
+Chinese Taipei | Oman
 
-AFC Metalul Buzau | CSM Focsani 2007
+Torslanda IK | Ljungskile SK
 
-CS Dinamo Bucuresti | CS Afumati
+China | Thailand
 
-CS Unirea Ungheni 2018 | CS Gloria 2018 Bistrita-Nasaud
+Hong Kong | Iran
 
-FC Bihor Oradea | CSC Ghiroda SI Giarmata Vii
+Singapore | Republic of Korea
 
-Scm Ramnicu Valcea | ACS Muscelul Campulung Elite
+Vietnam | Philippines
 
-Egersunds IK | Asane Fotball
+Motala AIF FK | IFK Kumla
 
-FF Jaro Akademi | FC Kiisto
+Hassleholms IF | Osterlen FF
 
-IPS | LAUTP
+Myanmar | Japan
 
-Slovakia | San Marino
+Malawi | Sao Tome and Principe
 
-Central African Republic | Chad
+Syria | Korea DPR
 
-Namibia | Liberia
+Mjallby AIF | IK Sirius
 
-Sierra Leone | Djibouti
+CS Cerrito | Sud America
 
-Togo | South Sudan
+Ukraine Youth | Italy Youth
 
-KS Legionovia Legionowo | Bron Radom
+KIF Orebro DFF | IF Brommapojkarna
 
-KaaPo | MaPS
+India | Kuwait
 
-FC Vaajakoski | JJK Jyvaskyla
+SSD Citta Di Campobasso | Cavese 1919
 
-FC Darya Caspian Babol | FC Pars Jonoubi Jam
+IFK Ostersund | Bergnasets AIK
 
-SaiPa FC | Naft Gachsaran
+Georgia | Kazakhstan
 
-Shahrdari Astara | Shahre Raz Shiraz
+Kultsu FC | MP/2
 
-Denmark | Sweden
+PP-70 | ACE
 
-Norway | Kosovo
+TuPS | Ponnistajat
 
-Oskarshamns AIK | Jonkopings Sodra IF
+Gibraltar | Wales
 
-Turk Gucu Friedberg | SV Gonsenheim
+Congo | Niger
 
-Wayside Celtic | St. Mochtas
+Guinea-Bissau | Ethiopia
 
-Tunisia | Equatorial Guinea
+Libya | Mauritius
 
-LR Vicenza | Carrarese Calcio
+Mauritania | Sudan
 
-Antigua and Barbuda | Bermuda
+Trapani Calcio | Calcio Caldiero Terme
 
-Santiago Wanderers | San Luis de Quillota
+SIF | Närpes Kraft Akademi
 
-Keflavik IF | Leiknir Reykjavik
+Denmark | Norway
 
-Grotta | UMF Grindavik
+Victoria Sulejowek | Swit Nowy Dwor Mazowiecki
 
-IA Akranes | IR Reykjavik
+Gnistan Ogeli | RiPS
 
-Sportivo Luqueno | Sportivo Trinidense
+AD Cantolao | Deportivo Municipal
 
-Gualaceo SC | Vargas Torres
+Fjolnir | UMF Njardvik
 
-Guayaquil City FC | CD Independiente Juniors
+Kongsvinger U19 | FK Lyn U19
 
-Club Oriental de Football | La Luz FC
+Follo FK | Skeid Fotball
 
-Suriname | Saint Vincent and the Grenadines
+Grorud | Drobak/Frogn
 
-Plaza Colonia | Uruguay Montevideo FC
+KFUM Oslo | Baerum SK
 
-EC Juventude RS | AC Goianiense GO
+Ready Fotball U19 | Lillehammer FK
 
-Christos FC | Northern Virginia FC
+Ullern IF | Asker Fotball
 
-Club Olimpia | Libertad Asuncion
+Lørenskog U19 | Moss U19
 
-Nacional Asuncion | Cerro Porteno
+HK Kopavogur | UMF Selfoss
+
+Netherlands | Canada
+
+Algeria | Guinea
+
+Benin | Rwanda
+
+Egypt | Burkina Faso
+
+Mali | Ghana
+
+Senegal | DR Congo
+
+Democrata SL MG | SC Aymores MG
+
+UMF Selfoss | Reynir Sandgerdi
+
+KFK | UMF Vidir
+
+KV Vesturbaer | Kari
+
+KÁ Ásvellir | Hamar Hveragerði
+
+Afturelding Mosfellsbaer | Fram
+
+Sportivo Ameliano | Tacuary Asuncion
+
+Ucv Moquegua | AD Comerciantes FC
+
+IH Hafnarfjordur | Arbaer
+
+Jamaica | Dominican Republic
+
+Orsomarso SC | CD Atletico Huila
+
+Coquimbo Unido | CD Palestino
+
+Columbus Crew 2 | New England Revolution II
+
+Philadelphia Union II | FC Cincinnati 2
+
+Club General Caballero Jlm | Sol de America Villa Elisa

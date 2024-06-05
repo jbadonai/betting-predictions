@@ -91,10 +91,10 @@ class BookGame:
             except:
                 pass
 
-            print("span element found! Tring to click it")
+            # print("span element found! Tring to click it")
             # Click the span element
+            print('Moving on to Next page...')
             span_element.click()
-            print('click successfull')
             return True
         except:
             print(">>> Next button not found or clickable")
@@ -222,7 +222,7 @@ class BookGame:
         return False, None
         pass
 
-    def start(self, date_to_book):
+    def start(self, date_to_book, specific=False, specific_value="500"):
         try:
             # LOAD DATA TO BOOK
             '''
@@ -248,16 +248,13 @@ class BookGame:
             eachRowClass = 'm-table-row'
             match_league = "match-league"
 
-            print("Waiting to be ready....")
-            WebDriverWait(self.driver, 30).until(
-                EC.presence_of_element_located((By.CLASS_NAME, match_league))
-            )
+
 
             booking_list = []
             # looping through the pages if more than one to get all booking list
             while True:
                 # get all the leagues
-                print("Get leages..............")
+                print("Waiting to be ready....")
                 WebDriverWait(self.driver, 30).until(
                     EC.presence_of_element_located((By.CLASS_NAME, match_league))
                 )
@@ -288,19 +285,42 @@ class BookGame:
                             ha_handle = outcome_handle[1]
                             ad_handle = outcome_handle[2]
 
-                            hdList = ["500"]    # code for home or draw
-                            adList = ["050"]    # code for away or draw
+                            hdList = ["500", "302", "203", "401"]    # code for home or draw
+                            adList = ["050", "221", "041", ]    # code for away or draw
+                            haList = ["410", "320", "212", "140", "104", "311", ]
+
+                            excludeList = ["500", "050", "302"]
+
+                            # SURE: 500, 302 AND 050
 
                             # check if this data is in booking list:
                             ans, code = self.is_in_booking_list(time_handle.strip(), home_team_handle.strip(), away_team_handle.strip())
                             if ans is True:
-                                if str(code) in hdList:   # 1x
-                                    print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
-                                    hd_handle.click()
-                                elif str(code) in adList:
-                                    ad_handle.click()
+                                if specific is False:
+                                    if str(code) in hdList and str(code) not in hdList:   # 1x
+                                        print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
+                                        hd_handle.click()
+                                    elif str(code) in adList and str(code) not in hdList:
+                                        print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
+                                        ad_handle.click()
+                                    elif str(code) in haList and str(code) not in hdList:
+                                        print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
+                                        ha_handle.click()
+                                    else:
+                                        pass
                                 else:
-                                    print(f"\r.", end="")
+                                    if str(code) in hdList and str(code) == specific_value:   # 1x
+                                        print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
+                                        hd_handle.click()
+                                    elif str(code) in adList and str(code) == specific_value:
+                                        print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
+                                        ad_handle.click()
+                                    elif str(code) in haList and str(code) == specific_value:
+                                        print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
+                                        ha_handle.click()
+                                    else:
+                                        pass
+
                             else:
 
                                 # print(f"\rNot Found! {home_team_handle} vs {away_team_handle}", end="")
@@ -334,4 +354,4 @@ class BookGame:
 
 
 test = BookGame()
-test.start(5)
+test.start(6,True, "302")

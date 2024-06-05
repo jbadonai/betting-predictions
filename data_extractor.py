@@ -134,6 +134,9 @@ class PreviousRecordExtractor():
 
         # game_confirmation_class = 'sc-gFqAkR.hzPof'  # under each team lnk class
         game_confirmation_class = 'Text.eJlzjH'  #  under each team lnk class
+        game_confirmation_xpath = '//*[@id="__next"]/header/div[1]/div/div/div[2]/div/div/div[2]/div[1]/div/div[1]/a/div/div/div[2]/span[2]'  #  under each team lnk class
+        game_confirmation_xpath1 = '//*[@id="__next"]/header/div[1]/div/div/div[2]/div/div/div[2]/div[1]/div/div[1]/a/div/div/div[2]/span'  #  under each team lnk class
+
         team_only_filter_button = "Chip"
         team_error_class = "Text"
         team_error_class_list = ["Text","Text.gNHtbq"]
@@ -163,11 +166,11 @@ class PreviousRecordExtractor():
             print('checking if no team is available...')
             errorFound = False
             teamErrors = self.driver.find_elements(By.CLASS_NAME, team_error_class)
+            # print(f"total error class: {len(teamErrors)}")
             for index,teamError in enumerate(teamErrors):
                 if teamError.text == "No results found":
                     errorFound = True
                     break
-
                 if index > 10:
                     break
 
@@ -199,15 +202,26 @@ class PreviousRecordExtractor():
             #         return team_url, errorMessage
 
             # scan the links to select link for football only for the team
+            # This scan for only 5 intems in the search list after team has been clicke
+            # the first link in the list is usually the required link
+            print(f"Trying to get team link...")
             for x in range(1, 5, 1):
                 # declare known xpath
                 element = f'//*[@id="__next"]/header/div[1]/div/div/div[2]/div/div/div[2]/div[1]/div/div[{x}]/a'
                 try:
                     link = self.driver.find_element(By.XPATH, element)
+                    print(f"ACTUAL LINK FOUND @ {element}")
+                    # break
                 except:
+                    print(f">>> checking next one...")
                     continue
 
-                game = link.find_element(By.CLASS_NAME, game_confirmation_class).text
+                # game = link.find_element(By.CSS_SELECTOR, game_confirmation_class).text
+                try:
+                    game = link.find_element(By.XPATH, game_confirmation_xpath).text
+                except:
+                    game = link.find_element(By.XPATH, game_confirmation_xpath1).text
+
                 print(f"gametextfound: {game} -- sport: {self.sport}")
                 # filter out only football link
                 if str(game).lower() == self.sport.lower():
