@@ -1,3 +1,29 @@
+'''
+sofascore.py (entry) | data_extractor.py ==>
+    * GET ALL GAMES ON SPECIFIED DATE FROM SPORTYBET.COM
+    * EXTRACT PREVIOUS GAME DATA FOR EACH TEAM IN VIEW FROM SOFASCORE.COM
+    * PREDICICT OUTCOME [HOME/DRAW | AWAY/DRAW | HOME/AWAY]
+
+fb_result.txt
+    * FOOTBALL RESULT AFTER PREDICTION
+
+bb_result.txt
+    * BASKETBALL RESULT AFTER PREDICTION
+
+ml_fb.xlsx | ml_bb.xlsx
+    * CONTAINS DATA USED BY MACHINE LEARNING ALGORITHM TO PREDICT OUTCOME
+    * PREVIOUS GAME RESULT ARE UPDATED FOR BETTER ACCURACY
+
+updateDataWithCurrentResult.py
+    * CHECK THE ACTUAL RESULT FROM SPORTYBET.COM ON THE LAST PREDICTED GAME
+    * UPDATE 'ml_fb.xlsx' AND 'ml_bb.xlsx'
+
+filter.py
+    * SORTS 'fb_result.txt' BASED ON THE CODE
+    * SAVE RESULT IN 'filtered' DIRECTORY BASED ON DATE SPECIFIED
+'''
+
+
 try:
     from selenium import webdriver
     from selenium.webdriver.common.by import By
@@ -1092,7 +1118,7 @@ try:
                 print(f'[DEBUG] "{away}" not in local database! adding it to checklist...')
                 teamsWithMissingData.append(away)
 
-            print(f"h: {bool(h)} : a: {bool(a)}")
+            # print(f"h: {bool(h)} : a: {bool(a)}")
 
             #  GET DATA FROM SOFASCORE FOR TEAM WITH NO DATA IN THE EXCEL FILE
             # ---------------------------------------------------------------
@@ -2825,14 +2851,22 @@ try:
         if tomorrow is False:
             ans = input (f"( {sport.upper()} )( EXTRACT DATA ) Set Start Time >  [ Default = 3 ]: ")
             if ans != "":
-                period = int(ans)
+                if ans.lower() == "all" or ans.lower() == 'a':
+                    period = None
+                else:
+                    period = int(ans)
 
         print()
         print("[DEBUG] Starting Data extraction...")
         url = f"https://www.sportybet.com/ng/sport/{sport}"
 
         if tomorrow is False:
-            url = f"https://www.sportybet.com/ng/sport/{sport}?time={period}"
+            if period is None:
+                url = f"https://www.sportybet.com/ng/sport/{sport}"
+                no_of_pages = 100
+            else:
+                url = f"https://www.sportybet.com/ng/sport/{sport}?time={period}"
+                no_of_pages = 1
 
         # print("[DEBUG] Extracting team info...")
         leagueInfo = extract_team_info(url=url, focussed_days=focussedDays,sport=sport, no_of_pages=no_of_pages, tomorrow=tomorrow)

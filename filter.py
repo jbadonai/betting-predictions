@@ -5,11 +5,11 @@ import re
 # code = "302"
 dates = input("Filter for which date? :")
 
-path1 = rf"C:\Users\ajeyemi.alajede\OneDrive - Emerging Markets Telecommunication Services Limited\Desktop\predictions\{dates}.txt"
+# path = rf"C:\Users\ajeyemi.alajede\OneDrive - Emerging Markets Telecommunication Services Limited\Desktop\predictions\{dates}.txt"
 path = "fb_result.txt"
 extraData = []
 
-with open(path1, 'r', encoding='utf-8') as f:
+with open(path, 'r', encoding='utf-8') as f:
     data = f.read()
 
 

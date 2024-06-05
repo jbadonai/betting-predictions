@@ -11,13 +11,15 @@ import ast  # To evaluate the string representation of the dictionary
 import re
 from difflib import SequenceMatcher
 from selenium.common.exceptions import TimeoutException
-
+import configparser
 
 class PreviousRecordExtractor():
     def __init__(self, driver, sport):
         self.driver = driver
         self.url = "https://www.sofascore.com/"
-        self.search_textbox_class = 'sc-30244387-0.hiFyBG'
+        # self.search_textbox_class = 'sc-30244387-0.hiFyBG'
+        self.search_textbox_class = 'sc-fMMURN.jZA-DVh'
+        self.search_textbox_class_list = ['sc-dSIIpw.dtpAIu','sc-YysOf.ijRSqw','sc-fMMURN.jZA-DVh', 'sc-30244387-0.hiFyBG','sc-ePDLzJ.ExPNf']
         # self.data_table_class = "div.sc-fqkvVR.fZdvTU"
         self.data_table_class = "div.js-list-cell-target"
         self.data_table_class_list = ["div.sc-fqkvVR.fZdvTU", "div.js-list-cell-target" ]
@@ -29,8 +31,33 @@ class PreviousRecordExtractor():
         self.new_team_name = []
         self.timeout = 15
         self.sport = sport
+        
+        # ---------------------------------------------------------
+        # defining a constant handle for element that changes on the page
+        self.config_file_path = 'config.ini'
+        self.section = "app_settings"
 
+        self.search_textbox_handle = self.get_from_config(self.section, 'searchTextboxHandle')
         # self.initialize()
+
+    # Function to save data to the config file
+    def save_to_config(self, section, key, value):
+        config = configparser.ConfigParser()
+        config.read(self.config_file_path)
+        if not config.has_section(section):
+            config.add_section(section)
+        config.set(section, key, value)
+        with open(self.config_file_path, 'w') as configfile:
+            config.write(configfile)
+
+    # Function to retrieve data from the config file
+    def get_from_config(self, section, key):
+        config = configparser.ConfigParser()
+        config.read(self.config_file_path)
+        if config.has_section(section) and config.has_option(section, key):
+            return config.get(section, key)
+        else:
+            return None
 
     def initialize(self):
         self.initialize_browser()
@@ -52,9 +79,22 @@ class PreviousRecordExtractor():
     def search_team(self, team_name):
         try:
             # Wait for the input element to be visible
-            input_element = WebDriverWait(self.driver, 120).until(
-                EC.visibility_of_element_located((By.CLASS_NAME, self.search_textbox_class))
+            # input_element = WebDriverWait(self.driver, 120).until(
+            #     EC.visibility_of_element_located((By.CLASS_NAME, self.search_textbox_class))
+            # )
+            # input_element = self.search_textbox_handle
+            # for element in self.search_textbox_class_list:
+            #     print(f">[]>[] Checking {element}")
+            #     try:
+            input_element = WebDriverWait(self.driver, 2).until(
+                EC.visibility_of_element_located((By.XPATH, self.search_textbox_handle))
             )
+                #     break
+                # except:
+                #     continue
+
+            if input_element is None:
+                return False
 
             # Clear any existing text in the input field
             input_element.clear()
@@ -87,11 +127,16 @@ class PreviousRecordExtractor():
     def get_team_href(self):
         # all_search_list_class = 'sc-fqkvVR.sc-fUnMCh.esJGSi.hkwHv.ps.ps--active-y'
         all_search_list_class = 'Box.dAFRQr'
-        each_team_link_class = 'sc-bbd8cee0-0.jeQTnS'  # has href and other data
+
+        each_team_link_class = 'sc-bbd8cee0-0.jeQTnS'  # has href and other data[no longer working]
+        each_team_link_class = 'sc-ktPPKK.fLZUf'  # has href and other data
+        each_team_link_class_list = ['sc-ktPPKK.fLZUf','sc-cVzyXs.iWIRcx', 'sc-bbd8cee0-0.jeQTnS','sc-bVVIoq.gItNGx']
+
         # game_confirmation_class = 'sc-gFqAkR.hzPof'  # under each team lnk class
-        game_confirmation_class = 'Text.eJlzjH'  # under each team lnk class
+        game_confirmation_class = 'Text.eJlzjH'  #  under each team lnk class
         team_only_filter_button = "Chip"
         team_error_class = "Text"
+        team_error_class_list = ["Text","Text.gNHtbq"]
         errorMessage = None
 
         try:
@@ -105,14 +150,17 @@ class PreviousRecordExtractor():
                 if filter.text == "Team":
                     filter.click()
                     filterFound = True
+                    print("Team Filter clicked!")
                     break
 
             time.sleep(3)
             if filterFound is False:
                 errorMessage = "Team Filter Not Found"
+                print("Team Filter not found!")
                 raise Exception
 
             # after selecting team filter check if there is result:
+            print('checking if no team is available...')
             errorFound = False
             teamErrors = self.driver.find_elements(By.CLASS_NAME, team_error_class)
             for index,teamError in enumerate(teamErrors):
@@ -129,20 +177,47 @@ class PreviousRecordExtractor():
                 raise Exception
 
             # get all the links in the list
-            all_links = self.driver.find_elements(By.CLASS_NAME, each_team_link_class)
+            # all_links = self.driver.find_elements(By.CLASS_NAME, each_team_link_class)
+            # for each_link in each_team_link_class_list:
+            #     print(f"Checking link list: {each_link}...")
+            #     all_links = self.driver.find_elements(By.CLASS_NAME, each_link)
+            #     if len(all_links) > 0:
+            #         break
+            # print(f"Milestone:: > all links : {len(all_links)}")
+
+            # # scan the links to select link for football only for the team
+            # for link in all_links:
+            #     # get the game: football, clrcket...
+            #     game = link.find_element(By.CLASS_NAME, game_confirmation_class).text
+            #     print(f"gametextfound: {game} -- sport: {self.sport}")
+            #     # filter out only football link
+            #     if str(game).lower() == self.sport.lower():
+            #         print("[]milestone! requried game found!")
+            #         # extract the href which is requried
+            #         team_url = link.get_attribute('href')
+            #         print(f"Team URL: {team_url}")
+            #         return team_url, errorMessage
 
             # scan the links to select link for football only for the team
-            for link in all_links:
-                # get the game: football, clrcket...
-                game = link.find_element(By.CLASS_NAME, game_confirmation_class).text
+            for x in range(1, 5, 1):
+                # declare known xpath
+                element = f'//*[@id="__next"]/header/div[1]/div/div/div[2]/div/div/div[2]/div[1]/div/div[{x}]/a'
+                try:
+                    link = self.driver.find_element(By.XPATH, element)
+                except:
+                    continue
 
+                game = link.find_element(By.CLASS_NAME, game_confirmation_class).text
+                print(f"gametextfound: {game} -- sport: {self.sport}")
                 # filter out only football link
                 if str(game).lower() == self.sport.lower():
+                    print("[]milestone! requried game found!")
                     # extract the href which is requried
                     team_url = link.get_attribute('href')
+                    print(f"Team URL: {team_url}")
                     return team_url, errorMessage
 
-
+            return None, "Possibly the Xpath provided is no longer valid"
         except Exception as e:
             print(f"[DEBUG][ERROR] An error occurred in get team href function: {e}")
             return None, errorMessage
@@ -372,6 +447,14 @@ class PreviousRecordExtractor():
                 return True
             except:
                 return False
+        elif selector == 'xpath':
+            try:
+                input_element = WebDriverWait(self.driver, 2).until(
+                    EC.visibility_of_element_located((By.XPATH, selector_name))
+                )
+                return True
+            except:
+                return False
 
     def start_data_extraction_old(self, team_names: list):
         failure_count = 0
@@ -490,6 +573,27 @@ class PreviousRecordExtractor():
                 return None
             print(f"[DEBUG] An Error occurred in start data extraction: {e}")
 
+    def get_search_handle_by_xpath(self):
+        print("[DEBUG] scanning for search handle...")
+        for x in range(10):
+            for y in range(10):
+                try:
+                    element = f'//*[@id="__next"]/header/div[{x}]/div/div/div[{y}]/div/form/input'
+                    print(f"\r[{x},{y}]checking {element}", end="")
+                    input_element = WebDriverWait(self.driver, 0.2).until(
+                        EC.visibility_of_element_located((By.XPATH, element))
+                    )
+                    print()
+                    print(f'FOUND!@ |{x},{y}')
+                    self.save_to_config(self.section, 'searchTextboxHandle', element)
+                    return element
+                except:
+                    continue
+        return None
+
+
+
+
     def start_data_extraction(self, team_names: list):
         failure_count = 0
         try:
@@ -497,15 +601,37 @@ class PreviousRecordExtractor():
 
             # check if page is properly loaded by checking if search box is on page
             # --------------------------------------------------------------------
-            while True:
-                on_page = self.is_element_on_page(self.search_textbox_class)
-                if on_page is True:
-                    break
-                else:
-                    print("[DEBUG][ERROR] Page not properly loaded! Refreshing to retry....")
-                    self.driver.refresh()
-                    time.sleep(5)
 
+            print('looking for search handle')
+            if self.search_textbox_handle is None:
+                self.search_textbox_handle = self.get_search_handle_by_xpath()
+                # if self.search_textbox_handle is not None:
+                #     self.save_to_config(self.section, 'searchTextboxHandle', self.search_textbox_handle)
+
+
+
+            # input("milestone")
+            # while True:
+            #     op = None
+            #     # checking all known class for search box
+            #     for element in self.search_textbox_class_list:
+            #         print(f"[][][][]Finding Search class [{element}].....")
+            #         # on_page = self.is_element_on_page(self.search_textbox_class)
+            #         on_page = self.is_element_on_page(element)
+            #         if on_page is True:
+            #             self.search_textbox_class = element
+            #             print(f"[][][] Found! @ {self.search_textbox_class}")
+            #
+            #             op = True
+            #             break
+            #
+            #     if op is True:
+            #         break
+            #     else:
+            #         print("[DEBUG][ERROR] [using search box]Page not properly loaded! Refreshing to retry....")
+            #         self.driver.refresh()
+            #         time.sleep(5)
+            #
 
             # 2. LOOP THROUGH ALL THE TEAMS
             # ----------------------------
@@ -519,6 +645,7 @@ class PreviousRecordExtractor():
                         break
                     else:
                         print(f"[DEBUG][ERROR] Unable to search for {team_name}. Retrying...")
+                        self.search_textbox_handle = self.get_search_handle_by_xpath()
                         time.sleep(2)
 
                 # b. GET THE HREF: TEAM'S URL

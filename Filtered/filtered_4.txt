@@ -1,0 +1,466 @@
+Filtered data for 4
+                                   Game Time:      [ 01:15 ]
+                                   Teams:          Estudiantes de La Plata  :  CD Godoy Cruz
+                                   Prediction:     ['H', 'H', 'D', 'H', 'D']
+                                   Accuracy:       [46.06, 37.58, 41.21, 42.42, 48.48]
+                                   Summary:        {'H': 42, 'D': 45}  [87]
+                                                   {'H': 3, 'D': 2} [302]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 10:00 ]
+                                   Teams:          Gold Coast United FC  :  Souths United
+                                   Prediction:     ['H', 'D', 'D', 'H', 'H']
+                                   Accuracy:       [46.06, 37.58, 39.39, 42.42, 48.48]
+                                   Summary:        {'H': 46, 'D': 38}  [84]
+                                                   {'H': 3, 'D': 2} [302]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 17:00 ]
+                                   Teams:          Albania  :  Luxembourg
+                                   Prediction:     ['H', 'D', 'H', 'H', 'D']
+                                   Accuracy:       [46.06, 39.39, 43.03, 42.42, 48.48]
+                                   Summary:        {'H': 44, 'D': 44}  [88]
+                                                   {'H': 3, 'D': 2} [302]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 19:45 ]
+                                   Teams:          Tolka Rovers  :  Lucan United FC
+                                   Prediction:     ['H', 'D', 'H', 'H', 'D']
+                                   Accuracy:       [46.06, 36.97, 43.03, 42.42, 48.48]
+                                   Summary:        {'H': 44, 'D': 43}  [87]
+                                                   {'H': 3, 'D': 2} [302]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+                                   Game Time:      [ 15:00 ]
+                                   Teams:          Bosnia & Herzegovina  :  Malta
+                                   Prediction:     ['H', 'H', 'H', 'H', 'H']
+                                   Accuracy:       [46.06, 39.39, 43.03, 42.42, 48.48]
+                                   Summary:        {'H': 44}  [44]
+                                                   {'H': 5} [500]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 15:00 ]
+                                   Teams:          Kazakhstan  :  Armenia
+                                   Prediction:     ['H', 'H', 'H', 'H', 'H']
+                                   Accuracy:       [46.06, 39.39, 41.82, 42.42, 48.48]
+                                   Summary:        {'H': 44}  [44]
+                                                   {'H': 5} [500]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 16:00 ]
+                                   Teams:          Tallinna FC Flora  :  Saku Sporting
+                                   Prediction:     ['H', 'H', 'H', 'H', 'H']
+                                   Accuracy:       [46.06, 38.79, 38.79, 42.42, 48.48]
+                                   Summary:        {'H': 43}  [43]
+                                                   {'H': 5} [500]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 18:00 ]
+                                   Teams:          NoPS  :  TP 49
+                                   Prediction:     ['H', 'H', 'H', 'H', 'H']
+                                   Accuracy:       [46.06, 36.97, 40.61, 42.42, 48.48]
+                                   Summary:        {'H': 43}  [43]
+                                                   {'H': 5} [500]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 19:00 ]
+                                   Teams:          Selfoss/Arborg U19  :  Fylkir/Ellidi U19
+                                   Prediction:     ['H', 'H', 'H', 'H', 'H']
+                                   Accuracy:       [46.06, 36.97, 41.21, 42.42, 48.48]
+                                   Summary:        {'H': 43}  [43]
+                                                   {'H': 5} [500]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 19:15 ]
+                                   Teams:          Switzerland  :  Estonia
+                                   Prediction:     ['H', 'H', 'H', 'H', 'H']
+                                   Accuracy:       [46.06, 40.0, 38.18, 42.42, 48.48]
+                                   Summary:        {'H': 43}  [43]
+                                                   {'H': 5} [500]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 19:30 ]
+                                   Teams:          Romania  :  Bulgaria
+                                   Prediction:     ['H', 'H', 'H', 'H', 'H']
+                                   Accuracy:       [46.06, 35.76, 42.42, 42.42, 48.48]
+                                   Summary:        {'H': 43}  [43]
+                                                   {'H': 5} [500]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 20:30 ]
+                                   Teams:          Spain  :  Denmark
+                                   Prediction:     ['H', 'H', 'H', 'H', 'H']
+                                   Accuracy:       [46.06, 39.39, 40.61, 42.42, 48.48]
+                                   Summary:        {'H': 43}  [43]
+                                                   {'H': 5} [500]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 21:00 ]
+                                   Teams:          Valur/KH U19  :  Leiknir/KB U19
+                                   Prediction:     ['H', 'H', 'H', 'H', 'H']
+                                   Accuracy:       [46.06, 39.39, 43.03, 42.42, 48.48]
+                                   Summary:        {'H': 44}  [44]
+                                                   {'H': 5} [500]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 23:00 ]
+                                   Teams:          Mirassol FC SP  :  Guarani FC SP
+                                   Prediction:     ['H', 'H', 'H', 'H', 'H']
+                                   Accuracy:       [46.06, 37.58, 41.21, 42.42, 48.48]
+                                   Summary:        {'H': 43}  [43]
+                                                   {'H': 5} [500]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+                                   Game Time:      [ 00:30 ]
+                                   Teams:          Philadelphia Union Ds  :  Atlantic City FC
+                                   Prediction:     ['A', 'A', 'A', 'A', 'A']
+                                   Accuracy:       [46.06, 38.79, 43.03, 42.42, 48.48]
+                                   Summary:        {'A': 44}  [44]
+                                                   {'A': 5} [050]
+                                                   D/A  [Away or Draw [X2]]
+
+				***************************************************
+
+                                   Game Time:      [ 11:00 ]
+                                   Teams:          Tensung FC  :  Paro FC
+                                   Prediction:     ['A', 'A', 'A', 'A', 'A']
+                                   Accuracy:       [46.06, 36.97, 38.79, 42.42, 48.48]
+                                   Summary:        {'A': 43}  [43]
+                                                   {'A': 5} [050]
+                                                   D/A  [Away or Draw [X2]]
+
+				***************************************************
+
+                                   Game Time:      [ 15:00 ]
+                                   Teams:          Israel  :  Scotland
+                                   Prediction:     ['A', 'A', 'A', 'A', 'A']
+                                   Accuracy:       [46.06, 39.39, 41.82, 42.42, 48.48]
+                                   Summary:        {'A': 44}  [44]
+                                                   {'A': 5} [050]
+                                                   D/A  [Away or Draw [X2]]
+
+				***************************************************
+
+                                   Game Time:      [ 16:00 ]
+                                   Teams:          Azerbaijan  :  Turkey
+                                   Prediction:     ['A', 'A', 'A', 'A', 'A']
+                                   Accuracy:       [46.06, 38.79, 41.21, 42.42, 48.48]
+                                   Summary:        {'A': 43}  [43]
+                                                   {'A': 5} [050]
+                                                   D/A  [Away or Draw [X2]]
+
+				***************************************************
+
+                                   Game Time:      [ 16:30 ]
+                                   Teams:          Hungary  :  Switzerland
+                                   Prediction:     ['A', 'A', 'A', 'A', 'A']
+                                   Accuracy:       [46.06, 36.36, 43.03, 42.42, 48.48]
+                                   Summary:        {'A': 43}  [43]
+                                                   {'A': 5} [050]
+                                                   D/A  [Away or Draw [X2]]
+
+				***************************************************
+
+                                   Game Time:      [ 17:00 ]
+                                   Teams:          Bulgaria  :  Romania
+                                   Prediction:     ['A', 'A', 'A', 'A', 'A']
+                                   Accuracy:       [46.06, 36.97, 39.39, 42.42, 48.48]
+                                   Summary:        {'A': 43}  [43]
+                                                   {'A': 5} [050]
+                                                   D/A  [Away or Draw [X2]]
+
+				***************************************************
+
+                                   Game Time:      [ 17:00 ]
+                                   Teams:          Finland  :  Netherlands
+                                   Prediction:     ['A', 'A', 'A', 'A', 'A']
+                                   Accuracy:       [46.06, 39.39, 42.42, 42.42, 48.48]
+                                   Summary:        {'A': 44}  [44]
+                                                   {'A': 5} [050]
+                                                   D/A  [Away or Draw [X2]]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+                                   Game Time:      [ 18:25 ]
+                                   Teams:          LPS  :  HIFK
+                                   Prediction:     ['H', 'A', 'H', 'H', 'H']
+                                   Accuracy:       [46.06, 36.97, 40.0, 42.42, 48.48]
+                                   Summary:        {'A': 37, 'H': 44}  [81]
+                                                   {'H': 4, 'A': 1} [410]
+                                                   H/A  [Home or Away [12]]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+                                   Game Time:      [ 23:00 ]
+                                   Teams:          Club Guarani Asuncion  :  CS 2 de Mayo
+                                   Prediction:     ['H', 'A', 'A', 'H', 'H']
+                                   Accuracy:       [46.06, 38.18, 41.82, 42.42, 48.48]
+                                   Summary:        {'A': 40, 'H': 46}  [86]
+                                                   {'H': 3, 'A': 2} [320]
+                                                   H/A  [Home or Away [12]]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+                                   Game Time:      [ 00:30 ]
+                                   Teams:          CSD Rangers  :  Deportes Recoleta
+                                   Prediction:     ['H', 'A', 'A', 'H', 'D']
+                                   Accuracy:       [46.06, 35.15, 40.61, 42.42, 48.48]
+                                   Summary:        {'A': 38, 'H': 44, 'D': 48}  [130]
+                                                   {'H': 2, 'A': 2, 'D': 1} [221]
+                                                   D/A  [Away or Draw [X2]]
+
+				***************************************************
+
+                                   Game Time:      [ 18:00 ]
+                                   Teams:          Senegal  :  South Africa
+                                   Prediction:     ['H', 'D', 'A', 'H', 'A']
+                                   Accuracy:       [46.06, 40.0, 41.82, 42.42, 48.48]
+                                   Summary:        {'A': 45, 'H': 44, 'D': 40}  [129]
+                                                   {'H': 2, 'D': 1, 'A': 2} [221]
+                                                   D/A  [Away or Draw [X2]]
+
+				***************************************************
+
+                                   Game Time:      [ 19:00 ]
+                                   Teams:          CA Progreso  :  Cerro Largo FC
+                                   Prediction:     ['H', 'A', 'A', 'H', 'D']
+                                   Accuracy:       [46.06, 36.36, 41.82, 42.42, 48.48]
+                                   Summary:        {'A': 39, 'H': 44, 'D': 48}  [131]
+                                                   {'H': 2, 'A': 2, 'D': 1} [221]
+                                                   D/A  [Away or Draw [X2]]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+                                   Game Time:      [ 00:00 ]
+                                   Teams:          Botafogo FC PB  :  Athletic Club Sjdr MG
+                                   Prediction:     ['D', 'D', 'A', 'H', 'D']
+                                   Accuracy:       [46.06, 38.79, 41.82, 42.42, 48.48]
+                                   Summary:        {'A': 42, 'H': 42, 'D': 44}  [128]
+                                                   {'D': 3, 'A': 1, 'H': 1} [113]
+                                                   D  [Lowest odd (H/A) / D]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+                                   Game Time:      [ 00:00 ]
+                                   Teams:          Carlos Renaux SC  :  Camboriu FC SC
+                                   Prediction:     ['A', 'H', 'D', 'H', 'D']
+                                   Accuracy:       [46.06, 35.76, 40.0, 42.42, 48.48]
+                                   Summary:        {'A': 46, 'H': 39, 'D': 44}  [129]
+                                                   {'A': 1, 'H': 2, 'D': 2} [212]
+                                                   H/A  [Home or Away [12]]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+                                   Game Time:      [ 11:30 ]
+                                   Teams:          Sunshine Coast Wanderers  :  Brisbane City FC
+                                   Prediction:     ['A', 'A', 'A', 'A', 'D']
+                                   Accuracy:       [46.06, 35.15, 41.82, 42.42, 48.48]
+                                   Summary:        {'A': 41, 'D': 48}  [89]
+                                                   {'A': 4, 'D': 1} [041]
+                                                   D/A  [Away or Draw [X2]]
+
+				***************************************************
+
+                                   Game Time:      [ 19:00 ]
+                                   Teams:          Barracas Central  :  CA Huracan
+                                   Prediction:     ['A', 'A', 'A', 'A', 'D']
+                                   Accuracy:       [46.06, 36.97, 37.58, 42.42, 48.48]
+                                   Summary:        {'A': 41, 'D': 48}  [89]
+                                                   {'A': 4, 'D': 1} [041]
+                                                   D/A  [Away or Draw [X2]]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+                                   Game Time:      [ 01:30 ]
+                                   Teams:          Union San Felipe  :  San Marcos de Arica
+                                   Prediction:     ['D', 'D', 'H', 'H', 'D']
+                                   Accuracy:       [46.06, 35.76, 40.61, 42.42, 48.48]
+                                   Summary:        {'H': 42, 'D': 43}  [85]
+                                                   {'D': 3, 'H': 2} [203]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+                                   Game Time:      [ 16:00 ]
+                                   Teams:          Latvia  :  Slovenia
+                                   Prediction:     ['A', 'A', 'A', 'H', 'A']
+                                   Accuracy:       [46.06, 36.36, 39.39, 42.42, 48.48]
+                                   Summary:        {'A': 43, 'H': 42}  [85]
+                                                   {'A': 4, 'H': 1} [140]
+                                                   H/A  [Home or Away [12]]
+
+				***************************************************
+
+                                   Game Time:      [ 16:00 ]
+                                   Teams:          KuPS U20  :  Atlantis FC U20
+                                   Prediction:     ['A', 'H', 'A', 'A', 'A']
+                                   Accuracy:       [46.06, 35.15, 41.82, 42.42, 48.48]
+                                   Summary:        {'A': 45, 'H': 35}  [80]
+                                                   {'A': 4, 'H': 1} [140]
+                                                   H/A  [Home or Away [12]]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+                                   Game Time:      [ 01:15 ]
+                                   Teams:          Defensa y Justicia  :  CA Independiente Avellaneda
+                                   Prediction:     ['D', 'D', 'D', 'H', 'D']
+                                   Accuracy:       [46.06, 36.36, 41.82, 42.42, 48.48]
+                                   Summary:        {'H': 42, 'D': 43}  [85]
+                                                   {'D': 4, 'H': 1} [104]
+                                                   H/A  [Home or Away [12]]
+
+				***************************************************
+
+                                   Game Time:      [ 19:45 ]
+                                   Teams:          Ireland  :  Hungary
+                                   Prediction:     ['D', 'D', 'D', 'H', 'D']
+                                   Accuracy:       [46.06, 38.18, 40.61, 42.42, 48.48]
+                                   Summary:        {'H': 42, 'D': 43}  [85]
+                                                   {'D': 4, 'H': 1} [104]
+                                                   H/A  [Home or Away [12]]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+                                   Game Time:      [ 17:00 ]
+                                   Teams:          PeKa  :  Union Plaani
+                                   Prediction:     ['H', 'A', 'D', 'H', 'H']
+                                   Accuracy:       [46.06, 40.0, 41.21, 42.42, 48.48]
+                                   Summary:        {'A': 40, 'H': 46, 'D': 41}  [127]
+                                                   {'H': 3, 'A': 1, 'D': 1} [311]
+                                                   H/A  [Home or Away [12]]
+
+				***************************************************
+
+                                   Game Time:      [ 19:45 ]
+                                   Teams:          Austria  :  Serbia
+                                   Prediction:     ['H', 'H', 'A', 'H', 'D']
+                                   Accuracy:       [46.06, 38.79, 42.42, 42.42, 48.48]
+                                   Summary:        {'A': 42, 'H': 42, 'D': 48}  [132]
+                                                   {'H': 3, 'A': 1, 'D': 1} [311]
+                                                   H/A  [Home or Away [12]]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+                                   Game Time:      [ 20:30 ]
+                                   Teams:          Iceland  :  Austria
+                                   Prediction:     ['A', 'H', 'A', 'H', 'A']
+                                   Accuracy:       [46.06, 37.58, 36.97, 42.42, 48.48]
+                                   Summary:        {'A': 44, 'H': 40}  [84]
+                                                   {'A': 3, 'H': 2} [230]
+                                                   D  [Lowest odd (H/A) / D]
+
+				***************************************************
+
+                                   Game Time:      [ 23:00 ]
+                                   Teams:          CA Boston River  :  Club Nacional de Football
+                                   Prediction:     ['A', 'H', 'H', 'A', 'A']
+                                   Accuracy:       [46.06, 38.79, 41.21, 42.42, 48.48]
+                                   Summary:        {'A': 46, 'H': 40}  [86]
+                                                   {'A': 3, 'H': 2} [230]
+                                                   D  [Lowest odd (H/A) / D]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+                                   Game Time:      [ 00:00 ]
+                                   Teams:          Santos FC SP  :  Botafogo FC SP
+                                   Prediction:     ['H', 'D', 'H', 'H', 'H']
+                                   Accuracy:       [46.06, 37.58, 40.61, 42.42, 48.48]
+                                   Summary:        {'H': 44, 'D': 38}  [82]
+                                                   {'H': 4, 'D': 1} [401]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 00:10 ]
+                                   Teams:          Argentina  :  Costa Rica
+                                   Prediction:     ['H', 'H', 'H', 'H', 'D']
+                                   Accuracy:       [46.06, 35.76, 40.61, 42.42, 48.48]
+                                   Summary:        {'H': 41, 'D': 48}  [89]
+                                                   {'H': 4, 'D': 1} [401]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 01:00 ]
+                                   Teams:          Operario Ferroviario EC PR  :  Amazonas FC AM
+                                   Prediction:     ['H', 'H', 'H', 'H', 'D']
+                                   Accuracy:       [46.06, 37.58, 41.82, 42.42, 48.48]
+                                   Summary:        {'H': 42, 'D': 48}  [90]
+                                                   {'H': 4, 'D': 1} [401]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 01:00 ]
+                                   Teams:          Agropecuario Argentino  :  CA All Boys
+                                   Prediction:     ['H', 'H', 'H', 'H', 'D']
+                                   Accuracy:       [46.06, 37.58, 43.64, 42.42, 48.48]
+                                   Summary:        {'H': 42, 'D': 48}  [90]
+                                                   {'H': 4, 'D': 1} [401]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 17:00 ]
+                                   Teams:          Slovenia  :  Armenia
+                                   Prediction:     ['H', 'D', 'H', 'H', 'H']
+                                   Accuracy:       [46.06, 36.97, 41.82, 42.42, 48.48]
+                                   Summary:        {'H': 45, 'D': 37}  [82]
+                                                   {'H': 4, 'D': 1} [401]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+                                   Game Time:      [ 18:00 ]
+                                   Teams:          Hammarby Talang FF  :  Sollentuna FK
+                                   Prediction:     ['H', 'D', 'H', 'H', 'H']
+                                   Accuracy:       [46.06, 36.36, 41.21, 42.42, 48.48]
+                                   Summary:        {'H': 45, 'D': 36}  [81]
+                                                   {'H': 4, 'D': 1} [401]
+                                                   H/D  [Home or Draw [1X]]
+
+				***************************************************
+
+<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
