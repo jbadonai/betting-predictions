@@ -113,12 +113,22 @@ tuple_strings = re.findall(r'\(([^)]+)\)', data)
 # Convert the tuple strings into actual tuples
 parsed_data = []
 for tuple_str in tuple_strings:
-    # Split by comma but ignore commas inside quotes
-    items = re.split(r",\s*(?![^()]*\))", tuple_str)
-    # Strip quotes and spaces
-    items = [item.strip().strip("'") for item in items]
-    parsed_data.append(tuple(items))
+    try:
 
+        # Split by comma but ignore commas inside quotes
+        items = re.split(r",\s*(?![^()]*\))", tuple_str)
+        # Strip quotes and spaces
+        items = [item.strip().strip("'") for item in items]
+        if len(tuple(items)) == 4:
+            parsed_data.append(tuple(items))
+    except Exception as e:
+        print(f"[ERROR]>> Turple string: {tuple_str}\n{e}")
+        continue
+
+for data in parsed_data:
+    if len(data) > 4:
+        print(data)
+print('writing........')
 # Create a DataFrame with the specified headings
 df = pd.DataFrame(parsed_data, columns=['home', 'away', 'code', 'accuracy'])
 # Save the DataFrame to an Excel file

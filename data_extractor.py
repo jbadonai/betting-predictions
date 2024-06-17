@@ -153,7 +153,7 @@ class PreviousRecordExtractor():
                 if filter.text == "Team":
                     filter.click()
                     filterFound = True
-                    print("Team Filter clicked!")
+                    # print("Team Filter clicked!")
                     break
 
             time.sleep(3)
@@ -204,13 +204,13 @@ class PreviousRecordExtractor():
             # scan the links to select link for football only for the team
             # This scan for only 5 intems in the search list after team has been clicke
             # the first link in the list is usually the required link
-            print(f"Trying to get team link...")
+            print(f"[DEBUT] Trying to get team link...")
             for x in range(1, 5, 1):
                 # declare known xpath
                 element = f'//*[@id="__next"]/header/div[1]/div/div/div[2]/div/div/div[2]/div[1]/div/div[{x}]/a'
                 try:
                     link = self.driver.find_element(By.XPATH, element)
-                    print(f"ACTUAL LINK FOUND @ {element}")
+                    # print(f"ACTUAL LINK FOUND @ {element}")
                     # break
                 except:
                     print(f">>> checking next one...")
@@ -222,10 +222,10 @@ class PreviousRecordExtractor():
                 except:
                     game = link.find_element(By.XPATH, game_confirmation_xpath1).text
 
-                print(f"gametextfound: {game} -- sport: {self.sport}")
+                # print(f"gametextfound: {game} -- sport: {self.sport}")
                 # filter out only football link
                 if str(game).lower() == self.sport.lower():
-                    print("[]milestone! requried game found!")
+                    # print("[]milestone! requried game found!")
                     # extract the href which is requried
                     team_url = link.get_attribute('href')
                     print(f"Team URL: {team_url}")
@@ -262,6 +262,29 @@ class PreviousRecordExtractor():
 
         # suggested_data_table_class = ""
         # suggested_ha_class = ""
+        rating_xpath = '//*[@id="__next"]/main/div[2]/div/div[2]/div[2]/div[3]/div[3]/div[1]/div[2]/span/div'
+        ranking_xpath = '//*[@id="__next"]/main/div[2]/div/div[2]/div[2]/div[3]/div[3]/div[1]/div[1]/div[2]'
+
+        def get_rating():
+            try:
+                rate = self.driver.find_element(By.XPATH, rating_xpath)
+                return rate.text
+            except Exception as e:
+                print(f"[x] Rating error {e}")
+                return 0
+
+        def get_ranking():
+            try:
+                rank = self.driver.find_element(By.XPATH, ranking_xpath)
+                rank = rank.text
+                rankList = str(rank).split("/")
+                actual_rank = rankList[0].split(" ")[-1].strip()
+                total_ranked = rankList[1].split(" ")[0].strip()
+
+                return f"{actual_rank}/{total_ranked}"
+            except Exception as e:
+                print(f"[x] Ranking Error: {e}")
+                return 0
 
         suitable_data_table_class = self.find_suitable_class_name(data_table_class_list, False)     # using CSS
         if suitable_data_table_class is None:
@@ -299,6 +322,9 @@ class PreviousRecordExtractor():
                 home_score = ha[6].text
                 away_score = ha[8].text
                 wld = ha[10].text
+                rating = get_rating()
+                ranking = get_ranking()
+                print(f"[][][] >>> {team}> Rating : {rating} - Ranking: {ranking}")
 
                 # create a dictionary of the extracted data
                 singleGameData['league'] = "my league"

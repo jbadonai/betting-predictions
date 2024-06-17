@@ -1468,8 +1468,8 @@ try:
                         print()
                         ml = {}
 
-                        ml['home'] = new_home
-                        ml['away'] = new_away
+                        ml['home'] = new_home.strip()
+                        ml['away'] = new_away.strip()
                         ml['home_odd'] = round(float(odds[0]), 2)
                         ml['away_odd'] = round(float(odds[1]), 2)
                         ml['odd_difference'] = abs(ml['home_odd'] - ml['away_odd'])
