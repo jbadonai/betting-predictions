@@ -74,6 +74,12 @@ try:
     from sklearn.metrics import accuracy_score
     import joblib
 
+    import prediction_DecisionTree as pdt
+    import prediction_NaiveBayes as pnb
+    import predictor_LogisticRegression as plr
+    import predictor_RandomForest as prf
+    import predictor_SVM as psvm
+
 
     # timeout = 15
     teamData = 'teamList.txt'
@@ -1492,7 +1498,7 @@ try:
                     fb_pred_features = get_and_save_fb_ml_data(a)
 
                     print('Starting machine learning algorithms...')
-                    prediction, accuracy = football_ml_predictions(fb_pred_features)
+                    prediction, accuracy, new_prediction = football_ml_predictions(fb_pred_features)
 
                     def calculate_summary(prediction, accuracy):
                         print("Calculating surmary...")
@@ -1654,16 +1660,63 @@ try:
                     summary = calculate_summary(prediction, accuracy)
                     experience = get_experienced_result(code)
 
+                    def new_insight(pred, acc):
+                        chosen = pred[0]
+                        chosen2 = pred[1]
+                        chosen3 = pred[2]
+                        chosen_acc = float(acc[0])
+                        chosen_acc2 = float(acc[1])
+                        chosen_acc3 = float(acc[3])
+
+                        def get_value(c):
+                            if c == "H":
+                                return "Home"
+                            elif c == "A":
+                                return "Away"
+                            elif c == "D":
+                                return "Draw"
+
+                        def restructure(v: str):
+                            if v.lower().__contains__("home") and v.lower().__contains__('away'):
+                                return "Home or Away"
+                            if v.lower().__contains__("home") and v.lower().__contains__('draw'):
+                                return "Home or Draw"
+                            if v.lower().__contains__("draw") and v.lower().__contains__('away'):
+                                return "Draw or Away"
+
+                        if chosen_acc > 50:
+                            if chosen == chosen3 == "H":
+                                return "Home or Draw"
+                            elif chosen == chosen3 == "A":
+                                return "Draw or Away"
+                            elif chosen != chosen3:
+                                if chosen2 == chosen3:
+                                    ans = f"{get_value(chosen)} or {get_value(chosen3)}"
+                                    return restructure(ans)
+                                else:
+                                    if chosen != "D":
+                                        ans = f"{get_value(chosen)} or Draw"
+                                        return restructure(ans)
+                                    else:
+                                        return "Home or Away"
+                            else:
+                                return "Home or Away"
+                        else:
+                            return "Uncertain!"
+
                     result = f"""
                                    Game Time:      [ {game_time} ]
                                    Teams:          {new_home} : {new_away}
-                                   Prediction:     {prediction}
+                                   Prediction:     {prediction} | {new_prediction}
                                    Accuracy:       {accuracy}
-                                   Summary:        {summary}  [{sum_dictionary_values(summary)}]
+                                   Summary:        NEW: - {new_insight(prediction, accuracy)}
+                                                   {summary}  [{sum_dictionary_values(summary)}]
                                                    {occurrence_count} [{code}]
                                                    {experience}  [{simplify_experience(experience)}]
                                    ********************************************************************************
                                    """
+
+
                     print()
                     print(result)
                     print()
@@ -1965,12 +2018,34 @@ try:
             else:
                 raise ValueError("Features must be either a list or a dictionary.")
 
+            # new model name is 'rf_model.joblib'
+            # --------------------------------------------------------
+            # Loading the Model and Predicting
+            def load_model_and_predict(model_path, new_data):
+                model, label_encoder = joblib.load(model_path)
+                predictions = model.predict(new_data)
+                decoded_predictions = label_encoder.inverse_transform(predictions)
+                return decoded_predictions
+            # --------------------------------------------------------
+
+            newPredictionRF =prf.load_model_and_predict('model_RF.joblib', features_df)
+            newPredictionDT =pdt.load_model_and_predict('model_DT.joblib', features_df)
+            newPredictionLR =plr.load_model_and_predict('model_LR.joblib', features_df)
+            newPredictionNB =pnb.load_model_and_predict('model_NB.joblib', features_df)
+            newPredictionSVM =psvm.load_model_and_predict('model_SVM.joblib', features_df)
+
+
             predictions = []
             for model_name in ["Logistic Regression", "Decision Tree", "Random Forest", "SVM", "Naive Bayes"]:
                 loaded_model = joblib.load(f"{model_name}.pkl")
                 pred = loaded_model.predict(features_df)
                 predictions.append(label_encoder.inverse_transform(pred)[0])
-            return predictions
+
+            print(f"Old prediction: {predictions}")
+            print(f"New Prediction: {newPredictionLR}, {newPredictionDT}, {newPredictionRF}, {newPredictionSVM}, {newPredictionNB}")
+            new_predictions = f"{newPredictionLR[0]}, {newPredictionDT[0]}, {newPredictionRF[0]}, {newPredictionSVM[0]}, {newPredictionNB[0]}"
+            # input("checking")
+            return predictions, new_predictions
 
         # Main script
         # Load and prepare data
@@ -1996,7 +2071,7 @@ try:
             'home_score': 96.055, 'away_score': 95.265
         }
 
-        result = predict(featured_data)
+        result, new_result = predict(featured_data)
 
         def remove_below_threshold(labels, values, threshold):
             # Make sure the lengths of both lists are equal
@@ -2019,7 +2094,7 @@ try:
 
         pred, acc = remove_below_threshold(result, accuracy_list, 0)
 
-        return pred, acc
+        return pred, acc, new_result
 
     def ml_prediction(data):
         try:

@@ -125,6 +125,7 @@ class BookGame:
         game_time = None
         sporter_counter = 0
         extraData = []
+        new_insight = ""
 
         for d in dataList:
             if d.__contains__("Game Time"):
@@ -157,6 +158,10 @@ class BookGame:
                         game_code = game_code.replace("[","").replace("]","")
                         sporter_counter = 0
 
+                if d.__contains__("NEW:"):
+                    new_insight = d.split("-")[-1].strip()
+
+
             if begin is False:
                 # if len(group) > 0:
                 #     # apply filter
@@ -168,7 +173,7 @@ class BookGame:
                 #         dataGroup.append(x)
 
                 if home is not None:
-                    extraData.append((game_time, home, away, game_code, accuracy))
+                    extraData.append((game_time, home, away, game_code, accuracy, new_insight))
 
                 group.clear()
                 home = None
@@ -214,15 +219,16 @@ class BookGame:
             t = data[0] # extract time
             h = data[1] # extrach home team
             a = data[2] # extract away team
-            accuracy = str(data[3]).replace("[", "").replace("]", "")
+            accuracy = str(data[4]).replace("[", "").replace("]", "")
             code = data[3]
+            newInsight = data[5]
 
             # print("[][] ",data , "<><>", f"{timeHandle}--{homeHandle}--{awayHandle}")
 
             if t==timeHandle.strip() and h == homeHandle.strip() and a == awayHandle.strip():
-                return True, code, accuracy
+                return True, code, accuracy, newInsight
 
-        return False, None, None
+        return False, None, None, None
         pass
 
     def start(self, date_to_book, specific=False, specific_value="500", booking_limit=40):
@@ -237,6 +243,7 @@ class BookGame:
                 ('23:00', 'EC Juventude RS', 'AC Goianiense GO', '302')
                 '''
             dataListToBook = self.load_data_to_book(f"filtered_{date_to_book}.txt")
+            # dataListToBook = self.load_data_to_book(f"fb_result.txt")
             self.dataListToBook = dataListToBook
 
             self.driver = self.login_to_sportybet(self.driver, '08022224284', "Afolayemi1")
@@ -270,7 +277,7 @@ class BookGame:
 
                     leagues = self.driver.find_elements(By.CLASS_NAME, match_league)
 
-                    # looping through all the leagues
+                    # looping through all the leagues in the current page
                     for league in leagues:
                         try:
                             # a. switch to double chance
@@ -284,6 +291,49 @@ class BookGame:
                             # ----------------------------------
                             rows = league.find_elements(By.CLASS_NAME, eachRowClass)
                             # print(f"Total Rows in league: {len(rows)}")
+
+                            def submit():
+
+                                # m-input fs-exclude
+                                bat = "m-input.fs-exclude"
+                                pbb = "af-button.af-button--primary"  # place bet button class
+                                pbc = "af-button.af-button--primary"  # place bet confirm
+                                ssb = "af-button.af-button--primary"
+
+                                bet_amount_textbox = self.driver.find_element(By.CLASS_NAME, bat)
+
+                                place_bet_button = self.driver.find_element(By.CLASS_NAME, pbb)
+
+
+                                if bet_amount_textbox:
+                                    time.sleep(1)
+                                    # Click on the text box to focus it
+                                    print("trying to clear amount textbox...")
+                                    # Get the current value of the text box
+                                    current_value = bet_amount_textbox.get_attribute("value")
+
+                                    # Send backspace keys to delete the current value
+                                    bet_amount_textbox.send_keys(Keys.BACKSPACE * len(current_value))
+                                    print("Inseting N10 bet...")
+                                    time.sleep(1)
+                                    bet_amount_textbox.send_keys(10)
+                                    time.sleep(1)
+                                    print("clicking ok to place bet")
+                                    place_bet_button.click()
+                                    time.sleep(1)
+                                    print("confirming bet...")
+                                    try:
+                                        place_bet_confirm_button = self.driver.find_element(By.CLASS_NAME, pbc)
+                                        time.sleep(1)
+                                        place_bet_confirm_button.click()
+                                    except Exception as e:
+                                        print(e)
+
+                                    time.sleep(1)
+                                    print("Confirming submission....")
+                                    place_bet_confirm_button.click()
+                                else:
+                                    print("bet amount textbox not found!")
 
                             for row in rows:
                                 try:
@@ -312,66 +362,90 @@ class BookGame:
 
                                     # check if this data is in booking list:
                                     try:
-                                        ans, code, accuracy = self.is_in_booking_list(time_handle.strip(), home_team_handle.strip(), away_team_handle.strip())
+                                        ans, code, accuracy, new_insight = self.is_in_booking_list(time_handle.strip(), home_team_handle.strip(), away_team_handle.strip())
                                     except Exception as e:
                                         print(f"ERROR: {e}")
-                                    # print(f"{ans} -- {code} -- {accuracy}")
-                                    if ans is True:
-                                        # print(f"Ans: {ans} - {code}<>{specific_value}")
-                                        if specific is False:
-                                            # print(f"CODE: {code}")
-                                            # booking all games except those in excluded list
-                                            if str(code) in hdList and str(code) not in excludeList:   # 1x
-                                                print()
-                                                print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
-                                                hd_handle.click()
-                                                game_booked += 1
-                                            elif str(code) in adList and str(code) not in excludeList:
-                                                print()
-                                                print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
-                                                ad_handle.click()
-                                                game_booked += 1
-                                            elif str(code) in haList and str(code) not in excludeList:
-                                                print()
-                                                print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
-                                                ha_handle.click()
-                                                game_booked += 1
-                                            else:
-                                                print("\r.", end="")
-                                                pass
 
-                                            if game_booked >= booking_limit:
-                                                game_booked = 0
-                                                print()
-                                                input("[*][*][*] BOOKING LIMIT REACHED! REACT AND PRESS ENTER TO CONTINUE! WAITING FOR YOU...")
-                                        else:
-                                            # booking only spcified code
-                                            if str(code) in hdList and str(code) == specific_value:   # 1x
-                                                print()
-                                                print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
-                                                hd_handle.click()
-                                                game_booked += 1
-                                            elif str(code) in adList and str(code) == specific_value:
-                                                print()
-                                                print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
-                                                ad_handle.click()
-                                                game_booked += 1
-                                            elif str(code) in haList and str(code) == specific_value:
-                                                print()
-                                                print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
-                                                ha_handle.click()
-                                                game_booked += 1
-                                            else:
-                                                print("\r.", end="")
-                                                pass
+                                    #   USING NEW INSIGHT AS PRIORITY
+                                    # ---------------------------------------
 
-                                            if game_booked >= booking_limit:
-                                                game_booked = 0
-                                                print()
-                                                input("[*][*][*] BOOKING LIMIT REACHED! REACT AND PRESS ENTER TO CONTINUE! WAITING FOR YOU...")
+                                    if str(new_insight).lower().__contains__("home or draw"):
+                                        print(f"[] Taking decision based on new insight...")
+                                        hd_handle.click()
+                                        game_booked += 1
+                                    elif str(new_insight).lower().__contains__('draw or away'):
+                                        print(f"[] Taking decision based on new insight...")
+                                        ad_handle.click()
+                                        game_booked += 1
+                                    elif str(new_insight).lower().__contains__("home or away"):
+                                        print(f"[] Taking decision based on new insight...")
+                                        ha_handle.click()
+                                        game_booked += 1
                                     else:
-                                        # print(f"\rNot Found! {home_team_handle} vs {away_team_handle}", end="")
-                                        pass
+                                        # print(f"{ans} -- {code} -- {accuracy}")
+                                        if ans is True:
+                                            # print(f"Ans: {ans} - {code}<>{specific_value}")
+                                            if specific is False:
+                                                # print(f"CODE: {code}")
+                                                # booking all games except those in excluded list
+                                                if str(code) in hdList and str(code) not in excludeList:   # 1x
+                                                    print()
+                                                    print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
+                                                    hd_handle.click()
+                                                    game_booked += 1
+                                                elif str(code) in adList and str(code) not in excludeList:
+                                                    print()
+                                                    print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
+                                                    ad_handle.click()
+                                                    game_booked += 1
+                                                elif str(code) in haList and str(code) not in excludeList:
+                                                    print()
+                                                    print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
+                                                    ha_handle.click()
+                                                    game_booked += 1
+                                                else:
+                                                    print("\r.", end="")
+                                                    pass
+
+                                            else:
+                                                # booking only spcified code
+                                                if str(code) in hdList and str(code) == specific_value:   # 1x
+                                                    print()
+                                                    print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
+                                                    hd_handle.click()
+                                                    game_booked += 1
+                                                elif str(code) in adList and str(code) == specific_value:
+                                                    print()
+                                                    print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
+                                                    ad_handle.click()
+                                                    game_booked += 1
+                                                elif str(code) in haList and str(code) == specific_value:
+                                                    print()
+                                                    print(f"[OK] [{code}] [{home_team_handle} vs {away_team_handle}]")
+                                                    ha_handle.click()
+                                                    game_booked += 1
+                                                else:
+                                                    print("\r.", end="")
+                                                    pass
+
+                                                # if game_booked >= booking_limit:
+                                                #     game_booked = 0
+                                                #     print()
+                                                #     # submit()
+                                                #
+                                                #     input("[*][*][*] BOOKING LIMIT REACHED! REACT AND PRESS ENTER TO CONTINUE! WAITING FOR YOU...")
+                                                #
+                                        else:
+                                            # print(f"\rNot Found! {home_team_handle} vs {away_team_handle}", end="")
+                                            pass
+
+                                    if game_booked >= booking_limit:
+                                        game_booked = 0
+                                        print()
+                                        # submit()
+
+                                        input(
+                                            "[*][*][*] BOOKING LIMIT REACHED! REACT AND PRESS ENTER TO CONTINUE! WAITING FOR YOU...")
 
                                     # I can actually check if each of this is in the booking list and just book right here
 
@@ -405,8 +479,9 @@ class BookGame:
 # excludeList = ["500", "050", "302","104", "320", "140", "311"]
 excludeList = ["302","104", "320", "140", "311"]
 
-mdate = 17
+mdate = 22
 specific = False
+bookingLimit = 5
 
 if specific is True:
     for e in excludeList:
@@ -415,10 +490,10 @@ if specific is True:
         test.start(date_to_book=mdate,
                    specific=True,
                    specific_value=e,
-                   booking_limit=10)
+                   booking_limit=bookingLimit)
 else:
     test = BookGame()
     test.start(date_to_book=mdate,
                specific=False,
                specific_value="500",
-               booking_limit=10)
+               booking_limit=bookingLimit)

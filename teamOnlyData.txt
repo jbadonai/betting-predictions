@@ -1,81 +1,179 @@
-AC Barnechea | Deportes Limache
+Blackwatch Rush | Pathfinder FC New York
 
-ABC FC RN | Volta Redonda FC RJ
+Nona FC | Inter Gainesville KF
 
-Nautico PE | Floresta EC CE
+South Carolina United FC | Tobacco Road FC
 
-EC Agua Santa SP | Pouso Alegre MG
+Chicago City | River Light FC
 
-Trem AP | Princesa d. Solimoes
+AA Ponte Preta SP | Ceara SC CE
 
-Atletico Mineiro MG | SE Palmeiras SP
+Amazonas FC AM | Coritiba FC PR
 
-Chapecoense SC | Operario Ferroviario EC PR
+Chile | Argentina
 
-Manhattan SC | Paisley Athletic FC
+Avispa Fukuoka | Yokohama Marinos
 
-CSD Independiente del Valle | Boca Juniors
+Cerezo Osaka | Sagan Tosu
 
-Northern Colorado Hailstorm FC | One Knoxville SC
+FC Tokyo | Hokkaido Consadole Sapporo
 
-Newcastle Olympic FC | Adamstown Rosebud FC
+Jubilo Iwata | Tokyo Verdy
 
-Meizhou Hakka | Shanghai Port FC
+Kashima Antlers | Gamba Osaka
 
-Brunei DPMM FC | Lion City Sailors FC
+Kawasaki Frontale | Shonan Bellmare
 
-Transport United FC | Tensung FC
+Kyoto Sanga FC | Kashiwa Reysol
 
-Smouha SC | El Daklyeh
+Nagoya Grampus | Urawa Red Diamonds
 
-Nomme Kalju FC | JK Tallinna Kalev
+Sanfrecce Hiroshima | Niigata Albirex
 
-Paide Linnameeskond | Parnu JK Vaprus
+Vissel Kobe | Machida Zelvia
 
-AL Salt | Sahab SC
+V-Varen Nagasaki | Iwaki FC
 
-FC LaPa | LAUTP
+FC Seoul | Gangwon FC
 
-PIF | Peimari United
+Jeju United FC | Incheon United FC
 
-Turkey | Georgia
+Jeonbuk Hyundai Motors | Pohang Steelers FC
 
-Al Ittihad Al Sakandary | AL Ahly SC (Egy)
+Ulsan Hyundai FC | Daegu FC
 
-Zed FC | Pharco FC
+Kataller Toyama | Grulla Morioka
 
-Dfk Dainava Alytus | FA Siauliai
+Cheonan City FC | Bucheon FC
 
-PeKa | HaPK
+Gimpo FC | Cheongju FC
 
-MPS/Atletico Malmi | HPS
+Seoul E-Land FC | Ansan Greeners
 
-Ponnistajat | SAPA
+Logan Lightning | Broadbeach United
 
-FC Kontu | LPS
+Shanghai Shenhua | Meizhou Hakka
 
-Ramtha SC | Al Wehdat Jor
+Changchun Yatai | Shandong Taishan
 
-Club Atletico Fenix | Deportivo Merlo
+Qingdao Hainiu FC | Chengdu Rongcheng
 
-Fylkir Reykjavik | IF Vestri
+Beijing Guoan | Cangzhou Mighty Lions
 
-Portugal | Czech Republic
+Eswatini | Botswana
 
-Cruzeiro EC MG | SC Corinthians SP
+VPV | SIF
 
-Fram Reykjavik | HK Kopavogur
+Sporting Alexandria | Haras El Hodood
 
-IA Akranes | KR Reykjavik
+Kyparamaki Rangers | HoDy
 
-Stjarnan Gardabae | FH Hafnarfjordur
+FS Jelgava | FK Tukums 2000/TSS
 
-Manta FC | Cuniburo FC
+Riga FC | FK Auda
 
-Valur Reykjavik | Vikingur Reykjavik
+FC Hegelmann Kaunas | FA Siauliai
 
-Fluminense FC RJ | CR Flamengo RJ
+FK Suduva Marijampole | FK Panevezys
 
-Guarani FC SP | Ituano FC SP
+PKKU/2 | TiPS
 
-CD Palestino | Cuiaba Esporte Clube MT
+PFK Metallurg Bekabad | FC Nasaf
+
+Ekenas Idrottsforening | HJK Helsinki
+
+FC Kirkkonummi | HooGee
+
+Slovakia | Romania
+
+Ukraine | Belgium
+
+South Africa | Mozambique
+
+Dfk Dainava Alytus | Dziugas
+
+FK Banga Gargzdai | Vilnius FK Zalgiris
+
+FA Tartu Kalev | Viljandi JK Tulevik
+
+Aasane | SK Brann
+
+Arna-Bjornar | Viking FK
+
+FK Fortuna Alesund | Lillestrom SK Kvinner
+
+Roea | Troemso IL
+
+Stabaek Fotball | Hoenefoss BK
+
+FK Kauno Zalgiris | FK Transinvest
+
+FK Rigas Futbola Skola | Valmiera FC
+
+IFK Luleaa | Bodens BK
+
+IFK Karlshamn | IFK Trelleborg
+
+FCJ Blackbird | Huima/Urho
+
+KIF Orebro DFF | Hacken Gothenburg W
+
+IFK Ostersund | Hudiksvalls FF
+
+BK Forward | IFK Skovde FK
+
+Lyn | Bodoe/Glimt
+
+Minnesota United FC 2 | Portland Timbers II
+
+Keflavik IF | UMF Njardvik
+
+UMF Grindavik | IBV Vestmannaeyjar
+
+America FC MG | Fluminense FC RJ
+
+CR Flamengo RJ | Fortaleza EC CE
+
+RB Bragantino SP | Goias EC GO
+
+FH Hafnarfjordur | UMF Tindastoll
+
+Vikingur Reykjavik | Stjarnan
+
+Czech Republic | Turkey
+
+Georgia | Portugal
+
+Deportes Concepción | Deportes Linares
+
+Afturelding | Fjolnir
+
+Dalvik Reynir | Thor Akureyri
+
+Grotta | IR Reykjavik
+
+Leiknir Reykjavik | Throttur Reykjavik
+
+SC Internacional RS | SE Palmeiras SP
+
+9 de Octubre FC | Vargas Torres
+
+CD Independiente Juniors | Club Leones Del Norte
+
+Chacaritas FC | Gualaceo SC
+
+Tombense FC MG | SER Caxias do Sul
+
+Ecuador | Jamaica
+
+Botafogo FR RJ | Red Bull Bragantino SP
+
+Cruzeiro EC MG | CA Paranaense PR
+
+Philadelphia Union II | New York Red Bulls II
+
+Sampaio Correa FC MA | Athletic Club Sjdr MG
+
+Fluminense EC PI | AA Altos PI
+
+Swan City SC | Tampa Bay United

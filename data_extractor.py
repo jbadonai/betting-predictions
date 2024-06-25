@@ -270,7 +270,7 @@ class PreviousRecordExtractor():
                 rate = self.driver.find_element(By.XPATH, rating_xpath)
                 return rate.text
             except Exception as e:
-                print(f"[x] Rating error {e}")
+                # print(f"[x] Rating error {e}")
                 return 0
 
         def get_ranking():
@@ -283,7 +283,7 @@ class PreviousRecordExtractor():
 
                 return f"{actual_rank}/{total_ranked}"
             except Exception as e:
-                print(f"[x] Ranking Error: {e}")
+                # print(f"[x] Ranking Error: {e}")
                 return 0
 
         suitable_data_table_class = self.find_suitable_class_name(data_table_class_list, False)     # using CSS
