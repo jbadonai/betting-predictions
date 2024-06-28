@@ -296,6 +296,7 @@ def get_urls_with_data(driver, currentDate, start_page=1):
             basketball_data.extend(bb_data)
 
             # if str(today).strip() != str(current_date).strip():
+            print(f"Date checked ---> {today}")
             if int(today.strip()) not in current_date:
                 # cap += 1
                 # if cap < 5:
@@ -321,10 +322,15 @@ dt = input("Specify date(day): ")
 if dt == "":
     dt =[get_today()]
 else:
-    if "," not in dt:
-        dt = [dt]
-    else:
+    if "," in dt:
         dt = dt.split(",")
+    elif "-" in dt:
+        a,b = dt.split("-")
+        dt = [x for x in range(int(a), int(b)+1)]
+        # print(dt)
+    else:
+        dt = [dt]
+
     # dt = int(dt)
 
 startPage = input("Specify start page: ")
