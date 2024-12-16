@@ -164,6 +164,10 @@ def update_excel_data(new_data_list, sport, excel_file):
     # Write the updated DataFrame back to the Excel file
     df.to_excel(excel_file, index=False)
     print("Data updated successfully.")
+
+
+
+
 hdList = ["104", "500","302", '401','212', '203']    # code for home or draw
 adList = [ '041']    # code for away or draw
 haList = ["140", "311","050","320", '221','410']

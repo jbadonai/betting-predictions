@@ -8,7 +8,7 @@ from selenium.common.exceptions import TimeoutException
 import pandas as pd
 import time
 from datetime import datetime
-
+import winsound
 
 class BookGame:
     def __init__(self):
@@ -66,6 +66,17 @@ class BookGame:
         finally:
             # Close the browser session
             pass
+
+    def make_beeps(self, number_of_beeps):
+        """
+        Makes a specified number of beeps.
+
+        Parameters:
+        number_of_beeps (int): The number of beeps to make.
+        """
+        for _ in range(number_of_beeps):
+            winsound.Beep(1000, 200)  # Frequency: 1000 Hz, Duration: 200 ms
+            time.sleep(0.2)  # Wait 200 ms between beeps
 
     def check_pagination_exists(self, current_driver):
         try:
@@ -568,6 +579,7 @@ class BookGame:
                                         if game_booked >= booking_limit:
                                             game_booked = 0
                                             print()
+                                            self.make_beeps(5)
                                             input("[*][*][*] BOOKING LIMIT REACHED! REACT AND PRESS ENTER TO CONTINUE! WAITING FOR YOU...")
                                         if gameBookedSuccessfully is True:
                                             break
@@ -594,7 +606,7 @@ class BookGame:
             # looping through the pages if more than one to get all booking list
 
             print("Completed! Waiting for user input...")
-
+            self.make_beeps(10)
             ans = input("press any key after completeing the booking process to exit browser")
 
             pass
